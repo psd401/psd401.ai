@@ -21,10 +21,14 @@ export function getContentBySlug(section: string, slug: string): MarkdownContent
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
+  if (!data.title) {
+    throw new Error(`Missing required title in frontmatter for ${fullPath}`);
+  }
+
   return {
     slug,
     content,
-    frontmatter: data,
+    frontmatter: data as MarkdownContent['frontmatter'],
   };
 }
 
