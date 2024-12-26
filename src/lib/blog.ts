@@ -22,22 +22,39 @@ export type Post = {
   tags: string[];
 };
 
-export async function getAllPosts(): Promise<Post[]> {
-  // For now, return some sample blog posts
-  return [
-    {
-      title: "Student Success Stories with AI",
-      description: "How our students are leveraging AI tools to enhance their learning experience",
-      slug: "student-success-with-ai",
-      tags: ["success stories", "students", "learning"]
-    },
-    {
-      title: "AI Professional Development Program",
-      description: "Overview of our comprehensive AI training program for educators",
-      slug: "ai-professional-development",
-      tags: ["professional development", "teachers", "training"]
-    }
-  ];
+export async function getAllPosts(): Promise<BlogPost[]> {
+  // Get file names under /content/blog
+  const fileNames = fs.readdirSync(postsDirectory);
+  const allPosts = fileNames
+    .filter(fileName => fileName.endsWith('.md'))
+    .map(fileName => {
+      // Remove ".md" from file name to get slug
+      const slug = fileName.replace(/\.md$/, '');
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+      // Use gray-matter to parse the post metadata section
+      const { data, content } = matter(fileContents);
+
+      // Ensure date is in correct format
+      const date = data.date ? new Date(data.date).toISOString() : new Date().toISOString();
+
+      return {
+        slug,
+        title: data.title,
+        description: data.description,
+        date,
+        author: data.author,
+        tags: data.tags || [],
+        image: data.image,
+        content,
+      };
+    });
+
+  // Sort posts by date in descending order
+  return allPosts.sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
