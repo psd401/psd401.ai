@@ -7,9 +7,10 @@ module.exports = {
   rules: {
     'no-unused-vars': 'error',
     'no-undef': 'error',
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'prefer-const': 'error',
-    'eqeqeq': 'error'
+    'eqeqeq': 'error',
+    'react/no-unescaped-entities': 'off'
   },
   env: {
     browser: true,

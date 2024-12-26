@@ -1,4 +1,4 @@
-import { Card, CardBody, Input, Button } from '@nextui-org/react';
+import { Card, CardBody } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 

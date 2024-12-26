@@ -1,6 +1,7 @@
 'use client';
 
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from '@nextui-org/react';
+import React from 'react';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
 import Image from 'next/image';
