@@ -47,9 +47,9 @@ export default function UseCasesClient({
     if (selectedTags.size === 0) return true;
     
     const caseTags = new Set([
-      ...(useCase.frontmatter.tags || []),
-      useCase.frontmatter.subject,
-      useCase.frontmatter.gradeLevel ? `Grade ${useCase.frontmatter.gradeLevel}` : null
+      ...(useCase.tags || []),
+      useCase.subject,
+      useCase.grade_level ? `Grade ${useCase.grade_level}` : null
     ].filter(Boolean));
 
     return Array.from(selectedTags).some(tag => caseTags.has(tag));
@@ -132,21 +132,21 @@ export default function UseCasesClient({
                   >
                     <Card className="hover:scale-[1.02] transition-transform h-full">
                       <CardHeader className="flex flex-col items-start gap-2">
-                        <h3 className="text-xl font-bold">{useCase.frontmatter.title}</h3>
+                        <h3 className="text-xl font-bold">{useCase.title}</h3>
                         <div className="flex flex-wrap gap-2">
-                          {useCase.frontmatter.subject && (
+                          {useCase.subject && (
                             <Chip color="primary" variant="flat" size="sm">
-                              {useCase.frontmatter.subject}
+                              {useCase.subject}
                             </Chip>
                           )}
-                          {useCase.frontmatter.gradeLevel && (
+                          {useCase.grade_level && (
                             <Chip variant="flat" size="sm">
-                              Grades {useCase.frontmatter.gradeLevel}
+                              Grades {useCase.grade_level}
                             </Chip>
                           )}
-                          {useCase.frontmatter.status && (
+                          {useCase.status && (
                             <Chip color="success" variant="flat" size="sm">
-                              {useCase.frontmatter.status}
+                              {useCase.status}
                             </Chip>
                           )}
                         </div>
@@ -155,11 +155,11 @@ export default function UseCasesClient({
                         <p className="text-gray-600">
                           {useCase.content.slice(0, 150)}...
                         </p>
-                        {useCase.frontmatter.toolsUsed && (
+                        {useCase.tools_used && (
                           <div className="mt-4">
                             <p className="text-sm text-gray-500 mb-2">Tools Used:</p>
                             <div className="flex flex-wrap gap-2">
-                              {useCase.frontmatter.toolsUsed.map((tool) => (
+                              {useCase.tools_used.map((tool) => (
                                 <Chip key={tool} variant="flat" size="sm">
                                   {tool}
                                 </Chip>

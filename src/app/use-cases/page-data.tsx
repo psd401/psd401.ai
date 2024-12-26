@@ -1,20 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { getAllContent } from '@/lib/markdown';
-
-export interface UseCase {
-  slug: string;
-  content: string;
-  frontmatter: {
-    title: string;
-    category: string;
-    subject?: string;
-    gradeLevel?: string;
-    toolsUsed?: string[];
-    status?: string;
-    tags?: string[];
-  };
-}
+import { UseCase } from '@/lib/use-cases';
 
 export interface CategoryData {
   name: string;
@@ -55,12 +42,25 @@ export async function getUseCasesByCategory() {
       .filter(file => file.endsWith('.md'));
 
     files.forEach(file => {
-      const useCase = getAllContent(`use-cases/${categoryDir}`).find(
+      const markdownContent = getAllContent(`use-cases/${categoryDir}`).find(
         uc => uc.slug === file.replace('.md', '')
       );
 
-      if (useCase) {
-        const category = useCase.frontmatter.category;
+      if (markdownContent) {
+        const useCase: UseCase = {
+          slug: markdownContent.slug,
+          title: markdownContent.frontmatter.title,
+          description: markdownContent.frontmatter.description,
+          content: markdownContent.content,
+          tags: markdownContent.frontmatter.tags || [],
+          author: markdownContent.frontmatter.author,
+          school: markdownContent.frontmatter.school,
+          grade_level: markdownContent.frontmatter.grade_level,
+          subject: markdownContent.frontmatter.subject,
+          tools_used: markdownContent.frontmatter.tools_used,
+        };
+
+        const category = markdownContent.frontmatter.category;
         if (!useCasesByCategory[category]) {
           useCasesByCategory[category] = [];
         }
@@ -75,9 +75,9 @@ export async function getUseCasesByCategory() {
 export function getAllTags(useCasesByCategory: { [key: string]: UseCase[] }): string[] {
   const tags = new Set<string>();
   Object.values(useCasesByCategory).flat().forEach(useCase => {
-    useCase.frontmatter.tags?.forEach(tag => tags.add(tag));
-    if (useCase.frontmatter.subject) tags.add(useCase.frontmatter.subject);
-    if (useCase.frontmatter.gradeLevel) tags.add(`Grade ${useCase.frontmatter.gradeLevel}`);
+    useCase.tags?.forEach(tag => tags.add(tag));
+    if (useCase.subject) tags.add(useCase.subject);
+    if (useCase.grade_level) tags.add(`Grade ${useCase.grade_level}`);
   });
   return Array.from(tags).sort();
 } 
