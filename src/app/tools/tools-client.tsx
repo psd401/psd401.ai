@@ -3,7 +3,7 @@
 import { Card, CardBody, CardHeader, Button, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Tool } from './page';
+import { Tool } from '@/lib/tools';
 
 interface ToolsClientProps {
   tools: Tool[];
@@ -27,9 +27,9 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
     if (selectedTags.size === 0) return true;
     
     const toolTags = new Set([
-      ...(tool.frontmatter.tags || []),
-      tool.frontmatter.type,
-      tool.frontmatter.status
+      ...(tool.tags || []),
+      tool.type,
+      tool.status
     ].filter(Boolean));
 
     return Array.from(selectedTags).some(tag => toolTags.has(tag));
@@ -67,19 +67,15 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
         {filteredTools.map((tool) => (
           <Card key={tool.slug} className="hover:scale-[1.02] transition-transform">
             <CardHeader className="flex flex-col items-start gap-1">
-              <h2 className="text-2xl font-bold">{tool.frontmatter.title}</h2>
+              <h2 className="text-2xl font-bold">{tool.title}</h2>
               <div className="flex flex-wrap gap-2">
-                {tool.frontmatter.type && (
-                  <Chip color="primary" variant="flat" size="sm">
-                    {tool.frontmatter.type}
-                  </Chip>
-                )}
-                {tool.frontmatter.status && (
-                  <Chip color="success" variant="flat" size="sm">
-                    {tool.frontmatter.status}
-                  </Chip>
-                )}
-                {tool.frontmatter.tags?.map((tag) => (
+                <Chip color="primary" variant="flat" size="sm">
+                  {tool.type}
+                </Chip>
+                <Chip color="success" variant="flat" size="sm">
+                  {tool.status}
+                </Chip>
+                {tool.tags?.map((tag) => (
                   <Chip key={tag} variant="flat" size="sm">
                     {tag}
                   </Chip>
@@ -88,7 +84,7 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
             </CardHeader>
             <CardBody className="space-y-4">
               <p className="text-gray-600">
-                {tool.frontmatter.description}
+                {tool.description}
               </p>
               <div className="flex gap-4">
                 <Link href={`/tools/${tool.slug}`}>
@@ -96,10 +92,10 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
                     Learn More
                   </Button>
                 </Link>
-                {tool.frontmatter.demoUrl && (
-                  <Link href={tool.frontmatter.demoUrl} target="_blank">
+                {tool.url && (
+                  <Link href={tool.url} target="_blank">
                     <Button color="secondary" variant="flat">
-                      Try Demo
+                      Visit Tool
                     </Button>
                   </Link>
                 )}

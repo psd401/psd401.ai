@@ -13,6 +13,8 @@ export interface Tool {
   url?: string;
   pricing?: string;
   platform?: string;
+  type: string;
+  status: string;
 }
 
 export async function getAllTools(): Promise<Tool[]> {
@@ -38,6 +40,8 @@ export async function getAllTools(): Promise<Tool[]> {
         url: data.url,
         pricing: data.pricing,
         platform: data.platform,
+        type: data.type,
+        status: data.status,
       };
     });
 
@@ -68,6 +72,8 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
       url: data.url,
       pricing: data.pricing,
       platform: data.platform,
+      type: data.type,
+      status: data.status,
     };
   } catch (error) {
     console.error(`Error reading tool ${slug}:`, error);
@@ -81,6 +87,8 @@ export async function getAllTags(): Promise<string[]> {
   
   tools.forEach(tool => {
     tool.tags?.forEach(tag => tagSet.add(tag));
+    if (tool.type) tagSet.add(tool.type);
+    if (tool.status) tagSet.add(tool.status);
   });
 
   return Array.from(tagSet).sort();
