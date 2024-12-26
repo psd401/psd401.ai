@@ -60,6 +60,7 @@ export async function getUseCasesByCategory() {
           grade_level: markdownContent.frontmatter.grade_level,
           subject: markdownContent.frontmatter.subject,
           tools_used: markdownContent.frontmatter.tools_used,
+          status: markdownContent.frontmatter.status,
         };
 
         const category = markdownContent.frontmatter.category;

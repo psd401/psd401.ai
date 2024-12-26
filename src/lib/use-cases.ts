@@ -15,6 +15,7 @@ export interface UseCase {
   grade_level?: string;
   subject?: string;
   tools_used?: string[];
+  status?: string;
 }
 
 export async function getAllUseCases(): Promise<UseCase[]> {
