@@ -3,6 +3,8 @@ import path from 'path';
 import { getAllContent } from '@/lib/markdown';
 import { UseCase } from '@/lib/use-cases';
 
+export type { UseCase };
+
 export interface CategoryData {
   name: string;
   description: string;
