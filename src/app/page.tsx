@@ -5,49 +5,56 @@ import Image from 'next/image';
 
 const sections = [
   {
-    title: 'Core Resources',
-    description: 'Essential guidance and documentation for AI in education',
+    title: 'Your Foundation for AI Integration',
+    description:
+      'Access official district policies, best practices, and foundational documents for AI implementation in education.',
     items: [
       {
-        title: 'Policies and Guidance',
-        description: 'Official district policies and guidance for AI use in education',
+        title: 'Understanding AI in Education: Our Official Guidance',
+        description:
+          'Find clear and comprehensive district policies and guidance to confidently navigate the use of AI in your educational practice.',
         image: '/images/sections/policies-hero.jpg',
         href: '/policies',
       },
       {
-        title: 'Blog Posts',
-        description: 'Stories and updates about AI implementation across our district',
+        title: 'Exploring the Future of Learning with AI: Our Blog',
+        description:
+          'Get real-time insights into how AI is being used in Peninsula schools, with practical examples and expert perspectives.',
         image: '/images/sections/blog-hero.jpg',
         href: '/blog',
       },
       {
-        title: 'Presentations',
-        description: 'Slide decks, videos, and materials from conferences and trainings',
+        title: 'Learn from the Experts: AI in Education Presentations',
+        description:
+          'Enhance your understanding of AI in education with presentations covering key concepts, practical applications, and emerging trends.',
         image: '/images/sections/presentations-hero.jpg',
         href: '/presentations',
       },
     ],
   },
   {
-    title: 'Resources & Examples',
-    description: 'Practical tools and real-world applications of AI in education',
+    title: 'See AI in Action: Real-World Examples',
+    description:
+      'Discover ready-to-use AI tools and see how your colleagues are successfully using AI in education.',
     items: [
       {
-        title: 'AI Tools',
-        description: 'Curated collection of AI tools and applications for education',
+        title: 'Explore & Utilize AI Tools in Education',
+        description:
+          'Find practical AI tools to streamline your workflow, personalize learning experiences, and foster student creativity.',
         image: '/images/sections/tools-hero.jpg',
         href: '/tools',
       },
       {
-        title: 'Articles',
-        description: 'Curated articles and research about AI in education',
+        title: 'AI in Education Research & Articles',
+        description:
+          'Access thought-provoking articles from leading researchers, educators, and experts in the field of AI and education.',
         image: '/images/sections/articles-hero.jpg',
         href: '/articles',
       },
       {
-        title: 'Use Cases',
+        title: 'See AI in Action: Inspiring Use Cases',
         description:
-          'Real-world examples and effective prompts for AI across education and operations',
+          'Get inspired by practical examples and learn how to implement AI solutions in your own context, with ready-to-use prompts and best practices.',
         image: '/images/sections/use-cases-hero.jpg',
         href: '/use-cases',
       },
@@ -74,20 +81,19 @@ export default function Home() {
 
         <div className="space-y-6 max-w-4xl mx-auto px-6 relative z-[2]">
           <h1 className="text-6xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text leading-tight">
-            Leading Education&apos;s AI Future
+            Empowering Education with AI: Resources & Guidance
           </h1>
           <p className="text-xl text-foreground/90">
-            Welcome to Peninsula School District&apos;s AI hub, where innovation meets education.
-            From Gig Harbor, Washington, we&apos;re pioneering the thoughtful integration of AI
-            across K-12 education, empowering students and educators to thrive in an AI-enhanced
-            world.
+            Peninsula School District&apos;s AI Hub provides educators with the resources and
+            support to confidently integrate AI into K-12 learning, fostering innovation and
+            preparing students for the future.
           </p>
           <form action="/search" className="max-w-2xl mx-auto mt-8">
             <div className="relative">
               <input
                 type="search"
                 name="q"
-                placeholder="Search for articles and guides..."
+                placeholder="Explore our AI resources..."
                 className="w-full px-4 py-3 pl-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
               />
               <svg
