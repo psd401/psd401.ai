@@ -6,7 +6,8 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'prefer-const': 'error',
     eqeqeq: 'error',
-    'react/no-unescaped-entities': 'off',
+    'react/no-unescaped-entities': 0,
+    '@next/next/no-page-custom-font': 'off',
   },
   env: {
     browser: true,

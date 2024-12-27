@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Card, CardBody } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,21 +12,21 @@ const sections = [
         title: 'Policies and Guidance',
         description: 'Official district policies and guidance for AI use in education',
         image: '/images/sections/policies-hero.jpg',
-        href: '/policies'
+        href: '/policies',
       },
       {
         title: 'Blog Posts',
         description: 'Stories and updates about AI implementation across our district',
         image: '/images/sections/blog-hero.jpg',
-        href: '/blog'
+        href: '/blog',
       },
       {
         title: 'Presentations',
         description: 'Slide decks, videos, and materials from conferences and trainings',
         image: '/images/sections/presentations-hero.jpg',
-        href: '/presentations'
-      }
-    ]
+        href: '/presentations',
+      },
+    ],
   },
   {
     title: 'Resources & Examples',
@@ -35,47 +36,51 @@ const sections = [
         title: 'AI Tools',
         description: 'Curated collection of AI tools and applications for education',
         image: '/images/sections/tools-hero.jpg',
-        href: '/tools'
+        href: '/tools',
       },
       {
         title: 'Articles',
         description: 'Curated articles and research about AI in education',
         image: '/images/sections/articles-hero.jpg',
-        href: '/articles'
+        href: '/articles',
       },
       {
         title: 'Use Cases',
-        description: 'Real-world examples and effective prompts for AI across education and operations',
+        description:
+          'Real-world examples and effective prompts for AI across education and operations',
         image: '/images/sections/use-cases-hero.jpg',
-        href: '/use-cases'
-      }
-    ]
-  }
+        href: '/use-cases',
+      },
+    ],
+  },
 ];
 
 export default function Home() {
   return (
-    <div className="space-y-16 pb-16">
+    <div className="space-y-16">
       {/* Hero Section */}
       <section className="relative text-center py-24 min-h-[600px] flex items-center">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute top-0 left-0 right-0 bottom-0 z-0 h-full w-full"
           style={{
             backgroundImage: 'url("/images/hero-bg.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: '0.65'
+            opacity: '0.65',
           }}
         />
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        
+
         <div className="space-y-6 max-w-4xl mx-auto px-6 relative z-[2]">
           <h1 className="text-6xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text leading-tight">
-            Leading Education's AI Future
+            Leading Education&apos;s AI Future
           </h1>
           <p className="text-xl text-foreground/90">
-            Welcome to Peninsula School District's AI hub, where innovation meets education. From Gig Harbor, Washington, we're pioneering the thoughtful integration of AI across K-12 education, empowering students and educators to thrive in an AI-enhanced world.
+            Welcome to Peninsula School District&apos;s AI hub, where innovation meets education.
+            From Gig Harbor, Washington, we&apos;re pioneering the thoughtful integration of AI
+            across K-12 education, empowering students and educators to thrive in an AI-enhanced
+            world.
           </p>
           <form action="/search" className="max-w-2xl mx-auto mt-8">
             <div className="relative">
@@ -104,7 +109,7 @@ export default function Home() {
       </section>
 
       {/* Content Sections */}
-      {sections.map((section) => (
+      {sections.map(section => (
         <section key={section.title} className="space-y-8">
           <div className="space-y-2">
             <h2 className="text-2xl font-bold text-primary-500">{section.title}</h2>
@@ -112,7 +117,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {section.items.map((item) => (
+            {section.items.map(item => (
               <Link key={item.title} href={item.href}>
                 <Card className="hover:scale-[1.02] transition-transform bg-content1 hover:bg-content2">
                   <Image
