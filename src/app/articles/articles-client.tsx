@@ -37,7 +37,7 @@ export default function ArticlesClient({ articles, allTags }: ArticlesClientProp
   const filteredArticles = articles.filter(filterByTags);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 pb-16">
       {/* Hero Section */}
       <section className="relative text-center py-24 min-h-[400px] flex items-center -mx-6">
         {/* Background Image */}

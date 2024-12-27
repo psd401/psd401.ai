@@ -55,7 +55,7 @@ const sections = [
 
 export default function Home() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 pb-16">
       {/* Hero Section */}
       <section className="relative text-center py-24 min-h-[600px] flex items-center">
         {/* Background Image */}

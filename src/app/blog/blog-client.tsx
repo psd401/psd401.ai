@@ -2,6 +2,7 @@
 
 import { Card, CardBody, CardHeader } from '@nextui-org/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import type { BlogPost } from '@/lib/blog';
 
@@ -21,7 +22,7 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[], allT
   };
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 pb-16">
       {/* Hero Section */}
       <section className="relative text-center py-24 min-h-[400px] flex items-center -mx-6">
         {/* Background Image */}
@@ -66,35 +67,65 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[], allT
       </section>
 
       {/* Content Section */}
-      <section className="max-w-4xl mx-auto grid gap-6">
-        {filteredPosts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`}>
-            <Card className="hover:scale-[1.02] transition-transform">
-              <CardHeader className="flex flex-col items-start gap-1">
-                <h2 className="text-2xl font-bold">{post.title}</h2>
-                {post.date && (
-                  <time className="text-sm text-gray-500">
-                    {new Date(post.date).toLocaleDateString()}
-                  </time>
-                )}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map(tag => (
-                      <span key={tag} className="bg-primary-100 text-primary-800 text-sm px-2 py-1 rounded">
-                        {tag}
-                      </span>
-                    ))}
+      <section className="max-w-4xl mx-auto space-y-8">
+        <div className="grid gap-6">
+          {filteredPosts.map((post) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`}>
+              <Card className="hover:scale-[1.02] transition-transform">
+                <div className="grid md:grid-cols-4 gap-4">
+                  {post.image && (
+                    <div className="md:col-span-1">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        width={300}
+                        height={200}
+                        className="object-cover w-full h-full rounded-l"
+                      />
+                    </div>
+                  )}
+                  <div className={`${post.image ? 'md:col-span-3' : 'md:col-span-4'}`}>
+                    <CardHeader className="flex flex-col items-start gap-1">
+                      <h2 className="text-2xl font-bold">{post.title}</h2>
+                      {post.date && (
+                        <time className="text-sm text-gray-500">
+                          {new Date(post.date).toLocaleDateString()}
+                        </time>
+                      )}
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.map(tag => (
+                            <span key={tag} className="bg-primary-100 text-primary-800 text-sm px-2 py-1 rounded">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {post.description}
+                      </p>
+                    </CardBody>
                   </div>
-                )}
-              </CardHeader>
-              <CardBody>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {post.description}
-                </p>
-              </CardBody>
-            </Card>
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
+
+        {/* RSS Feed Link */}
+        <div className="flex justify-center pt-8">
+          <Link 
+            href="/feed.xml" 
+            className="inline-flex items-center gap-2 text-primary hover:text-primary-600"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/>
+            </svg>
+            Subscribe to RSS Feed
           </Link>
-        ))}
+        </div>
       </section>
     </div>
   );
