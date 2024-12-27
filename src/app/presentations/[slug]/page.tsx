@@ -1,6 +1,5 @@
 import { getContentBySlug } from '@/lib/markdown';
 import MarkdownContent from '@/components/MarkdownContent';
-import { Image } from '@nextui-org/react';
 
 interface Props {
   params: {
@@ -14,30 +13,23 @@ export default function PresentationPage({ params }: Props) {
   return (
     <article className="max-w-4xl mx-auto">
       <header className="mb-8">
-        {presentation.frontmatter.thumbnail && (
-          <div className="mb-6">
-            <Image
-              alt={presentation.frontmatter.title}
-              src={presentation.frontmatter.thumbnail}
-              className="w-full max-h-[400px] object-cover rounded-lg"
-            />
-          </div>
-        )}
         <h1 className="text-4xl font-bold mb-4">{presentation.frontmatter.title}</h1>
         <div className="flex flex-wrap gap-4 text-sm text-gray-600">
           {presentation.frontmatter.date && (
-            <time>
-              {new Date(presentation.frontmatter.date).toLocaleDateString()}
-            </time>
+            <time>{new Date(presentation.frontmatter.date).toLocaleDateString()}</time>
           )}
-          {presentation.frontmatter.presenter && (
-            <span>
-              Presented by {presentation.frontmatter.presenter}
-            </span>
-          )}
+          {presentation.frontmatter.presenters &&
+            presentation.frontmatter.presenters.length > 0 && (
+              <span>Presented by {presentation.frontmatter.presenters.join(', ')}</span>
+            )}
           {presentation.frontmatter.type && (
             <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded">
               {presentation.frontmatter.type}
+            </span>
+          )}
+          {presentation.frontmatter.audience && (
+            <span className="bg-secondary-100 text-secondary-800 px-2 py-1 rounded">
+              For {presentation.frontmatter.audience}
             </span>
           )}
         </div>
@@ -56,4 +48,4 @@ export default function PresentationPage({ params }: Props) {
       <MarkdownContent content={presentation.content} />
     </article>
   );
-} 
+}

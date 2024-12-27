@@ -8,8 +8,9 @@ export interface Presentation {
   description: string;
   content: string;
   date: string;
-  presenter: string;
+  presenters: string[];
   type: string;
+  audience: string;
   tags: string[];
   slides_url?: string;
   video_url?: string;
@@ -28,14 +29,17 @@ export async function getAllPresentations(): Promise<Presentation[]> {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(fileContents);
 
+      const presenters = data.presenters || (data.presenter ? [data.presenter] : []);
+
       return {
         slug,
         content,
         title: data.title,
         description: data.description,
         date: data.date,
-        presenter: data.presenter,
+        presenters,
         type: data.type,
+        audience: data.audience || 'All Staff',
         tags: data.tags || [],
         slides_url: data.slides_url,
         video_url: data.video_url,
@@ -52,8 +56,9 @@ export async function getAllTags(): Promise<string[]> {
 
   presentations.forEach(presentation => {
     presentation.tags?.forEach(tag => tags.add(tag));
-    if (presentation.presenter) tags.add(`Presenter: ${presentation.presenter}`);
+    presentation.presenters?.forEach(presenter => tags.add(`Presenter: ${presenter}`));
     if (presentation.type) tags.add(`Type: ${presentation.type}`);
+    if (presentation.audience) tags.add(`Audience: ${presentation.audience}`);
   });
 
   return Array.from(tags).sort();

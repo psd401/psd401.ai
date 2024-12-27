@@ -25,12 +25,15 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
 
   const filterByTags = (presentation: Presentation) => {
     if (selectedTags.size === 0) return true;
-    
-    const presentationTags = new Set([
-      ...(presentation.tags || []),
-      presentation.presenter ? `Presenter: ${presentation.presenter}` : null,
-      presentation.type ? `Type: ${presentation.type}` : null
-    ].filter(Boolean));
+
+    const presentationTags = new Set(
+      [
+        ...(presentation.tags || []),
+        ...(presentation.presenters?.map(presenter => `Presenter: ${presenter}`) || []),
+        presentation.type ? `Type: ${presentation.type}` : null,
+        presentation.audience ? `Audience: ${presentation.audience}` : null,
+      ].filter(Boolean)
+    );
 
     return Array.from(selectedTags).some(tag => presentationTags.has(tag));
   };
@@ -42,17 +45,17 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
       {/* Hero Section */}
       <section className="relative text-center py-24 min-h-[400px] flex items-center -mx-6">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute top-0 left-0 right-0 bottom-0 z-0 h-full w-full"
           style={{
             backgroundImage: 'url("/images/sections/presentations-hero.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: '0.65'
+            opacity: '0.65',
           }}
         />
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        
+
         <div className="space-y-6 max-w-4xl mx-auto px-6 relative z-[2]">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text">
             Presentations & Resources
@@ -64,12 +67,13 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
       </section>
 
       {/* Tags Browser */}
-      <section className="max-w-4xl mx-auto">
+      <section className="max-w-4xl mx-auto space-y-4">
+        <h2 className="text-xl font-bold text-primary-500">Filter by Tags</h2>
         <div className="flex flex-wrap gap-2">
-          {allTags.map((tag) => (
+          {allTags.map(tag => (
             <Chip
               key={tag}
-              variant={selectedTags.has(tag) ? "solid" : "flat"}
+              variant={selectedTags.has(tag) ? 'solid' : 'flat'}
               className="cursor-pointer hover:scale-105 transition-transform"
               onClick={() => toggleTag(tag)}
             >
@@ -80,15 +84,21 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
       </section>
 
       <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredPresentations.map((presentation) => (
+        {filteredPresentations.map(presentation => (
           <Link key={presentation.slug} href={`/presentations/${presentation.slug}`}>
             <Card className="hover:scale-[1.02] transition-transform">
               {presentation.thumbnail && (
-                <Image
-                  alt={presentation.title}
-                  src={presentation.thumbnail}
-                  className="object-cover h-48 w-full"
-                />
+                <div className="relative aspect-video">
+                  <Image
+                    alt={presentation.title}
+                    src={presentation.thumbnail}
+                    className="object-cover"
+                    classNames={{
+                      wrapper: 'w-full h-full',
+                      img: 'w-full h-full',
+                    }}
+                  />
+                </div>
               )}
               <CardHeader className="flex flex-col items-start gap-2">
                 <h2 className="text-xl font-bold">{presentation.title}</h2>
@@ -98,7 +108,12 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
                       {presentation.type}
                     </Chip>
                   )}
-                  {presentation.tags?.map((tag) => (
+                  {presentation.audience && (
+                    <Chip color="secondary" variant="flat" size="sm">
+                      {presentation.audience}
+                    </Chip>
+                  )}
+                  {presentation.tags?.map(tag => (
                     <Chip key={tag} variant="flat" size="sm">
                       {tag}
                     </Chip>
@@ -106,21 +121,15 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
                 </div>
                 <div className="flex flex-wrap gap-x-4 text-sm text-gray-500">
                   {presentation.date && (
-                    <time>
-                      {new Date(presentation.date).toLocaleDateString()}
-                    </time>
+                    <time>{new Date(presentation.date).toLocaleDateString()}</time>
                   )}
-                  {presentation.presenter && (
-                    <span>
-                      By {presentation.presenter}
-                    </span>
+                  {presentation.presenters && presentation.presenters.length > 0 && (
+                    <span>By {presentation.presenters.join(', ')}</span>
                   )}
                 </div>
               </CardHeader>
               <CardBody>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {presentation.description}
-                </p>
+                <p className="text-gray-600 dark:text-gray-400">{presentation.description}</p>
               </CardBody>
             </Card>
           </Link>
@@ -128,4 +137,4 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
       </section>
     </div>
   );
-} 
+}
