@@ -13,6 +13,7 @@ export interface Presentation {
   tags: string[];
   slides_url?: string;
   video_url?: string;
+  thumbnail?: string;
 }
 
 const presentationsDirectory = path.join(process.cwd(), 'src/content/presentations');
@@ -38,6 +39,7 @@ export async function getAllPresentations(): Promise<Presentation[]> {
         tags: data.tags || [],
         slides_url: data.slides_url,
         video_url: data.video_url,
+        thumbnail: data.thumbnail,
       };
     });
 
