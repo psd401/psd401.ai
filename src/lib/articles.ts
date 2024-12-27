@@ -13,6 +13,7 @@ export interface Article {
   author: string;
   tags: string[];
   image?: string;
+  source_url?: string;
 }
 
 export async function getAllArticles(): Promise<Article[]> {
@@ -34,6 +35,7 @@ export async function getAllArticles(): Promise<Article[]> {
         author: data.author,
         tags: data.tags || [],
         image: data.image,
+        source_url: data.source_url,
       };
     });
 
