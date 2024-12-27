@@ -1,4 +1,4 @@
-import { getAllUseCases, getAllTags, getUseCasesByCategory } from '@/lib/use-cases';
+import { getAllTags, getUseCasesByCategory } from '@/lib/use-cases';
 import UseCasesClient from './use-cases-client';
 
 export const revalidate = 3600; // Revalidate every hour
