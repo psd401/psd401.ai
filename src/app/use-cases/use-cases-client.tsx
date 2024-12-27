@@ -3,7 +3,13 @@
 import { Card, CardBody, CardHeader, Chip, Divider, Tabs, Tab } from '@nextui-org/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { UseCase, CategoryData } from './page-data';
+import type { UseCase } from '@/lib/use-cases';
+
+interface CategoryData {
+  name: string;
+  slug: string;
+  description: string;
+}
 
 interface UseCasesClientProps {
   useCasesByCategory: { [key: string]: UseCase[] };
@@ -13,7 +19,7 @@ interface UseCasesClientProps {
 
 export default function UseCasesClient({ 
   useCasesByCategory, 
-  allTags, 
+  allTags,
   categories 
 }: UseCasesClientProps) {
   const [selectedCategory, setSelectedCategory] = useState("classroom-use");
@@ -46,28 +52,45 @@ export default function UseCasesClient({
   const filterByTags = (useCase: UseCase) => {
     if (selectedTags.size === 0) return true;
     
-    const caseTags = new Set([
+    const useCaseTags = new Set([
       ...(useCase.tags || []),
+      useCase.author ? `Author: ${useCase.author}` : null,
+      useCase.school ? `School: ${useCase.school}` : null,
+      useCase.grade_level ? `Grade: ${useCase.grade_level}` : null,
       useCase.subject,
-      useCase.grade_level ? `Grade ${useCase.grade_level}` : null
+      ...(useCase.tools_used || []).map(tool => `Tool: ${tool}`)
     ].filter(Boolean));
 
-    return Array.from(selectedTags).some(tag => caseTags.has(tag));
+    return Array.from(selectedTags).some(tag => useCaseTags.has(tag));
   };
 
   return (
-    <div className="relative">
-      {/* Header */}
-      <div className="bg-background pb-4">
-        <section className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">Use Cases Catalog</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover practical applications of AI in education across different areas
+    <div className="space-y-16">
+      {/* Hero Section */}
+      <section className="relative text-center py-24 min-h-[400px] flex items-center -mx-6">
+        {/* Background Image */}
+        <div 
+          className="absolute top-0 left-0 right-0 bottom-0 z-0 h-full w-full"
+          style={{
+            backgroundImage: 'url("/images/sections/use-cases-hero.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: '0.65'
+          }}
+        />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        
+        <div className="space-y-6 max-w-4xl mx-auto px-6 relative z-[2]">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text">
+            Use Cases & Examples
+          </h1>
+          <p className="text-xl text-foreground/90">
+            Real-world examples and implementation guides for AI in the classroom
           </p>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      {/* Category Navigation - Fixed position instead of sticky */}
+      {/* Category Navigation */}
       <div className="sticky top-0 z-50">
         <div className="bg-background/80 backdrop-blur-lg shadow-sm">
           <nav className="py-4 max-w-7xl mx-auto px-4">
@@ -90,10 +113,9 @@ export default function UseCasesClient({
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 space-y-12 pt-8">
+      <div className="max-w-7xl mx-auto px-4 space-y-12">
         {/* Tags Browser */}
         <section className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4">Browse by Tags</h2>
           <div className="flex flex-wrap gap-2">
             {allTags.map((tag) => (
               <Chip
@@ -121,7 +143,7 @@ export default function UseCasesClient({
             >
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold">{categoryData.name}</h2>
-                <p className="text-gray-600">{categoryData.description}</p>
+                <p className="text-foreground/80">{categoryData.description}</p>
               </div>
               <Divider className="my-4" />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -130,7 +152,7 @@ export default function UseCasesClient({
                     key={useCase.slug} 
                     href={`/use-cases/${categoryData.slug}/${useCase.slug}`}
                   >
-                    <Card className="hover:scale-[1.02] transition-transform h-full">
+                    <Card className="hover:scale-[1.02] transition-transform">
                       <CardHeader className="flex flex-col items-start gap-2">
                         <h3 className="text-xl font-bold">{useCase.title}</h3>
                         <div className="flex flex-wrap gap-2">
@@ -140,33 +162,33 @@ export default function UseCasesClient({
                             </Chip>
                           )}
                           {useCase.grade_level && (
-                            <Chip variant="flat" size="sm">
-                              Grades {useCase.grade_level}
+                            <Chip color="secondary" variant="flat" size="sm">
+                              Grade {useCase.grade_level}
                             </Chip>
                           )}
-                          {useCase.status && (
-                            <Chip color="success" variant="flat" size="sm">
-                              {useCase.status}
+                          {useCase.tools_used?.map((tool) => (
+                            <Chip key={tool} variant="flat" size="sm">
+                              {tool}
                             </Chip>
+                          ))}
+                        </div>
+                        <div className="flex flex-wrap gap-x-4 text-sm text-gray-500">
+                          {useCase.author && (
+                            <span>
+                              By {useCase.author}
+                            </span>
+                          )}
+                          {useCase.school && (
+                            <span>
+                              at {useCase.school}
+                            </span>
                           )}
                         </div>
                       </CardHeader>
                       <CardBody>
-                        <p className="text-gray-600">
-                          {useCase.content.slice(0, 150)}...
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {useCase.description}
                         </p>
-                        {useCase.tools_used && (
-                          <div className="mt-4">
-                            <p className="text-sm text-gray-500 mb-2">Tools Used:</p>
-                            <div className="flex flex-wrap gap-2">
-                              {useCase.tools_used.map((tool) => (
-                                <Chip key={tool} variant="flat" size="sm">
-                                  {tool}
-                                </Chip>
-                              ))}
-                            </div>
-                          </div>
-                        )}
                       </CardBody>
                     </Card>
                   </Link>

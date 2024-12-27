@@ -8,21 +8,21 @@ const sections = [
     description: 'Essential guidance and documentation for AI in education',
     items: [
       {
-        title: 'Policies & Guidelines',
-        description: 'Official guidance for staff, students, and parents regarding AI usage',
-        image: 'https://picsum.photos/seed/policies/400/300',
+        title: 'Policies and Guidance',
+        description: 'Official district policies and guidance for AI use in education',
+        image: '/images/sections/policies-hero.jpg',
         href: '/policies'
       },
       {
         title: 'Blog Posts',
         description: 'Stories and updates about AI implementation across our district',
-        image: 'https://picsum.photos/seed/blog/400/300',
+        image: '/images/sections/blog-hero.jpg',
         href: '/blog'
       },
       {
         title: 'Presentations',
         description: 'Slide decks, videos, and materials from conferences and trainings',
-        image: 'https://picsum.photos/seed/presentations/400/300',
+        image: '/images/sections/presentations-hero.jpg',
         href: '/presentations'
       }
     ]
@@ -34,19 +34,19 @@ const sections = [
       {
         title: 'AI Tools',
         description: 'Curated collection of AI tools and applications for education',
-        image: 'https://picsum.photos/seed/tools/400/300',
+        image: '/images/sections/tools-hero.jpg',
         href: '/tools'
       },
       {
         title: 'Articles',
         description: 'Curated articles and research about AI in education',
-        image: 'https://picsum.photos/seed/articles/400/300',
+        image: '/images/sections/articles-hero.jpg',
         href: '/articles'
       },
       {
         title: 'Use Cases',
-        description: 'Real-world examples and implementation guides for AI in the classroom',
-        image: 'https://picsum.photos/seed/usecases/400/300',
+        description: 'Real-world examples and effective prompts for AI across education and operations',
+        image: '/images/sections/use-cases-hero.jpg',
         href: '/use-cases'
       }
     ]
@@ -65,10 +65,10 @@ export default function Home() {
             backgroundImage: 'url("/images/hero-bg.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: '0.4'
+            opacity: '0.65'
           }}
         />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/70 via-background/80 to-background" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
         
         <div className="space-y-6 max-w-4xl mx-auto px-6 relative z-[2]">
           <h1 className="text-6xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text leading-tight">

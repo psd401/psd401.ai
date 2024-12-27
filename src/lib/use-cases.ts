@@ -2,93 +2,81 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
-
 export interface UseCase {
   slug: string;
   title: string;
   description: string;
-  tags: string[];
   content: string;
+  category: string;
+  subject?: string;
+  grade_level?: string;
+  tools_used?: string[];
   author?: string;
   school?: string;
-  grade_level?: string;
-  subject?: string;
-  tools_used?: string[];
-  status?: string;
+  tags?: string[];
 }
 
+const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
+
 export async function getAllUseCases(): Promise<UseCase[]> {
-  // Get file names under /content/use-cases
   const fileNames = fs.readdirSync(useCasesDirectory);
   const allUseCases = fileNames
     .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      // Remove ".md" from file name to get slug
+    .map((fileName) => {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(useCasesDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-      // Use gray-matter to parse the use case metadata section
       const { data, content } = matter(fileContents);
 
       return {
         slug,
+        content,
         title: data.title,
         description: data.description,
-        tags: data.tags || [],
-        content,
+        category: data.category,
+        subject: data.subject,
+        grade_level: data.grade_level,
+        tools_used: data.tools_used,
         author: data.author,
         school: data.school,
-        grade_level: data.grade_level,
-        subject: data.subject,
-        tools_used: data.tools_used,
+        tags: data.tags,
       };
     });
 
   return allUseCases;
 }
 
-export async function getUseCaseBySlug(slug: string): Promise<UseCase | null> {
-  try {
-    const fullPath = path.join(useCasesDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+export async function getUseCasesByCategory(): Promise<{ [key: string]: UseCase[] }> {
+  const useCases = await getAllUseCases();
+  const useCasesByCategory: { [key: string]: UseCase[] } = {};
 
-    // Use gray-matter to parse the use case metadata section
-    const { data, content } = matter(fileContents);
-
-    // Validate required fields
-    if (!data.title || !data.description) {
-      console.warn(`Missing required fields in ${slug}.md`);
-      return null;
+  useCases.forEach((useCase) => {
+    if (!useCasesByCategory[useCase.category]) {
+      useCasesByCategory[useCase.category] = [];
     }
+    useCasesByCategory[useCase.category].push(useCase);
+  });
 
-    // Combine the data with the slug and content
-    return {
-      slug,
-      content,
-      title: data.title,
-      description: data.description,
-      tags: data.tags || [],
-      author: data.author,
-      school: data.school,
-      grade_level: data.grade_level,
-      subject: data.subject,
-      tools_used: data.tools_used,
-    };
-  } catch (error) {
-    console.error(`Error reading use case ${slug}:`, error);
-    return null;
-  }
+  return useCasesByCategory;
 }
 
 export async function getAllTags(): Promise<string[]> {
   const useCases = await getAllUseCases();
-  const tagSet = new Set<string>();
-  
+  const tags = new Set<string>();
+
   useCases.forEach(useCase => {
-    useCase.tags?.forEach(tag => tagSet.add(tag));
+    useCase.tags?.forEach(tag => tags.add(tag));
+    if (useCase.author) tags.add(`Author: ${useCase.author}`);
+    if (useCase.school) tags.add(`School: ${useCase.school}`);
+    if (useCase.grade_level) tags.add(`Grade: ${useCase.grade_level}`);
+    if (useCase.subject) tags.add(useCase.subject);
+    useCase.tools_used?.forEach(tool => tags.add(`Tool: ${tool}`));
   });
 
-  return Array.from(tagSet).sort();
+  return Array.from(tags).sort();
+}
+
+export async function getUseCaseBySlug(category: string, slug: string): Promise<UseCase | null> {
+  const useCases = await getAllUseCases();
+  return useCases.find(useCase => useCase.category === category && useCase.slug === slug) || null;
 } 
