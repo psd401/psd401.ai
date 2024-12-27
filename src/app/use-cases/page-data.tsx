@@ -16,23 +16,24 @@ export const CATEGORIES: { [key: string]: CategoryData } = {
   'Classroom Use': {
     name: 'Classroom Use',
     description: 'AI applications for teaching and learning in the classroom',
-    slug: 'classroom-use'
+    slug: 'classroom-use',
   },
   'Administrative Use': {
     name: 'Administrative Use',
     description: 'AI tools for school administration and management',
-    slug: 'administrative-use'
+    slug: 'administrative-use',
   },
   'Professional Development': {
     name: 'Professional Development',
     description: 'AI-enhanced professional learning and growth',
-    slug: 'professional-development'
+    slug: 'professional-development',
   },
 };
 
 export async function getUseCasesByCategory() {
   const contentDir = path.join(process.cwd(), 'src/content/use-cases');
-  const categories = fs.readdirSync(contentDir, { withFileTypes: true })
+  const categories = fs
+    .readdirSync(contentDir, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name);
 
@@ -40,8 +41,7 @@ export async function getUseCasesByCategory() {
 
   categories.forEach(categoryDir => {
     const categoryPath = path.join(contentDir, categoryDir);
-    const files = fs.readdirSync(categoryPath)
-      .filter(file => file.endsWith('.md'));
+    const files = fs.readdirSync(categoryPath).filter(file => file.endsWith('.md'));
 
     files.forEach(file => {
       const markdownContent = getAllContent(`use-cases/${categoryDir}`).find(
@@ -60,7 +60,6 @@ export async function getUseCasesByCategory() {
           grade_level: markdownContent.frontmatter.grade_level,
           subject: markdownContent.frontmatter.subject,
           tools_used: markdownContent.frontmatter.tools_used,
-          status: markdownContent.frontmatter.status,
         };
 
         const category = markdownContent.frontmatter.category;
@@ -77,10 +76,12 @@ export async function getUseCasesByCategory() {
 
 export function getAllTags(useCasesByCategory: { [key: string]: UseCase[] }): string[] {
   const tags = new Set<string>();
-  Object.values(useCasesByCategory).flat().forEach(useCase => {
-    useCase.tags?.forEach(tag => tags.add(tag));
-    if (useCase.subject) tags.add(useCase.subject);
-    if (useCase.grade_level) tags.add(`Grade ${useCase.grade_level}`);
-  });
+  Object.values(useCasesByCategory)
+    .flat()
+    .forEach(useCase => {
+      useCase.tags?.forEach(tag => tags.add(tag));
+      if (useCase.subject) tags.add(useCase.subject);
+      if (useCase.grade_level) tags.add(`Grade ${useCase.grade_level}`);
+    });
   return Array.from(tags).sort();
-} 
+}
