@@ -54,6 +54,7 @@ export async function getUseCasesByCategory() {
           title: markdownContent.frontmatter.title,
           description: markdownContent.frontmatter.description,
           content: markdownContent.content,
+          category: markdownContent.frontmatter.category,
           tags: markdownContent.frontmatter.tags || [],
           author: markdownContent.frontmatter.author,
           school: markdownContent.frontmatter.school,
