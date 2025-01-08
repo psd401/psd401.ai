@@ -5,7 +5,7 @@ presenters:
   - 'Ashley Murphy'
   - 'Kris Hagel'
 audience: 'WASBO Business Managers Conference'
-type: 'Conference Workshop'
+type: 'Conference Session'
 thumbnail: '/images/thumbnails/chatgpt-hacks-workday.png'
 slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSMj_aBOO7AZKuZ40k4Tr5cvERDkz98NKmyB9MQ0ss4kpqRUoXOxlT035_MnjC9Ng/embed'
 description: 'A workshop delivered at the 2024 WASBO Business Managers Conference on Using ChatGPT To Streamline Workflows'
