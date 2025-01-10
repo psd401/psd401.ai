@@ -17,6 +17,7 @@ export interface Article {
   author: string;
   tags: string[];
   image?: string;
+  source?: string;
   source_url?: string;
   externalUrl?: string;
 }
@@ -66,6 +67,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       author: data.author,
       tags: data.tags || [],
       image: data.image,
+      source: data.source,
       source_url: data.source_url,
       externalUrl: data.externalUrl,
     };
@@ -96,6 +98,7 @@ export async function getAllArticles(): Promise<Article[]> {
           author: data.author,
           tags: data.tags || [],
           image: data.image,
+          source: data.source,
           source_url: data.source_url,
           externalUrl: data.externalUrl,
         };
