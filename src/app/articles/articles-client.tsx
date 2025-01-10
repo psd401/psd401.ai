@@ -16,18 +16,22 @@ export default function ArticlesClient({ articles, allTags }: ArticlesClientProp
 
   // Organize tags into categories
   const tagCategories = {
-    'Article Types': allTags.filter(tag => tag.startsWith('Type:')),
-    'Target Audiences': allTags.filter(tag => tag.startsWith('Audience:')),
-    Authors: allTags.filter(tag => tag.startsWith('Author:')),
+    'Article Types': allTags
+      .filter(tag => tag.startsWith('Type:'))
+      .map(tag => tag.replace('Type: ', '')),
+    Authors: allTags
+      .filter(tag => tag.startsWith('Author:'))
+      .map(tag => tag.replace('Author: ', '')),
     Topics: allTags.filter(tag => !tag.includes(':')),
   };
 
-  const toggleTag = (tag: string) => {
+  const toggleTag = (tag: string, category: string) => {
     const newTags = new Set(selectedTags);
-    if (newTags.has(tag)) {
-      newTags.delete(tag);
+    const fullTag = category === 'Topics' ? tag : `${category.slice(0, -1)}: ${tag}`;
+    if (newTags.has(fullTag)) {
+      newTags.delete(fullTag);
     } else {
-      newTags.add(tag);
+      newTags.add(fullTag);
     }
     setSelectedTags(newTags);
   };
@@ -48,7 +52,11 @@ export default function ArticlesClient({ articles, allTags }: ArticlesClientProp
     if (selectedTags.size === 0) return true;
 
     const articleTags = new Set(
-      [...(article.tags || []), article.author ? `Author: ${article.author}` : null].filter(Boolean)
+      [
+        ...(article.tags || []),
+        ...(article.author?.split(/\s*,\s*/).map(author => `Author: ${author.trim()}`) || []),
+        article.type ? `Type: ${article.type}` : null,
+      ].filter(Boolean)
     );
 
     return Array.from(selectedTags).some(tag => articleTags.has(tag));
@@ -114,7 +122,7 @@ export default function ArticlesClient({ articles, allTags }: ArticlesClientProp
                             variant={selectedTags.has(tag) ? 'solid' : 'flat'}
                             className="cursor-pointer hover:scale-105 transition-transform"
                             size="sm"
-                            onClick={() => toggleTag(tag)}
+                            onClick={() => toggleTag(tag, category)}
                           >
                             {tag}
                           </Chip>

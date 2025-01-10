@@ -15,6 +15,7 @@ export interface Article {
   content: string;
   date: string;
   author: string;
+  type?: string;
   tags: string[];
   image?: string;
   source?: string;
@@ -65,6 +66,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       description: data.description,
       date: data.date,
       author: data.author,
+      type: data.type,
       tags: data.tags || [],
       image: data.image,
       source: data.source,
@@ -96,6 +98,7 @@ export async function getAllArticles(): Promise<Article[]> {
           description: data.description,
           date: data.date,
           author: data.author,
+          type: data.type,
           tags: data.tags || [],
           image: data.image,
           source: data.source,
@@ -113,7 +116,20 @@ export async function getAllTags(): Promise<string[]> {
   const tags = new Set<string>();
 
   articles.forEach(article => {
+    // Add regular tags
     article.tags?.forEach(tag => tags.add(tag));
+
+    // Add article type
+    if (article.type) {
+      tags.add(`Type: ${article.type}`);
+    }
+
+    // Add authors (handling comma-separated lists)
+    if (article.author) {
+      article.author.split(/\s*,\s*/).forEach(author => {
+        tags.add(`Author: ${author.trim()}`);
+      });
+    }
   });
 
   return Array.from(tags).sort();

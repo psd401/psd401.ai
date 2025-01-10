@@ -118,79 +118,86 @@ export default function UseCasesClient({
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <aside className="lg:col-span-1 lg:sticky lg:top-4 lg:h-[calc(100vh-2rem)] lg:overflow-y-auto">
-            {/* Categories Section */}
-            <div className="sticky top-0 bg-background pt-4 pb-4 z-10">
-              <h2 className="text-xl font-bold text-primary-500 border-b pb-2">Categories</h2>
-            </div>
-
-            <div className="space-y-8">
-              <div className="flex flex-col gap-2">
-                {Object.values(categories).map(category => (
-                  <button
-                    key={category.slug}
-                    onClick={() => handleTabChange(category.slug)}
-                    className={`text-left px-4 py-2 rounded-lg transition-colors ${
-                      selectedCategory === category.slug
-                        ? 'bg-primary text-white'
-                        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                    }`}
+            <div className="sticky top-24 space-y-8">
+              {/* Categories Section */}
+              <div className="space-y-4">
+                <h2 className="text-xl font-bold text-primary-500 mb-4">Categories</h2>
+                <Card className="border border-divider">
+                  <CardHeader
+                    className="cursor-pointer hover:bg-content2 py-2"
+                    onClick={() => toggleCategory('categories')}
                   >
-                    {category.name}
-                  </button>
-                ))}
+                    <h3 className="text-md font-semibold flex items-center justify-between w-full">
+                      Select Category
+                      <span
+                        className={`transform transition-transform ${
+                          expandedCategories.has('categories') ? 'rotate-180' : ''
+                        }`}
+                      >
+                        ▼
+                      </span>
+                    </h3>
+                  </CardHeader>
+                  {expandedCategories.has('categories') && (
+                    <CardBody className="py-2 px-3">
+                      <div className="flex flex-col gap-1">
+                        {Object.values(categories).map(category => (
+                          <Chip
+                            key={category.slug}
+                            variant={selectedCategory === category.slug ? 'solid' : 'flat'}
+                            className="cursor-pointer hover:scale-105 transition-transform"
+                            size="sm"
+                            onClick={() => handleTabChange(category.slug)}
+                          >
+                            {category.name}
+                          </Chip>
+                        ))}
+                      </div>
+                    </CardBody>
+                  )}
+                </Card>
               </div>
 
               {/* Tags Section */}
               <div className="space-y-4">
-                <h2 className="text-xl font-bold text-primary-500 border-b pb-2">Tags</h2>
-                <div className="space-y-6">
-                  {Object.entries(tagCategories).map(
-                    ([category, tags]) =>
-                      tags.length > 0 && (
-                        <div key={category} className="space-y-3">
-                          <button
-                            onClick={() => toggleCategory(category)}
-                            className="w-full flex items-center justify-between font-semibold text-lg hover:text-primary transition-colors"
-                          >
-                            <span>{category}</span>
-                            <svg
-                              className={`w-5 h-5 transition-transform ${expandedCategories.has(category) ? 'rotate-180' : ''}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
-                          </button>
-                          <div
-                            className={`flex flex-col gap-2 overflow-hidden transition-all duration-200 ${
-                              expandedCategories.has(category)
-                                ? 'max-h-[500px] opacity-100'
-                                : 'max-h-0 opacity-0'
+                <h2 className="text-xl font-bold text-primary-500 mb-4">Filter by Tags</h2>
+                <div className="space-y-4">
+                  {Object.entries(tagCategories).map(([category, tags]) => (
+                    <Card key={category} className="border border-divider">
+                      <CardHeader
+                        className="cursor-pointer hover:bg-content2 py-2"
+                        onClick={() => toggleCategory(category)}
+                      >
+                        <h3 className="text-md font-semibold flex items-center justify-between w-full">
+                          {category}
+                          <span
+                            className={`transform transition-transform ${
+                              expandedCategories.has(category) ? 'rotate-180' : ''
                             }`}
                           >
+                            ▼
+                          </span>
+                        </h3>
+                      </CardHeader>
+                      {expandedCategories.has(category) && (
+                        <CardBody className="py-2 px-3">
+                          <div className="flex flex-col gap-1">
                             {tags.map(tag => (
-                              <button
+                              <Chip
                                 key={tag}
+                                variant={selectedTags.has(tag) ? 'solid' : 'flat'}
+                                className="cursor-pointer hover:scale-105 transition-transform"
+                                size="sm"
                                 onClick={() => toggleTag(tag)}
-                                className={`text-left px-3 py-1.5 rounded-lg transition-colors ${
-                                  selectedTags.has(tag)
-                                    ? 'bg-primary text-white'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                                }`}
                               >
-                                {tag.includes(':') ? tag.split(':')[1].trim() : tag}
-                              </button>
+                                {tag}
+                              </Chip>
                             ))}
                           </div>
-                        </div>
-                      )
-                  )}
+                        </CardBody>
+                      )}
+                    </Card>
+                  ))}
                 </div>
               </div>
             </div>

@@ -19,7 +19,6 @@ export default function PresentationsClient({ presentations, allTags }: Presenta
     'Presentation Types': allTags.filter(tag => tag.startsWith('Type:')),
     'Target Audiences': allTags.filter(tag => tag.startsWith('Audience:')),
     Presenters: allTags.filter(tag => tag.startsWith('Presenter:')),
-    Topics: allTags.filter(tag => !tag.includes(':')),
   };
 
   const toggleTag = (tag: string) => {
