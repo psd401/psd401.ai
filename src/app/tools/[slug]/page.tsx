@@ -109,23 +109,15 @@ export default async function ToolPage({ params }: Props) {
             <Markdown
               remarkPlugins={[remarkGfm]}
               components={{
-                h1: ({ node, ...props }) => (
-                  <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />
-                ),
-                h2: ({ node, ...props }) => (
-                  <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />
-                ),
-                h3: ({ node, ...props }) => (
-                  <h3 className="text-xl font-bold mt-4 mb-2" {...props} />
-                ),
-                ul: ({ node, ...props }) => (
-                  <ul className="list-disc pl-6 my-4 space-y-2" {...props} />
-                ),
-                ol: ({ node, ...props }) => (
+                h1: ({ ...props }) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
+                h2: ({ ...props }) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
+                h3: ({ ...props }) => <h3 className="text-xl font-bold mt-4 mb-2" {...props} />,
+                ul: ({ ...props }) => <ul className="list-disc pl-6 my-4 space-y-2" {...props} />,
+                ol: ({ ...props }) => (
                   <ol className="list-decimal pl-6 my-4 space-y-2" {...props} />
                 ),
-                li: ({ node, ...props }) => <li className="my-1" {...props} />,
-                p: ({ node, ...props }) => <p className="my-4" {...props} />,
+                li: ({ ...props }) => <li className="my-1" {...props} />,
+                p: ({ ...props }) => <p className="my-4" {...props} />,
               }}
             >
               {tool.content}
