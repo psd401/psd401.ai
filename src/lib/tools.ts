@@ -11,10 +11,10 @@ export interface Tool {
   tags: string[];
   content: string;
   url?: string;
-  pricing?: string;
-  platform?: string;
+  demoUrl?: string;
   type: string;
   status: string;
+  privacy?: string;
 }
 
 export async function getAllTools(): Promise<Tool[]> {
@@ -38,10 +38,10 @@ export async function getAllTools(): Promise<Tool[]> {
         tags: data.tags || [],
         content,
         url: data.url,
-        pricing: data.pricing,
-        platform: data.platform,
+        demoUrl: data.demoUrl,
         type: data.type,
         status: data.status,
+        privacy: data.privacy,
       };
     });
 
@@ -70,10 +70,10 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
       description: data.description,
       tags: data.tags || [],
       url: data.url,
-      pricing: data.pricing,
-      platform: data.platform,
+      demoUrl: data.demoUrl,
       type: data.type,
       status: data.status,
+      privacy: data.privacy,
     };
   } catch (error) {
     console.error(`Error reading tool ${slug}:`, error);
@@ -83,13 +83,27 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
 
 export async function getAllTags(): Promise<string[]> {
   const tools = await getAllTools();
-  const tagSet = new Set<string>();
+  const tags = new Set<string>();
 
   tools.forEach(tool => {
-    tool.tags?.forEach(tag => tagSet.add(tag));
-    if (tool.type) tagSet.add(tool.type);
-    if (tool.status) tagSet.add(tool.status);
+    // Add regular tags
+    tool.tags?.forEach(tag => tags.add(tag));
+
+    // Add tool type
+    if (tool.type) {
+      tags.add(`Type: ${tool.type}`);
+    }
+
+    // Add status
+    if (tool.status) {
+      tags.add(`Status: ${tool.status}`);
+    }
+
+    // Add privacy level
+    if (tool.privacy) {
+      tags.add(`Privacy: ${tool.privacy}`);
+    }
   });
 
-  return Array.from(tagSet).sort();
+  return Array.from(tags).sort();
 }
