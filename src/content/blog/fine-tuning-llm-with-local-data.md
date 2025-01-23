@@ -2,7 +2,7 @@
 title: 'Fine-tuning Meta Llama3-2-1b-Instruct model with Custom School District Dataset'
 date: '2024-12-13'
 author: 'Mary Precious Feutsop Ngouane'
-tags: ['Data', 'Customization', 'Development', 'AI Tools']
+tags: ['Technical', 'Deep Dive']
 image: '/images/blogs/fine-tuning-llm-with-local-data.png'
 description: 'Process and steps necessary to allow a school or district to fine-tune their own llm with data that matters to them.'
 ---
