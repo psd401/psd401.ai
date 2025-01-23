@@ -60,6 +60,18 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
               </blockquote>
             );
           },
+          a({ href, children }) {
+            return (
+              <a
+                href={href}
+                className="text-primary hover:text-primary-600 underline decoration-primary/30 hover:decoration-primary-600 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {children}
+              </a>
+            );
+          },
         }}
       >
         {content}

@@ -118,6 +118,14 @@ export default async function ToolPage({ params }: Props) {
                 ),
                 li: ({ ...props }) => <li className="my-1" {...props} />,
                 p: ({ ...props }) => <p className="my-4" {...props} />,
+                a: ({ ...props }) => (
+                  <a
+                    className="text-primary hover:text-primary-600 underline decoration-primary/30 hover:decoration-primary-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...props}
+                  />
+                ),
               }}
             >
               {tool.content}
