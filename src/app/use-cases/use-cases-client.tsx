@@ -220,13 +220,14 @@ export default function UseCasesClient({
                     <p className="text-foreground/80">{categoryData.description}</p>
                   </div>
                   <Divider className="my-4" />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-[1px]">
                     {cases.map(useCase => (
                       <Link
                         key={useCase.slug}
                         href={`/use-cases/${categoryData.slug}/${useCase.slug}`}
+                        className="block"
                       >
-                        <Card className="hover:scale-[1.02] transition-transform">
+                        <Card className="hover:scale-[1.02] transition-transform w-full h-full">
                           <CardHeader className="flex flex-col items-start gap-2">
                             <h3 className="text-xl font-bold">{useCase.title}</h3>
                             <div className="flex flex-wrap gap-2">
@@ -246,16 +247,12 @@ export default function UseCasesClient({
                                 </Chip>
                               ))}
                             </div>
-                            <div className="flex flex-wrap gap-x-4 text-sm text-gray-500">
+                            <div className="flex flex-wrap gap-x-4 text-sm text-foreground/60">
                               {useCase.author && <span>By {useCase.author}</span>}
                               {useCase.school && <span>at {useCase.school}</span>}
                             </div>
+                            <p className="text-foreground/80 mt-2">{useCase.description}</p>
                           </CardHeader>
-                          <CardBody>
-                            <p className="text-gray-600 dark:text-gray-400">
-                              {useCase.description}
-                            </p>
-                          </CardBody>
                         </Card>
                       </Link>
                     ))}

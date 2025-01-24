@@ -16,6 +16,13 @@ export interface UseCase {
   tags?: string[];
 }
 
+export interface Category {
+  name: string;
+  slug: string;
+  description: string;
+  count: number;
+}
+
 const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
 
 export async function getAllUseCases(): Promise<UseCase[]> {
@@ -78,5 +85,33 @@ export async function getAllTags(): Promise<string[]> {
 
 export async function getUseCaseBySlug(category: string, slug: string): Promise<UseCase | null> {
   const useCases = await getAllUseCases();
-  return useCases.find(useCase => useCase.category === category && useCase.slug === slug) || null;
+  return useCases.find(useCase => useCase.slug === slug) || null;
+}
+
+export async function getAllCategories(): Promise<{ [key: string]: Category }> {
+  const useCases = await getAllUseCases();
+  const categories: { [key: string]: Category } = {};
+
+  // Group use cases by category and build category metadata
+  useCases.forEach(useCase => {
+    const categorySlug = useCase.category;
+
+    if (!categories[categorySlug]) {
+      // Convert slug to display name (e.g., 'classroom-use' -> 'Classroom Use')
+      const displayName = categorySlug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      categories[categorySlug] = {
+        name: displayName,
+        slug: categorySlug,
+        description: '', // Description can be added in the future if needed
+        count: 0,
+      };
+    }
+    categories[categorySlug].count++;
+  });
+
+  return categories;
 }
