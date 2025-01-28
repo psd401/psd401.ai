@@ -194,9 +194,15 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             // Check if this is a video element
             if (props.className === 'video') {
               // Extract src and title from iframe if it exists
-              const iframe = props.children[0];
-              if (iframe && iframe.type === 'iframe') {
-                const { src, title } = iframe.props;
+              const children = props.children as React.ReactNode[];
+              const iframe = children?.[0];
+              if (
+                iframe &&
+                typeof iframe === 'object' &&
+                'type' in iframe &&
+                iframe.type === 'iframe'
+              ) {
+                const { src, title } = (iframe as any).props;
                 return <Video src={src} title={title} />;
               }
               // Fallback to direct props if no iframe
