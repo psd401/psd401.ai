@@ -4,7 +4,7 @@ date: '2025-01-31'
 author: 'Krestin Bahr'
 tags: ['Information Sharing']
 image: '/images/blogs/embracing-ai-purpose-heart-1.jpeg'
-description: 'Superintendent Take on Implementation of AI.'
+description: 'Superintendent Krestin Bahr shares her thoughts on the implementation of AI in schools.'
 ---
 
 When ChatGPT burst onto the scene in late 2022, many school districts responded with caution or outright bans in the classroom. As a former science teacher, I saw something different — an opportunity to embrace the kind of curiosity and innovation that has always driven education forward.

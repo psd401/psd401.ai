@@ -118,6 +118,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="mt-4 text-center text-sm text-white/80">
             <p>&copy; {new Date().getFullYear()} Peninsula School District. All rights reserved.</p>
+            <p className="mt-2">
+              All content on this website is licensed under{' '}
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1"
+                target="_blank"
+                rel="license noopener noreferrer"
+                className="inline-flex items-center hover:text-sea-glass"
+              >
+                Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+                <img
+                  className="h-[22px] ml-1 inline"
+                  src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"
+                  alt="CC"
+                />
+                <img
+                  className="h-[22px] ml-1 inline"
+                  src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"
+                  alt="BY"
+                />
+                <img
+                  className="h-[22px] ml-1 inline"
+                  src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"
+                  alt="NC"
+                />
+                <img
+                  className="h-[22px] ml-1 inline"
+                  src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"
+                  alt="SA"
+                />
+              </a>
+            </p>
           </div>
         </div>
       </footer>
