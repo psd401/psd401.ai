@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 import Layout from '@/components/Layout';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -46,6 +47,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="light">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N2ZC6D1BDX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-N2ZC6D1BDX');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>
           <Layout>{children}</Layout>
