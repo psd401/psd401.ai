@@ -21,7 +21,7 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative text-center py-24 min-h-[400px] flex items-center -mx-6">
+      <section className="relative text-center py-16 min-h-[280px] flex items-center -mx-6">
         {/* Background Image */}
         <div
           className="absolute top-0 left-0 right-0 bottom-0 z-0 h-full w-full"

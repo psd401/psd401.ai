@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Button } from '@nextui-org/react';
+import rehypeRaw from 'rehype-raw';
 
 interface MarkdownContentProps {
   content: string;
@@ -16,6 +17,13 @@ interface CodeProps {
   inline?: boolean;
   className?: string;
   children?: React.ReactNode;
+}
+
+interface VideoProps {
+  src: string;
+  title?: string;
+  width?: string;
+  height?: string;
 }
 
 function CopyButton({ text }: { text: string }) {
@@ -83,11 +91,43 @@ function CheckIcon({ className }: { className?: string }) {
   );
 }
 
+function Video({ src, title, width = '100%', height = '400px' }: VideoProps) {
+  // Handle different video types
+  if (src.includes('youtube.com') || src.includes('youtu.be')) {
+    // Convert YouTube URL to embed URL
+    const videoId = src.includes('youtu.be')
+      ? src.split('youtu.be/')[1]
+      : src.split('v=')[1]?.split('&')[0];
+    return (
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden my-8">
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={title || 'YouTube video'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute top-0 left-0 w-full h-full"
+        />
+      </div>
+    );
+  }
+
+  // Handle direct video files
+  return (
+    <div className="my-8">
+      <video controls className="w-full rounded-lg" style={{ maxHeight: height }}>
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  );
+}
+
 export default function MarkdownContent({ content }: MarkdownContentProps) {
   return (
     <div className="prose dark:prose-invert max-w-none">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
         components={{
           code({ inline, className, children, ...props }: CodeProps) {
             const match = /language-(\w+)/.exec(className || '');
@@ -150,6 +190,39 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
                 {children}
               </a>
             );
+          },
+          div(props) {
+            // Check if this is a video element
+            if (props.className === 'video') {
+              // Extract src and title from iframe if it exists
+              const iframe = props.children[0];
+              if (iframe && iframe.type === 'iframe') {
+                const { src, title } = iframe.props;
+                return <Video src={src} title={title} />;
+              }
+              // Fallback to direct props if no iframe
+              const { src, title, width, height } = props;
+              return <Video src={src} title={title} width={width} height={height} />;
+            }
+            return <div {...props} />;
+          },
+          iframe(props) {
+            const { src, title, ...rest } = props;
+            if (src?.includes('youtube.com/embed/')) {
+              return (
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden my-8">
+                  <iframe
+                    {...rest}
+                    src={src}
+                    title={title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+                </div>
+              );
+            }
+            return <iframe {...props} />;
           },
         }}
       >
