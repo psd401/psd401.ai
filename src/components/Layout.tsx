@@ -5,7 +5,6 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/reac
 import NextLink from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
 import Image from 'next/image';
-import { Link } from '@nextui-org/react';
 
 const navItems = [
   { name: 'Policies', href: '/policies' },

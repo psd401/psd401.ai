@@ -200,7 +200,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
                 return <Video src={src} title={title} />;
               }
               // Fallback to direct props if no iframe
-              const { src, title, width, height } = props;
+              const { src, title, height } = props;
               return <Video src={src} title={title} height={height} />;
             }
             return <div {...props} />;
