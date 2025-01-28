@@ -5,6 +5,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/reac
 import NextLink from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
 import Image from 'next/image';
+import { Link } from '@nextui-org/react';
 
 const navItems = [
   { name: 'Policies', href: '/policies' },
@@ -127,24 +128,32 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className="inline-flex items-center hover:text-sea-glass"
               >
                 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-                <img
-                  className="h-[22px] ml-1 inline"
-                  src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"
+                <Image
+                  width={22}
+                  height={22}
+                  className="ml-1 inline"
+                  src="/images/cc/cc.svg"
                   alt="CC"
                 />
-                <img
-                  className="h-[22px] ml-1 inline"
-                  src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"
+                <Image
+                  width={22}
+                  height={22}
+                  className="ml-1 inline"
+                  src="/images/cc/by.svg"
                   alt="BY"
                 />
-                <img
-                  className="h-[22px] ml-1 inline"
-                  src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"
+                <Image
+                  width={22}
+                  height={22}
+                  className="ml-1 inline"
+                  src="/images/cc/nc.svg"
                   alt="NC"
                 />
-                <img
-                  className="h-[22px] ml-1 inline"
-                  src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"
+                <Image
+                  width={22}
+                  height={22}
+                  className="ml-1 inline"
+                  src="/images/cc/sa.svg"
                   alt="SA"
                 />
               </a>

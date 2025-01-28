@@ -22,7 +22,6 @@ interface CodeProps {
 interface VideoProps {
   src: string;
   title?: string;
-  width?: string;
   height?: string;
 }
 
@@ -91,7 +90,7 @@ function CheckIcon({ className }: { className?: string }) {
   );
 }
 
-function Video({ src, title, width = '100%', height = '400px' }: VideoProps) {
+function Video({ src, title, height = '400px' }: VideoProps) {
   // Handle different video types
   if (src.includes('youtube.com') || src.includes('youtu.be')) {
     // Convert YouTube URL to embed URL
@@ -202,7 +201,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
               }
               // Fallback to direct props if no iframe
               const { src, title, width, height } = props;
-              return <Video src={src} title={title} width={width} height={height} />;
+              return <Video src={src} title={title} height={height} />;
             }
             return <div {...props} />;
           },
