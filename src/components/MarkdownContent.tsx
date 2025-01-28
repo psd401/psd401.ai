@@ -25,6 +25,13 @@ interface VideoProps {
   height?: string;
 }
 
+interface VideoElementProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+  src?: string;
+  title?: string;
+  height?: string;
+}
+
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -190,7 +197,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
               </a>
             );
           },
-          div(props) {
+          div(props: VideoElementProps) {
             // Check if this is a video element
             if (props.className === 'video') {
               // Extract src and title from iframe if it exists
@@ -207,6 +214,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
               }
               // Fallback to direct props if no iframe
               const { src, title, height } = props;
+              if (!src) return null;
               return <Video src={src} title={title} height={height} />;
             }
             return <div {...props} />;
