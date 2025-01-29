@@ -2,7 +2,7 @@
 title: 'Magicschool.ai'
 status: 'Production'
 type: 'Multi-Purpose Tool'
-privacy: 'Sandbox AI'
+privacy: 'Lifeguard AI'
 description: 'AI platform specifically designed for educational institutions that serves as a comprehensive hub for AI tools'
 demoUrl: 'https://magischool.ai'
 tags:

@@ -2,7 +2,7 @@
 title: 'Securly AI Chat'
 status: 'Experimentation'
 type: 'Chat AI'
-privacy: 'Sandbox AI'
+privacy: 'Lifeguard AI'
 description: 'Conversational AI platform specifically designed for K-12 schools'
 demoUrl: 'https://chat.securly.com/'
 tags: ['ConversationalAI', 'StudentSafety', 'DataPrivacy', 'AcademicIntegrity']
