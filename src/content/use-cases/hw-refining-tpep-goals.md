@@ -1,6 +1,6 @@
 ---
 title: 'Refining TPEP Goals'
-description: 'Utilize Gemini's genius to assist you in crafting your evaluation goals'
+description: "Utilize Gemini's genius to assist you in crafting your evaluation goals"
 category: 'Enhancing Teaching & Learning'
 subject: 'Evaluation Goals'
 grade_level: 'Staff'
