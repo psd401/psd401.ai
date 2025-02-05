@@ -1,3 +1,4 @@
+import { Chip } from '@nextui-org/react';
 import { getContentBySlug } from '@/lib/markdown';
 import MarkdownContent from '@/components/MarkdownContent';
 
@@ -14,21 +15,21 @@ export default function PolicyPage({ params }: Props) {
     <article className="max-w-4xl mx-auto">
       <header className="mb-8">
         <h1 className="text-4xl font-bold mb-4">{policy.frontmatter.title}</h1>
-        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+        <div className="flex flex-wrap gap-4 items-center">
           {policy.frontmatter.lastUpdated && (
-            <time>
+            <time className="text-sm text-foreground/60">
               Last updated: {new Date(policy.frontmatter.lastUpdated).toLocaleDateString()}
             </time>
           )}
           {policy.frontmatter.category && (
-            <span className="bg-primary-100 text-primary-800 px-2 py-1 rounded">
+            <Chip color="primary" variant="flat" size="sm">
               {policy.frontmatter.category}
-            </span>
+            </Chip>
           )}
           {policy.frontmatter.status && (
-            <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded">
+            <Chip color="success" variant="flat" size="sm">
               Status: {policy.frontmatter.status}
-            </span>
+            </Chip>
           )}
         </div>
       </header>

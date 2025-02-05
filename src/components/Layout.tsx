@@ -3,7 +3,6 @@
 import React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react';
 import NextLink from 'next/link';
-import { ThemeToggle } from './ThemeToggle';
 import Image from 'next/image';
 
 const navItems = [
@@ -48,11 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </NavbarItem>
           ))}
         </NavbarContent>
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <ThemeToggle />
-          </NavbarItem>
-        </NavbarContent>
+        <NavbarContent justify="end" />
       </Navbar>
 
       <main className="flex-grow container mx-auto px-6 py-8">{children}</main>

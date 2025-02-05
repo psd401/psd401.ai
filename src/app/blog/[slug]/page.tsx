@@ -1,7 +1,8 @@
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import MarkdownContent from '@/components/MarkdownContent';
-import Image from 'next/image';
+import { Chip } from '@nextui-org/react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -41,12 +42,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <div className="space-y-4">
           <div className="flex gap-2">
             {post.tags?.map(tag => (
-              <span
-                key={tag}
-                className="text-xs px-2 py-1 bg-primary-500/10 text-primary-500 rounded-full"
-              >
+              <Chip key={tag} variant="flat" size="sm">
                 {tag}
-              </span>
+              </Chip>
             ))}
           </div>
 

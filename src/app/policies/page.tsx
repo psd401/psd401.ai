@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Chip } from '@nextui-org/react';
 import { getAllContent } from '@/lib/markdown';
 import Link from 'next/link';
 
@@ -39,20 +39,23 @@ export default function PoliciesPage() {
               <CardHeader className="flex flex-col items-start gap-1">
                 <h2 className="text-2xl font-bold">{policy.frontmatter.title}</h2>
                 {policy.frontmatter.lastUpdated && (
-                  <time className="text-sm text-gray-500">
+                  <time className="text-sm text-foreground/60">
                     Last updated: {new Date(policy.frontmatter.lastUpdated).toLocaleDateString()}
                   </time>
                 )}
                 {policy.frontmatter.category && (
-                  <span className="bg-primary-100 text-primary-800 text-sm px-2 py-1 rounded">
+                  <Chip color="primary" variant="flat" size="sm">
                     {policy.frontmatter.category}
-                  </span>
+                  </Chip>
+                )}
+                {policy.frontmatter.status && (
+                  <Chip color="success" variant="flat" size="sm">
+                    {policy.frontmatter.status}
+                  </Chip>
                 )}
               </CardHeader>
               <CardBody>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {policy.content.slice(0, 200)}...
-                </p>
+                <p className="text-foreground/80">{policy.content.slice(0, 200)}...</p>
               </CardBody>
             </Card>
           </Link>

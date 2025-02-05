@@ -144,10 +144,11 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
                   style={vscDarkPlus}
                   language={match[1]}
                   PreTag="div"
-                  className="!mt-0"
+                  className="!mt-0 rounded-lg"
                   customStyle={{
                     margin: 0,
                     padding: '1rem',
+                    backgroundColor: 'var(--code-bg)',
                   }}
                   {...props}
                 >
@@ -155,7 +156,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
                 </SyntaxHighlighter>
               </div>
             ) : (
-              <code className={className} {...props}>
+              <code className={`${className} bg-gray-100 dark:bg-gray-800 rounded px-1`} {...props}>
                 {children}
               </code>
             );

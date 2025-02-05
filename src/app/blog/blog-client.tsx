@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -48,17 +48,15 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
       <section className="max-w-4xl mx-auto">
         <div className="flex flex-wrap gap-2 mb-8">
           {allTags.map(tag => (
-            <button
+            <Chip
               key={tag}
+              variant={selectedTags.includes(tag) ? 'solid' : 'flat'}
+              className="cursor-pointer hover:scale-105 transition-transform"
+              size="sm"
               onClick={() => toggleTag(tag)}
-              className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                selectedTags.includes(tag)
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
             >
               {tag}
-            </button>
+            </Chip>
           ))}
         </div>
       </section>
@@ -85,25 +83,22 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
                     <CardHeader className="flex flex-col items-start gap-1">
                       <h2 className="text-2xl font-bold">{post.title}</h2>
                       {post.date && (
-                        <time className="text-sm text-gray-500">
+                        <time className="text-sm text-foreground/60">
                           {new Date(post.date).toLocaleDateString()}
                         </time>
                       )}
                       {post.tags && post.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
                           {post.tags.map(tag => (
-                            <span
-                              key={tag}
-                              className="bg-primary-100 text-primary-800 text-sm px-2 py-1 rounded"
-                            >
+                            <Chip key={tag} variant="flat" size="sm">
                               {tag}
-                            </span>
+                            </Chip>
                           ))}
                         </div>
                       )}
                     </CardHeader>
                     <CardBody>
-                      <p className="text-gray-600 dark:text-gray-400">{post.description}</p>
+                      <p className="text-foreground/80">{post.description}</p>
                     </CardBody>
                   </div>
                 </div>

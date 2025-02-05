@@ -8,23 +8,24 @@
   }
   
   body {
-    @apply antialiased;
+    @apply antialiased transition-colors duration-200;
+  }
+
+  html.light {
+    --code-bg: #1E1E1E;
+  }
+
+  html.dark {
+    --code-bg: #1E1E1E;
   }
 }
 
+/* Remove conflicting root variables */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
+  color-scheme: light dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+/* Add smooth transitions for theme changes */
+* {
+  @apply transition-colors duration-200;
 }

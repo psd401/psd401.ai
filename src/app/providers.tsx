@@ -17,7 +17,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <NextThemesProvider attribute="class" defaultTheme="light">
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem={true}
+      forcedTheme="system"
+    >
       <NextUIProvider>{children}</NextUIProvider>
     </NextThemesProvider>
   );
