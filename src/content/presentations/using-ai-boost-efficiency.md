@@ -6,7 +6,7 @@ presenters:
 audience: 'WSPA Annual Conference'
 type: 'Conference Session'
 thumbnail: '/images/thumbnails/using-ai-boost-efficiency.png'
-slides: 'https://docs.google.com/presentation/d/1chFkzyFTTbDGAVeWw0y4hiuEP-ZBAQvs/embed'
+slides: 'https://docs.google.com/presentation/d/1BorHZBVq1J1mZd2bDGbSwsaj4pF0KuCwdsEk4Bu0taw/embed'
 description: 'A conference session for school personnel staff on how they can use AI to save time and accomplish new tasks more efficiently.'
 ---
 
