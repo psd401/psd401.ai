@@ -3,7 +3,7 @@ title: "Revolutionizing Educational Feedback: Kayla Frank's AI Innovation Journe
 date: '2025-01-29'
 author: 'Danielle Chastaine'
 tags: ['AI in Action']
-image: '/images/blogs/google-fellowship.jpg'
+image: '/images/blogs/kayla-frank.jpg'
 description: 'Part two of our three part series on PSD teachers who were selected for the GoogleAI + Education Fellowship'
 ---
 
