@@ -2,7 +2,7 @@
 title: 'Does ChatGPT enhance student learning? A systematic review and meta-analysis of experimental studies'
 author: 'Ruiqi Deng, Maoli Jiang, Xinlu Yu, Yuyan Lu, Shasha Liu'
 source: 'Science Direct'
-date: '2025-04-01'
+date: '2024-12-01'
 type: 'Preprint'
 tags: ['Research', 'Academic Performance']
 externalUrl: 'https://www.sciencedirect.com/science/article/pii/S0360131524002380'

@@ -2,7 +2,7 @@
 title: 'Updating the AI Assessment Scale'
 author: ' Mike Perkins, Jasper Roe, Jason MacVaugh, Leon Furze'
 source: 'leonfurze.com'
-date: '2025-08-28'
+date: '2024-08-28'
 type: 'Opinion Piece'
 tags: ['Article', 'Assessment', 'Academic Integrity']
 externalUrl: 'https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/'

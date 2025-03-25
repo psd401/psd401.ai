@@ -2,7 +2,7 @@
 title: 'Beyond CheatBots: Examining Tensions in Teachers and Students Perceptions of Cheating and Learning with ChatGPT'
 author: 'Christopher Mah, Hillary Walker, Lena Phalen, Sarah Levine, Sarah W. Beck, Jaylen Pittman'
 source: 'MDPI'
-date: '2025-05-07'
+date: '2024-03-19'
 type: 'Research'
 tags: ['Research', 'Academic Integrity']
 externalUrl: 'https://www.mdpi.com/2227-7102/14/5/500'

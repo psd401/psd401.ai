@@ -2,7 +2,7 @@
 title: 'Can AI Help Kids Feel Creative?'
 author: 'Michele Newman'
 source: 'Sesame Workshop - Joan Ganz Cooney Center'
-date: '2025-09-24'
+date: '2024-09-24'
 type: 'Opinion Piece'
 tags: ['Article', 'Creativity']
 externalUrl: 'https://joanganzcooneycenter.org/2024/09/24/can-ai-help-kids-feel-creative/?rbref=&utm_medium=email&utm_source=sfmc&utm_campaign=451682&testind=false&sfmcsub=73209489'
