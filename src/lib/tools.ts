@@ -8,6 +8,7 @@ export interface Tool {
   slug: string;
   title: string;
   description: string;
+  content: string;
   date: string;
   category: string;
   provider: string;
@@ -15,6 +16,7 @@ export interface Tool {
   access_type: string;
   tags: string[];
   url?: string;
+  demoUrl?: string;
   thumbnail?: string;
 }
 
@@ -26,54 +28,48 @@ export async function getAllTools(): Promise<Tool[]> {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(toolsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
 
       return {
         slug,
         title: data.title,
         description: data.description,
-        date: data.date,
+        content,
+        date: data.date || new Date().toISOString().split('T')[0],
         category: data.category,
         provider: data.provider,
         status: data.status,
         access_type: data.access_type,
         tags: data.tags || [],
         url: data.url,
+        demoUrl: data.demoUrl,
         thumbnail: data.thumbnail,
       };
     });
 
-  return allTools.sort((a, b) => (a.date > b.date ? -1 : 1));
+  return allTools;
 }
 
 export async function getToolBySlug(slug: string): Promise<Tool | null> {
   try {
     const fullPath = path.join(toolsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the tool metadata section
     const { data, content } = matter(fileContents);
 
-    // Validate required fields
-    if (!data.title || !data.description) {
-      console.warn(`Missing required fields in ${slug}.md`);
-      return null;
-    }
-
-    // Combine the data with the slug and content
     return {
       slug,
-      content,
       title: data.title,
       description: data.description,
-      tags: data.tags || [],
-      url: data.url,
-      thumbnail: data.thumbnail,
-      date: data.date,
+      content,
+      date: data.date || new Date().toISOString().split('T')[0],
       category: data.category,
       provider: data.provider,
       status: data.status,
       access_type: data.access_type,
+      tags: data.tags || [],
+      url: data.url,
+      demoUrl: data.demoUrl,
+      thumbnail: data.thumbnail,
     };
   } catch (error) {
     console.error(`Error reading tool ${slug}:`, error);
@@ -97,6 +93,11 @@ export async function getAllTags(): Promise<string[]> {
     // Add status
     if (tool.status) {
       tags.add(`Status: ${tool.status}`);
+    }
+
+    // Add provider
+    if (tool.provider) {
+      tags.add(`Provider: ${tool.provider}`);
     }
   });
 

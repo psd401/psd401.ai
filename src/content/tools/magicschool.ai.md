@@ -1,10 +1,13 @@
 ---
 title: 'Magicschool.ai'
+description: 'AI platform specifically designed for educational institutions that serves as a comprehensive hub for AI tools'
+date: '2025-01-01'
+category: 'Education Tools'
+provider: 'MagicSchool'
 status: 'Production'
 access_type: 'Multi-Purpose Tool'
-provider: 'MagicSchool'
-description: 'AI platform specifically designed for educational institutions that serves as a comprehensive hub for AI tools'
 url: 'https://magischool.ai'
+demoUrl: 'https://magischool.ai'
 tags:
   [
     'LessonPlanning',

@@ -1,10 +1,13 @@
 ---
 title: 'NotebookLM'
+description: 'AI-powered note-taking and research assistant that becomes an expert in your uploaded documents'
+date: '2025-01-01'
+category: 'Research Tools'
+provider: 'Google'
 status: 'Experimentation'
 access_type: 'Multi-Purpose Tool'
-provider: 'Google'
-description: 'AI-powered note-taking and research assistant that becomes an expert in your uploaded documents'
 url: 'https://notebooklm.google'
+demoUrl: 'https://notebooklm.google'
 tags:
   [
     'DocumentAnalysis',
