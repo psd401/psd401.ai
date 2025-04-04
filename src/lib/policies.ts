@@ -8,6 +8,7 @@ export interface Policy {
   slug: string;
   title: string;
   description: string;
+  content: string;
   date: string;
   category: string;
   status: string;
@@ -23,13 +24,14 @@ export async function getAllPolicies(): Promise<Policy[]> {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(policiesDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
 
       return {
         slug,
         title: data.title,
         description: data.description,
-        date: data.date,
+        content,
+        date: data.date || new Date().toISOString().split('T')[0],
         category: data.category,
         status: data.status,
         version: data.version,
@@ -37,30 +39,21 @@ export async function getAllPolicies(): Promise<Policy[]> {
       };
     });
 
-  return allPolicies.sort((a, b) => (a.date > b.date ? -1 : 1));
+  return allPolicies;
 }
 
 export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
   try {
     const fullPath = path.join(policiesDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the policy metadata section
     const { data, content } = matter(fileContents);
 
-    // Validate required fields
-    if (!data.title || !data.description) {
-      console.warn(`Missing required fields in ${slug}.md`);
-      return null;
-    }
-
-    // Combine the data with the slug and content
     return {
       slug,
-      content,
       title: data.title,
       description: data.description,
-      date: data.date,
+      content,
+      date: data.date || new Date().toISOString().split('T')[0],
       category: data.category,
       status: data.status,
       version: data.version,
@@ -74,11 +67,27 @@ export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
 
 export async function getAllTags(): Promise<string[]> {
   const policies = await getAllPolicies();
-  const tagSet = new Set<string>();
+  const tags = new Set<string>();
 
   policies.forEach(policy => {
-    policy.tags?.forEach(tag => tagSet.add(tag));
+    // Add regular tags
+    policy.tags?.forEach(tag => tags.add(tag));
+
+    // Add category
+    if (policy.category) {
+      tags.add(`Category: ${policy.category}`);
+    }
+
+    // Add status
+    if (policy.status) {
+      tags.add(`Status: ${policy.status}`);
+    }
+
+    // Add version
+    if (policy.version) {
+      tags.add(`Version: ${policy.version}`);
+    }
   });
 
-  return Array.from(tagSet).sort();
+  return Array.from(tags).sort();
 }
