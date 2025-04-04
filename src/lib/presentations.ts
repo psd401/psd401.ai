@@ -8,6 +8,7 @@ export interface Presentation {
   slug: string;
   title: string;
   description: string;
+  content: string;
   date: string;
   presenters: string[];
   audience: string;
@@ -25,13 +26,14 @@ export async function getAllPresentations(): Promise<Presentation[]> {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(presentationsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
 
       return {
         slug,
         title: data.title,
         description: data.description,
-        date: data.date,
+        content,
+        date: data.date || new Date().toISOString().split('T')[0],
         presenters: data.presenters || [],
         audience: data.audience,
         type: data.type,
@@ -49,10 +51,21 @@ export async function getAllTags(): Promise<string[]> {
   const tags = new Set<string>();
 
   presentations.forEach(presentation => {
+    // Add regular tags
     presentation.tags?.forEach(tag => tags.add(tag));
+
+    // Add presenters as tags
     presentation.presenters?.forEach(presenter => tags.add(`Presenter: ${presenter}`));
-    if (presentation.type) tags.add(`Type: ${presentation.type}`);
-    if (presentation.audience) tags.add(`Audience: ${presentation.audience}`);
+
+    // Add type
+    if (presentation.type) {
+      tags.add(`Type: ${presentation.type}`);
+    }
+
+    // Add audience
+    if (presentation.audience) {
+      tags.add(`Audience: ${presentation.audience}`);
+    }
   });
 
   return Array.from(tags).sort();
