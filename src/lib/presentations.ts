@@ -12,6 +12,7 @@ export interface Presentation {
   presenters: string[];
   audience: string;
   type: string;
+  tags: string[];
   thumbnail?: string;
   slides?: string;
 }
@@ -34,6 +35,7 @@ export async function getAllPresentations(): Promise<Presentation[]> {
         presenters: data.presenters || [],
         audience: data.audience,
         type: data.type,
+        tags: data.tags || [],
         thumbnail: data.thumbnail,
         slides: data.slides,
       };
