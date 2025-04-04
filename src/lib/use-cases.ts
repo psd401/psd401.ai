@@ -16,6 +16,7 @@ export interface UseCase {
   author?: string;
   school?: string;
   tags?: string[];
+  date?: string;
 }
 
 export interface Category {
@@ -47,6 +48,7 @@ export async function getAllUseCases(): Promise<UseCase[]> {
         author: data.author,
         school: data.school,
         tags: data.tags || [],
+        date: data.date || new Date().toISOString().split('T')[0],
       };
     });
 

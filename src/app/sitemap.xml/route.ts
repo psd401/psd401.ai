@@ -94,7 +94,9 @@ export async function GET() {
     .join('')}
   ${useCases
     .map(useCase => {
-      const lastmod = formatDate(useCase.date);
+      const lastmod = useCase.date
+        ? formatDate(useCase.date)
+        : formatDate(new Date().toISOString());
       return `
   <url>
     <loc>${baseUrl}/use-cases/${useCase.slug}</loc>
