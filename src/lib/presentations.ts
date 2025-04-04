@@ -2,22 +2,19 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+const presentationsDirectory = path.join(process.cwd(), 'src/content/presentations');
+
 export interface Presentation {
   slug: string;
   title: string;
   description: string;
-  content: string;
   date: string;
   presenters: string[];
-  type: string;
   audience: string;
-  tags: string[];
-  slides_url?: string;
-  video_url?: string;
+  type: string;
   thumbnail?: string;
+  slides?: string;
 }
-
-const presentationsDirectory = path.join(process.cwd(), 'src/content/presentations');
 
 export async function getAllPresentations(): Promise<Presentation[]> {
   const fileNames = fs.readdirSync(presentationsDirectory);
@@ -27,23 +24,18 @@ export async function getAllPresentations(): Promise<Presentation[]> {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(presentationsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
-
-      const presenters = data.presenters || (data.presenter ? [data.presenter] : []);
+      const { data } = matter(fileContents);
 
       return {
         slug,
-        content,
         title: data.title,
         description: data.description,
         date: data.date,
-        presenters,
+        presenters: data.presenters || [],
+        audience: data.audience,
         type: data.type,
-        audience: data.audience || 'All Staff',
-        tags: data.tags || [],
-        slides_url: data.slides_url,
-        video_url: data.video_url,
         thumbnail: data.thumbnail,
+        slides: data.slides,
       };
     });
 

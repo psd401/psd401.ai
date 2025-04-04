@@ -8,34 +8,36 @@ export interface Policy {
   slug: string;
   title: string;
   description: string;
+  date: string;
+  category: string;
+  status: string;
+  version: string;
   tags: string[];
-  content: string;
 }
 
 export async function getAllPolicies(): Promise<Policy[]> {
-  // Get file names under /content/policies
   const fileNames = fs.readdirSync(policiesDirectory);
   const allPolicies = fileNames
     .filter(fileName => fileName.endsWith('.md'))
     .map(fileName => {
-      // Remove ".md" from file name to get slug
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(policiesDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-      // Use gray-matter to parse the policy metadata section
-      const { data, content } = matter(fileContents);
+      const { data } = matter(fileContents);
 
       return {
         slug,
         title: data.title,
         description: data.description,
+        date: data.date,
+        category: data.category,
+        status: data.status,
+        version: data.version,
         tags: data.tags || [],
-        content,
       };
     });
 
-  return allPolicies;
+  return allPolicies.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
@@ -58,6 +60,10 @@ export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
       content,
       title: data.title,
       description: data.description,
+      date: data.date,
+      category: data.category,
+      status: data.status,
+      version: data.version,
       tags: data.tags || [],
     };
   } catch (error) {

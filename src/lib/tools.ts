@@ -8,44 +8,42 @@ export interface Tool {
   slug: string;
   title: string;
   description: string;
-  tags: string[];
-  content: string;
-  url?: string;
-  demoUrl?: string;
-  type: string;
+  date: string;
+  category: string;
+  provider: string;
   status: string;
-  privacy?: string;
+  access_type: string;
+  tags: string[];
+  url?: string;
+  thumbnail?: string;
 }
 
 export async function getAllTools(): Promise<Tool[]> {
-  // Get file names under /content/tools
   const fileNames = fs.readdirSync(toolsDirectory);
   const allTools = fileNames
     .filter(fileName => fileName.endsWith('.md'))
     .map(fileName => {
-      // Remove ".md" from file name to get slug
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(toolsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-      // Use gray-matter to parse the tool metadata section
-      const { data, content } = matter(fileContents);
+      const { data } = matter(fileContents);
 
       return {
         slug,
         title: data.title,
         description: data.description,
-        tags: data.tags || [],
-        content,
-        url: data.url,
-        demoUrl: data.demoUrl,
-        type: data.type,
+        date: data.date,
+        category: data.category,
+        provider: data.provider,
         status: data.status,
-        privacy: data.privacy,
+        access_type: data.access_type,
+        tags: data.tags || [],
+        url: data.url,
+        thumbnail: data.thumbnail,
       };
     });
 
-  return allTools;
+  return allTools.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export async function getToolBySlug(slug: string): Promise<Tool | null> {
@@ -70,10 +68,12 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
       description: data.description,
       tags: data.tags || [],
       url: data.url,
-      demoUrl: data.demoUrl,
-      type: data.type,
+      thumbnail: data.thumbnail,
+      date: data.date,
+      category: data.category,
+      provider: data.provider,
       status: data.status,
-      privacy: data.privacy,
+      access_type: data.access_type,
     };
   } catch (error) {
     console.error(`Error reading tool ${slug}:`, error);
@@ -90,18 +90,13 @@ export async function getAllTags(): Promise<string[]> {
     tool.tags?.forEach(tag => tags.add(tag));
 
     // Add tool type
-    if (tool.type) {
-      tags.add(`Type: ${tool.type}`);
+    if (tool.access_type) {
+      tags.add(`Type: ${tool.access_type}`);
     }
 
     // Add status
     if (tool.status) {
       tags.add(`Status: ${tool.status}`);
-    }
-
-    // Add privacy level
-    if (tool.privacy) {
-      tags.add(`Privacy: ${tool.privacy}`);
     }
   });
 

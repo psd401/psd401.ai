@@ -16,6 +16,16 @@ const nextConfig = {
       },
     ],
   },
+
+  // Enable static file serving for robots.txt and sitemap.xml
+  async rewrites() {
+    return [
+      {
+        source: '/robots.txt',
+        destination: '/api/robots',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
