@@ -33,9 +33,9 @@ export default async function ToolPage({ params }: Props) {
           <p className="text-xl text-foreground/80">{tool.description}</p>
 
           <div className="flex flex-wrap gap-2">
-            {tool.type && (
+            {tool.access_type && (
               <Chip color="primary" variant="flat" size="sm">
-                {tool.type}
+                {tool.access_type}
               </Chip>
             )}
             {tool.status && (
@@ -53,8 +53,8 @@ export default async function ToolPage({ params }: Props) {
           <Card className="bg-content1">
             <CardBody className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <h3 className="font-semibold text-sm text-foreground/60 mb-1">Privacy Level</h3>
-                <p>{tool.privacy}</p>
+                <h3 className="font-semibold text-sm text-foreground/60 mb-1">Provider</h3>
+                <p>{tool.provider}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-sm text-foreground/60 mb-1">Status</h3>
@@ -62,7 +62,7 @@ export default async function ToolPage({ params }: Props) {
               </div>
               <div>
                 <h3 className="font-semibold text-sm text-foreground/60 mb-1">Type</h3>
-                <p>{tool.type}</p>
+                <p>{tool.access_type}</p>
               </div>
             </CardBody>
           </Card>

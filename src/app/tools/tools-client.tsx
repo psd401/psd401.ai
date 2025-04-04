@@ -51,9 +51,8 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
     const toolTags = new Set(
       [
         ...(tool.tags || []),
-        tool.type ? `Type: ${tool.type}` : null,
+        tool.access_type ? `Type: ${tool.access_type}` : null,
         tool.status ? `Status: ${tool.status}` : null,
-        tool.privacy ? `Privacy: ${tool.privacy}` : null,
       ].filter(Boolean)
     );
 
@@ -142,9 +141,9 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
                 <CardHeader className="flex flex-col items-start gap-2">
                   <h2 className="text-xl font-bold">{tool.title}</h2>
                   <div className="flex flex-wrap gap-2">
-                    {tool.type && (
+                    {tool.access_type && (
                       <Chip color="primary" variant="flat" size="sm">
-                        {tool.type}
+                        {tool.access_type}
                       </Chip>
                     )}
                     {tool.status && (

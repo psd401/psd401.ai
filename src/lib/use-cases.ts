@@ -2,16 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
+
 export interface UseCase {
   slug: string;
   title: string;
   description: string;
-  date: string;
-  author: string;
-  department: string;
-  impact: string;
-  tags: string[];
-  thumbnail?: string;
+  content: string;
+  category: string;
+  subject?: string;
+  grade_level?: string;
+  tools_used?: string[];
+  author?: string;
+  school?: string;
+  tags?: string[];
 }
 
 export interface Category {
@@ -21,8 +25,6 @@ export interface Category {
   count: number;
 }
 
-const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
-
 export async function getAllUseCases(): Promise<UseCase[]> {
   const fileNames = fs.readdirSync(useCasesDirectory);
   const allUseCases = fileNames
@@ -31,22 +33,24 @@ export async function getAllUseCases(): Promise<UseCase[]> {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(useCasesDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
 
       return {
         slug,
         title: data.title,
         description: data.description,
-        date: data.date,
+        content,
+        category: data.category,
+        subject: data.subject,
+        grade_level: data.grade_level,
+        tools_used: data.tools_used || [],
         author: data.author,
-        department: data.department,
-        impact: data.impact,
+        school: data.school,
         tags: data.tags || [],
-        thumbnail: data.thumbnail,
       };
     });
 
-  return allUseCases.sort((a, b) => (a.date > b.date ? -1 : 1));
+  return allUseCases;
 }
 
 export async function getUseCasesByCategory(): Promise<{ [key: string]: UseCase[] }> {
@@ -54,10 +58,10 @@ export async function getUseCasesByCategory(): Promise<{ [key: string]: UseCase[
   const useCasesByCategory: { [key: string]: UseCase[] } = {};
 
   useCases.forEach(useCase => {
-    if (!useCasesByCategory[useCase.department]) {
-      useCasesByCategory[useCase.department] = [];
+    if (!useCasesByCategory[useCase.category]) {
+      useCasesByCategory[useCase.category] = [];
     }
-    useCasesByCategory[useCase.department].push(useCase);
+    useCasesByCategory[useCase.category].push(useCase);
   });
 
   return useCasesByCategory;
@@ -70,14 +74,16 @@ export async function getAllTags(): Promise<string[]> {
   useCases.forEach(useCase => {
     useCase.tags?.forEach(tag => tags.add(tag));
     if (useCase.author) tags.add(`Author: ${useCase.author}`);
-    if (useCase.department) tags.add(`Department: ${useCase.department}`);
-    if (useCase.impact) tags.add(`Impact: ${useCase.impact}`);
+    if (useCase.school) tags.add(`School: ${useCase.school}`);
+    if (useCase.grade_level) tags.add(`Grade: ${useCase.grade_level}`);
+    if (useCase.subject) tags.add(useCase.subject);
+    useCase.tools_used?.forEach(tool => tags.add(`Tool: ${tool}`));
   });
 
   return Array.from(tags).sort();
 }
 
-export async function getUseCaseBySlug(department: string, slug: string): Promise<UseCase | null> {
+export async function getUseCaseBySlug(category: string, slug: string): Promise<UseCase | null> {
   const useCases = await getAllUseCases();
   return useCases.find(useCase => useCase.slug === slug) || null;
 }
@@ -88,7 +94,7 @@ export async function getAllCategories(): Promise<{ [key: string]: Category }> {
 
   // Group use cases by category and build category metadata
   useCases.forEach(useCase => {
-    const categorySlug = useCase.department;
+    const categorySlug = useCase.category;
 
     if (!categories[categorySlug]) {
       // Convert slug to display name (e.g., 'classroom-use' -> 'Classroom Use')

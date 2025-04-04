@@ -1,10 +1,10 @@
 ---
 title: 'NotebookLM'
 status: 'Experimentation'
-type: 'Multi-Purpose Tool'
-privacy: 'Sandbox AI'
+access_type: 'Multi-Purpose Tool'
+provider: 'Google'
 description: 'AI-powered note-taking and research assistant that becomes an expert in your uploaded documents'
-demoUrl: 'https://notebooklm.google'
+url: 'https://notebooklm.google'
 tags:
   [
     'DocumentAnalysis',

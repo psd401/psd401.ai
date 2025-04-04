@@ -28,8 +28,8 @@ export default function UseCasesClient({
 
   // Organize tags into categories
   const tagCategories = {
-    'Grade Levels': allTags.filter(tag => tag.startsWith('Grade')),
-    Subjects: allTags.filter(tag => !tag.includes(':')),
+    'Grade Levels': allTags.filter(tag => tag.startsWith('Grade:')),
+    Subjects: allTags.filter(tag => !tag.includes(':') && !tag.startsWith('Grade')),
     Tools: allTags.filter(tag => tag.startsWith('Tool:')),
     Authors: allTags.filter(tag => tag.startsWith('Author:')),
     Schools: allTags.filter(tag => tag.startsWith('School:')),
