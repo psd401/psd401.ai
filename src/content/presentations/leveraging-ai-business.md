@@ -1,5 +1,5 @@
 ---
-title: 'Crafting Clarity: Mastering AI Prompt Engineering in Education'
+title: 'Leveraging AI Tools in Your Workplace - AI For Business Leaders'
 date: '2024-08-05'
 presenters:
   - 'Kris Hagel'

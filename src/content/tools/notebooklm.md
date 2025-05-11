@@ -4,9 +4,9 @@ description: 'AI-powered note-taking and research assistant that becomes an expe
 date: '2025-01-01'
 category: 'Research Tools'
 provider: 'Google'
-status: 'Experimentation'
+privacy: 'Lifeguard AI'
+status: 'Production'
 access_type: 'Multi-Purpose Tool'
-url: 'https://notebooklm.google'
 demoUrl: 'https://notebooklm.google'
 tags:
   [

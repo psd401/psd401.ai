@@ -6,7 +6,7 @@ presenters:
 audience: 'WCCT Conference'
 type: 'Conference Session'
 thumbnail: '/images/thumbnails/teaching-the-future.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQ--1KpBwtB8anChO3Mr1PHgjoG3qnafBsvziSwMe8FYhHyibimRRs4Q8cy4QIY8btgmWqMqORonpFZ/embed'
+slides: 'https://docs.google.com/presentation/d/16c8VlOB0lhy3DvrkjPIj6UvvCfAbfSVRsObUEqF5AvE/embed'
 description: 'A workshop delivered at the 2024 WCCT Conference on The Work we have been doing with our teachers on AI'
 ---
 

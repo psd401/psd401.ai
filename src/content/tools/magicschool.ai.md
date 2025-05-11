@@ -3,10 +3,10 @@ title: 'Magicschool.ai'
 description: 'AI platform specifically designed for educational institutions that serves as a comprehensive hub for AI tools'
 date: '2025-01-01'
 category: 'Education Tools'
+privacy: 'Lifeguard AI'
 provider: 'MagicSchool'
 status: 'Production'
 access_type: 'Multi-Purpose Tool'
-url: 'https://magischool.ai'
 demoUrl: 'https://magischool.ai'
 tags:
   [

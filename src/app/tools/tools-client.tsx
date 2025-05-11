@@ -22,9 +22,18 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
     Features: allTags.filter(tag => !tag.includes(':')),
   };
 
+  // Map category to tag prefix
+  const tagPrefixMap: Record<string, string> = {
+    'Tool Types': 'Type',
+    Status: 'Status',
+    'Privacy Level': 'Privacy',
+    Features: '',
+  };
+
   const toggleTag = (tag: string, category: string) => {
     const newTags = new Set(selectedTags);
-    const fullTag = category === 'Features' ? tag : `${category.slice(0, -1)}: ${tag}`;
+    const prefix = tagPrefixMap[category];
+    const fullTag = prefix ? `${prefix}: ${tag}` : tag;
     if (newTags.has(fullTag)) {
       newTags.delete(fullTag);
     } else {
@@ -53,6 +62,7 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
         ...(tool.tags || []),
         tool.access_type ? `Type: ${tool.access_type}` : null,
         tool.status ? `Status: ${tool.status}` : null,
+        tool.privacy ? `Privacy: ${tool.privacy}` : null,
       ].filter(Boolean)
     );
 
@@ -116,10 +126,23 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
                         {tags.map(tag => (
                           <Chip
                             key={tag}
-                            variant={selectedTags.has(tag) ? 'solid' : 'flat'}
+                            variant={
+                              selectedTags.has(
+                                tagPrefixMap[category]
+                                  ? `${tagPrefixMap[category]}: ${tag.includes(':') ? tag.split(':')[1].trim() : tag}`
+                                  : tag
+                              )
+                                ? 'solid'
+                                : 'flat'
+                            }
                             className="cursor-pointer hover:scale-105 transition-transform"
                             size="sm"
-                            onClick={() => toggleTag(tag, category)}
+                            onClick={() =>
+                              toggleTag(
+                                tag.includes(':') ? tag.split(':')[1].trim() : tag,
+                                category
+                              )
+                            }
                           >
                             {tag.includes(':') ? tag.split(':')[1].trim() : tag}
                           </Chip>
@@ -151,11 +174,18 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
                         {tool.status}
                       </Chip>
                     )}
-                    {tool.tags?.map(tag => (
-                      <Chip key={tag} variant="flat" size="sm">
-                        {tag}
+                    {(tool as any).privacy && (
+                      <Chip color="warning" variant="flat" size="sm">
+                        {(tool as any).privacy}
                       </Chip>
-                    ))}
+                    )}
+                    {tool.tags
+                      ?.filter(tag => tag !== (tool as any).privacy)
+                      .map(tag => (
+                        <Chip key={tag} variant="flat" size="sm">
+                          {tag}
+                        </Chip>
+                      ))}
                   </div>
                 </CardHeader>
                 <CardBody>

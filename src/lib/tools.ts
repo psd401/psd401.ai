@@ -15,6 +15,7 @@ export interface Tool {
   status: string;
   access_type: string;
   tags: string[];
+  privacy?: string;
   url?: string;
   demoUrl?: string;
   thumbnail?: string;
@@ -41,6 +42,7 @@ export async function getAllTools(): Promise<Tool[]> {
         status: data.status,
         access_type: data.access_type,
         tags: data.tags || [],
+        privacy: data.privacy,
         url: data.url,
         demoUrl: data.demoUrl,
         thumbnail: data.thumbnail,
@@ -67,6 +69,7 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
       status: data.status,
       access_type: data.access_type,
       tags: data.tags || [],
+      privacy: data.privacy,
       url: data.url,
       demoUrl: data.demoUrl,
       thumbnail: data.thumbnail,
@@ -98,6 +101,11 @@ export async function getAllTags(): Promise<string[]> {
     // Add provider
     if (tool.provider) {
       tags.add(`Provider: ${tool.provider}`);
+    }
+
+    // Add privacy
+    if ((tool as any).privacy) {
+      tags.add(`Privacy: ${(tool as any).privacy}`);
     }
   });
 
