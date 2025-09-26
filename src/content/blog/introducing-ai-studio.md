@@ -3,7 +3,7 @@ title: 'Introducing AI Studio: Your Gateway to Advanced AI Tools'
 date: '2025-09-27'
 author: 'Peninsula School District'
 tags: ['Information Sharing']
-image: '/images/blogs/aistudio-header.png'
+image: '/images/blogs/introducingaistudio.png'
 description: 'PSD announces AI Studio, a secure platform providing access to frontier generative AI models for staff and students, featuring cost-effective API management and custom tool development capabilities.'
 ---
 
