@@ -12,6 +12,7 @@ const navItems = [
   { name: 'Tools', href: '/tools' },
   { name: 'Articles', href: '/articles' },
   { name: 'Use Cases', href: '/use-cases' },
+  { name: 'AI Studio', href: '/aistudio' },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
