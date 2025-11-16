@@ -409,6 +409,17 @@ export default function AIStudioPage() {
           </Button>
           <Button
             as="a"
+            href="https://github.com/psd401/aistudio/discussions"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            variant="bordered"
+            className="border-sea-glass text-sea-glass hover:bg-sea-glass/10 font-semibold px-8"
+          >
+            Join the Discussion
+          </Button>
+          <Button
+            as="a"
             href="/blog/introducing-ai-studio"
             size="lg"
             variant="bordered"
