@@ -371,11 +371,11 @@ export default function AIStudioPage() {
         <div className="bg-gradient-to-br from-sea-glass/10 to-pacific/5 rounded-xl p-8 md:p-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pacific">
-              Need a Hosted Solution?
+              Interested in a Hosted Solution?
             </h2>
             <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
-              Don&apos;t want to manage your own infrastructure? We offer hosted AI Studio solutions
-              for school districts.
+              We&apos;re exploring the possibility of offering hosted AI Studio solutions through
+              interlocal agreements with other school districts. Message us for more information.
             </p>
             <Button
               as="a"
