@@ -13,7 +13,7 @@ export default function AIStudioPage() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Hero Section */}
-      <section className="text-center py-16 md:py-24">
+      <section className="text-center py-12 md:py-16">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-pacific">
           AI Studio
           <span className="block text-sea-glass mt-2">Your Gateway to Advanced AI Tools</span>
@@ -52,22 +52,23 @@ export default function AIStudioPage() {
       </section>
 
       {/* Screenshot Hero */}
-      <section className="mb-24">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
+      <section className="mb-16">
+        <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 max-w-2xl mx-auto">
           <Image
             src="/images/aistudio-1.png"
             alt="AI Studio interface showing frontier AI model selection"
             width={1920}
             height={1080}
-            className="w-full h-auto"
+            className="w-full h-auto object-cover"
+            style={{ maxHeight: '500px' }}
             priority
           />
         </div>
       </section>
 
       {/* Key Features Grid */}
-      <section className="mb-24">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-pacific">
+      <section className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-pacific">
           Powerful Features for Modern Education
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -222,55 +223,56 @@ export default function AIStudioPage() {
       </section>
 
       {/* Screenshots Gallery */}
-      <section className="mb-24">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-pacific">
+      <section className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-pacific">
           See AI Studio in Action
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-shadow">
-            <Image
-              src="/images/aistudio-2.png"
-              alt="Custom chat models for instructional and operational tasks"
-              width={960}
-              height={600}
-              className="w-full h-auto"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <p className="text-white font-semibold">Custom chat models for education</p>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
+            <div className="aspect-video relative">
+              <Image
+                src="/images/aistudio-2.png"
+                alt="Custom chat models for instructional and operational tasks"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+              <p className="text-white text-sm font-medium">Custom chat models</p>
             </div>
           </div>
-          <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-shadow">
-            <Image
-              src="/images/aistudio-3.png"
-              alt="No-code AI assistant creation interface"
-              width={960}
-              height={600}
-              className="w-full h-auto"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <p className="text-white font-semibold">No-code assistant creation</p>
+          <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
+            <div className="aspect-video relative">
+              <Image
+                src="/images/aistudio-3.png"
+                alt="No-code AI assistant creation interface"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+              <p className="text-white text-sm font-medium">No-code assistant creation</p>
             </div>
           </div>
-          <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-shadow md:col-span-2">
-            <Image
-              src="/images/aistudio-4.png"
-              alt="Real-time model switching between GPT-5, Claude, and Gemini"
-              width={1920}
-              height={600}
-              className="w-full h-auto"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <p className="text-white font-semibold">
-                Switch between frontier models in real-time
-              </p>
+          <div className="relative rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
+            <div className="aspect-video relative">
+              <Image
+                src="/images/aistudio-4.png"
+                alt="Real-time model switching between GPT-5, Claude, and Gemini"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+              <p className="text-white text-sm font-medium">Switch between frontier models</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="mb-24 bg-gradient-to-br from-sea-glass/10 to-pacific/5 rounded-2xl p-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-pacific">
+      <section className="mb-16 bg-gradient-to-br from-sea-glass/10 to-pacific/5 rounded-xl p-8 md:p-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-pacific">
           Why AI Studio?
         </h2>
         <div className="max-w-3xl mx-auto space-y-6">
@@ -322,8 +324,8 @@ export default function AIStudioPage() {
       </section>
 
       {/* Open Source Section */}
-      <section className="mb-24">
-        <div className="bg-pacific text-white rounded-2xl p-12">
+      <section className="mb-16">
+        <div className="bg-pacific text-white rounded-xl p-8 md:p-10">
           <div className="max-w-3xl mx-auto text-center">
             <svg
               className="w-16 h-16 mx-auto mb-6 opacity-90"
@@ -365,8 +367,8 @@ export default function AIStudioPage() {
       </section>
 
       {/* Hosted Solutions Section */}
-      <section className="mb-24">
-        <div className="bg-gradient-to-br from-sea-glass/10 to-pacific/5 rounded-2xl p-12">
+      <section className="mb-16">
+        <div className="bg-gradient-to-br from-sea-glass/10 to-pacific/5 rounded-xl p-8 md:p-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pacific">
               Need a Hosted Solution?
@@ -388,7 +390,7 @@ export default function AIStudioPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="text-center py-16">
+      <section className="text-center py-12">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-pacific">Ready to Get Started?</h2>
         <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
           Join Peninsula School District in bringing world-class AI tools to K-12
