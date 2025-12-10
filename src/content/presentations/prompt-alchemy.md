@@ -1,5 +1,5 @@
 ---
-title: 'Crafting Clarity: Mastering AI Prompt Engineering in Education'
+title: 'Prompt Alchemy: Designing AI Assistants with Prompt Chaining'
 date: '2025-12-11'
 presenters:
   - 'James Cantonwine'
