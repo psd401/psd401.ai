@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { cache } from 'react';
@@ -20,29 +20,31 @@ export interface Presentation {
 }
 
 export async function getAllPresentations(): Promise<Presentation[]> {
-  const fileNames = fs.readdirSync(presentationsDirectory);
-  const allPresentations = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      const slug = fileName.replace(/\.md$/, '');
-      const fullPath = path.join(presentationsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+  const fileNames = await fs.readdir(presentationsDirectory);
+  const allPresentations = await Promise.all(
+    fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(async fileName => {
+        const slug = fileName.replace(/\.md$/, '');
+        const fullPath = path.join(presentationsDirectory, fileName);
+        const fileContents = await fs.readFile(fullPath, 'utf8');
+        const { data, content } = matter(fileContents);
 
-      return {
-        slug,
-        title: data.title,
-        description: data.description,
-        content,
-        date: data.date || new Date().toISOString().split('T')[0],
-        presenters: data.presenters || [],
-        audience: data.audience,
-        type: data.type,
-        tags: data.tags || [],
-        thumbnail: data.thumbnail,
-        slides: data.slides,
-      };
-    });
+        return {
+          slug,
+          title: data.title,
+          description: data.description,
+          content,
+          date: data.date || new Date().toISOString().split('T')[0],
+          presenters: data.presenters || [],
+          audience: data.audience,
+          type: data.type,
+          tags: data.tags || [],
+          thumbnail: data.thumbnail,
+          slides: data.slides,
+        };
+      })
+  );
 
   return allPresentations.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
@@ -75,7 +77,7 @@ export async function getAllTags(): Promise<string[]> {
 export const getPresentationBySlug = cache(async (slug: string): Promise<Presentation | null> => {
   try {
     const fullPath = path.join(presentationsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = await fs.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
     return {

@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { cache } from 'react';
@@ -18,27 +18,29 @@ export interface Policy {
 }
 
 export async function getAllPolicies(): Promise<Policy[]> {
-  const fileNames = fs.readdirSync(policiesDirectory);
-  const allPolicies = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      const slug = fileName.replace(/\.md$/, '');
-      const fullPath = path.join(policiesDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+  const fileNames = await fs.readdir(policiesDirectory);
+  const allPolicies = await Promise.all(
+    fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(async fileName => {
+        const slug = fileName.replace(/\.md$/, '');
+        const fullPath = path.join(policiesDirectory, fileName);
+        const fileContents = await fs.readFile(fullPath, 'utf8');
+        const { data, content } = matter(fileContents);
 
-      return {
-        slug,
-        title: data.title,
-        description: data.description,
-        content,
-        date: data.date || new Date().toISOString().split('T')[0],
-        category: data.category,
-        status: data.status,
-        version: data.version,
-        tags: data.tags || [],
-      };
-    });
+        return {
+          slug,
+          title: data.title,
+          description: data.description,
+          content,
+          date: data.date || new Date().toISOString().split('T')[0],
+          category: data.category,
+          status: data.status,
+          version: data.version,
+          tags: data.tags || [],
+        };
+      })
+  );
 
   return allPolicies;
 }
@@ -46,7 +48,7 @@ export async function getAllPolicies(): Promise<Policy[]> {
 export const getPolicyBySlug = cache(async (slug: string): Promise<Policy | null> => {
   try {
     const fullPath = path.join(policiesDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = await fs.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
     return {

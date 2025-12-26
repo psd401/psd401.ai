@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { cache } from 'react';
@@ -23,32 +23,34 @@ export interface Tool {
 }
 
 export async function getAllTools(): Promise<Tool[]> {
-  const fileNames = fs.readdirSync(toolsDirectory);
-  const allTools = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      const slug = fileName.replace(/\.md$/, '');
-      const fullPath = path.join(toolsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+  const fileNames = await fs.readdir(toolsDirectory);
+  const allTools = await Promise.all(
+    fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(async fileName => {
+        const slug = fileName.replace(/\.md$/, '');
+        const fullPath = path.join(toolsDirectory, fileName);
+        const fileContents = await fs.readFile(fullPath, 'utf8');
+        const { data, content } = matter(fileContents);
 
-      return {
-        slug,
-        title: data.title,
-        description: data.description,
-        content,
-        date: data.date || new Date().toISOString().split('T')[0],
-        category: data.category,
-        provider: data.provider,
-        status: data.status,
-        access_type: data.access_type,
-        tags: data.tags || [],
-        privacy: data.privacy,
-        url: data.url,
-        demoUrl: data.demoUrl,
-        thumbnail: data.thumbnail,
-      };
-    });
+        return {
+          slug,
+          title: data.title,
+          description: data.description,
+          content,
+          date: data.date || new Date().toISOString().split('T')[0],
+          category: data.category,
+          provider: data.provider,
+          status: data.status,
+          access_type: data.access_type,
+          tags: data.tags || [],
+          privacy: data.privacy,
+          url: data.url,
+          demoUrl: data.demoUrl,
+          thumbnail: data.thumbnail,
+        };
+      })
+  );
 
   return allTools;
 }
@@ -56,7 +58,7 @@ export async function getAllTools(): Promise<Tool[]> {
 export const getToolBySlug = cache(async (slug: string): Promise<Tool | null> => {
   try {
     const fullPath = path.join(toolsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = await fs.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
     return {

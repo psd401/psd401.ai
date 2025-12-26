@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { cache } from 'react';
@@ -17,26 +17,28 @@ export interface BlogPost {
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPosts = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      const slug = fileName.replace(/\.md$/, '');
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+  const fileNames = await fs.readdir(postsDirectory);
+  const allPosts = await Promise.all(
+    fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(async fileName => {
+        const slug = fileName.replace(/\.md$/, '');
+        const fullPath = path.join(postsDirectory, fileName);
+        const fileContents = await fs.readFile(fullPath, 'utf8');
+        const { data, content } = matter(fileContents);
 
-      return {
-        slug,
-        content,
-        title: data.title,
-        description: data.description,
-        date: data.date,
-        author: data.author,
-        tags: data.tags || [],
-        image: data.image,
-      };
-    });
+        return {
+          slug,
+          content,
+          title: data.title,
+          description: data.description,
+          date: data.date,
+          author: data.author,
+          tags: data.tags || [],
+          image: data.image,
+        };
+      })
+  );
 
   return allPosts.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
@@ -56,7 +58,7 @@ export async function getAllTags(): Promise<string[]> {
 export const getPostBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = await fs.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
     return {
