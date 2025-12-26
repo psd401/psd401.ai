@@ -1,6 +1,5 @@
-'use client';
-
-import { Card, CardBody, CardHeader, Chip } from '@heroui/react';
+import { Card, CardBody, CardHeader } from '@/components/ui/ClientCard';
+import { Chip } from '@/components/ui/ClientChip';
 import { getAllContent } from '@/lib/markdown';
 import Link from 'next/link';
 

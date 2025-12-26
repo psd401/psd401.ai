@@ -5,18 +5,17 @@ import {
   CardBody as HeroCardBody,
   CardHeader as HeroCardHeader,
   CardProps,
-  CardBodyProps,
-  CardHeaderProps,
 } from '@heroui/react';
+import React from 'react';
 
 export function Card(props: CardProps) {
   return <HeroCard {...props} />;
 }
 
-export function CardBody(props: CardBodyProps) {
+export function CardBody(props: React.ComponentProps<typeof HeroCardBody>) {
   return <HeroCardBody {...props} />;
 }
 
-export function CardHeader(props: CardHeaderProps) {
+export function CardHeader(props: React.ComponentProps<typeof HeroCardHeader>) {
   return <HeroCardHeader {...props} />;
 }

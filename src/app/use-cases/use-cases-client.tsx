@@ -38,6 +38,7 @@ export default function UseCasesClient({
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     if (hash && Object.values(categories).some(cat => cat.slug === hash)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedCategory(hash);
       document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
     }
