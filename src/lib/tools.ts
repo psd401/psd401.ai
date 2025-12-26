@@ -78,7 +78,10 @@ export const getToolBySlug = cache(async (slug: string): Promise<Tool | null> =>
       thumbnail: data.thumbnail,
     };
   } catch (error) {
-    console.error(`Error reading tool ${slug}:`, error);
+    console.error(`Error reading tool ${slug}:`, {
+      error: error instanceof Error ? error.message : error,
+      path: path.join(toolsDirectory, `${slug}.md`),
+    });
     return null;
   }
 });

@@ -94,7 +94,10 @@ export const getPresentationBySlug = cache(async (slug: string): Promise<Present
       slides: data.slides,
     };
   } catch (error) {
-    console.error(`Error reading presentation ${slug}:`, error);
+    console.error(`Error reading presentation ${slug}:`, {
+      error: error instanceof Error ? error.message : error,
+      path: path.join(presentationsDirectory, `${slug}.md`),
+    });
     return null;
   }
 });

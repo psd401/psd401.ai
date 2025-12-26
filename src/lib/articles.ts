@@ -75,7 +75,10 @@ export const getArticleBySlug = cache(async (slug: string): Promise<Article | nu
       externalUrl: data.externalUrl,
     };
   } catch (error) {
-    console.error(`Error reading article ${slug}:`, error);
+    console.error(`Error reading article ${slug}:`, {
+      error: error instanceof Error ? error.message : error,
+      path: path.join(articlesDirectory, `${slug}.md`),
+    });
     return null;
   }
 });

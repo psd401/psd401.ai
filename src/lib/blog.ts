@@ -72,7 +72,10 @@ export const getPostBySlug = cache(async (slug: string): Promise<BlogPost | null
       image: data.image,
     };
   } catch (error) {
-    console.error(`Error reading blog post ${slug}:`, error);
+    console.error(`Error reading blog post ${slug}:`, {
+      error: error instanceof Error ? error.message : error,
+      path: path.join(postsDirectory, `${slug}.md`),
+    });
     return null;
   }
 });

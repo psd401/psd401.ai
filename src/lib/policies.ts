@@ -63,7 +63,10 @@ export const getPolicyBySlug = cache(async (slug: string): Promise<Policy | null
       tags: data.tags || [],
     };
   } catch (error) {
-    console.error(`Error reading policy ${slug}:`, error);
+    console.error(`Error reading policy ${slug}:`, {
+      error: error instanceof Error ? error.message : error,
+      path: path.join(policiesDirectory, `${slug}.md`),
+    });
     return null;
   }
 });

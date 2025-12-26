@@ -115,7 +115,11 @@ export const getUseCaseBySlug = cache(
         date: data.date || new Date().toISOString().split('T')[0],
       };
     } catch (error) {
-      console.error(`Error reading use-case ${category}/${slug}:`, error);
+      console.error(`Error reading use-case ${category}/${slug}:`, {
+        error: error instanceof Error ? error.message : error,
+        path: path.join(useCasesDirectory, `${slug}.md`),
+        category,
+      });
       return null;
     }
   }
