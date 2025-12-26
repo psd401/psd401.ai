@@ -1,13 +1,39 @@
-import { getUseCaseBySlug } from '@/lib/use-cases';
+import { getUseCaseBySlug, getAllUseCases } from '@/lib/use-cases';
 import MarkdownContent from '@/components/MarkdownContent';
 import { Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 interface Props {
   params: {
     category: string;
     slug: string;
+  };
+}
+
+export async function generateStaticParams() {
+  const useCases = await getAllUseCases();
+  return useCases.map(useCase => ({
+    category: useCase.category,
+    slug: useCase.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const useCase = await getUseCaseBySlug(params.category, params.slug);
+  if (!useCase) {
+    return { title: 'Use Case Not Found' };
+  }
+
+  return {
+    title: useCase.title,
+    description: useCase.description,
+    openGraph: {
+      title: useCase.title,
+      description: useCase.description,
+      type: 'article',
+    },
   };
 }
 

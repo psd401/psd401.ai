@@ -99,7 +99,7 @@ export async function GET() {
         : formatDate(new Date().toISOString());
       return `
   <url>
-    <loc>${baseUrl}/use-cases/${useCase.slug}</loc>
+    <loc>${baseUrl}/use-cases/${useCase.category}/${useCase.slug}</loc>
     ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
