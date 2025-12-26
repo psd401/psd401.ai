@@ -27,11 +27,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Tech Stack
 
-- **Framework**: Next.js 14 with App Router
+- **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript with strict mode
-- **Styling**: Tailwind CSS + NextUI component library
+- **Styling**: Tailwind CSS v4 + HeroUI component library
 - **Content**: Markdown files with gray-matter frontmatter parsing
 - **Theming**: Custom Peninsula SD brand colors (sea-glass, pacific, driftwood, etc.)
+- **Node.js**: Minimum version 20.9.0 required
 
 ### Content Management System
 
@@ -85,3 +86,46 @@ Tailwind configured with Peninsula SD brand colors:
 - Primary: `sea-glass` (#6CA18A), `pacific` (#25424C), `driftwood` (#D7CDBE)
 - Supporting: `cedar`, `whulge`, `sea-foam`, `meadow`, `ocean`, `skylight`
 - Both light and dark theme variants defined in NextUI theme configuration
+
+## Accessibility & SEO Standards
+
+### WCAG 2.2 AA Compliance
+
+**Required ARIA Attributes:**
+
+- Decorative SVGs: `aria-hidden="true"`
+- Toggle chips: `aria-pressed={isSelected}`
+- Collapsible sections: `aria-expanded` + `aria-controls`
+- Breadcrumbs: `aria-label="Breadcrumb"` + `aria-current="page"` on current item
+- Search forms: `aria-label` or `<label htmlFor/id>` association
+
+**Keyboard Navigation:**
+
+- Focus-visible styles configured globally in `globals.css`
+- Use single H1 per page with proper H2-H6 hierarchy
+
+### Metadata Requirements
+
+All pages need metadata with OpenGraph and Twitter cards. Use helper schemas from `@/components/JsonLd`:
+
+```tsx
+// All pages: Organization schema in root layout
+<JsonLd data={createOrganizationSchema()} />
+
+// Blog/article pages: Article + Breadcrumb schemas
+<JsonLd data={[createArticleSchema({...}), createBreadcrumbSchema([...])]} />
+
+// generateMetadata for SEO
+export const metadata: Metadata = {
+  title: 'Page Title',
+  description: 'Description',
+  openGraph: { title, description, images: ['/images/sections/category-hero.jpg'] },
+  twitter: { card: 'summary_large_image', title, description, images: [...] },
+};
+```
+
+**Image Optimization:**
+
+- Above-fold images: `priority={true}`
+- Responsive images: `sizes="(max-width: 768px) 100vw, 50vw"`
+- Social fallbacks: Use `/images/sections/{category}-hero.jpg` or `/images/hero-bg.jpg`
