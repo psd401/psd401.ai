@@ -20,7 +20,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const policy = await getPolicyBySlug(params.slug);
   if (!policy) {
-    return { title: 'Policy Not Found' };
+    return {
+      title: 'Policy Not Found',
+      robots: { index: false, follow: false },
+    };
   }
 
   return {

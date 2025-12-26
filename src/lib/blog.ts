@@ -70,6 +70,7 @@ export const getPostBySlug = cache(async (slug: string): Promise<BlogPost | null
       image: data.image,
     };
   } catch (error) {
+    console.error(`Error reading blog post ${slug}:`, error);
     return null;
   }
 });

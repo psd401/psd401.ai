@@ -150,6 +150,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tool) {
     return {
       title: 'Tool Not Found',
+      robots: { index: false, follow: false },
     };
   }
 

@@ -19,7 +19,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const presentation = await getPresentationBySlug(params.slug);
   if (!presentation) {
-    return { title: 'Presentation Not Found' };
+    return {
+      title: 'Presentation Not Found',
+      robots: { index: false, follow: false },
+    };
   }
 
   return {

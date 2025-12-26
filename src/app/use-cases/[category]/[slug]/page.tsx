@@ -23,7 +23,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const useCase = await getUseCaseBySlug(params.category, params.slug);
   if (!useCase) {
-    return { title: 'Use Case Not Found' };
+    return {
+      title: 'Use Case Not Found',
+      robots: { index: false, follow: false },
+    };
   }
 
   return {

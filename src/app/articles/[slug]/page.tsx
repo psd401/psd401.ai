@@ -22,7 +22,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const article = await getArticleBySlug(params.slug);
   if (!article) {
-    return { title: 'Article Not Found' };
+    return {
+      title: 'Article Not Found',
+      robots: { index: false, follow: false },
+    };
   }
 
   return {

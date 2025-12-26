@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { createDescriptionFromContent } from '@/lib/metadata-utils';
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -20,10 +21,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) {
-    return { title: 'Post Not Found' };
+    return {
+      title: 'Post Not Found',
+      robots: { index: false, follow: false },
+    };
   }
 
-  const description = post.description || post.content.slice(0, 160).replace(/[#*`]/g, '');
+  const description = post.description || createDescriptionFromContent(post.content);
 
   return {
     title: post.title,
