@@ -1,13 +1,44 @@
-import { getArticleBySlug } from '@/lib/articles';
+import { getArticleBySlug, getAllArticles } from '@/lib/articles';
 import { Card, CardBody, Chip, Link as NextUILink } from '@nextui-org/react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 export const revalidate = 3600; // Revalidate every hour
 
 interface ArticlePageProps {
   params: {
     slug: string;
+  };
+}
+
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  return articles.map(article => ({
+    slug: article.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const article = await getArticleBySlug(params.slug);
+  if (!article) {
+    return {
+      title: 'Article Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: article.title,
+    description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      type: 'article',
+      publishedTime: article.date,
+      authors: article.author ? [article.author] : undefined,
+      images: article.image ? [article.image] : undefined,
+    },
   };
 }
 

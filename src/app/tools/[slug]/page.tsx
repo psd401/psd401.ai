@@ -1,4 +1,4 @@
-import { getToolBySlug } from '@/lib/tools';
+import { getToolBySlug, getAllTools } from '@/lib/tools';
 import { Card, CardBody, Chip, Link as NextUILink } from '@nextui-org/react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -10,6 +10,13 @@ interface Props {
   params: {
     slug: string;
   };
+}
+
+export async function generateStaticParams() {
+  const tools = await getAllTools();
+  return tools.map(tool => ({
+    slug: tool.slug,
+  }));
 }
 
 export default async function ToolPage({ params }: Props) {
@@ -143,6 +150,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tool) {
     return {
       title: 'Tool Not Found',
+      robots: { index: false, follow: false },
     };
   }
 

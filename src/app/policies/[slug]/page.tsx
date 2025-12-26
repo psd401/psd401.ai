@@ -1,6 +1,8 @@
 import { Chip } from '@nextui-org/react';
-import { getContentBySlug } from '@/lib/markdown';
+import { getAllPolicies, getPolicyBySlug } from '@/lib/policies';
 import MarkdownContent from '@/components/MarkdownContent';
+import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 interface Props {
   params: {
@@ -8,27 +10,59 @@ interface Props {
   };
 }
 
-export default function PolicyPage({ params }: Props) {
-  const policy = getContentBySlug('policies', params.slug);
+export async function generateStaticParams() {
+  const policies = await getAllPolicies();
+  return policies.map(policy => ({
+    slug: policy.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const policy = await getPolicyBySlug(params.slug);
+  if (!policy) {
+    return {
+      title: 'Policy Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: policy.title,
+    description: policy.description || `${policy.category} policy - ${policy.status}`,
+    openGraph: {
+      title: policy.title,
+      description: policy.description || `${policy.category} policy - ${policy.status}`,
+      type: 'article',
+      modifiedTime: policy.date,
+    },
+  };
+}
+
+export default async function PolicyPage({ params }: Props) {
+  const policy = await getPolicyBySlug(params.slug);
+
+  if (!policy) {
+    notFound();
+  }
 
   return (
     <article className="max-w-4xl mx-auto">
       <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">{policy.frontmatter.title}</h1>
+        <h1 className="text-4xl font-bold mb-4">{policy.title}</h1>
         <div className="flex flex-wrap gap-4 items-center">
-          {policy.frontmatter.lastUpdated && (
+          {policy.date && (
             <time className="text-sm text-foreground/60">
-              Last updated: {new Date(policy.frontmatter.lastUpdated).toLocaleDateString()}
+              Last updated: {new Date(policy.date).toLocaleDateString()}
             </time>
           )}
-          {policy.frontmatter.category && (
+          {policy.category && (
             <Chip color="primary" variant="flat" size="sm">
-              {policy.frontmatter.category}
+              {policy.category}
             </Chip>
           )}
-          {policy.frontmatter.status && (
+          {policy.status && (
             <Chip color="success" variant="flat" size="sm">
-              Status: {policy.frontmatter.status}
+              Status: {policy.status}
             </Chip>
           )}
         </div>

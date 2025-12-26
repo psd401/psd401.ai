@@ -3,6 +3,9 @@ import MarkdownContent from '@/components/MarkdownContent';
 import { Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+import { createDescriptionFromContent } from '@/lib/metadata-utils';
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -11,11 +14,40 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const description = post.description || createDescriptionFromContent(post.content);
+
+  return {
+    title: post.title,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      type: 'article',
+      publishedTime: post.date,
+      authors: post.author ? [post.author] : undefined,
+      images: post.image ? [post.image] : undefined,
+    },
+  };
+}
+
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
-    return <div>Post not found</div>;
+    notFound();
   }
 
   return (
