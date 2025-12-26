@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Peninsula SD AI',
     description: 'AI resources and guidance for Peninsula School District',
-    images: ['/images/og-image.png'],
+    images: ['/images/hero-bg.jpg'],
   },
   openGraph: {
     type: 'website',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: 'AI resources and guidance for Peninsula School District',
     images: [
       {
-        url: '/images/og-image.png',
+        url: '/images/hero-bg.jpg',
         width: 1200,
         height: 630,
         alt: 'Peninsula School District AI Hub',

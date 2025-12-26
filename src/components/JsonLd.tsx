@@ -87,6 +87,11 @@ export default function JsonLd({ data }: JsonLdProps) {
   return (
     <script
       type="application/ld+json"
+      // SECURITY: dangerouslySetInnerHTML is safe here because:
+      // 1. All schema data is TypeScript-typed and comes from trusted sources (server-side content files)
+      // 2. JSON.stringify provides serialization protection against code injection
+      // 3. User-generated content is never passed to these schema factory functions
+      // IMPORTANT: Only use createOrganizationSchema, createArticleSchema, etc. with trusted/sanitized data
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );

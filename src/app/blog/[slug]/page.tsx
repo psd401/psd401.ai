@@ -38,13 +38,13 @@ export async function generateMetadata(props: {
       type: 'article',
       publishedTime: post.date,
       authors: post.author ? [post.author] : undefined,
-      images: post.image ? [post.image] : ['/images/og-image.png'],
+      images: post.image ? [post.image] : ['/images/sections/blog-hero.jpg'],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description,
-      images: post.image ? [post.image] : ['/images/og-image.png'],
+      images: post.image ? [post.image] : ['/images/sections/blog-hero.jpg'],
     },
   };
 }
