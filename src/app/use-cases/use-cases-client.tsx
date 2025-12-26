@@ -248,7 +248,7 @@ export default function UseCasesClient({
                     {cases.map(useCase => (
                       <Link
                         key={useCase.slug}
-                        href={`/use-cases/${categoryData.slug}/${useCase.slug}`}
+                        href={`/use-cases/${encodeURIComponent(categoryData.slug)}/${useCase.slug}`}
                         className="block"
                       >
                         <Card className="hover:scale-[1.02] transition-transform w-full h-full">
