@@ -2,6 +2,24 @@ import { Card, CardBody, CardHeader } from '@/components/ui/ClientCard';
 import { Chip } from '@/components/ui/ClientChip';
 import { getAllContent } from '@/lib/markdown';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Policies & Guidance',
+  description:
+    'Official AI policies and guidelines for Peninsula School District. Access district guidance for AI usage in education.',
+  openGraph: {
+    title: 'Policies & Guidance | Peninsula SD AI',
+    description: 'Official AI policies and guidelines for Peninsula School District.',
+    images: ['/images/sections/policies-hero.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Policies & Guidance | Peninsula SD AI',
+    description: 'Official AI policies and guidelines for Peninsula School District.',
+    images: ['/images/sections/policies-hero.jpg'],
+  },
+};
 
 export default function PoliciesPage() {
   const policies = getAllContent('policies');

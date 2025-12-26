@@ -89,10 +89,14 @@ export default function Home() {
             support to confidently integrate AI into K-12 learning, fostering innovation and
             preparing students for the future.
           </p>
-          <form action="/search" className="max-w-2xl mx-auto mt-8">
+          <form action="/search" className="max-w-2xl mx-auto mt-8" role="search">
+            <label htmlFor="hero-search" className="sr-only">
+              Search AI resources
+            </label>
             <div className="relative">
               <input
                 type="search"
+                id="hero-search"
                 name="q"
                 placeholder="Explore our AI resources..."
                 className="w-full px-4 py-3 pl-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
@@ -102,6 +106,7 @@ export default function Home() {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -124,7 +129,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {section.items.map(item => (
+            {section.items.map((item, index) => (
               <Link key={item.title} href={item.href}>
                 <Card className="hover:scale-[1.02] transition-transform bg-content1 hover:bg-content2">
                   <Image
@@ -133,6 +138,8 @@ export default function Home() {
                     width={400}
                     height={300}
                     className="object-cover w-full h-48"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index === 0}
                   />
                   <CardBody className="space-y-2">
                     <h3 className="font-bold text-lg text-primary-500">{item.title}</h3>

@@ -5,6 +5,7 @@ import './globals.css';
 import { Providers } from './providers';
 import Layout from '@/components/Layout';
 import Script from 'next/script';
+import JsonLd, { createOrganizationSchema } from '@/components/JsonLd';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,8 +16,33 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://psd401.ai'),
-  title: 'Peninsula SD AI',
+  title: {
+    default: 'Peninsula SD AI',
+    template: '%s | Peninsula SD AI',
+  },
   description: 'AI resources and guidance for Peninsula School District',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Peninsula SD AI',
+    description: 'AI resources and guidance for Peninsula School District',
+    images: ['/images/hero-bg.jpg'],
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://psd401.ai',
+    siteName: 'Peninsula SD AI',
+    title: 'Peninsula SD AI',
+    description: 'AI resources and guidance for Peninsula School District',
+    images: [
+      {
+        url: '/images/hero-bg.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Peninsula School District AI Hub',
+      },
+    ],
+  },
   icons: {
     icon: [
       {
@@ -49,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <JsonLd data={createOrganizationSchema()} />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-N2ZC6D1BDX"
           strategy="afterInteractive"

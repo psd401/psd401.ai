@@ -161,5 +161,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: tool.title,
     description: tool.description,
+    openGraph: {
+      title: `${tool.title} | Peninsula SD AI`,
+      description: tool.description,
+      type: 'article',
+      images: ['/images/sections/tools-hero.jpg'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${tool.title} | Peninsula SD AI`,
+      description: tool.description,
+      images: ['/images/sections/tools-hero.jpg'],
+    },
   };
 }
