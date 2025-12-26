@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { cache } from 'react';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
@@ -52,7 +53,23 @@ export async function getAllTags(): Promise<string[]> {
   return Array.from(tags).sort();
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const posts = await getAllPosts();
-  return posts.find(post => post.slug === slug) || null;
-}
+export const getPostBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
+  try {
+    const fullPath = path.join(postsDirectory, `${slug}.md`);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    return {
+      slug,
+      content,
+      title: data.title,
+      description: data.description,
+      date: data.date,
+      author: data.author,
+      tags: data.tags || [],
+      image: data.image,
+    };
+  } catch (error) {
+    return null;
+  }
+});

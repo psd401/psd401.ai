@@ -5,6 +5,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
+import { cache } from 'react';
 
 const articlesDirectory = path.join(process.cwd(), 'src/content/articles');
 
@@ -51,7 +52,7 @@ async function processMarkdown(content: string): Promise<string> {
   );
 }
 
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
+export const getArticleBySlug = cache(async (slug: string): Promise<Article | null> => {
   try {
     const fullPath = path.join(articlesDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -76,7 +77,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   } catch (error) {
     return null;
   }
-}
+});
 
 export async function getAllArticles(): Promise<Article[]> {
   const fileNames = fs.readdirSync(articlesDirectory);

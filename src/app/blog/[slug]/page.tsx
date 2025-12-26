@@ -23,12 +23,14 @@ export async function generateMetadata({
     return { title: 'Post Not Found' };
   }
 
+  const description = post.description || post.content.slice(0, 160).replace(/[#*`]/g, '');
+
   return {
     title: post.title,
-    description: post.description || post.content.slice(0, 160).replace(/[#*`]/g, ''),
+    description,
     openGraph: {
       title: post.title,
-      description: post.description || post.content.slice(0, 160).replace(/[#*`]/g, ''),
+      description,
       type: 'article',
       publishedTime: post.date,
       authors: post.author ? [post.author] : undefined,

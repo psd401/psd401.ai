@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { cache } from 'react';
 
 const policiesDirectory = path.join(process.cwd(), 'src/content/policies');
 
@@ -42,7 +43,7 @@ export async function getAllPolicies(): Promise<Policy[]> {
   return allPolicies;
 }
 
-export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
+export const getPolicyBySlug = cache(async (slug: string): Promise<Policy | null> => {
   try {
     const fullPath = path.join(policiesDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -63,7 +64,7 @@ export async function getPolicyBySlug(slug: string): Promise<Policy | null> {
     console.error(`Error reading policy ${slug}:`, error);
     return null;
   }
-}
+});
 
 export async function getAllTags(): Promise<string[]> {
   const policies = await getAllPolicies();

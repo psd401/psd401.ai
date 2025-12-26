@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { cache } from 'react';
 
 const toolsDirectory = path.join(process.cwd(), 'src/content/tools');
 
@@ -52,7 +53,7 @@ export async function getAllTools(): Promise<Tool[]> {
   return allTools;
 }
 
-export async function getToolBySlug(slug: string): Promise<Tool | null> {
+export const getToolBySlug = cache(async (slug: string): Promise<Tool | null> => {
   try {
     const fullPath = path.join(toolsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -78,7 +79,7 @@ export async function getToolBySlug(slug: string): Promise<Tool | null> {
     console.error(`Error reading tool ${slug}:`, error);
     return null;
   }
-}
+});
 
 export async function getAllTags(): Promise<string[]> {
   const tools = await getAllTools();

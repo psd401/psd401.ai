@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { cache } from 'react';
 
 const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
 
@@ -85,10 +86,37 @@ export async function getAllTags(): Promise<string[]> {
   return Array.from(tags).sort();
 }
 
-export async function getUseCaseBySlug(category: string, slug: string): Promise<UseCase | null> {
-  const useCases = await getAllUseCases();
-  return useCases.find(useCase => useCase.slug === slug) || null;
-}
+export const getUseCaseBySlug = cache(
+  async (category: string, slug: string): Promise<UseCase | null> => {
+    try {
+      const fullPath = path.join(useCasesDirectory, `${slug}.md`);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+
+      // Validate that the category matches
+      if (data.category !== category) {
+        return null;
+      }
+
+      return {
+        slug,
+        title: data.title,
+        description: data.description,
+        content,
+        category: data.category,
+        subject: data.subject,
+        grade_level: data.grade_level,
+        tools_used: data.tools_used || [],
+        author: data.author,
+        school: data.school,
+        tags: data.tags || [],
+        date: data.date || new Date().toISOString().split('T')[0],
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+);
 
 export async function getAllCategories(): Promise<{ [key: string]: Category }> {
   const useCases = await getAllUseCases();
