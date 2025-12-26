@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardBody, CardHeader, Chip, Divider } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Chip, Divider } from '@heroui/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { UseCase } from '@/lib/use-cases';

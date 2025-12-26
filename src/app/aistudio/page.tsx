@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button, Card, CardBody } from '@nextui-org/react';
+import { Button, Card, CardBody } from '@heroui/react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

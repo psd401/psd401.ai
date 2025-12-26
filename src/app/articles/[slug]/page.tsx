@@ -1,5 +1,5 @@
 import { getArticleBySlug, getAllArticles } from '@/lib/articles';
-import { Card, CardBody, Chip, Link as NextUILink } from '@nextui-org/react';
+import { Card, CardBody, Chip, Link as NextUILink } from '@heroui/react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';

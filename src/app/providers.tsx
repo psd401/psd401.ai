@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { NextUIProvider } from '@nextui-org/react';
+import { HeroUIProvider } from '@heroui/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -12,7 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem={true}
       forcedTheme="system"
     >
-      <NextUIProvider>{children}</NextUIProvider>
+      <HeroUIProvider>{children}</HeroUIProvider>
     </NextThemesProvider>
   );
 }

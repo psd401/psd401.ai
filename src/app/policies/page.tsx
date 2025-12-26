@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Chip } from '@nextui-org/react';
+import { Card, CardBody, CardHeader, Chip } from '@heroui/react';
 import { getAllContent } from '@/lib/markdown';
 import Link from 'next/link';
 

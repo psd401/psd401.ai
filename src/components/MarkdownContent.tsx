@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Button } from '@nextui-org/react';
+import { Button } from '@heroui/react';
 import rehypeRaw from 'rehype-raw';
 
 interface MarkdownContentProps {

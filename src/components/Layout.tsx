@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 

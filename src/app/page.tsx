@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Card, CardBody } from '@nextui-org/react';
+import { Card, CardBody } from '@heroui/react';
 import Link from 'next/link';
 import Image from 'next/image';
 

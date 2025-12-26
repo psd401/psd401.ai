@@ -1,4 +1,4 @@
-import { Chip } from '@nextui-org/react';
+import { Chip } from '@heroui/react';
 import { getAllPolicies, getPolicyBySlug } from '@/lib/policies';
 import MarkdownContent from '@/components/MarkdownContent';
 import { notFound } from 'next/navigation';
