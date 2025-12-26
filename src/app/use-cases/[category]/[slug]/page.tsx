@@ -6,10 +6,10 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 interface Props {
-  params: {
+  params: Promise<{
     category: string;
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -20,7 +20,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const useCase = await getUseCaseBySlug(params.category, params.slug);
   if (!useCase) {
     return {
@@ -40,7 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function UseCasePage({ params }: Props) {
+export default async function UseCasePage(props: Props) {
+  const params = await props.params;
   const useCase = await getUseCaseBySlug(params.category, params.slug);
 
   if (!useCase) {

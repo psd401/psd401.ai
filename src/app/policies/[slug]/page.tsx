@@ -5,9 +5,9 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -17,7 +17,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const policy = await getPolicyBySlug(params.slug);
   if (!policy) {
     return {
@@ -38,7 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PolicyPage({ params }: Props) {
+export default async function PolicyPage(props: Props) {
+  const params = await props.params;
   const policy = await getPolicyBySlug(params.slug);
 
   if (!policy) {

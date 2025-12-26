@@ -7,9 +7,9 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ToolPage({ params }: Props) {
+export default async function ToolPage(props0: Props) {
+  const params = await props0.params;
   const tool = await getToolBySlug(params.slug);
 
   if (!tool) {
@@ -144,7 +145,8 @@ export default async function ToolPage({ params }: Props) {
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const tool = await getToolBySlug(params.slug);
 
   if (!tool) {

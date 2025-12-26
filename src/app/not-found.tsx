@@ -22,12 +22,16 @@ export default function NotFound() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button as={Link} href="/" color="primary" variant="solid">
-            Return Home
-          </Button>
-          <Button as={Link} href="/blog" variant="bordered">
-            Browse Blog
-          </Button>
+          <Link href="/">
+            <Button color="primary" variant="solid" className="w-full">
+              Return Home
+            </Button>
+          </Link>
+          <Link href="/blog">
+            <Button variant="bordered" className="w-full">
+              Browse Blog
+            </Button>
+          </Link>
         </div>
 
         <div className="pt-8 text-sm text-foreground/50">
