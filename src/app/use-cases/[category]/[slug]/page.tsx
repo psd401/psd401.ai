@@ -22,7 +22,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const useCase = await getUseCaseBySlug(params.category, params.slug);
+  const decodedCategory = decodeURIComponent(params.category);
+  const useCase = await getUseCaseBySlug(decodedCategory, params.slug);
   if (!useCase) {
     return {
       title: 'Use Case Not Found',
@@ -43,7 +44,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function UseCasePage(props: Props) {
   const params = await props.params;
-  const useCase = await getUseCaseBySlug(params.category, params.slug);
+  const decodedCategory = decodeURIComponent(params.category);
+  const useCase = await getUseCaseBySlug(decodedCategory, params.slug);
 
   if (!useCase) {
     notFound();

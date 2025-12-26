@@ -97,13 +97,6 @@ export const getUseCaseBySlug = cache(
 
       // Validate that the category matches
       if (data.category !== category) {
-        console.error('Category mismatch:', {
-          fromFrontmatter: data.category,
-          fromUrl: category,
-          frontmatterBytes: Buffer.from(data.category).toString('hex'),
-          urlBytes: Buffer.from(category).toString('hex'),
-          equal: data.category === category,
-        });
         return null;
       }
 
