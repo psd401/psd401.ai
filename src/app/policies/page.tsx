@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardBody, CardHeader, Chip } from '@heroui/react';
 import { getAllContent } from '@/lib/markdown';
 import Link from 'next/link';

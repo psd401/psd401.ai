@@ -1,5 +1,7 @@
+'use client';
+
 /* eslint-disable react/no-unescaped-entities */
-import { Card, CardBody } from '@heroui/react';
+import { Card, CardBody } from '@/components/ui/ClientCard';
 import Link from 'next/link';
 import Image from 'next/image';
 

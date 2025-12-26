@@ -1,13 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
-import { Button, Card, CardBody } from '@heroui/react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'AI Studio - Advanced AI Tools for Education | Peninsula School District',
-  description:
-    'Access frontier AI models like GPT-5, Claude Opus, and Google Gemini in a secure, cost-effective platform built for K-12 education. Open source and MIT licensed.',
-};
+import { Button } from '@/components/ui/ClientButton';
+import { Card, CardBody } from '@/components/ui/ClientCard';
 
 export default function AIStudioPage() {
   return (

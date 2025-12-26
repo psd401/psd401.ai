@@ -1,4 +1,4 @@
-import { Chip } from '@heroui/react';
+import { Chip } from '@/components/ui/ClientChip';
 import { getAllPolicies, getPolicyBySlug } from '@/lib/policies';
 import MarkdownContent from '@/components/MarkdownContent';
 import { notFound } from 'next/navigation';

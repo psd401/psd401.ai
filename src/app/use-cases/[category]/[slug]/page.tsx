@@ -1,6 +1,6 @@
 import { getUseCaseBySlug, getAllUseCases } from '@/lib/use-cases';
 import MarkdownContent from '@/components/MarkdownContent';
-import { Chip } from '@heroui/react';
+import { Chip } from '@/components/ui/ClientChip';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';

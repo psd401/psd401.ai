@@ -1,5 +1,7 @@
 import { getToolBySlug, getAllTools } from '@/lib/tools';
-import { Card, CardBody, Chip, Link as NextUILink } from '@heroui/react';
+import { Card, CardBody } from '@/components/ui/ClientCard';
+import { Chip } from '@/components/ui/ClientChip';
+import { HeroUILink as NextUILink } from '@/components/ui/ClientLink';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';

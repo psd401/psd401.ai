@@ -1,12 +1,7 @@
-import Link from 'next/link';
-import { Button } from '@heroui/react';
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: '404 - Page Not Found',
-  description: 'The page you are looking for could not be found.',
-  robots: { index: false, follow: false },
-};
+import Link from 'next/link';
+import { Button } from '@/components/ui/ClientButton';
 
 export default function NotFound() {
   return (

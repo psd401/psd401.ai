@@ -1,6 +1,6 @@
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import MarkdownContent from '@/components/MarkdownContent';
-import { Chip } from '@heroui/react';
+import { Chip } from '@/components/ui/ClientChip';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
