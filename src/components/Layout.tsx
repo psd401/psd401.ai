@@ -18,6 +18,13 @@ const navItems = [
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Skip to main content link for keyboard navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-sea-glass focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        Skip to main content
+      </a>
       <Navbar className="bg-pacific border-b border-sea-glass/20 min-h-[72px]">
         <NavbarBrand className="mr-8">
           <NextLink href="/" className="flex items-center gap-3">
@@ -51,7 +58,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <NavbarContent justify="end" />
       </Navbar>
 
-      <main className="flex-grow container mx-auto px-6 py-8">{children}</main>
+      <main id="main-content" className="flex-grow container mx-auto px-6 py-8">
+        {children}
+      </main>
 
       <footer className="bg-pacific border-t border-sea-glass/20 py-6">
         <div className="container mx-auto px-6">

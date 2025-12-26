@@ -127,6 +127,9 @@ export default function UseCasesClient({
                   <CardHeader
                     className="cursor-pointer hover:bg-content2 py-2"
                     onClick={() => toggleCategory('categories')}
+                    role="button"
+                    aria-expanded={expandedCategories.has('categories')}
+                    aria-controls="categories-panel"
                   >
                     <h3 className="text-md font-semibold flex items-center justify-between w-full">
                       Select Category
@@ -134,14 +137,19 @@ export default function UseCasesClient({
                         className={`transform transition-transform ${
                           expandedCategories.has('categories') ? 'rotate-180' : ''
                         }`}
+                        aria-hidden="true"
                       >
                         ▼
                       </span>
                     </h3>
                   </CardHeader>
                   {expandedCategories.has('categories') && (
-                    <CardBody className="py-2 px-3">
-                      <div className="flex flex-col gap-1">
+                    <CardBody className="py-2 px-3" id="categories-panel">
+                      <div
+                        className="flex flex-col gap-1"
+                        role="group"
+                        aria-label="Category selection"
+                      >
                         {Object.values(categories).map(category => (
                           <Chip
                             key={category.slug}
@@ -149,6 +157,8 @@ export default function UseCasesClient({
                             className="cursor-pointer hover:scale-105 transition-transform"
                             size="sm"
                             onClick={() => handleTabChange(category.slug)}
+                            role="button"
+                            aria-pressed={selectedCategory === category.slug}
                           >
                             {category.name}
                           </Chip>
@@ -163,42 +173,55 @@ export default function UseCasesClient({
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-primary-500 mb-4">Filter by Tags</h2>
                 <div className="space-y-4">
-                  {Object.entries(tagCategories).map(([category, tags]) => (
-                    <Card key={category} className="border border-divider">
-                      <CardHeader
-                        className="cursor-pointer hover:bg-content2 py-2"
-                        onClick={() => toggleCategory(category)}
-                      >
-                        <h3 className="text-md font-semibold flex items-center justify-between w-full">
-                          {category}
-                          <span
-                            className={`transform transition-transform ${
-                              expandedCategories.has(category) ? 'rotate-180' : ''
-                            }`}
-                          >
-                            ▼
-                          </span>
-                        </h3>
-                      </CardHeader>
-                      {expandedCategories.has(category) && (
-                        <CardBody className="py-2 px-3">
-                          <div className="flex flex-col gap-1">
-                            {tags.map(tag => (
-                              <Chip
-                                key={tag}
-                                variant={selectedTags.has(tag) ? 'solid' : 'flat'}
-                                className="cursor-pointer hover:scale-105 transition-transform"
-                                size="sm"
-                                onClick={() => toggleTag(tag)}
-                              >
-                                {tag}
-                              </Chip>
-                            ))}
-                          </div>
-                        </CardBody>
-                      )}
-                    </Card>
-                  ))}
+                  {Object.entries(tagCategories).map(([category, tags]) => {
+                    const categoryId = `tag-${category.replace(/\s+/g, '-').toLowerCase()}`;
+                    return (
+                      <Card key={category} className="border border-divider">
+                        <CardHeader
+                          className="cursor-pointer hover:bg-content2 py-2"
+                          onClick={() => toggleCategory(category)}
+                          role="button"
+                          aria-expanded={expandedCategories.has(category)}
+                          aria-controls={categoryId}
+                        >
+                          <h3 className="text-md font-semibold flex items-center justify-between w-full">
+                            {category}
+                            <span
+                              className={`transform transition-transform ${
+                                expandedCategories.has(category) ? 'rotate-180' : ''
+                              }`}
+                              aria-hidden="true"
+                            >
+                              ▼
+                            </span>
+                          </h3>
+                        </CardHeader>
+                        {expandedCategories.has(category) && (
+                          <CardBody className="py-2 px-3" id={categoryId}>
+                            <div
+                              className="flex flex-col gap-1"
+                              role="group"
+                              aria-label={`${category} filters`}
+                            >
+                              {tags.map(tag => (
+                                <Chip
+                                  key={tag}
+                                  variant={selectedTags.has(tag) ? 'solid' : 'flat'}
+                                  className="cursor-pointer hover:scale-105 transition-transform"
+                                  size="sm"
+                                  onClick={() => toggleTag(tag)}
+                                  role="button"
+                                  aria-pressed={selectedTags.has(tag)}
+                                >
+                                  {tag}
+                                </Chip>
+                              ))}
+                            </div>
+                          </CardBody>
+                        )}
+                      </Card>
+                    );
+                  })}
                 </div>
               </div>
             </div>

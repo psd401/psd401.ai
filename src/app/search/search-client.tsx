@@ -22,9 +22,13 @@ export default function SearchClient({ results }: { results: SearchResult[] }) {
       <h1 className="text-4xl font-bold mb-8">Search Results</h1>
 
       <div className="mb-8">
-        <form onSubmit={handleSubmit} className="flex gap-4">
+        <form onSubmit={handleSubmit} className="flex gap-4" role="search">
+          <label htmlFor="search-input" className="sr-only">
+            Search across all content
+          </label>
           <input
             type="search"
+            id="search-input"
             name="q"
             defaultValue={query}
             placeholder="Search across all content..."

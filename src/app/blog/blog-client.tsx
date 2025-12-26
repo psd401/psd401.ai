@@ -45,8 +45,8 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
       </section>
 
       {/* Tag Filters */}
-      <section className="max-w-4xl mx-auto">
-        <div className="flex flex-wrap gap-2 mb-8">
+      <section className="max-w-4xl mx-auto" aria-label="Filter posts by tag">
+        <div className="flex flex-wrap gap-2 mb-8" role="group" aria-label="Tag filters">
           {allTags.map(tag => (
             <Chip
               key={tag}
@@ -54,6 +54,8 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
               className="cursor-pointer hover:scale-105 transition-transform"
               size="sm"
               onClick={() => toggleTag(tag)}
+              aria-pressed={selectedTags.includes(tag)}
+              role="button"
             >
               {tag}
             </Chip>
@@ -76,6 +78,7 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
                         width={300}
                         height={200}
                         className="object-cover w-full h-full rounded-l"
+                        sizes="(max-width: 768px) 100vw, 25vw"
                       />
                     </div>
                   )}
@@ -113,7 +116,7 @@ export default function BlogClient({ posts, allTags }: { posts: BlogPost[]; allT
             href="/feed.xml"
             className="inline-flex items-center gap-2 text-primary hover:text-primary-600"
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z" />
             </svg>
             Subscribe to RSS Feed

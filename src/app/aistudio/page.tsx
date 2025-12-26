@@ -5,6 +5,10 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/ClientButton';
 import { Card, CardBody } from '@/components/ui/ClientCard';
 
+// Note: Metadata must be exported from a server component
+// Moving to a separate layout or adding a metadata route would be needed for full SEO
+// For now, metadata is handled in the parent layout
+
 export default function AIStudioPage() {
   return (
     <div className="max-w-7xl mx-auto">

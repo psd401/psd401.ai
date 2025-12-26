@@ -108,6 +108,9 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
                   <CardHeader
                     className="cursor-pointer hover:bg-content2 py-2"
                     onClick={() => toggleCategory(category)}
+                    role="button"
+                    aria-expanded={expandedCategories.has(category)}
+                    aria-controls={`category-${category.replace(/\s+/g, '-').toLowerCase()}`}
                   >
                     <h3 className="text-md font-semibold flex items-center justify-between w-full">
                       {category}
@@ -115,38 +118,42 @@ export default function ToolsClient({ tools, allTags }: ToolsClientProps) {
                         className={`transform transition-transform ${
                           expandedCategories.has(category) ? 'rotate-180' : ''
                         }`}
+                        aria-hidden="true"
                       >
                         ▼
                       </span>
                     </h3>
                   </CardHeader>
                   {expandedCategories.has(category) && (
-                    <CardBody className="py-2 px-3">
-                      <div className="flex flex-col gap-1">
-                        {tags.map(tag => (
-                          <Chip
-                            key={tag}
-                            variant={
-                              selectedTags.has(
-                                tagPrefixMap[category]
-                                  ? `${tagPrefixMap[category]}: ${tag.includes(':') ? tag.split(':')[1].trim() : tag}`
-                                  : tag
-                              )
-                                ? 'solid'
-                                : 'flat'
-                            }
-                            className="cursor-pointer hover:scale-105 transition-transform"
-                            size="sm"
-                            onClick={() =>
-                              toggleTag(
-                                tag.includes(':') ? tag.split(':')[1].trim() : tag,
-                                category
-                              )
-                            }
-                          >
-                            {tag.includes(':') ? tag.split(':')[1].trim() : tag}
-                          </Chip>
-                        ))}
+                    <CardBody
+                      className="py-2 px-3"
+                      id={`category-${category.replace(/\s+/g, '-').toLowerCase()}`}
+                    >
+                      <div
+                        className="flex flex-col gap-1"
+                        role="group"
+                        aria-label={`${category} filters`}
+                      >
+                        {tags.map(tag => {
+                          const tagValue = tag.includes(':') ? tag.split(':')[1].trim() : tag;
+                          const fullTag = tagPrefixMap[category]
+                            ? `${tagPrefixMap[category]}: ${tagValue}`
+                            : tag;
+                          const isSelected = selectedTags.has(fullTag);
+                          return (
+                            <Chip
+                              key={tag}
+                              variant={isSelected ? 'solid' : 'flat'}
+                              className="cursor-pointer hover:scale-105 transition-transform"
+                              size="sm"
+                              onClick={() => toggleTag(tagValue, category)}
+                              role="button"
+                              aria-pressed={isSelected}
+                            >
+                              {tagValue}
+                            </Chip>
+                          );
+                        })}
                       </div>
                     </CardBody>
                   )}

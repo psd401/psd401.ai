@@ -96,42 +96,60 @@ export default function ArticlesClient({ articles, allTags }: ArticlesClientProp
           <div className="sticky top-24">
             <h2 className="text-xl font-bold text-primary-500 mb-4">Filter by Tags</h2>
             <div className="space-y-4">
-              {Object.entries(tagCategories).map(([category, tags]) => (
-                <Card key={category} className="border border-divider">
-                  <CardHeader
-                    className="cursor-pointer hover:bg-content2 py-2"
-                    onClick={() => toggleCategory(category)}
-                  >
-                    <h3 className="text-md font-semibold flex items-center justify-between w-full">
-                      {category}
-                      <span
-                        className={`transform transition-transform ${
-                          expandedCategories.has(category) ? 'rotate-180' : ''
-                        }`}
-                      >
-                        ▼
-                      </span>
-                    </h3>
-                  </CardHeader>
-                  {expandedCategories.has(category) && (
-                    <CardBody className="py-2 px-3">
-                      <div className="flex flex-col gap-1">
-                        {tags.map(tag => (
-                          <Chip
-                            key={tag}
-                            variant={selectedTags.has(tag) ? 'solid' : 'flat'}
-                            className="cursor-pointer hover:scale-105 transition-transform"
-                            size="sm"
-                            onClick={() => toggleTag(tag, category)}
-                          >
-                            {tag}
-                          </Chip>
-                        ))}
-                      </div>
-                    </CardBody>
-                  )}
-                </Card>
-              ))}
+              {Object.entries(tagCategories).map(([category, tags]) => {
+                const categoryId = `article-${category.replace(/\s+/g, '-').toLowerCase()}`;
+                return (
+                  <Card key={category} className="border border-divider">
+                    <CardHeader
+                      className="cursor-pointer hover:bg-content2 py-2"
+                      onClick={() => toggleCategory(category)}
+                      role="button"
+                      aria-expanded={expandedCategories.has(category)}
+                      aria-controls={categoryId}
+                    >
+                      <h3 className="text-md font-semibold flex items-center justify-between w-full">
+                        {category}
+                        <span
+                          className={`transform transition-transform ${
+                            expandedCategories.has(category) ? 'rotate-180' : ''
+                          }`}
+                          aria-hidden="true"
+                        >
+                          ▼
+                        </span>
+                      </h3>
+                    </CardHeader>
+                    {expandedCategories.has(category) && (
+                      <CardBody className="py-2 px-3" id={categoryId}>
+                        <div
+                          className="flex flex-col gap-1"
+                          role="group"
+                          aria-label={`${category} filters`}
+                        >
+                          {tags.map(tag => {
+                            const fullTag =
+                              category === 'Topics' ? tag : `${category.slice(0, -1)}: ${tag}`;
+                            const isSelected = selectedTags.has(fullTag);
+                            return (
+                              <Chip
+                                key={tag}
+                                variant={isSelected ? 'solid' : 'flat'}
+                                className="cursor-pointer hover:scale-105 transition-transform"
+                                size="sm"
+                                onClick={() => toggleTag(tag, category)}
+                                role="button"
+                                aria-pressed={isSelected}
+                              >
+                                {tag}
+                              </Chip>
+                            );
+                          })}
+                        </div>
+                      </CardBody>
+                    )}
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </aside>
