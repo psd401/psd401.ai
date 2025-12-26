@@ -4,6 +4,10 @@ export const metadata: Metadata = {
   title: 'AI Studio',
   description:
     'AI Studio - A secure, open-source platform providing K-12 educators and students with access to frontier generative AI models at 90% lower cost.',
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: 'AI Studio | Peninsula SD AI',
     description:
