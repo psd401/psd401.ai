@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google GSV Ed Leader Fellowship — Action Plan</title>
+<style>
+:root{
+  --paper:#F4EFE3; --paper-2:#EBE3D0; --paper-3:#E1D6BB;
+  --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-2:#37607B; --pacific-pale:#C5D2DC;
+  --sage:#5F7567; --sage-pale:#CFD9CC;
+  --madrone:#9A3F22; --madrone-pale:#E2C0AC;
+  --moss:#445A3A;
+  --google-red:#D04A3E; --google-blue:#3267C2; --google-yellow:#D9A006; --google-green:#2F8240;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text","Book Antiqua",Georgia,serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; padding:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:18px; line-height:1.62;
+  font-feature-settings:"kern","liga","onum";
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    radial-gradient(ellipse 80% 60% at 14% 16%, rgba(27,61,92,0.025), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 86% 84%, rgba(154,63,34,0.025), transparent 60%);
+}
+main{position:relative; z-index:2; max-width:760px; margin:0 auto; padding:72px 32px 120px}
+
+.masthead{
+  border-top:4px solid var(--ink);
+  border-bottom:1px solid var(--rule);
+  padding:20px 0 36px;
+}
+.fellowship-strip{
+  display:flex; gap:3px; margin-bottom:18px;
+}
+.fellowship-strip span{
+  display:inline-block; width:38px; height:3px;
+}
+.fellowship-strip span:nth-child(1){ background:var(--google-blue) }
+.fellowship-strip span:nth-child(2){ background:var(--google-red) }
+.fellowship-strip span:nth-child(3){ background:var(--google-yellow) }
+.fellowship-strip span:nth-child(4){ background:var(--google-green) }
+.section-marker{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink-3);
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:28px; flex-wrap:wrap; gap:8px;
+}
+.section-marker .roman{ color:var(--madrone); font-weight:600; letter-spacing:0.18em }
+h1.title{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(40px,6.6vw,58px); line-height:1.03;
+  letter-spacing:-0.02em; margin:0 0 18px; color:var(--ink);
+}
+.subtitle{
+  font-family:var(--serif); font-style:italic; font-size:20px;
+  line-height:1.4; color:var(--ink-2); margin:0; max-width:36em;
+}
+.byline{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--ink-3); margin-top:30px;
+  padding-top:18px; border-top:1px solid var(--rule-soft);
+  display:flex; flex-wrap:wrap; gap:6px 22px;
+}
+.byline .sep{ color:var(--rule); margin:0 -10px }
+.byline .due{ color:var(--madrone); font-weight:600 }
+
+.docnav{
+  margin:0 0 64px; padding:14px 0;
+  border-bottom:1px solid var(--rule-soft);
+  display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline;
+  font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
+}
+.docnav .lbl{
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--ink-3); font-weight:500; font-size:11px;
+}
+.docnav a{
+  color:var(--ink); text-decoration:none; position:relative;
+  padding:3px 0; transition:color 0.2s;
+}
+.docnav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px;
+  height:1px; background:transparent; transition:background 0.2s;
+}
+.docnav a:hover{ color:var(--madrone) }
+.docnav a:hover::after{ background:var(--madrone) }
+.docnav a.current{ color:var(--madrone); font-weight:600 }
+.docnav a.current::after{ background:var(--madrone) }
+
+.part-banner{
+  margin:56px 0 12px;
+  display:flex; align-items:baseline; gap:18px;
+  padding-bottom:14px; border-bottom:2px solid var(--ink);
+}
+.part-banner .num{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--madrone);
+}
+.part-banner h2{
+  font-family:var(--serif); font-weight:600;
+  font-size:32px; line-height:1.1;
+  margin:0; color:var(--ink); letter-spacing:-0.015em;
+  padding:0; border:0;
+}
+
+/* Opportunity monograph */
+.monograph{
+  margin:48px 0;
+  position:relative;
+}
+.monograph .crown{
+  display:flex; align-items:baseline; gap:18px;
+  border-top:1px solid var(--ink);
+  padding-top:14px; margin-bottom:18px;
+}
+.monograph .crown .tag{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.22em; text-transform:uppercase;
+}
+.monograph.a .crown .tag{ color:var(--pacific) }
+.monograph.b .crown .tag{ color:var(--madrone) }
+.monograph .anchor{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--ink-3); margin-left:auto;
+}
+.monograph .title{
+  font-family:var(--serif); font-weight:600;
+  font-size:30px; line-height:1.15; letter-spacing:-0.015em;
+  margin:0 0 28px; color:var(--ink);
+}
+.monograph .title em{
+  font-style:italic;
+}
+.monograph.a .title::first-letter{ color:var(--pacific) }
+.monograph.b .title::first-letter{ color:var(--madrone) }
+
+.field{
+  margin:28px 0;
+  padding-top:14px;
+  border-top:1px solid var(--rule-soft);
+}
+.field:first-of-type{ border-top:1px solid var(--ink) }
+.field .label{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--ink-3); display:block; margin-bottom:12px;
+}
+.field .value{ font-size:17px; line-height:1.6 }
+.field .value p{ margin:0 0 14px }
+.field .value p:last-child{ margin-bottom:0 }
+.field .value ul{ margin:0 0 12px; padding-left:24px }
+.field .value li{ margin-bottom:6px }
+.field .value li::marker{ color:var(--madrone); font-size:0.85em }
+.field .value strong{ font-weight:600; color:var(--ink) }
+.field .value em{ font-style:italic }
+
+a.inline{
+  color:var(--pacific); text-decoration:none;
+  border-bottom:1px solid var(--pacific-pale);
+  padding-bottom:1px; transition:color 0.2s, border-color 0.2s;
+}
+a.inline:hover{ color:var(--madrone); border-bottom-color:var(--madrone) }
+
+/* Evaluation triplet */
+.eval{
+  margin-top:36px;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  display:grid; grid-template-columns:repeat(3,1fr);
+}
+.eval-cell{
+  padding:18px 20px;
+  border-right:1px solid var(--rule-soft);
+}
+.eval-cell:last-child{ border-right:0 }
+.eval-cell .lbl{
+  font-family:var(--mono); font-size:10px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--ink-3); margin-bottom:8px;
+}
+.eval-cell .val{
+  font-family:var(--serif); font-weight:600; font-size:17px;
+  letter-spacing:-0.005em;
+}
+.eval-cell.high .val{ color:var(--moss) }
+.eval-cell.med .val{ color:#8B6510 }
+.eval-cell .marker{
+  display:inline-block; width:6px; height:6px;
+  border-radius:50%; margin-right:8px; vertical-align:2px;
+}
+.eval-cell.high .marker{ background:var(--moss) }
+.eval-cell.med .marker{ background:#B58300 }
+
+/* Plan section headings (under Part 2) */
+h3.plan{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--madrone); margin:38px 0 12px;
+  padding-bottom:8px; border-bottom:1px solid var(--ink);
+}
+p.plan-idea{
+  font-family:var(--serif); font-size:21px; font-style:italic;
+  line-height:1.5; color:var(--ink); margin:0 0 22px;
+}
+p{ margin:0 0 16px }
+ul,ol{ margin:0 0 18px; padding-left:24px }
+li{ margin-bottom:7px }
+ul li::marker{ color:var(--madrone); font-size:0.85em }
+ol li::marker{ color:var(--madrone); font-family:var(--mono); font-weight:600 }
+strong{ font-weight:600; color:var(--ink) }
+em{ font-style:italic }
+
+/* Metrics ledger */
+.metric-ledger{
+  margin:18px 0 28px;
+  border-top:1px solid var(--ink);
+}
+.metric-row{
+  display:grid; grid-template-columns:90px 1fr;
+  gap:18px; padding:14px 0;
+  border-bottom:1px solid var(--rule-soft);
+  font-size:16px; line-height:1.5;
+}
+.metric-num{
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--ink-3);
+}
+.metric-row.headline{
+  background:rgba(154,63,34,0.06);
+  margin:0 -16px; padding:14px 16px;
+  border:1px solid var(--madrone);
+  border-bottom:1px solid var(--madrone);
+}
+.metric-row.headline .metric-num{ color:var(--madrone) }
+.metric-row strong{ color:var(--ink) }
+.metric-row em{ color:var(--ink-2); font-style:italic }
+
+/* Timeline */
+.chronology{
+  margin:18px 0 28px;
+  border-top:1px solid var(--ink);
+}
+.chron-row{
+  display:grid; grid-template-columns:180px 1fr;
+  gap:24px; padding:16px 0;
+  border-bottom:1px solid var(--rule-soft);
+  font-size:16px; line-height:1.5;
+}
+.chron-when{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--madrone); padding-top:2px;
+}
+.chron-row.milestone .chron-what{ font-weight:600 }
+.chron-row.milestone .chron-when{ color:var(--ink); letter-spacing:0.18em }
+
+/* Stakeholders */
+.stake-grid{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:0; margin:18px 0 28px;
+  border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+}
+.stake-col{ padding:20px 18px; border-right:1px solid var(--rule-soft) }
+.stake-col:last-child{ border-right:0 }
+.stake-col h4{
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--madrone); margin:0 0 12px;
+}
+.stake-col ul{ margin:0; padding-left:0; list-style:none }
+.stake-col li{
+  padding:5px 0; font-size:15px;
+  border-top:1px solid var(--rule-soft); padding-left:0;
+}
+.stake-col li:first-child{ border-top:0; padding-top:0 }
+
+/* Next steps */
+.next-steps{ margin:18px 0 28px; border-top:1px solid var(--ink); counter-reset:nstep }
+.next-row{
+  display:grid; grid-template-columns:40px 1fr;
+  gap:16px; padding:14px 0;
+  border-bottom:1px solid var(--rule-soft);
+}
+.next-row::before{
+  counter-increment:nstep; content:counter(nstep,decimal-leading-zero);
+  font-family:var(--mono); font-size:14px; font-weight:600;
+  letter-spacing:0.06em; color:var(--madrone); padding-top:2px;
+}
+.next-row .what{
+  font-family:var(--serif); font-weight:600; font-size:17px;
+  letter-spacing:-0.005em; margin-bottom:4px; display:block;
+}
+.next-row .meta{
+  font-family:var(--mono); font-size:10.5px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-3);
+}
+.next-row .meta .due{ color:var(--madrone); font-weight:600 }
+.next-row .meta .sep{ color:var(--rule); margin:0 4px }
+
+/* SCAN tables */
+.part-banner.optional{ border-bottom-style:dashed }
+.part-banner.optional .num{ color:var(--ink-3) }
+table.scan{
+  width:100%; border-collapse:collapse;
+  margin:18px 0 28px; font-family:var(--serif); font-size:15px;
+}
+table.scan th{
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--ink-3); text-align:left;
+  padding:0 12px 10px 0;
+  border-bottom:1px solid var(--ink);
+}
+table.scan td{
+  padding:12px 12px 12px 0;
+  border-bottom:1px solid var(--rule-soft);
+  vertical-align:top; line-height:1.5;
+}
+.sev{
+  display:inline-block; font-family:var(--mono);
+  font-size:11px; font-weight:600;
+  letter-spacing:0.06em; width:22px; text-align:center;
+  border:1px solid currentColor; padding:1px 0;
+}
+.sev-H{ color:var(--madrone) }
+.sev-M{ color:#8B6510 }
+
+footer.colophon{
+  margin-top:88px; padding-top:24px;
+  border-top:4px solid var(--ink);
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+}
+footer.colophon .mark{ color:var(--madrone); font-weight:600 }
+
+@media (max-width:680px){
+  main{ padding:48px 22px 80px }
+  h1.title{ font-size:34px }
+  .part-banner h2{ font-size:24px }
+  .monograph .title{ font-size:24px }
+  .eval, .stake-grid{ grid-template-columns:1fr }
+  .eval-cell, .stake-col{ border-right:0; border-bottom:1px solid var(--rule-soft) }
+  .eval-cell:last-child, .stake-col:last-child{ border-bottom:0 }
+  .chron-row{ grid-template-columns:1fr; gap:6px }
+  .metric-row{ grid-template-columns:1fr; gap:4px }
+}
+@media print{
+  body{ background:white; color:black; font-size:10.5pt }
+  body::before{ display:none }
+  main{ max-width:none; padding:0 }
+  .docnav{ display:none }
+  h2,h3{ page-break-after:avoid }
+  .monograph, .metric-row, .chron-row, .next-row{ page-break-inside:avoid }
+  a.inline{ color:black; border-bottom-color:#999 }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="fellowship-strip"><span></span><span></span><span></span><span></span></div>
+<div class="section-marker">
+<span><span class="roman">№ 03</span> &nbsp;·&nbsp; Fellowship Submission</span>
+<span>Google GSV Ed Leader Fellowship · 2026–2027 Cohort</span>
+</div>
+<h1 class="title">Transformational Opportunity<br>Action Plan</h1>
+<p class="subtitle">Peninsula School District · Office of the Superintendent</p>
+<div class="byline">
+<span>Draft v1</span><span class="sep">·</span>
+<span>May 2026</span><span class="sep">·</span>
+<span class="due">Submission due May 1, 2027</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a> <span class="lbl">In this collection</span>
+<a href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">SHIP Quick Guide</a>
+<a href="02-The-Logbook-Design-Brief.html">The Logbook</a>
+<a href="03-Fellowship-Action-Plan-FILLED.html" class="current">Action Plan</a>
+<a href="04-Quarterly-Intent-Template.html">Quarterly Intent</a>
+</nav>
+
+<div class="part-banner">
+<span class="num">Part 01</span>
+<h2>Identifying the Transformational Opportunity</h2>
+</div>
+
+<section class="monograph a">
+<div class="crown">
+<span class="tag">Opportunity A</span>
+<span class="anchor">From the anchor chart · System change by design thinking</span>
+</div>
+<h3 class="title">Building the Open Adaptive District</h3>
+
+<div class="field"><span class="label">Description</span><div class="value">
+<p>Peninsula is building a new way of working — a district that can keep pace with AI as it changes. Right now, when a new tool comes out, school districts often take years to figure out what to do with it. By then, the next wave has already arrived, and educators are exhausted. We are going to change that here.</p>
+<p>Every six weeks, small teams across the district — cabinet departments, principal teams by grade level, and later groups of teachers and operations staff — will choose one experiment to try. They will start by asking what has changed in the last six weeks and what problem they want to solve. They will write down what they expect to happen and how they will know. They will run the experiment. At the end of the cycle, they will share what they learned — including what did not work — and everything will be posted publicly on psd401.ai so families, staff, and other districts can see how we work. (We call this the <a class="inline" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">SHIP cycle</a>.)</p>
+<p>Each quarter, I will write a short, three-sentence statement of what we are after, why it matters now, and what we will not give up along the way. Teams take that direction and choose their own path inside it. I do not tell teams how to do their work — I tell them what we are after. <a class="inline" href="04-Quarterly-Intent-Template.html">A template guides this quarterly statement.</a></p>
+<p>Rather than adding more meetings to coordinate all of this, we are building an <a class="inline" href="02-The-Logbook-Design-Brief.html">internal AI tool</a> that quietly reads each team's weekly written updates and keeps everyone — including me — informed about what is working, what is stuck, and where teams could help each other. The point is simple: a district learning to use AI well should use AI to organize its own learning.</p>
+<p>What we are building is not an AI plan or a technology rollout. It is the district's ability to keep adjusting, honestly and in public, at the pace the world is actually moving — so that what we offer our students next year can be very different from what we offered them last year, and we can show our families exactly how we got there.</p>
+</div></div>
+
+<div class="field"><span class="label">Why this is important</span><div class="value">
+<p>AI capability is doubling on a roughly six-month curve while traditional district change cycles run two to five years. Without an adaptive operating model, every new wave of technology creates fresh paralysis. Districts default to one of two failure modes: waiting for the state to act, or accepting vendor-driven adoption that bypasses public mission. Both deepen inequity and surrender district agency. The Open Adaptive District is the alternative.</p>
+</div></div>
+
+<div class="field"><span class="label">Barriers</span><div class="value"><ul>
+<li>Traditional change models (Kotter, Fullan) assume stable end-states and are too slow for an exponential environment</li>
+<li>Cabinet, principals, and staff prioritize what they hear most often; the operating model competes with forty other initiatives</li>
+<li>Meeting culture struggles to carry cross-silo coordination</li>
+<li>Some leaders treat complex problems as if they were complicated and try to expert-solve them</li>
+<li>Education norms punish public failure, which discourages honest debriefs</li>
+</ul></div></div>
+
+<div class="field"><span class="label">Risks</span><div class="value"><ul>
+<li>Moving fast without governance erodes community trust</li>
+<li>Moving slowly cedes the field to vendors and consultants</li>
+<li>Capacity stays in four or five senior people instead of a system</li>
+<li>Cycles become theater — teams perform SHIP without actually shipping</li>
+<li>Bets that don't work get quietly dropped instead of publicly debriefed</li>
+</ul></div></div>
+
+<div class="field"><span class="label">Resources needed</span><div class="value"><ul>
+<li>Superintendent ownership and cabinet alignment (in place)</li>
+<li>The Logbook (the CIO builds summer 2026)</li>
+<li>Quarterly intent discipline from the superintendent</li>
+<li>Dedicated time for SHIP teams — not bolt-on</li>
+<li>Communications capacity to make wins and decommissions visible</li>
+<li>A published playbook on psd401.ai</li>
+</ul></div></div>
+
+<div class="field"><span class="label">How have you tried to address this</span><div class="value">
+<p>Four years of progressive AI work at PSD: a growing roster of production AI agents we have built ourselves, a custom AI tools platform at <strong>psd401.ai/aistudio</strong> where staff create their own assistants, the public <strong>psd401.ai</strong> website where we share our work openly, and national-level conference and press visibility.</p>
+<p><strong>What has worked:</strong> top-down permission paired with bottom-up tinkering across cabinet, principals, and staff; making our work visible early through psd401.ai, public talks, and press coverage; building tools that staff actually use.</p>
+<p><strong>What hasn't worked yet:</strong> assuming directors would prioritize without being told; assuming principals would notice and replicate without scaffolding; treating AI as a teaching-and-learning topic rather than a district operating-model question.</p>
+<p><strong>What remains underbuilt:</strong> the <em>cadence</em> — a published, repeatable adaptive cycle that other leaders can run without being us. The Open Adaptive District is that cadence.</p>
+</div></div>
+
+<div class="eval">
+<div class="eval-cell high"><div class="lbl">Priority vs 2026–27 Goals</div><div class="val"><span class="marker"></span>High Priority</div></div>
+<div class="eval-cell high"><div class="lbl">Resourcing Difficulty</div><div class="val"><span class="marker"></span>Resources available</div></div>
+<div class="eval-cell high"><div class="lbl">Personal Passion</div><div class="val"><span class="marker"></span>High personal passion</div></div>
+</div>
+</section>
+
+<section class="monograph b">
+<div class="crown">
+<span class="tag">Opportunity B</span>
+<span class="anchor">From the anchor chart · Innovation at scale</span>
+</div>
+<h3 class="title">The Open Adaptive District<br>as a Public-Interest Model</h3>
+
+<div class="field"><span class="label">Description</span><div class="value">
+<p>The work happening inside Peninsula is too important to keep to ourselves. Other districts — large and small, well-resourced and not — face the same questions we do, but very few have the staff, the partners, or the permission to work them out on their own. Without somewhere credible to look, those districts often end up buying whatever a vendor is selling. We want there to be a public alternative they can turn to — one built by districts, for districts.</p>
+<p>Across the fellowship year, we will turn Peninsula's working model into something other districts can actually pick up and use. Our public website, psd401.ai, will grow from a place where we tell stories of our work into a working library — the <a class="inline" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">six-week cycle we run</a>, the <a class="inline" href="04-Quarterly-Intent-Template.html">templates we use</a>, the rules we follow about what we share and what we keep private, the <a class="inline" href="02-The-Logbook-Design-Brief.html">AI tools we build</a>, and the honest debrief from every team, including the experiments that failed. If another district could copy it, adapt it, or run it themselves, it will be there.</p>
+<p>In February 2027, Peninsula will host a regional gathering for superintendents and their teams from across the Pacific Northwest. The day will not be a conference. It will be a working meeting, where each district leaves with a draft of their own first six-week cycle, a partner district to compare notes with through the spring, and clear ways to keep contributing back to the shared library as they go. We hope at least three or four other districts are running their own cycle by the end of the school year.</p>
+<p>Alongside the gathering, we will publish a longer written case study describing how Peninsula has done this work and what we have learned. A shorter, more practical whitepaper will give district leaders the tools they need to start. A short visual piece — a video or photo essay — will help families and staff see the spirit of the work, not just the structure.</p>
+<p>We are not trying to put a flag on the moon. We are trying to make sure that, when the next wave of AI lands, public schools have a model of their own to point to — one that other districts had a hand in building.</p>
+</div></div>
+
+<div class="field"><span class="label">Why this is important</span><div class="value">
+<p>Capacity-constrained districts will otherwise be absorbed into closed vendor stacks. A public, district-owned alternative protects public education's agency in deciding what AI in education looks like. Districts deserve a seat at the table, not a seat in the audience. Peninsula's local work becomes a public contribution.</p>
+</div></div>
+
+<div class="field"><span class="label">Barriers</span><div class="value"><ul>
+<li>Regional districts have very different readiness levels</li>
+<li>Sustained inter-district collaboration is hard without immediate value</li>
+<li>PSD capacity is already stretched leading internally</li>
+<li>No widely shared district-centered AI operating framework currently exists for the coalition to rally around</li>
+<li>Other districts may pattern-match this to past "leader district shows off" efforts and disengage</li>
+</ul></div></div>
+
+<div class="field"><span class="label">Risks</span><div class="value"><ul>
+<li>Coalition becomes conversation without artifacts</li>
+<li>PSD overextends and weakens the internal work</li>
+<li>Equity concern: early-mover districts benefit faster than capacity-constrained ones</li>
+<li>Framing becomes too oppositional toward vendors and burns relationships</li>
+</ul></div></div>
+
+<div class="field"><span class="label">Resources needed</span><div class="value"><ul>
+<li>Convening capacity for the February symposium</li>
+<li>psd401.ai evolved into a two-way contribution platform</li>
+<li>Writing and publication time for the long-form article and whitepaper</li>
+<li>Higher education and workforce partnerships</li>
+<li>Fellowship network connections</li>
+<li>Modest funding for symposium and publication production</li>
+</ul></div></div>
+
+<div class="field"><span class="label">How have you tried to address this</span><div class="value">
+<p>The primary national platform for sharing this work has been the <strong>American Association of School Administrators (AASA)</strong>, where the superintendent sits alongside peers in national conversations on AI, governance, and operations. Beyond AASA, Peninsula engages prominently through <strong>CoSN</strong> (the Consortium for School Networking) and <strong>Digital Promise's League of Innovative Schools</strong>, with smaller participation in <strong>ERDI</strong> and <strong>WASA</strong>. Public-facing sharing through psd401.ai, published articles, and national conference talks has reached district leaders well beyond those formal networks. Individual districts have reached out one at a time for informal mentoring.</p>
+<p><strong>What has worked:</strong> districts across the country have been inspired by Peninsula's example — including at least one that stood up a full AI department after seeing our work. Peninsula has earned a national platform.</p>
+<p><strong>What hasn't worked yet:</strong> sharing has been one-way; there is no coalition structure; no shared framework for other districts to fork.</p>
+</div></div>
+
+<div class="eval">
+<div class="eval-cell high"><div class="lbl">Priority vs 2026–27 Goals</div><div class="val"><span class="marker"></span>High Priority</div></div>
+<div class="eval-cell med"><div class="lbl">Resourcing Difficulty</div><div class="val"><span class="marker"></span>Resources might be available</div></div>
+<div class="eval-cell high"><div class="lbl">Personal Passion</div><div class="val"><span class="marker"></span>High personal passion</div></div>
+</div>
+</section>
+
+<div class="part-banner">
+<span class="num">Part 02</span>
+<h2>Action Planning</h2>
+</div>
+
+<h3 class="plan">Idea</h3>
+<p class="plan-idea">Launch and document <strong>The Open Adaptive District</strong> — an operating model in which cross-silo teams run six-week SHIP cycles (Sense, Hypothesize, Implement, Publish) under a quarterly superintendent intent, coordinated through an The Logbook (an AI agent that reads team Spaces and synthesizes across the district), with every cycle's lessons published openly on psd401.ai. Convene a February 2027 regional symposium and co-publish a long-form article and whitepaper framing PSD's operating model as a portable, public-interest contribution other districts can adopt.</p>
+
+<h3 class="plan">How this addresses both opportunities</h3>
+<p>A and B are two layers of the same work. <strong>A is the internal practice; B is the field-facing translation.</strong> Every internal artifact becomes a public artifact. SHIP cycles produce the evidence that the operating model works; psd401.ai publishes that evidence as the field's reference implementation. The February symposium activates the coalition. The publication makes the model citable.</p>
+
+<h3 class="plan">Metrics for success</h3>
+<div class="metric-ledger">
+<div class="metric-row headline"><div class="metric-num">Headline</div><div><strong>Proof point.</strong> ≥2 AI capabilities released after Sept 2026 absorbed into PSD operations within 60 days of release.</div></div>
+<div class="metric-row"><div class="metric-num">M-01</div><div>≥4 SHIP cycles completed across ≥6 teams (Aug 2026–May 2027)</div></div>
+<div class="metric-row"><div class="metric-num">M-02</div><div>≥4 public cycle debriefs on psd401.ai, including ≥1 decommissioned bet</div></div>
+<div class="metric-row"><div class="metric-num">M-03</div><div>February 2027 PSD-hosted regional symposium delivered</div></div>
+<div class="metric-row"><div class="metric-num">M-04</div><div>≥3 regional districts running their own SHIP cycle by May 2027</div></div>
+<div class="metric-row"><div class="metric-num">M-05</div><div>1 long-form article + 1 whitepaper + multimedia playbook on psd401.ai</div></div>
+<div class="metric-row"><div class="metric-num">M-06</div><div>The Logbook operational from cycle one and in routine use</div></div>
+<div class="metric-row"><div class="metric-num">M-07</div><div>Quarterly intent issued by superintendent four consecutive quarters</div></div>
+</div>
+
+<h3 class="plan">Timeline</h3>
+<div class="chronology">
+<div class="chron-row"><div class="chron-when">Jun – Aug 2026</div><div class="chron-what">Doctrine finalized · psd401.ai v2 scoped · async agent prototyped with Tech · cabinet and principal August kickoff</div></div>
+<div class="chron-row"><div class="chron-when">Sep – Oct 2026</div><div class="chron-what">SHIP Cycle 01 across cabinet department teams and principal grade-band teams</div></div>
+<div class="chron-row"><div class="chron-when">Nov 2026</div><div class="chron-what">First debriefs published · teacher teams and operational staff layered in · Cycle 02 begins</div></div>
+<div class="chron-row"><div class="chron-when">Dec 2026 – Jan 2027</div><div class="chron-what">Cycle 03 · symposium logistics finalized · whitepaper drafted</div></div>
+<div class="chron-row milestone"><div class="chron-when">Feb 2027</div><div class="chron-what">Regional symposium hosted at PSD</div></div>
+<div class="chron-row"><div class="chron-when">Mar – Apr 2027</div><div class="chron-what">Cycle 04 · long-form article finalized · coalition commitments collected</div></div>
+<div class="chron-row milestone"><div class="chron-when">May 1, 2027</div><div class="chron-what">Fellowship deliverables submitted — publication, whitepaper, psd401.ai v2 live, coalition documented</div></div>
+</div>
+
+<h3 class="plan">Stakeholders</h3>
+<div class="stake-grid">
+<div class="stake-col"><h4>Internal core</h4><ul><li>Superintendent</li><li>Cabinet</li><li>Board (sponsor)</li><li>Principals</li></ul></div>
+<div class="stake-col"><h4>Builder layer</h4><ul><li>Teacher teams (in-building or cross-district)</li><li>Operational staff (Tech · ESS · Business)</li><li>Any group ready to run a cycle</li></ul></div>
+<div class="stake-col"><h4>External</h4><ul><li>Students &amp; families</li><li>Regional superintendents</li><li>Higher-ed &amp; workforce</li><li>Fellowship peers</li></ul></div>
+</div>
+
+<h3 class="plan">Support needed</h3>
+<ul>
+<li>Executive coaching and thought partnership from the fellowship network</li>
+<li>Legal and governance review for the publish-vs-redact rule</li>
+<li>Symposium logistics and facilitation</li>
+<li>Editorial support for publication</li>
+<li>Documentation and case-study writing support</li>
+</ul>
+
+<h3 class="plan">Required resources</h3>
+<p>Project management capacity (the CIO and the Director of Research and Assessment as primary stewards) · cabinet and principal time inside SHIP cycles · psd401.ai v2 build resources · modest funding for symposium production and publication design · travel for one or two coalition pre-meetings.</p>
+
+<h3 class="plan">Risks &amp; wonders</h3>
+<ul>
+<li>Will teams treat SHIP as theater if leadership pressure is uneven?</li>
+<li>Will principals feel observed or empowered by the async digest? The answer depends on tone, not mechanism.</li>
+<li>Will the coalition want a charter and artifact before the symposium, or is informal coalition-building sufficient in year one?</li>
+<li>Does the publication serve PSD's narrative or the field's adoption? They overlap but are not identical.</li>
+<li>How honest can decommissioning be in public without political cost?</li>
+</ul>
+
+<h3 class="plan">Immediate next steps</h3>
+<div class="next-steps">
+<div class="next-row"><div><span class="what">Finalize SHIP / Open Adaptive District doctrine</span><span class="meta">the CIO &amp; the superintendent<span class="sep">·</span><span class="due">Within 2 weeks</span></span></div></div>
+<div class="next-row"><div><span class="what">Build the Logbook prototype</span><span class="meta">the CIO · Tech department<span class="sep">·</span><span class="due">By Jul 15</span></span></div></div>
+<div class="next-row"><div><span class="what">Cabinet alignment session</span><span class="meta">the superintendent<span class="sep">·</span><span class="due">Late July</span></span></div></div>
+<div class="next-row"><div><span class="what">August all-administrator kickoff — Cycle 01</span><span class="meta">the superintendent &amp; the CIO<span class="sep">·</span><span class="due">First week of August</span></span></div></div>
+<div class="next-row"><div><span class="what">psd401.ai v2 design spec</span><span class="meta">the Director of Research and Assessment &amp; Communications<span class="sep">·</span><span class="due">6 weeks</span></span></div></div>
+<div class="next-row"><div><span class="what">Symposium save-the-date to regional superintendents</span><span class="meta">the superintendent<span class="sep">·</span><span class="due">8 weeks</span></span></div></div>
+<div class="next-row"><div><span class="what">Whitepaper outline</span><span class="meta">the CIO &amp; the superintendent<span class="sep">·</span><span class="due">12 weeks</span></span></div></div>
+</div>
+
+<div class="part-banner optional">
+<span class="num">Appendix · Optional</span>
+<h2>TregoED SCAN Protocol</h2>
+</div>
+
+<h3 class="plan">S — See the issues</h3>
+<p>The district is operating in a moment when AI is transforming learning, work, communication, and public expectations on a months-long curve. The issue is not whether AI will be used in schools; it is whether districts will build the institutional capacity to govern, integrate, and direct AI responsibly — and whether public education will define its own model before closed vendor stacks define one for it.</p>
+
+<h3 class="plan">C — Clarify the issues</h3>
+<p><strong>"Adaptive District"</strong> means a district whose decision and execution loops match the pace of the change it operates in. <strong>"Public-interest model"</strong> means an approach centered on equity, transparency, interoperability, and district agency — distinct from market dependence.</p>
+
+<h3 class="plan">A — Assess priorities</h3>
+<table class="scan">
+<thead><tr><th>Issue</th><th>Clarify</th><th>Sev</th><th>Urg</th><th>Grth</th></tr></thead>
+<tbody>
+<tr><td>AI is outpacing district decision cycles</td><td>Districts react more quickly than they design</td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td></tr>
+<tr><td>Vendor capture of public-ed AI direction</td><td>Closed stacks harden faster than public alternatives</td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td></tr>
+<tr><td>Cross-silo info flow is broken</td><td>Coordination depends on meetings that don't work</td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-M">M</span></td></tr>
+<tr><td>Public failure is culturally punished</td><td>Killing bets is hidden, so learning is lost</td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-M">M</span></td><td><span class="sev sev-H">H</span></td></tr>
+<tr><td>Field has no shared adaptive framework</td><td>No reference model for other districts to fork</td><td><span class="sev sev-M">M</span></td><td><span class="sev sev-M">M</span></td><td><span class="sev sev-H">H</span></td></tr>
+<tr><td>Trust and communication must be proactive</td><td>Families and staff need clarity before scale</td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td><td><span class="sev sev-H">H</span></td></tr>
+</tbody>
+</table>
+
+<h3 class="plan">N — Name next steps</h3>
+<table class="scan">
+<thead><tr><th>Action</th><th>By Whom</th><th>By When</th></tr></thead>
+<tbody>
+<tr><td>Finalize SHIP / Open Adaptive District doctrine</td><td>the superintendent &amp; the CIO</td><td>Within 2 weeks</td></tr>
+<tr><td>Build the Logbook prototype</td><td>the CIO</td><td>By July 15</td></tr>
+<tr><td>Align cabinet on operating model</td><td>the superintendent</td><td>Late July</td></tr>
+<tr><td>August all-administrator kickoff for cycle 01</td><td>the superintendent &amp; the CIO</td><td>First week of August</td></tr>
+<tr><td>psd401.ai v2 design spec</td><td>the Director of Research and Assessment &amp; Communications</td><td>Within 6 weeks</td></tr>
+<tr><td>Symposium save-the-date to regional superintendents</td><td>the superintendent</td><td>Within 8 weeks</td></tr>
+<tr><td>Whitepaper outline</td><td>the CIO &amp; the superintendent</td><td>Within 12 weeks</td></tr>
+</tbody>
+</table>
+
+<footer class="colophon">
+<span><span class="mark">№ 03</span> &nbsp; Peninsula School District &nbsp;·&nbsp; the Superintendent, Superintendent</span>
+<span>Google GSV Fellowship &nbsp; Draft v1</span>
+</footer>
+
+</main>
+</body>
+</html>

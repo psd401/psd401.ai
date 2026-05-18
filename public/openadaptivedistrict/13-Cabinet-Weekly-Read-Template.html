@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cabinet Weekly Read — Template</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 15% 15%, rgba(27,61,92,0.03), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:18px 0 32px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,6vw,52px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 14px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:24px; padding-top:16px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 56px; padding:14px 0; border-top:1px solid var(--rule-soft); border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em}
+.docnav .home:hover{background:var(--madrone); color:var(--paper)}
+.docnav a:not(.home){color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:not(.home):hover{color:var(--madrone)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.2; margin:48px 0 14px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule); letter-spacing:-0.012em}
+h2 .marker{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:24px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px; padding-left:24px}
+li{margin-bottom:6px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:20px; line-height:1.5; color:var(--ink); margin:0 0 28px}
+
+.read{margin:32px 0; background:#FAF6EA; border:1px solid var(--rule); padding:32px 36px; position:relative; box-shadow:0 1px 0 var(--rule-soft), 0 10px 28px -16px rgba(23,27,34,0.2)}
+.read::before{content:""; position:absolute; top:0; left:0; right:0; height:5px; background:repeating-linear-gradient(90deg, var(--pacific) 0 8px, transparent 8px 14px)}
+.read-meta{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 24px; padding-bottom:12px; margin-bottom:18px; border-bottom:2px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase}
+.read-meta .label{color:var(--pacific); font-weight:600}
+.read-meta .meta{color:var(--ink-3)}
+.read-intent{margin:0 0 18px; padding:14px 18px; background:rgba(154,63,34,0.06); border-left:2px solid var(--madrone)}
+.read-intent .lbl{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); display:block; margin-bottom:6px}
+.read-intent p{font-family:var(--serif); font-style:italic; font-size:15.5px; line-height:1.5; margin:0; color:var(--ink)}
+.read ol{margin:0; padding-left:24px; counter-reset:bull}
+.read ol li{font-size:16px; line-height:1.55; margin-bottom:14px}
+.read ol li strong{color:var(--ink)}
+.read ol li::marker{color:var(--pacific); font-family:var(--mono); font-weight:600; font-size:0.9em}
+
+.field-block{padding:14px 18px; background:rgba(184,172,146,0.1); border-left:2px solid var(--rule); margin:10px 0; font-size:15.5px; line-height:1.55}
+.field-block strong{color:var(--ink)}
+.note{margin:28px 0; padding:18px 22px; border-left:2px solid var(--ink); font-size:16.5px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:6px}
+
+footer.colophon{margin-top:80px; padding-top:22px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:40px 22px 70px} h1.title{font-size:32px} .read{padding:22px 22px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} .read{box-shadow:none} h2,h3{page-break-after:avoid} .read,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 13</span> &nbsp;·&nbsp; Leadership Template</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">Cabinet Weekly Read</h1>
+<p class="subtitle">The five-bullet executive view the Logbook produces for the cabinet each week, tied back to the current quarterly intent.</p>
+<div class="byline">
+<span>Template</span><span class="sep">·</span>
+<span>Delivered to 5 chiefs &amp; superintendent</span><span class="sep">·</span>
+<span>Drafted by The Logbook</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Leadership:</span>
+<a href="13-Cabinet-Weekly-Read-Template.html">Weekly Read</a>
+<a href="14-Quarterly-Synthesis-Template.html">Quarterly Synthesis</a>
+</nav>
+
+<p class="lede">The <strong>Cabinet Weekly Read</strong> is what shared accountability looks like in writing. Five bullets, one page, delivered to all five chiefs and the superintendent every Monday. Same content, same time, same audience. No single person carries oversight alone.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; The template</span>What goes in the weekly read</h2>
+
+<div class="read">
+<div class="read-meta">
+<span class="label">Cabinet Weekly Read</span>
+<span class="meta">Logbook ID · Week of [date]</span>
+</div>
+
+<div class="read-intent">
+<span class="lbl">Current quarterly intent (reminder)</span>
+<p>[The active three-sentence intent from the superintendent, quoted verbatim.]</p>
+</div>
+
+<ol>
+<li><strong>What's moving inside the intent.</strong> One sentence on the most significant pattern across teams that points toward the intent. Cite the teams involved.</li>
+<li><strong>Where teams are converging.</strong> One sentence on overlap — two or more teams working on related problems from different angles. Flag if a quick alignment is worth doing.</li>
+<li><strong>What's stuck.</strong> One sentence on the most significant blocker across teams this week. Name the team and what they need.</li>
+<li><strong>Accountability notes.</strong> One sentence on any teams that have gone silent (14+ days), are at risk of drifting, or have signaled a hypothesis is failing earlier than expected.</li>
+<li><strong>What this means.</strong> One sentence — the editorial. What the cabinet should pay attention to this week. The only line where the Logbook reaches for synthesis.</li>
+</ol>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; The fields, explained</span>What each bullet is doing</h2>
+
+<div class="field-block"><strong>What's moving inside the intent.</strong> Anchors the read to the current quarter's purpose. Without this, the read becomes activity tracking. With it, the read becomes alignment tracking.</div>
+
+<div class="field-block"><strong>Where teams are converging.</strong> The most useful early signal. When two teams are circling the same problem, a fifteen-minute sync saves weeks. The Logbook is good at noticing this; the chiefs are good at greenlighting it.</div>
+
+<div class="field-block"><strong>What's stuck.</strong> Names blockers while they are still small. If a team is stuck on procurement, schema, sponsorship — surface it to whoever can clear it. Most blockers compound if left.</div>
+
+<div class="field-block"><strong>Accountability notes.</strong> Shared accountability in practice. All five chiefs see when a team in any department is going dark, not just their own. This makes silent teams visible without turning oversight into surveillance.</div>
+
+<div class="field-block"><strong>What this means.</strong> The editorial line. One sentence the Logbook reaches for synthesis. Often: "The pattern this week suggests we should adjust X in the next intent." Or: "Two teams are heading toward the same Decommission for the same reason — worth a conversation."</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; A worked example</span>What a real Cabinet Weekly Read looks like</h2>
+
+<div class="read">
+<div class="read-meta">
+<span class="label">Cabinet Weekly Read</span>
+<span class="meta">Logbook 0034 · Week of 28 Sep 2026</span>
+</div>
+
+<div class="read-intent">
+<span class="lbl">Current quarterly intent</span>
+<p>By the end of this quarter, we are after measurable reductions in administrative time across our cabinet and principal teams using AI tools that already exist in our environment. This matters now because agentic AI tools have moved from experimental to dependable in the last six months, and the time we recover this quarter is time we can redirect to students and instructional support before winter break. We will not compromise on student data privacy, staff dignity in role redesign, or the requirement that every team publishes what they tried — including what failed.</p>
+</div>
+
+<ol>
+<li><strong>What's moving inside the intent.</strong> HR, Communications, and Special Ed teams are each reporting 40%+ time recovery on family-facing communications work, with three weeks remaining in the cycle — well past the intent's measurable-reduction target.</li>
+<li><strong>Where teams are converging.</strong> The Elementary Principal team and T&amp;L are both exploring AI-assisted student feedback. They were unaware of each other until the Logbook flagged it last week — a sync happened Thursday; they are now coordinating measurement.</li>
+<li><strong>What's stuck.</strong> Finance team has been waiting on procurement clarity for a vendor tool for 11 days. The chief overseeing this team has the context but is at a conference; this likely resolves Monday.</li>
+<li><strong>Accountability notes.</strong> Operations team has not posted a check-in since 16 Sep. Team lead nudged Friday; if no check-in by Wednesday, the Logbook escalates to the team's chief and to the superintendent.</li>
+<li><strong>What this means.</strong> The "measurable reductions" target for this quarter looks like it will be exceeded by mid-cycle. Worth thinking now about whether the next quarterly intent shifts focus from time recovery to redeploying recovered time toward instructional priorities — that's the natural next bet.</li>
+</ol>
+</div>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; How it is delivered</span>The cadence and the surface</h2>
+
+<ul>
+<li><strong>Frequency:</strong> Every Monday morning, generated automatically from the Logbook running in the CIO's personal agent. Backup delivery via any chief's personal agent if the primary fails.</li>
+<li><strong>Delivery surface:</strong> Posted in a shared Cabinet Google Chat Space so all five chiefs and the superintendent see the same read at the same time. Pinned for the week.</li>
+<li><strong>Length:</strong> One page. Five bullets. The Logbook tightens, the cabinet doesn't reformat. If it's longer than one page, the Logbook is being told to do too much — adjust the prompt.</li>
+<li><strong>Cabinet response:</strong> A one-hour Tuesday cabinet meeting follows the read. The read is the agenda; the meeting addresses anything the read flagged that needs decisions.</li>
+</ul>
+
+<div class="note">
+<span class="label">What the weekly read is not</span>
+It is not a status report on every team. The Logbook reads everything, but the cabinet read surfaces only what matters at the cabinet level this week. Most teams will not appear in most weekly reads — and that is the point. The read shows the cabinet where to put attention, not what every team is doing.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 13</span> &nbsp; Peninsula School District &nbsp;·&nbsp; Cabinet Weekly Read</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

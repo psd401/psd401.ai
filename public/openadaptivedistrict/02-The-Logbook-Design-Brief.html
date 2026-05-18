@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Logbook — Design Brief</title>
+<style>
+:root{
+  --paper:#F4EFE3; --paper-2:#EBE3D0; --paper-3:#E1D6BB;
+  --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-2:#37607B; --pacific-pale:#C5D2DC;
+  --sage:#5F7567; --sage-pale:#CFD9CC;
+  --madrone:#9A3F22; --madrone-pale:#E2C0AC;
+  --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text","Book Antiqua",Georgia,serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; padding:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:18px; line-height:1.62;
+  font-feature-settings:"kern","liga","onum";
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    radial-gradient(ellipse 80% 60% at 12% 18%, rgba(27,61,92,0.03), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 88% 82%, rgba(154,63,34,0.025), transparent 60%);
+}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:72px 32px 120px}
+
+.masthead{ border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 36px }
+.section-marker{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink-3);
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:28px; flex-wrap:wrap; gap:8px;
+}
+.section-marker .roman{ color:var(--madrone); font-weight:600; letter-spacing:0.18em }
+h1.title{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(40px,6.6vw,58px); line-height:1.02;
+  letter-spacing:-0.02em; margin:0 0 18px; color:var(--ink);
+}
+.subtitle{
+  font-family:var(--serif); font-style:italic; font-size:20px;
+  line-height:1.4; color:var(--ink-2); margin:0; max-width:36em;
+}
+.byline{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--ink-3); margin-top:30px;
+  padding-top:18px; border-top:1px solid var(--rule-soft);
+  display:flex; flex-wrap:wrap; gap:6px 22px;
+}
+.byline .sep{ color:var(--rule); margin:0 -10px }
+
+.docnav{
+  margin:0 0 64px; padding:14px 0;
+  border-bottom:1px solid var(--rule-soft);
+  display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline;
+  font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
+}
+.docnav .lbl{
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--ink-3); font-weight:500; font-size:11px;
+}
+.docnav a{
+  color:var(--ink); text-decoration:none; position:relative;
+  padding:3px 0; transition:color 0.2s;
+}
+.docnav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px;
+  height:1px; background:transparent; transition:background 0.2s;
+}
+.docnav a:hover{ color:var(--madrone) }
+.docnav a:hover::after{ background:var(--madrone) }
+.docnav a.current{ color:var(--madrone); font-weight:600 }
+.docnav a.current::after{ background:var(--madrone) }
+
+h2{
+  font-family:var(--serif); font-weight:600; font-size:30px;
+  line-height:1.18; letter-spacing:-0.014em;
+  margin:64px 0 18px; color:var(--ink);
+  position:relative; padding-top:18px; border-top:1px solid var(--rule);
+}
+h2 .marker{
+  display:block; font-family:var(--mono); font-size:11px;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--madrone); font-weight:600; margin-bottom:10px;
+}
+h3{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  text-transform:uppercase; letter-spacing:0.18em;
+  color:var(--ink-3); margin:28px 0 10px;
+}
+p{ margin:0 0 18px }
+p.lede{
+  font-size:22px; line-height:1.45; margin:0 0 32px; color:var(--ink);
+}
+p.lede::first-letter{
+  font-family:var(--serif); font-weight:600; font-size:5em;
+  line-height:0.82; float:left;
+  margin:8px 14px -4px -3px; color:var(--madrone);
+}
+ul,ol{ margin:0 0 22px; padding-left:24px }
+li{ margin-bottom:8px; padding-left:4px }
+ul li::marker{ color:var(--madrone); font-size:0.85em }
+ol li::marker{ color:var(--madrone); font-family:var(--mono); font-weight:600 }
+strong{ font-weight:600; color:var(--ink) }
+em{ font-style:italic }
+
+a.inline{
+  color:var(--pacific); text-decoration:none;
+  border-bottom:1px solid var(--pacific-pale);
+  padding-bottom:1px; transition:color 0.2s, border-color 0.2s;
+}
+a.inline:hover{ color:var(--madrone); border-bottom-color:var(--madrone) }
+
+.note{
+  margin:32px 0; padding:22px 26px;
+  border-left:2px solid var(--ink); font-size:17px; line-height:1.55;
+}
+.note .label{
+  display:block; font-family:var(--mono); font-size:10px;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--madrone); font-weight:600; margin-bottom:8px;
+}
+
+/* Function ledger */
+.functions{ margin:24px 0 36px; border-top:1px solid var(--ink) }
+.fn-row{
+  display:grid; grid-template-columns:140px 1fr;
+  gap:24px; padding:18px 0;
+  border-bottom:1px solid var(--rule-soft);
+}
+.fn-label{
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--madrone); padding-top:4px;
+}
+.fn-label small{
+  display:block; color:var(--ink-3); font-weight:500;
+  letter-spacing:0.16em; margin-bottom:4px;
+}
+.fn-body h4{
+  font-family:var(--serif); font-weight:600; font-size:19px;
+  margin:0 0 6px; color:var(--ink); letter-spacing:-0.01em;
+}
+.fn-body p{ margin:0 0 8px; font-size:16px; color:var(--ink-2); line-height:1.55 }
+.fn-body p:last-child{ margin-bottom:0 }
+
+/* User table */
+table.roster{
+  width:100%; border-collapse:collapse;
+  margin:24px 0 32px; font-family:var(--serif); font-size:15.5px;
+}
+.roster th{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--ink-3); text-align:left;
+  padding:0 12px 10px 0; border-bottom:1px solid var(--ink);
+}
+.roster td{
+  padding:14px 12px 14px 0;
+  border-bottom:1px solid var(--rule-soft);
+  vertical-align:top; line-height:1.5;
+}
+.roster td:first-child{ font-style:italic; color:var(--ink-2); white-space:nowrap; padding-right:20px }
+
+/* Scope */
+.scope{
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  margin:24px 0 32px;
+  border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+}
+.scope-col{ padding:24px 0 }
+.scope-col:first-child{ padding-right:32px; border-right:1px solid var(--rule-soft) }
+.scope-col:last-child{ padding-left:32px }
+.scope-col h4{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; margin:0 0 14px;
+}
+.scope-col.watch h4{ color:var(--moss) }
+.scope-col.never h4{ color:var(--madrone) }
+.scope-col ul{ margin:0; padding-left:0; list-style:none }
+.scope-col li{
+  font-size:16px; padding:10px 0;
+  border-top:1px solid var(--rule-soft);
+  padding-left:24px; position:relative; line-height:1.5;
+}
+.scope-col li:first-child{ border-top:0; padding-top:0 }
+.scope-col.watch li::before{
+  content:"+"; position:absolute; left:0; top:10px;
+  font-family:var(--mono); color:var(--moss); font-weight:600;
+}
+.scope-col.watch li:first-child::before{ top:0 }
+.scope-col.never li::before{
+  content:"−"; position:absolute; left:0; top:10px;
+  font-family:var(--mono); color:var(--madrone); font-weight:600;
+}
+.scope-col.never li:first-child::before{ top:0 }
+
+/* Dispatch (sample digest) */
+.dispatch{
+  margin:32px 0; background:#FAF6EA;
+  border:1px solid var(--rule); padding:32px 36px 28px;
+  position:relative;
+  box-shadow:0 1px 0 var(--rule-soft), 0 8px 24px -16px rgba(23,27,34,0.2);
+}
+.dispatch::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:repeating-linear-gradient(90deg, var(--ink) 0 4px, transparent 4px 8px);
+}
+.dispatch-meta{
+  display:flex; justify-content:space-between;
+  border-bottom:2px solid var(--ink); padding-bottom:12px;
+  margin-bottom:20px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.14em; text-transform:uppercase;
+}
+.dispatch-meta .title{ color:var(--ink); font-weight:600 }
+.dispatch-meta .date{ color:var(--madrone) }
+.dispatch h5{
+  font-family:var(--mono); font-size:10.5px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--ink-3); margin:20px 0 8px;
+  padding-bottom:6px; border-bottom:1px dashed var(--rule);
+}
+.dispatch ul{ margin:0 0 12px; padding-left:18px; font-size:15.5px }
+.dispatch ul li{ margin-bottom:8px; line-height:1.5; padding-left:2px }
+.dispatch ul li::marker{ color:var(--ink-3); font-size:0.85em }
+.tag{
+  display:inline-block; font-family:var(--mono); font-size:10px;
+  font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+  padding:2px 7px; margin-right:8px; vertical-align:1px;
+  border:1px solid currentColor;
+}
+.tag.match{ color:var(--moss) }
+.tag.stuck{ color:#8B6510 }
+.tag.silent{ color:var(--madrone) }
+
+footer.colophon{
+  margin-top:88px; padding-top:24px;
+  border-top:4px solid var(--ink);
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+}
+footer.colophon .mark{ color:var(--madrone); font-weight:600 }
+
+@media (max-width:680px){
+  main{ padding:48px 22px 80px }
+  h1.title{ font-size:34px }
+  h2{ font-size:24px }
+  p.lede{ font-size:19px }
+  p.lede::first-letter{ font-size:4em }
+  .fn-row{ grid-template-columns:1fr; gap:6px }
+  .scope{ grid-template-columns:1fr }
+  .scope-col:first-child{ padding-right:0; padding-bottom:20px; border-right:0; border-bottom:1px solid var(--rule) }
+  .scope-col:last-child{ padding-left:0; padding-top:24px }
+  .dispatch{ padding:24px 22px }
+}
+@media print{
+  body{ background:white; color:black; font-size:11pt }
+  body::before{ display:none }
+  main{ max-width:none; padding:0 }
+  .docnav{ display:none }
+  h2,h3{ page-break-after:avoid }
+  .dispatch,.fn-row,.note{ page-break-inside:avoid }
+  a.inline{ color:black; border-bottom-color:#999 }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 02</span> &nbsp;·&nbsp; Design Brief</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">The Logbook</h1>
+<p class="subtitle">An agent skill that helps Peninsula keep watch on its own learning — across teams, across cycles, across the whole voyage.</p>
+<div class="byline">
+<span>Draft v2</span><span class="sep">·</span>
+<span>Owner: the CIO</span><span class="sep">·</span>
+<span>Build window: Summer 2026</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a> <span class="lbl">In this collection</span>
+<a href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">SHIP Quick Guide</a>
+<a href="02-The-Logbook-Design-Brief.html" class="current">The Logbook</a>
+<a href="03-Fellowship-Action-Plan-FILLED.html">Action Plan</a>
+<a href="04-Quarterly-Intent-Template.html">Quarterly Intent</a>
+</nav>
+
+<p class="lede">The Logbook is an <strong>agent skill</strong> that anyone in the district can load into their personal AI agent. It reads the team Google Chat Spaces it has been given access to, synthesizes what is happening across teams, walks individual SHIP teams through their cycle, and generates the first draft of every cycle's brief. One skill, used many ways.</p>
+
+<div class="note">
+<span class="label">How it gets used</span>
+The Logbook is not a separate product. It is a skill loaded into the personal agents of people who need it — the superintendent, the five chiefs, the CIO, and SHIP team members. Each person uses the skill for the role they are in: a chief uses it to see what is moving across their teams; a team member uses it to draft their next brief.
+</div>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; The four jobs</span>What the Logbook does</h2>
+
+<div class="functions">
+<div class="fn-row">
+<div class="fn-label"><small>Job 01</small>Synthesize</div>
+<div class="fn-body">
+<h4>Read across team Spaces, surface what is moving</h4>
+<p>The Logbook reads the weekly written check-ins from each SHIP team's Google Chat Space. It produces a weekly digest — themes, blockers, connections worth surfacing, and any team that has gone silent. Anyone with the skill loaded can ask for the digest at any cadence; chiefs typically schedule a weekly run.</p>
+</div>
+</div>
+
+<div class="fn-row">
+<div class="fn-label"><small>Job 02</small>Coach</div>
+<div class="fn-body">
+<h4>Walk a team through the SHIP cycle</h4>
+<p>A team member can ask the Logbook to help them frame their Sense paragraph, write a strong Hypothesis, structure their Implement work, or shape their Publish. It knows the doctrine, the quarterly intent, the templates, and the past briefs published by other teams.</p>
+</div>
+</div>
+
+<div class="fn-row">
+<div class="fn-label"><small>Job 03</small>Draft</div>
+<div class="fn-body">
+<h4>Generate first drafts of every cycle brief</h4>
+<p>At the end of a cycle, a team asks the Logbook to draft their brief — Adoption, Decommission, or Continuation. The Logbook pulls from the team's check-ins, the bet roster, and the team's own working notes, and returns a structured first draft. The team revises it before publication.</p>
+</div>
+</div>
+
+<div class="fn-row">
+<div class="fn-label"><small>Job 04</small>Flag</div>
+<div class="fn-body">
+<h4>Surface accountability and conflict</h4>
+<p>The Logbook flags teams silent past 14 days, bets that appear to conflict, and hypotheses that may be failing earlier than the team expected. Flags surface in the weekly digest to the cabinet — shared accountability across the five chiefs and the superintendent, not concentrated in one office.</p>
+</div>
+</div>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; Who loads the skill</span>The Logbook in personal agents</h2>
+
+<table class="roster">
+<thead><tr><th>Loader</th><th>Why they load it</th></tr></thead>
+<tbody>
+<tr><td>The superintendent</td><td>Weekly cross-district synthesis, quarterly intent alignment, surfaced flags</td></tr>
+<tr><td>The five chiefs</td><td>Weekly view of the teams in their department; shared accountability with the superintendent</td></tr>
+<tr><td>the CIO</td><td>District-wide oversight; build and maintenance of the skill itself</td></tr>
+<tr><td>SHIP team members</td><td>In-cycle coaching, brief drafting, looking up what other teams have learned</td></tr>
+<tr><td>DILs &amp; AI ART teachers (fall)</td><td>Same usage as cabinet teams when their builder cycles begin</td></tr>
+</tbody>
+</table>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; Where teams work</span>The Google Chat Space</h2>
+
+<p>Every SHIP team operates in a dedicated <strong>Google Chat Space</strong> — Peninsula's district standard for team collaboration. That Space is the canonical home for all team activity: weekly written check-ins, shared notes, asks across teams, and any artifact the team is building. The Logbook reads from there. <em>If a piece of work isn't in the Space, it isn't visible to the Logbook.</em></p>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; Scope</span>What the Logbook watches &amp; never touches</h2>
+
+<div class="scope">
+<div class="scope-col watch">
+<h4>Watches</h4>
+<ul>
+<li>Each SHIP team's Google Chat Space (with permission)</li>
+<li>Weekly written check-ins — tried · learned · stuck · needs</li>
+<li>The current <a class="inline" href="04-Quarterly-Intent-Template.html">quarterly intent</a></li>
+<li>The bet roster (one row per active bet)</li>
+<li>The corpus of past briefs published on psd401.ai</li>
+</ul>
+</div>
+<div class="scope-col never">
+<h4>Never touches</h4>
+<ul>
+<li>Personnel matters — disciplinary, grievance, evaluative</li>
+<li>Active vendor negotiations, pricing, contract specifics</li>
+<li>Legal counsel communications</li>
+<li>Anything explicitly marked "out of band" by a team</li>
+</ul>
+<p style="margin-top:14px; font-size:14.5px; color:var(--ink-2); font-style:italic;">The Logbook runs inside Peninsula's secured environment; data does not leave PSD infrastructure.</p>
+</div>
+</div>
+
+<h2><span class="marker">§ V &nbsp;·&nbsp; A sample weekly dispatch</span>What the digest looks like</h2>
+
+<div class="dispatch">
+<div class="dispatch-meta">
+<span class="title">Logbook 0023 · Cycle 01 · Week 03</span>
+<span class="date">Mon · 21 Sep 2026</span>
+</div>
+
+<h5>Themes</h5>
+<ul>
+<li>Three teams (HR, Communications, Special Ed) are working on AI-assisted communication drafting. Two are converging on the same template — worth a quick alignment.</li>
+<li>"Time saved" is showing up as a metric across four teams. Cabinet should pick a single way to measure it before Cycle 02.</li>
+</ul>
+
+<h5>Connections to surface</h5>
+<ul>
+<li><span class="tag match">Match</span>Tech team's draft of an IEP scheduling helper looks like the problem Special Ed described in Week 01. Suggest a 15-minute sync.</li>
+<li><span class="tag match">Match</span>Elementary Principal team and T&amp;L are both exploring student feedback agents. Different angles — worth comparing notes.</li>
+</ul>
+
+<h5>Blockers</h5>
+<ul>
+<li><span class="tag stuck">Stuck</span>Finance team waiting on procurement clarity for a vendor tool.</li>
+<li><span class="tag stuck">Stuck</span>High School Principal team is unsure whether their bet falls inside the current intent.</li>
+</ul>
+
+<h5>Accountability flags</h5>
+<ul>
+<li><span class="tag silent">Silent</span>Operations team — no check-in for 12 days. Lead has been nudged.</li>
+</ul>
+</div>
+
+<h2><span class="marker">§ VI &nbsp;·&nbsp; Shared accountability</span>How escalations flow</h2>
+
+<p>The cabinet operates as a shared accountability model. Escalations surface to the five chiefs and the superintendent together — no single person carries oversight alone.</p>
+
+<table class="roster">
+<thead><tr><th>Situation</th><th>Surface to</th><th>How</th></tr></thead>
+<tbody>
+<tr><td>Team flags hypothesis failing earlier than expected</td><td>Chiefs &amp; superintendent</td><td>Next weekly digest · not interrupt</td></tr>
+<tr><td>Team silent 14+ days</td><td>Team lead first</td><td>Direct nudge · then team's chief &amp; superintendent at 21 days</td></tr>
+<tr><td>Two teams' bets in conflict</td><td>Chiefs &amp; superintendent</td><td>Next weekly digest</td></tr>
+<tr><td>Out-of-scope content detected</td><td>the CIO</td><td>Omit from digest · do not store · flag</td></tr>
+</tbody>
+</table>
+
+<h2><span class="marker">§ VII &nbsp;·&nbsp; What the Logbook knows</span>The knowledge base</h2>
+
+<p>The Logbook's skill is built on the knowledge base being developed in this collection. Specifically:</p>
+<ul>
+<li>The <a class="inline" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">SHIP doctrine</a> — what each phase requires, the doctrine stack, the kill-bet rule</li>
+<li>The <a class="inline" href="04-Quarterly-Intent-Template.html">current quarterly intent</a> and the cabinet's most recent intent statements</li>
+<li>The brief templates — Adoption, Decommission, Continuation — and the patterns that distinguish them</li>
+<li>Every published brief on psd401.ai (the growing corpus)</li>
+<li>The Bet Brief and Weekly Check-In templates</li>
+<li>The plain-English doctrine primer for staff who want grounding</li>
+</ul>
+<p>As the corpus grows, the Logbook gets sharper — that is the design.</p>
+
+<h2><span class="marker">§ VIII &nbsp;·&nbsp; Build sequence</span>How we get there</h2>
+
+<p>the CIO builds the Logbook during Summer 2026 and pilots it against the Tech department before August. Chiefs review one round of digest output in July; the skill goes live in cabinet's personal agents before Cycle 01 kicks off. Teams pick up the skill themselves when they begin their first cycle.</p>
+
+<div class="note">
+<span class="label">Why this design matters</span>
+An operating model that claims to absorb AI capability faster than other districts must itself be running on AI for its own coordination. The medium is the message. If the Logbook works, the model is credible. If the Logbook isn't there, the model is just another framework on a slide.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 02</span> &nbsp; Peninsula School District</span>
+<span>The Logbook &nbsp; Draft v2</span>
+</footer>
+
+</main>
+</body>
+</html>

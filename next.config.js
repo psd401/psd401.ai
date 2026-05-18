@@ -26,6 +26,10 @@ const nextConfig = {
         source: '/robots.txt',
         destination: '/api/robots',
       },
+      {
+        source: '/openadaptivedistrict',
+        destination: '/openadaptivedistrict/index.html',
+      },
     ];
   },
 };

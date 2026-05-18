@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Check-In — Template</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 15% 15%, rgba(68,90,58,0.04), transparent 60%), radial-gradient(ellipse 70% 50% at 85% 85%, rgba(27,61,92,0.025), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:18px 0 32px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,6vw,52px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 14px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:24px; padding-top:16px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 56px; padding:14px 0; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a{color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:hover{color:var(--madrone)}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em} .docnav a.home:hover{background:var(--madrone); color:var(--paper)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.2; margin:48px 0 14px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule); letter-spacing:-0.012em}
+h2 .marker{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:24px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px; padding-left:24px}
+li{margin-bottom:6px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:20px; line-height:1.5; color:var(--ink); margin:0 0 28px}
+
+/* Compact check-in card */
+.checkin{margin:32px 0; background:#FAF6EA; border:1px solid var(--rule); padding:28px 32px; position:relative; box-shadow:0 1px 0 var(--rule-soft), 0 10px 28px -16px rgba(23,27,34,0.2)}
+.checkin::before{content:""; position:absolute; top:0; left:0; right:0; height:4px; background:repeating-linear-gradient(90deg, var(--moss) 0 6px, transparent 6px 11px)}
+.checkin-meta{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 18px; padding-bottom:10px; margin-bottom:16px; border-bottom:2px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase}
+.checkin-meta .label{color:var(--moss); font-weight:600}
+.checkin-meta .meta{color:var(--ink-3)}
+.checkin .field{margin:14px 0}
+.checkin .field h4{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--moss); margin:0 0 6px}
+.checkin .field h4 .glyph{display:inline-block; margin-right:6px; color:var(--madrone)}
+.checkin .field p{font-size:15.5px; line-height:1.55; margin:0; color:var(--ink-2); font-style:italic; padding:8px 14px; background:rgba(184,172,146,0.15); border-left:2px solid var(--rule)}
+.checkin .field p.real{color:var(--ink); font-style:normal; background:transparent; border-left:0; padding:0}
+
+.example-card{margin:24px 0; background:#FCF8EE; border:1px solid var(--rule-soft); padding:24px 28px}
+.example-card .tag{display:inline-block; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--madrone); padding:3px 9px; border:1px solid var(--madrone); margin-bottom:14px}
+.example-card .field{margin:12px 0}
+.example-card h4{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--moss); margin:0 0 6px}
+.example-card p{font-size:15.5px; line-height:1.55; margin:0; color:var(--ink)}
+
+.field-block{padding:14px 18px; background:rgba(184,172,146,0.1); border-left:2px solid var(--rule); margin:10px 0; font-size:15.5px; line-height:1.55}
+.field-block strong{color:var(--ink)}
+.note{margin:28px 0; padding:18px 22px; border-left:2px solid var(--ink); font-size:16.5px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:6px}
+
+footer.colophon{margin-top:80px; padding-top:22px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:40px 22px 70px} h1.title{font-size:32px} .checkin{padding:22px 20px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} .checkin{box-shadow:none} h2,h3{page-break-after:avoid} .checkin,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 09</span> &nbsp;·&nbsp; Operating Template</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">Weekly Check-In</h1>
+<p class="subtitle">Four short questions every team answers in their Google Chat Space — once a week, every week of the cycle.</p>
+<div class="byline">
+<span>Template</span><span class="sep">·</span>
+<span>Posted weekly · ~5 minutes to write</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Working tools:</span>
+<a href="08-Bet-Brief-Template.html">Bet Brief</a>
+<a href="09-Weekly-Check-In-Template.html">Weekly Check-In</a>
+</nav>
+
+<p class="lede">The <strong>Weekly Check-In</strong> is the smallest unit of work in the SHIP cycle. Four short answers, posted in the team's Google Chat Space, once a week. It is what the <a class="inline" href="02-The-Logbook-Design-Brief.html">Logbook</a> reads to produce the weekly digest. It is also what end-of-cycle briefs are drafted from. Skip a week and the system goes blind.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; The template</span>Four questions, every week</h2>
+
+<div class="checkin">
+<div class="checkin-meta">
+<span class="label">Weekly Check-In</span>
+<span class="meta">Cycle [N] · Week [N] · [Team name]</span>
+</div>
+
+<div class="field">
+<h4><span class="glyph">✓</span>Tried</h4>
+<p>What concrete moves did we make this week? (Bullets fine. Dates help.)</p>
+</div>
+
+<div class="field">
+<h4><span class="glyph">★</span>Learned</h4>
+<p>What did we learn? What surprised us? What confirmed what we expected, and what didn't?</p>
+</div>
+
+<div class="field">
+<h4><span class="glyph">?</span>Stuck</h4>
+<p>What is blocking us? What are we unsure about? What might be wrong with our hypothesis?</p>
+</div>
+
+<div class="field">
+<h4><span class="glyph">→</span>Needs</h4>
+<p>What do we need from another team, a chief, the superintendent, or the CIO? Be specific.</p>
+</div>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; A real example</span>What a good check-in looks like</h2>
+
+<div class="example-card">
+<span class="tag">Example · Communications team · Cycle 01 · Week 03</span>
+
+<div class="field">
+<h4>Tried</h4>
+<p>Drafted welcome letters using the AI assistant for 12 of the 24 incoming students this week (Sep 8–12). Tested two variations — one with school-specific paragraph appended, one without. Sent both, randomly assigned.</p>
+</div>
+
+<div class="field">
+<h4>Learned</h4>
+<p>Drafting time dropped from ~28 min to ~9 min — already past our 40% target. Spanish drafts needed less revision than English ones, which surprised us. Two families replied with thank-you notes, which we didn't expect this early.</p>
+</div>
+
+<div class="field">
+<h4>Stuck</h4>
+<p>We can't tell yet whether the school-specific paragraph variant outperforms — too small a sample. Also our survey response rate is sitting at 22%, lower than hoped. Worth thinking about how we measure satisfaction.</p>
+</div>
+
+<div class="field">
+<h4>Needs</h4>
+<p>Could use a 15-min sync with the Tech team — heard they're working on something similar for IEPs and we might be solving the same problem twice. Also: can someone help us figure out why our survey response rate is low before next week?</p>
+</div>
+</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; What makes a check-in useful</span>How to write one in five minutes</h2>
+
+<div class="field-block"><strong>Tried — name moves, not intentions.</strong> "We piloted the tool with 12 teachers" is a move. "We thought about piloting" is not. The Logbook reads "tried" to understand what actually happened this week.</div>
+
+<div class="field-block"><strong>Learned — include the surprises.</strong> The most useful check-in lines are about what didn't go as expected. They flag for the Logbook (and the cabinet) where the hypothesis might be wrong or where something larger is going on.</div>
+
+<div class="field-block"><strong>Stuck — be honest, not heroic.</strong> "Nothing" is almost always wrong. If a team has truly nothing stuck three weeks in a row, the bet is probably too small. The Logbook surfaces patterns of "stuck" across teams.</div>
+
+<div class="field-block"><strong>Needs — be specific.</strong> "Need help" is too vague. "Need a 15-minute sync with the Tech team about IEP scheduling" lets the Logbook surface a Match flag in the next digest. The more specific the need, the faster it gets met.</div>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; The cadence</span>When &amp; where</h2>
+
+<ul>
+<li><strong>Where:</strong> Posted in the team's Google Chat Space — the canonical home. Not email, not a doc, not a chief's inbox. The Logbook reads from the Space.</li>
+<li><strong>When:</strong> Every Friday by end of day, or every Monday morning. Pick one and hold it for the cycle. Consistency matters more than which day.</li>
+<li><strong>By whom:</strong> One team member writes it, but the whole team weighs in before it posts. Five minutes of group consensus.</li>
+<li><strong>How long:</strong> Two or three sentences per field. If you find yourself writing essays, you're either covering the wrong week or trying too hard.</li>
+</ul>
+
+<h2><span class="marker">§ V &nbsp;·&nbsp; How the Logbook reads it</span>What happens to your check-in</h2>
+
+<p>Every Monday, the Logbook reads the previous week's check-ins across all SHIP teams and assembles the <strong>weekly digest</strong>. Your "Tried" gets pattern-matched against other teams' moves. Your "Learned" feeds the running list of cycle findings. Your "Stuck" gets cross-referenced against other teams who might have a fix. Your "Needs" becomes a candidate Match flag.</p>
+
+<p>Skip a check-in and the digest goes thinner. Skip two weeks and the Logbook flags the team as silent — surfaced to the team lead first, then the team's chief at 21 days.</p>
+
+<div class="note">
+<span class="label">The minimum-viable check-in</span>
+On a hard week — a sick lead, a holiday, a crisis — a check-in can be as short as one sentence per field. That is still better than no check-in. The Logbook can work with little. It cannot work with nothing.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 09</span> &nbsp; Peninsula School District &nbsp;·&nbsp; Weekly Check-In Template</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

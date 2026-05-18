@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quarterly Synthesis — Template</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 18% 14%, rgba(27,61,92,0.03), transparent 60%), radial-gradient(ellipse 70% 50% at 84% 86%, rgba(154,63,34,0.025), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:18px 0 32px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,6vw,52px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 14px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:24px; padding-top:16px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 56px; padding:14px 0; border-top:1px solid var(--rule-soft); border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em}
+.docnav .home:hover{background:var(--madrone); color:var(--paper)}
+.docnav a:not(.home){color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:not(.home):hover{color:var(--madrone)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.2; margin:48px 0 14px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule); letter-spacing:-0.012em}
+h2 .marker{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:24px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px; padding-left:24px}
+li{margin-bottom:6px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:20px; line-height:1.5; color:var(--ink); margin:0 0 28px}
+
+.synthesis{margin:32px 0; background:#FAF6EA; border:1px solid var(--rule); padding:36px 40px 32px; position:relative; box-shadow:0 1px 0 var(--rule-soft), 0 10px 28px -16px rgba(23,27,34,0.2)}
+.synthesis::before{content:""; position:absolute; top:0; left:0; right:0; height:6px; background:repeating-linear-gradient(90deg, var(--pacific) 0 10px, transparent 10px 16px)}
+.synthesis-meta{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 24px; padding-bottom:14px; margin-bottom:20px; border-bottom:2px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase}
+.synthesis-meta .label{color:var(--pacific); font-weight:600}
+.synthesis-section{margin:22px 0}
+.synthesis-section h4{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--pacific); margin:0 0 10px; padding-bottom:6px; border-bottom:1px dashed var(--rule)}
+.synthesis-section p{font-size:16px; line-height:1.6; margin:0 0 12px; color:var(--ink)}
+.synthesis-section ul{margin:0 0 12px; padding-left:20px; font-size:15.5px}
+.synthesis-section .placeholder{color:var(--ink-3); font-style:italic; padding:10px 14px; background:rgba(184,172,146,0.15); border-left:2px solid var(--rule); margin:6px 0; font-size:15px}
+
+.field-block{padding:14px 18px; background:rgba(184,172,146,0.1); border-left:2px solid var(--rule); margin:10px 0; font-size:15.5px; line-height:1.55}
+.field-block strong{color:var(--ink)}
+.note{margin:28px 0; padding:18px 22px; border-left:2px solid var(--ink); font-size:16.5px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:6px}
+
+footer.colophon{margin-top:80px; padding-top:22px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:40px 22px 70px} h1.title{font-size:32px} .synthesis{padding:24px 22px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} .synthesis{box-shadow:none} h2,h3{page-break-after:avoid} .synthesis,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 14</span> &nbsp;·&nbsp; Leadership Template</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">Quarterly Synthesis</h1>
+<p class="subtitle">The longer publication-ready writeup at the close of each quarter. Feeds the year-end publication going out to other districts.</p>
+<div class="byline">
+<span>Template</span><span class="sep">·</span>
+<span>Drafted by The Logbook · finalized by the CIO &amp; the superintendent</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Leadership:</span>
+<a href="13-Cabinet-Weekly-Read-Template.html">Weekly Read</a>
+<a href="14-Quarterly-Synthesis-Template.html">Quarterly Synthesis</a>
+</nav>
+
+<p class="lede">A <strong>Quarterly Synthesis</strong> is what the Open Adaptive District publishes at the close of each quarter. It pulls the cycle briefs published in the quarter into a coherent narrative — what we learned across teams, what shifted in our thinking, and what the next quarterly intent should be. It is the longest artifact the district publishes, and the most read by other districts.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; The structure</span>Seven sections, ~3,000 words</h2>
+
+<div class="synthesis">
+<div class="synthesis-meta">
+<span class="label">Quarterly Synthesis</span>
+<span>[Quarter] · [Year] · Logbook ID</span>
+</div>
+
+<h3 style="font-family:var(--serif); font-size:24px; text-transform:none; letter-spacing:-0.014em; color:var(--ink); font-weight:600; margin:0 0 18px">[Title — what this quarter was about, in one phrase]</h3>
+
+<div class="synthesis-section">
+<h4>01 · The intent we set</h4>
+<div class="placeholder">Quote the quarterly intent verbatim. Two paragraphs of context: why this intent, what we expected to learn, what counted as success at the cabinet level.</div>
+</div>
+
+<div class="synthesis-section">
+<h4>02 · The bets we ran</h4>
+<div class="placeholder">List every SHIP team that ran a cycle this quarter, with a one-sentence summary of each bet. The reader should be able to scan the quarter's activity in 90 seconds.</div>
+</div>
+
+<div class="synthesis-section">
+<h4>03 · What we learned across teams</h4>
+<div class="placeholder">Four to six paragraphs. The cross-team synthesis — what showed up in multiple briefs, what surprised the cabinet, what pattern only became visible when the briefs were read together. This is the section other districts find most useful.</div>
+</div>
+
+<div class="synthesis-section">
+<h4>04 · What we decommissioned</h4>
+<div class="placeholder">Two to three paragraphs on the bets that did not work and why. Be specific about the failure modes. This is the section the field is least used to seeing — make it count.</div>
+</div>
+
+<div class="synthesis-section">
+<h4>05 · What we are scaling</h4>
+<div class="placeholder">Two to three paragraphs on the Adoption Briefs from this quarter. What is moving district-wide, what conditions made it work, what we will watch for as it scales.</div>
+</div>
+
+<div class="synthesis-section">
+<h4>06 · How the doctrine held up</h4>
+<div class="placeholder">One or two paragraphs. Did SHIP work? Did the Logbook do its job? Were teams able to write good Bet Briefs? What in the doctrine needs to evolve based on this quarter's experience? This is the meta-reflection — the operating model is itself under examination.</div>
+</div>
+
+<div class="synthesis-section">
+<h4>07 · The next intent</h4>
+<div class="placeholder">One or two paragraphs that bridge to the next quarter. What the cabinet is paying attention to. What the next quarterly intent should focus on. Quote the new intent verbatim if it has been issued.</div>
+</div>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; What makes a synthesis useful</span>The discipline of writing this well</h2>
+
+<div class="field-block"><strong>Cite the briefs.</strong> Every claim in the synthesis should link back to a published cycle brief. The synthesis is not a separate report — it is a reading of the corpus. Readers should be able to drill into any claim.</div>
+
+<div class="field-block"><strong>Be honest about the doctrine.</strong> Section 06 is what makes the synthesis distinct from most district reports. Most reports defend the model. This one examines it. If SHIP didn't work in a particular case, say so. If the Logbook missed something important, name it.</div>
+
+<div class="field-block"><strong>Read the corpus, don't summarize it.</strong> The synthesis is most valuable when it surfaces patterns that no single brief revealed — themes that show up in three or four briefs from different teams. The Logbook is good at finding these; the human author keeps them honest.</div>
+
+<div class="field-block"><strong>Write for the next district.</strong> The primary audience is a superintendent in another district who is considering forking this model. What would they need to know? What would change their decision? Write for them.</div>
+
+<div class="field-block"><strong>Don't bury the decommissions.</strong> Section 04 should be at least as long as Section 05. A field-defining publication treats failed bets as equally informative — that is what separates the Open Adaptive District from most ed-tech narratives.</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; Cadence and authorship</span>How it gets made</h2>
+
+<ul>
+<li><strong>Cadence:</strong> Published at the close of each quarter — four times a year. Roughly January, April, July, October.</li>
+<li><strong>Drafted by:</strong> The Logbook produces the first draft from the quarter's brief corpus, the cabinet weekly reads, and the team Spaces. Aim for 3,000 words.</li>
+<li><strong>Finalized by:</strong> the CIO and the superintendent together. Section 06 in particular requires the superintendent's voice.</li>
+<li><strong>Published to:</strong> psd401.ai. Picked up by the field; cited by other districts; eventually accumulates into the Year-One Publication.</li>
+<li><strong>Length:</strong> 2,500–3,500 words. Long enough to do the synthesis work; short enough to be read in one sitting.</li>
+</ul>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; Relationship to other publications</span>How the syntheses build over time</h2>
+
+<p>Four Quarterly Syntheses in a school year compose into the <strong>Year-One Publication</strong> — the long-form article that goes to the field via AASA, the Digital Promise League of Innovative Schools, and the GSV fellowship network. The Year-One Publication does not start from scratch. It is the four Quarterly Syntheses, integrated, with an introduction and a closing reflection. By April of each year, three of the four syntheses are already written.</p>
+
+<div class="note">
+<span class="label">A note on volume</span>
+The synthesis can feel long compared to the briefs. That is intentional. Briefs are operational — they tell the next team what to do. The synthesis is strategic — it tells the next district whether to fork the model. Different audiences, different lengths.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 14</span> &nbsp; Peninsula School District &nbsp;·&nbsp; Quarterly Synthesis</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

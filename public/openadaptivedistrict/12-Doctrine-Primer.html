@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctrine Primer — The Open Adaptive District</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 18% 14%, rgba(154,63,34,0.025), transparent 60%), radial-gradient(ellipse 70% 50% at 84% 86%, rgba(27,61,92,0.03), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:72px 32px 120px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 36px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:28px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(40px,6.4vw,56px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 18px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:20px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:30px; padding-top:18px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 64px; padding:14px 0; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a{color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:hover{color:var(--madrone)}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em} .docnav a.home:hover{background:var(--madrone); color:var(--paper)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:30px; line-height:1.18; letter-spacing:-0.014em; margin:64px 0 18px; color:var(--ink); position:relative; padding-top:18px; border-top:1px solid var(--rule)}
+h2 .marker{display:block; font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:10px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:28px 0 10px}
+p{margin:0 0 18px}
+ul,ol{margin:0 0 22px; padding-left:24px}
+li{margin-bottom:8px; padding-left:4px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:22px; line-height:1.45; margin:0 0 32px; color:var(--ink)}
+p.lede::first-letter{font-family:var(--serif); font-weight:600; font-size:5em; line-height:0.82; float:left; margin:8px 14px -4px -3px; color:var(--madrone)}
+
+.theorist{margin:32px 0; padding:0; border-top:1px solid var(--ink); padding-top:24px}
+.theorist .header{display:flex; align-items:baseline; gap:18px; margin-bottom:14px; flex-wrap:wrap}
+.theorist .name{font-family:var(--serif); font-weight:600; font-size:28px; color:var(--ink); letter-spacing:-0.014em}
+.theorist .tag{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--madrone); padding:4px 10px; border:1px solid var(--madrone)}
+.theorist .credit{font-family:var(--serif); font-style:italic; font-size:15px; color:var(--ink-3); margin:0 0 14px}
+.theorist .concept{font-family:var(--serif); font-size:17px; line-height:1.6; margin:0 0 14px}
+.theorist .so-what{margin:18px 0 8px; padding:16px 22px; background:rgba(68,90,58,0.05); border-left:3px solid var(--moss)}
+.theorist .so-what .lbl{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--moss); display:block; margin-bottom:6px}
+.theorist .so-what p{margin:0; font-size:16px; line-height:1.55}
+.theorist .read{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3); margin-top:14px}
+
+.note{margin:32px 0; padding:22px 26px; border-left:2px solid var(--ink); font-size:17px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+
+footer.colophon{margin-top:88px; padding-top:24px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:48px 22px 80px} h1.title{font-size:34px} h2{font-size:24px} p.lede{font-size:19px} p.lede::first-letter{font-size:4em} .theorist .name{font-size:22px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} h2,h3{page-break-after:avoid} .theorist,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 12</span> &nbsp;·&nbsp; Reference</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">Doctrine Primer</h1>
+<p class="subtitle">Five thinkers behind the Open Adaptive District — what each contributed, what we kept, and what we ignored.</p>
+<div class="byline">
+<span>Read time · 12 minutes</span><span class="sep">·</span>
+<span>For anyone who wants intellectual grounding</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Training:</span>
+<a href="10-SHIP-Team-Onboarding-Guide.html">Onboarding</a>
+<a href="11-Bet-Writing-Primer.html">Bet-Writing</a>
+<a href="12-Doctrine-Primer.html">Doctrine</a>
+</nav>
+
+<p class="lede">Most teams won't need this. The Open Adaptive District is designed to be run without ever knowing the names below. But the names matter for two audiences: leaders who want to understand <em>why</em> the model is shaped this way, and the publication going to other districts. This is a twelve-minute orientation to the five thinkers we drew from.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; Why these five</span>The shape of the problem</h2>
+
+<p>Education's default change models — Kotter's eight steps, Fullan's drivers, DuFour's PLC cycles — were built for environments where the end-state is stable. AI is not a stable end-state. The technology doubles in capability every six months, the use cases are still being invented, and the line between "AI" and "not AI" will be gone in two years.</p>
+
+<p>So we went outside education. The five thinkers below — one organizational learning theorist, one military strategist, one general, one complexity researcher, and one Berkeley economist — built models for environments that <em>don't</em> have stable end-states. We took what was useful and left what wasn't.</p>
+
+<div class="theorist">
+<div class="header">
+<span class="name">Peter Senge</span>
+<span class="tag">Theory 01 · The Foundation</span>
+</div>
+<p class="credit">MIT Sloan · <em>The Fifth Discipline</em> (1990)</p>
+<p class="concept">Senge argued that organizations fail to change not because people resist, but because the systems they operate inside are <em>wired for stability.</em> The leverage points for change are mental models (what people believe is possible), information flows (who sees what, when), feedback loops (do successes get amplified?), and identity (who are we to ourselves?). Change one of those and the system reorganizes around it. Try to change the visible behavior without changing those, and the system snaps back.</p>
+<div class="so-what">
+<span class="lbl">What we took</span>
+<p>Every part of the Open Adaptive District targets a Senge leverage point. The SHIP cycle is a feedback loop. The Logbook is an information flow. The quarterly intent shifts mental models. The Learning Engineers identity is forthcoming. None of this is accident — Senge's framework is what made us realize we needed to design at the leverage points, not at the symptom.</p>
+</div>
+<p class="read"><strong>Read:</strong> <a class="inline" href="https://www.penguinrandomhouse.com/books/163983/the-fifth-discipline-by-peter-m-senge/" target="_blank" rel="noopener">The Fifth Discipline</a> — the introduction and Chapter 4. The diagrams in Chapter 5 are also worth the time.</p>
+</div>
+
+<div class="theorist">
+<div class="header">
+<span class="name">Stephen Bungay</span>
+<span class="tag">Theory 02 · The Leadership Doctrine</span>
+</div>
+<p class="credit">Ashridge Strategic Management Centre · <em>The Art of Action</em> (2011)</p>
+<p class="concept">Bungay took the nineteenth-century Prussian military concept of <em>Auftragstaktik</em> — mission command — and translated it for modern enterprise. The core idea: in environments where conditions change faster than plans can be made, commanders set <em>intent</em> (what we are achieving and why) and leave <em>method</em> (how) to the subordinates closest to the action. Bungay calls this "directed opportunism." It replaces the plan-and-implement model that dominates education with a do-and-adapt model.</p>
+<div class="so-what">
+<span class="lbl">What we took</span>
+<p>The <a class="inline" href="04-Quarterly-Intent-Template.html">Quarterly Intent</a> is directly Bungay. Three sentences from the superintendent set intent; SHIP teams choose method. the superintendent does not tell teams how to do their work — she tells them what we are after and what we will not compromise.</p>
+</div>
+<p class="read"><strong>Read:</strong> <a class="inline" href="https://www.hachette.co.uk/titles/stephen-bungay/the-art-of-action/9781857885590/" target="_blank" rel="noopener">The Art of Action</a> — Chapters 1 and 4. The intent-vs-method distinction in Chapter 4 is the whole book in twelve pages.</p>
+</div>
+
+<div class="theorist">
+<div class="header">
+<span class="name">Stanley McChrystal</span>
+<span class="tag">Theory 03 · The Org Form</span>
+</div>
+<p class="credit">U.S. Joint Special Operations Command · <em>Team of Teams</em> (2015)</p>
+<p class="concept">McChrystal redesigned JSOC during the Iraq War from a hierarchy of expert silos into a network of interdependent teams. Two shifts mattered most. <strong>Shared consciousness:</strong> everyone sees what everyone else is learning, in close to real time. <strong>Empowered execution:</strong> decisions are made at the edge by the people closest to the problem, not routed up for approval. Together these two unlock what McChrystal calls "team of teams" — a network that moves faster than a hierarchy while staying coherent.</p>
+<div class="so-what">
+<span class="lbl">What we took</span>
+<p>SHIP teams are the empowered edges. <a class="inline" href="02-The-Logbook-Design-Brief.html">The Logbook</a> is the shared-consciousness layer — async, AI-powered, so teams don't have to be in meetings to see each other's work. The cabinet operates as shared accountability rather than concentrated oversight. All of this is McChrystal, adapted for a school district instead of a special-operations unit.</p>
+</div>
+<p class="read"><strong>Read:</strong> <a class="inline" href="https://www.penguinrandomhouse.com/books/241168/team-of-teams-by-general-stanley-mcchrystal-tantum-collins-david-silverman-and-chris-fussell/" target="_blank" rel="noopener">Team of Teams</a> — the first 80 pages. Skip the later case studies unless you want them.</p>
+</div>
+
+<div class="theorist">
+<div class="header">
+<span class="name">Dave Snowden</span>
+<span class="tag">Theory 04 · The Literacy</span>
+</div>
+<p class="credit">IBM (originally) · The Cynefin framework (1999)</p>
+<p class="concept">Snowden's Cynefin framework separates problems by what kind of response they need. <strong>Clear</strong> problems have known answers (follow best practice). <strong>Complicated</strong> problems need experts (analyze, then act). <strong>Complex</strong> problems have no knowable answer in advance — you have to probe, sense what happens, and respond. <strong>Chaotic</strong> problems require immediate stabilizing action. Most leaders treat complex problems as if they were complicated, calling for experts and policies when what's needed are small, safe-to-fail experiments.</p>
+<div class="so-what">
+<span class="lbl">What we took</span>
+<p>SHIP is built for complex problems — probe, sense, respond. Most AI adoption questions are complex, not complicated. The literacy we want every leader to develop is the ability to recognize which kind of problem they are looking at, and to resist the temptation to expert-solve a complex one. When a problem genuinely is complicated, we solve it the normal way and don't waste a cycle on it.</p>
+</div>
+<p class="read"><strong>Read:</strong> <a class="inline" href="https://hbr.org/2007/11/a-leaders-framework-for-decision-making" target="_blank" rel="noopener">"A Leader's Framework for Decision Making"</a> — Snowden &amp; Boone, <em>Harvard Business Review</em>, November 2007. Twelve pages.</p>
+</div>
+
+<div class="theorist">
+<div class="header">
+<span class="name">David Teece</span>
+<span class="tag">Theory 05 · The Citable Backbone</span>
+</div>
+<p class="credit">UC Berkeley Haas · "Dynamic Capabilities" (1997, refined 2007)</p>
+<p class="concept">Teece is an economist. His framework describes what firms that thrive in turbulent environments actually <em>do</em>: <strong>sense</strong> — scan for changes in technology, markets, and customer needs; <strong>seize</strong> — rapidly mobilize resources to act on what you've sensed; <strong>transform</strong> — continuously reconfigure the organization's structure and processes to support what you've learned. Teece's framework is the academic respectability layer behind most modern thinking about adaptive organizations.</p>
+<div class="so-what">
+<span class="lbl">What we took</span>
+<p>SHIP is sense-seize-transform on a six-week clock. Sense (Sense), Hypothesize and Implement (seize), Publish and adopt (transform). The Teece framework is also the citable academic backbone for the Year-One publication — it lets us position the Open Adaptive District in conversation with established business-school theory rather than as a one-off ed-tech initiative.</p>
+</div>
+<p class="read"><strong>Read:</strong> <a class="inline" href="https://onlinelibrary.wiley.com/doi/10.1002/smj.640" target="_blank" rel="noopener">Teece, "Explicating Dynamic Capabilities"</a> — <em>Strategic Management Journal</em>, 2007. Dense but worth the slog if you want the academic version.</p>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; What we did not take</span>The pieces we deliberately left out</h2>
+
+<ul>
+<li><strong>Kotter's eight steps.</strong> The dominant change model in education. It assumes a stable end-state and a single transformation. Neither fits AI.</li>
+<li><strong>Senge's "Learning Organization" rhetoric.</strong> We took the leverage points and left the brand. The Open Adaptive District is a learning system, not a Learning Organization (capitalized).</li>
+<li><strong>Bungay's military metaphors.</strong> "Mission command" and "commanders" don't translate to schools. We use plain English — intent, method, teams.</li>
+<li><strong>McChrystal's tempo language.</strong> JSOC moved at the pace of warfare. We move at the pace of school districts that have to keep working safely while changing.</li>
+<li><strong>Snowden's terminology.</strong> "Cynefin" is hard to pronounce. We say "complex vs. complicated" in plain language and skip the Welsh.</li>
+</ul>
+
+<div class="note">
+<span class="label">A note on synthesis</span>
+The Open Adaptive District is not any one of these frameworks. It is a stack — Senge sets the diagnosis, Bungay sets the leadership doctrine, McChrystal sets the org form, Snowden sets the literacy, Teece sets the academic backbone. Each is in the model because the others alone weren't enough.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 12</span> &nbsp; Peninsula School District &nbsp;·&nbsp; Doctrine Primer</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

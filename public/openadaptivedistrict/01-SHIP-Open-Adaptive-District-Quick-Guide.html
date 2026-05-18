@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Open Adaptive District — SHIP Cycle Quick Guide</title>
+<style>
+:root{
+  --paper:#F4EFE3;
+  --paper-2:#EBE3D0;
+  --paper-3:#E1D6BB;
+  --ink:#171B22;
+  --ink-2:#3C424E;
+  --ink-3:#6B6A60;
+  --rule:#B3A78C;
+  --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C;
+  --pacific-2:#37607B;
+  --pacific-pale:#C5D2DC;
+  --sage:#5F7567;
+  --sage-pale:#CFD9CC;
+  --madrone:#9A3F22;
+  --madrone-pale:#E2C0AC;
+  --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text","Book Antiqua",Georgia,serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; padding:0;
+  background:var(--paper); color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px; line-height:1.62;
+  font-feature-settings:"kern","liga","onum";
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    radial-gradient(ellipse 80% 60% at 18% 14%, rgba(154,63,34,0.025), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 84% 86%, rgba(27,61,92,0.03), transparent 60%);
+}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:72px 32px 120px}
+
+/* Masthead */
+.masthead{
+  border-top:4px solid var(--ink);
+  border-bottom:1px solid var(--rule);
+  padding:20px 0 36px;
+  margin-bottom:0;
+  position:relative;
+}
+.section-marker{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink-3);
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:28px;
+}
+.section-marker .roman{ color:var(--madrone); font-weight:600; letter-spacing:0.18em }
+.section-marker .right{ color:var(--ink-3) }
+h1.title{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(40px, 6.8vw, 60px);
+  line-height:1.02; letter-spacing:-0.02em;
+  margin:0 0 18px; color:var(--ink);
+}
+h1.title .ampersand{ color:var(--madrone); font-style:italic; font-weight:500 }
+.subtitle{
+  font-family:var(--serif); font-style:italic;
+  font-size:21px; line-height:1.4;
+  color:var(--ink-2); margin:0; max-width:36em;
+}
+.byline{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--ink-3);
+  margin-top:30px; padding-top:18px;
+  border-top:1px solid var(--rule-soft);
+  display:flex; flex-wrap:wrap; gap:6px 22px;
+}
+.byline .sep{ color:var(--rule); margin:0 -10px }
+
+/* Doc nav */
+.docnav{
+  margin:0 0 64px; padding:14px 0;
+  border-bottom:1px solid var(--rule-soft);
+  display:flex; flex-wrap:wrap; gap:6px 24px;
+  align-items:baseline;
+  font-family:var(--mono); font-size:12px;
+  letter-spacing:0.06em;
+}
+.docnav .lbl{
+  text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--ink-3); font-weight:500; font-size:11px;
+}
+.docnav a{
+  color:var(--ink); text-decoration:none;
+  position:relative; padding:3px 0;
+  transition:color 0.2s;
+}
+.docnav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px;
+  height:1px; background:transparent; transition:background 0.2s;
+}
+.docnav a:hover{ color:var(--madrone) }
+.docnav a:hover::after{ background:var(--madrone) }
+.docnav a.current{ color:var(--madrone); font-weight:600 }
+.docnav a.current::after{ background:var(--madrone) }
+
+/* Body type */
+h2{
+  font-family:var(--serif); font-weight:600;
+  font-size:30px; line-height:1.18;
+  letter-spacing:-0.014em;
+  margin:72px 0 18px; color:var(--ink);
+  position:relative; padding-top:18px;
+  border-top:1px solid var(--rule);
+}
+h2 .marker{
+  display:block;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--madrone); font-weight:600;
+  margin-bottom:10px;
+}
+h3{
+  font-family:var(--mono); font-size:11px;
+  font-weight:600; text-transform:uppercase;
+  letter-spacing:0.18em; color:var(--ink-3);
+  margin:28px 0 10px;
+}
+p{ margin:0 0 18px }
+p.lede{
+  font-size:23px; line-height:1.45;
+  margin:0 0 32px; color:var(--ink);
+}
+p.lede::first-letter{
+  font-family:var(--serif); font-weight:600;
+  font-size:5.4em; line-height:0.82;
+  float:left; margin:8px 14px -4px -3px;
+  color:var(--madrone);
+}
+
+ul,ol{ margin:0 0 22px; padding-left:24px }
+li{ margin-bottom:8px; padding-left:4px }
+ul li::marker{ color:var(--madrone); font-size:0.85em }
+ol li::marker{ color:var(--madrone); font-family:var(--mono); font-weight:600; font-size:0.86em }
+
+strong{ font-weight:600; color:var(--ink) }
+em{ font-style:italic }
+
+a.inline{
+  color:var(--pacific); text-decoration:none;
+  border-bottom:1px solid var(--pacific-pale);
+  padding-bottom:1px;
+  transition:color 0.2s, border-color 0.2s;
+}
+a.inline:hover{ color:var(--madrone); border-bottom-color:var(--madrone) }
+
+/* Pull / note / callout */
+.note{
+  margin:32px 0; padding:22px 26px;
+  background:transparent;
+  border-left:2px solid var(--ink);
+  font-size:17px; line-height:1.55;
+}
+.note .label{
+  display:block; font-family:var(--mono);
+  font-size:10px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--madrone);
+  font-weight:600; margin-bottom:8px;
+}
+
+/* SHIP cycle */
+.cycle-frame{
+  margin:36px 0 44px;
+  padding:32px 0;
+  border-top:1px solid var(--rule-soft);
+  border-bottom:1px solid var(--rule-soft);
+}
+.cycle-frame svg{
+  width:100%; height:auto;
+  display:block;
+  max-width:580px;
+  margin:0 auto;
+}
+
+/* Phase ledgers */
+.phase-ledger{
+  margin:32px 0;
+  border-top:1px solid var(--ink);
+}
+.phase-row{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:24px;
+  padding:20px 0;
+  border-bottom:1px solid var(--rule-soft);
+}
+.phase-num{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--ink-3); padding-top:4px;
+}
+.phase-num .letter{
+  display:block; font-family:var(--serif);
+  font-size:36px; font-weight:600;
+  color:var(--madrone); line-height:1;
+  letter-spacing:-0.02em;
+  margin-top:4px;
+}
+.phase-body h4{
+  font-family:var(--serif); font-weight:600;
+  font-size:21px; margin:0 0 6px;
+  color:var(--ink); letter-spacing:-0.01em;
+}
+.phase-body p{
+  font-size:16.5px; line-height:1.55;
+  margin:0; color:var(--ink-2);
+}
+
+/* Roster table */
+table.roster{
+  width:100%; border-collapse:collapse;
+  margin:24px 0 32px;
+  font-family:var(--serif); font-size:16px;
+}
+.roster th{
+  font-family:var(--mono); font-size:11px;
+  font-weight:600; text-transform:uppercase;
+  letter-spacing:0.16em; color:var(--ink-3);
+  text-align:left; padding:0 0 10px;
+  border-bottom:1px solid var(--ink);
+}
+.roster td{
+  padding:16px 12px 16px 0;
+  border-bottom:1px solid var(--rule-soft);
+  vertical-align:top; line-height:1.5;
+}
+.roster td:first-child{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--madrone); font-weight:600;
+  white-space:nowrap; padding-right:24px;
+  width:30%;
+}
+
+/* Doctrine ledger */
+.doctrine{
+  margin:24px 0 36px;
+  border-top:1px solid var(--ink);
+}
+.doctrine-row{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:24px;
+  padding:18px 0;
+  border-bottom:1px solid var(--rule-soft);
+}
+.doctrine-name{
+  font-family:var(--serif); font-weight:600;
+  font-size:18px; color:var(--madrone);
+  font-style:italic;
+}
+.doctrine-name small{
+  display:block; font-family:var(--mono);
+  font-size:10px; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--ink-3);
+  font-style:normal; font-weight:500;
+  margin-bottom:4px;
+}
+.doctrine-body strong{
+  display:block; font-size:17px;
+  margin-bottom:4px;
+}
+.doctrine-body p{ margin:0; font-size:16px; color:var(--ink-2) }
+
+/* What it is / isn't */
+.dichotomy{
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:0; margin:24px 0 32px;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+}
+.dich-col{
+  padding:24px 0;
+}
+.dich-col:first-child{
+  padding-right:32px;
+  border-right:1px solid var(--rule-soft);
+}
+.dich-col:last-child{
+  padding-left:32px;
+}
+.dich-col h4{
+  font-family:var(--mono); font-size:11px;
+  font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase;
+  margin:0 0 14px;
+}
+.dich-col.is h4{ color:var(--moss) }
+.dich-col.isnt h4{ color:var(--madrone) }
+.dich-col ul{
+  margin:0; padding-left:0; list-style:none;
+}
+.dich-col li{
+  font-size:17px; padding:8px 0;
+  border-top:1px solid var(--rule-soft);
+  padding-left:24px; position:relative;
+}
+.dich-col li:first-child{ border-top:0; padding-top:0 }
+.dich-col.is li::before{
+  content:"+"; position:absolute; left:0; top:8px;
+  font-family:var(--mono); color:var(--moss); font-weight:600;
+}
+.dich-col.is li:first-child::before{ top:0 }
+.dich-col.isnt li::before{
+  content:"−"; position:absolute; left:0; top:8px;
+  font-family:var(--mono); color:var(--madrone); font-weight:600;
+}
+.dich-col.isnt li:first-child::before{ top:0 }
+
+/* The doctrine sentence */
+.doctrine-sentence{
+  margin:48px -16px;
+  padding:40px 36px;
+  border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink);
+  position:relative;
+}
+.doctrine-sentence::before{
+  content:"\201C"; position:absolute;
+  top:8px; left:18px;
+  font-family:var(--serif); font-size:72px;
+  color:var(--madrone); line-height:1;
+  font-weight:600;
+}
+.doctrine-sentence::after{
+  content:"\201D"; position:absolute;
+  bottom:-20px; right:18px;
+  font-family:var(--serif); font-size:72px;
+  color:var(--madrone); line-height:1;
+  font-weight:600;
+}
+.doctrine-sentence p{
+  font-family:var(--serif); font-size:24px;
+  line-height:1.42; font-style:italic;
+  color:var(--ink); margin:0;
+  text-align:center;
+  padding:0 16px;
+}
+
+/* Footer */
+footer.colophon{
+  margin-top:88px; padding-top:24px;
+  border-top:4px solid var(--ink);
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+}
+footer.colophon .mark{ color:var(--madrone); font-weight:600 }
+
+@media (max-width:680px){
+  main{ padding:48px 22px 80px }
+  h1.title{ font-size:36px }
+  p.lede{ font-size:19px }
+  p.lede::first-letter{ font-size:4.2em }
+  h2{ font-size:24px }
+  .phase-row{ grid-template-columns:60px 1fr; gap:16px }
+  .phase-num .letter{ font-size:28px }
+  .doctrine-row{ grid-template-columns:1fr; gap:6px }
+  .dichotomy{ grid-template-columns:1fr; border-bottom:1px solid var(--ink) }
+  .dich-col:first-child{ padding-right:0; border-right:0; border-bottom:1px solid var(--rule); padding-bottom:24px }
+  .dich-col:last-child{ padding-left:0; padding-top:24px }
+  .doctrine-sentence{ margin:36px 0; padding:32px 22px }
+  .doctrine-sentence p{ font-size:19px }
+  .doctrine-sentence::before, .doctrine-sentence::after{ font-size:48px }
+}
+@media print{
+  body{ background:white; color:black; font-size:11pt }
+  body::before{ display:none }
+  main{ max-width:none; padding:0 }
+  .docnav{ display:none }
+  h2, h3{ page-break-after:avoid }
+  .note, .doctrine-sentence, .cycle-frame, .phase-row, .doctrine-row{ page-break-inside:avoid }
+  a.inline{ color:black; border-bottom-color:#999 }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 01</span> &nbsp;·&nbsp; Doctrine</span>
+<span class="right">Peninsula School District</span>
+</div>
+<h1 class="title">The Open<br>Adaptive District</h1>
+<p class="subtitle">A quick guide to the SHIP cycle — six weeks of work, two weeks to plan, repeated.</p>
+<div class="byline">
+<span>Draft v1</span><span class="sep">·</span>
+<span>May 2026</span><span class="sep">·</span>
+<span>5 minute read</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a> <span class="lbl">In this collection</span>
+<a href="01-SHIP-Open-Adaptive-District-Quick-Guide.html" class="current">SHIP Quick Guide</a>
+<a href="02-The-Logbook-Design-Brief.html">The Logbook</a>
+<a href="03-Fellowship-Action-Plan-FILLED.html">Action Plan</a>
+<a href="04-Quarterly-Intent-Template.html">Quarterly Intent</a>
+</nav>
+
+<p class="lede">The Open Adaptive District is Peninsula's operating model for keeping pace with a technology landscape — particularly AI — that changes faster than traditional district planning cycles. <strong>SHIP</strong> is the working cadence inside it: six weeks of active work, two weeks of planning, repeated.</p>
+
+<div class="note">
+<span class="label">A note on scope</span>
+The Open Adaptive District does not replace Peninsula 2030. It is the operating mechanism that lets Peninsula 2030 stay current as the world around it shifts.
+</div>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; Why it exists</span>The pace problem</h2>
+<p>AI capability is doubling on a roughly six-month curve. District change cycles run two to five years. Without an adaptive operating model, every new wave creates fresh paralysis — and vendors, not districts, end up deciding what AI in education looks like. The Open Adaptive District closes that gap.</p>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; The cycle</span>SHIP</h2>
+
+<div class="cycle-frame">
+<svg viewBox="-40 0 700 420" xmlns="http://www.w3.org/2000/svg" aria-label="SHIP cycle — Sense, Hypothesize, Implement, Publish">
+<defs>
+  <marker id="cyc-arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+    <path d="M0,0 L0,10 L8,5 Z" fill="#9A3F22"/>
+  </marker>
+</defs>
+
+<!-- hairline cycle path -->
+<circle cx="290" cy="210" r="155" fill="none" stroke="#B3A78C" stroke-width="0.75" stroke-dasharray="2 3"/>
+<circle cx="290" cy="210" r="155" fill="none" stroke="#9A3F22" stroke-width="1.5"
+  stroke-dasharray="6 280" stroke-dashoffset="-50" transform="rotate(-90 290 210)"/>
+
+<!-- station 01 — Sense (top) -->
+<g>
+  <circle cx="290" cy="55" r="5" fill="#F4EFE3" stroke="#171B22" stroke-width="1.8"/>
+  <text x="290" y="32" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="2" fill="#6B6A60">01</text>
+  <text x="290" y="86" text-anchor="middle" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#171B22">Sense</text>
+  <text x="290" y="105" text-anchor="middle" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="13" font-style="italic" fill="#3C424E">What changed? What problem?</text>
+</g>
+
+<!-- station 02 — Hypothesize (right) -->
+<g>
+  <circle cx="445" cy="210" r="5" fill="#F4EFE3" stroke="#171B22" stroke-width="1.8"/>
+  <text x="465" y="200" text-anchor="start" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="2" fill="#6B6A60">02</text>
+  <text x="465" y="221" text-anchor="start" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#171B22">Hypothesize</text>
+  <text x="465" y="240" text-anchor="start" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="13" font-style="italic" fill="#3C424E">If X, then Y. How we'll know.</text>
+</g>
+
+<!-- station 03 — Implement (bottom) -->
+<g>
+  <circle cx="290" cy="365" r="5" fill="#F4EFE3" stroke="#171B22" stroke-width="1.8"/>
+  <text x="290" y="335" text-anchor="middle" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="13" font-style="italic" fill="#3C424E">Run the bet. Stay close.</text>
+  <text x="290" y="396" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="2" fill="#6B6A60">03</text>
+  <text x="290" y="386" text-anchor="middle" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#171B22">Implement</text>
+</g>
+
+<!-- station 04 — Publish (left) -->
+<g>
+  <circle cx="135" cy="210" r="5" fill="#F4EFE3" stroke="#171B22" stroke-width="1.8"/>
+  <text x="115" y="200" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="2" fill="#6B6A60">04</text>
+  <text x="115" y="221" text-anchor="end" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="22" font-weight="600" letter-spacing="-0.5" fill="#171B22">Publish</text>
+  <text x="115" y="240" text-anchor="end" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="13" font-style="italic" fill="#3C424E">Adopt or kill — say so.</text>
+</g>
+
+<!-- direction arrows along the path -->
+<g fill="#9A3F22">
+  <path d="M385,80 L376,93 L362,82 Z"/>
+  <path d="M420,335 L432,326 L420,313 Z" transform="translate(-3 -3)"/>
+  <path d="M198,338 L210,348 L223,338 Z" transform="translate(0 -3)"/>
+  <path d="M170,80 L184,86 L185,69 Z"/>
+</g>
+
+<!-- center label -->
+<g>
+  <line x1="240" y1="195" x2="340" y2="195" stroke="#171B22" stroke-width="0.5"/>
+  <line x1="240" y1="232" x2="340" y2="232" stroke="#171B22" stroke-width="0.5"/>
+  <text x="290" y="216" text-anchor="middle" font-family="ui-serif,Iowan Old Style,Palatino,Georgia,serif" font-size="28" font-weight="600" letter-spacing="2" fill="#171B22">SHIP</text>
+  <text x="290" y="252" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="2" fill="#9A3F22">SIX WEEKS · TWO TO PLAN</text>
+</g>
+</svg>
+</div>
+
+<div class="phase-ledger">
+<div class="phase-row">
+  <div class="phase-num">Phase&nbsp;01<span class="letter">S</span></div>
+  <div class="phase-body">
+    <h4>Sense</h4>
+    <p>What changed in the AI landscape since the last cycle? What district problem are we trying to solve in this cycle? End state: a one-paragraph framing.</p>
+  </div>
+</div>
+<div class="phase-row">
+  <div class="phase-num">Phase&nbsp;02<span class="letter">H</span></div>
+  <div class="phase-body">
+    <h4>Hypothesize</h4>
+    <p>If we do X, we expect Y — and here's how we'll know. End state: a written hypothesis with success criteria.</p>
+  </div>
+</div>
+<div class="phase-row">
+  <div class="phase-num">Phase&nbsp;03<span class="letter">I</span></div>
+  <div class="phase-body">
+    <h4>Implement</h4>
+    <p>Run the bet inside the cycle. Stay close to it. Adjust as evidence comes in.</p>
+  </div>
+</div>
+<div class="phase-row">
+  <div class="phase-num">Phase&nbsp;04<span class="letter">P</span></div>
+  <div class="phase-body">
+    <h4>Publish</h4>
+    <p>Public debrief at the end of the cycle. What worked, what didn't, what we adopt district-wide, what we kill. Method and lesson go to psd401.ai; specifics are redacted where privacy or legal requires.</p>
+  </div>
+</div>
+</div>
+
+<div class="note">
+<span class="label">The two-week gap</span>
+The plan gap that follows each cycle is for cabinet and intent calibration, and for team reformation before the next cycle starts.
+</div>
+
+<div class="note">
+<span class="label">A bet can take many forms</span>
+What a team produces inside a cycle is up to the team — a new workflow, an internal app, an agent skill, a process change, a small product. The shape is theirs to choose. The requirement is that the bet is AI-forward, that the change is measurable, and that the team debriefs honestly at the end.
+</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; Who runs them</span>Teams in motion</h2>
+<table class="roster">
+<thead><tr><th>Phase</th><th>Teams</th></tr></thead>
+<tbody>
+<tr><td>At launch · Aug 2026</td><td>Cabinet department teams — HR, Finance, Teaching &amp; Learning, Operations, Tech, Communications, Special Education. Principal teams by grade band — elementary, middle, high.</td></tr>
+<tr><td>Fall · after cycles 1–2</td><td>Teacher teams (in-building or cross-district), Tech, Employee Support Services, Business Office, and any other staff group ready to run a cycle. A SHIP team can be anyone in the district with a problem worth running through a cycle — title is not the criterion.</td></tr>
+</tbody>
+</table>
+<p>Each team takes one bet per cycle. Cross-team formations are allowed when a bet crosses boundaries.</p>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; The leadership move</span>Quarterly intent</h2>
+<p>the superintendent issues a 3-sentence <a class="inline" href="04-Quarterly-Intent-Template.html">quarterly intent</a> before each cycle window:</p>
+<ol>
+<li>What we're after this quarter</li>
+<li>Why now</li>
+<li>What we won't compromise</li>
+</ol>
+<p>Teams choose their bets <em>inside</em> that intent. The intent sets the <em>what</em> and the <em>why</em>; teams own the <em>how</em>. This is directed-opportunism doctrine (Bungay): replace plan-and-implement with do-and-adapt.</p>
+
+<h2><span class="marker">§ V &nbsp;·&nbsp; How teams stay connected</span>Shared consciousness</h2>
+<p>PSD's meeting culture isn't built to carry cross-silo coordination. So the operating model runs on async by design:</p>
+<ul>
+<li>Every SHIP team works in a shared space with <strong>weekly written check-ins</strong> — what we tried, what we learned, where we're stuck, what we need.</li>
+<li>An <a class="inline" href="02-The-Logbook-Design-Brief.html">AI agent</a> reads across team spaces and produces a weekly cross-team digest, surfacing themes, blockers, and accountability flags.</li>
+<li>the superintendent reviews the digest weekly without holding a meeting.</li>
+</ul>
+
+<div class="note">
+<span class="label">Why this matters</span>
+The medium reinforces the message — the organization running AI adaptation cycles uses AI to coordinate them. The full design is in the <a class="inline" href="02-The-Logbook-Design-Brief.html">Logbook Design Brief</a>.
+</div>
+
+<h2><span class="marker">§ VI &nbsp;·&nbsp; A feature, not a failure</span>Killing bets</h2>
+<p>Not every hypothesis works. <strong>Publish can mean</strong> "we tried this, here's what we learned, we're decommissioning it." Education culture punishes this; the Open Adaptive District treats public decommissioning as evidence the system is honest. Bets that quietly disappear are the failure mode — not bets that are publicly killed.</p>
+
+<h2><span class="marker">§ VII &nbsp;·&nbsp; A literacy</span>Complex &amp; complicated</h2>
+<p>Most AI questions are not "complicated" problems that an expert or vendor can solve. They are "complex" problems where no one knows the answer yet, and the only honest response is a small, safe-to-fail experiment. SHIP is built for complex problems. When something genuinely <em>is</em> complicated, we solve it the normal way and don't waste a cycle on it.</p>
+
+<h2><span class="marker">§ VIII &nbsp;·&nbsp; Intellectual grounding</span>The doctrine stack</h2>
+<p>Five frameworks anchor the operating model. Most teams won't need to learn these names. They're for the publication, and for leaders who want intellectual grounding.</p>
+<div class="doctrine">
+<div class="doctrine-row">
+  <div class="doctrine-name"><small>Theory of</small>Senge</div>
+  <div class="doctrine-body"><strong>Systems &amp; leverage points</strong><p>Peter Senge's <em>Fifth Discipline</em> argued that organizations fail to change not because people resist, but because systems are wired for stability. The Open Adaptive District targets Senge's leverage points — shifting mental models, opening cross-silo information flows, and building reinforcing feedback loops cycle over cycle. It is the foundation beneath everything else.</p></div>
+</div>
+<div class="doctrine-row">
+  <div class="doctrine-name"><small>Theory of</small>Bungay</div>
+  <div class="doctrine-body"><strong>Directed opportunism</strong><p>Stephen Bungay drew his model from Prussian <em>Auftragstaktik</em> — mission command — where commanders set intent and subordinates make their own tactical decisions. He translated it for enterprise as <em>do-and-adapt</em> replacing <em>plan-and-implement</em> when the ground is moving faster than plans can hold. The quarterly intent is the practical application: the superintendent sets purpose; teams own method.</p></div>
+</div>
+<div class="doctrine-row">
+  <div class="doctrine-name"><small>Theory of</small>McChrystal</div>
+  <div class="doctrine-body"><strong>Team of Teams</strong><p>General Stanley McChrystal redesigned Joint Special Operations Command from a hierarchy of expert silos into a network of interdependent teams. The two key shifts: <em>shared consciousness,</em> so everyone sees what everyone else is learning, and <em>empowered execution,</em> so decisions get made at the edge rather than waiting for approval. The Logbook is how Peninsula puts shared consciousness into practice; SHIP teams are the empowered edges.</p></div>
+</div>
+<div class="doctrine-row">
+  <div class="doctrine-name"><small>Theory of</small>Snowden</div>
+  <div class="doctrine-body"><strong>Complex vs. complicated</strong><p>Dave Snowden's Cynefin framework separates <em>complicated</em> problems (expert-solvable, known unknowns) from <em>complex</em> ones (no one knows the answer yet; you have to probe). Most AI adoption questions are complex, not complicated — and the wrong response is to expert-solve them. The SHIP cycle is the Cynefin-correct response: small, safe-to-fail experiments rather than expert pronouncements.</p></div>
+</div>
+<div class="doctrine-row">
+  <div class="doctrine-name"><small>Theory of</small>Teece</div>
+  <div class="doctrine-body"><strong>Dynamic capabilities</strong><p>David Teece's framework for firms that thrive in turbulent environments is <em>sense → seize → transform.</em> Sense the change, seize the opportunity through rapid mobilization, transform the organization's structure to support what was learned. SHIP is sense-seize-transform on a six-week clock. This is the citable academic backbone for the Year-One publication.</p></div>
+</div>
+</div>
+
+<h2><span class="marker">§ IX &nbsp;·&nbsp; A pair of declarations</span>What this is, what it isn't</h2>
+<div class="dichotomy">
+<div class="dich-col is">
+<h4>It is</h4>
+<ul>
+<li>An operating system for the district</li>
+<li>A repeatable adaptive cadence</li>
+<li>A publishable, forkable model</li>
+<li>The capacity to absorb new AI in weeks</li>
+</ul>
+</div>
+<div class="dich-col isnt">
+<h4>It is not</h4>
+<ul>
+<li>A strategic plan goal</li>
+<li>An AI policy</li>
+<li>A tech rollout</li>
+<li>A directive to vendors</li>
+</ul>
+</div>
+</div>
+
+<h2><span class="marker">§ X &nbsp;·&nbsp; The doctrine, in one sentence</span></h2>
+<div class="doctrine-sentence">
+<p>A public school district can be redesigned to absorb new technology at the pace technology actually moves — through cross-silo teams operating on short, shared cycles under common intent, with the learning published as it happens.</p>
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 01</span> &nbsp; Peninsula School District</span>
+<span>The Open Adaptive District &nbsp; Draft v1</span>
+</footer>
+
+</main>
+</body>
+</html>

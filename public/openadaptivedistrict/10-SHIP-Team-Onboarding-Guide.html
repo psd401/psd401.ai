@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHIP Team Onboarding Guide</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 15% 15%, rgba(27,61,92,0.03), transparent 60%), radial-gradient(ellipse 70% 50% at 85% 85%, rgba(154,63,34,0.025), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:20px 0 36px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:28px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(40px,6.4vw,56px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 18px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:20px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:30px; padding-top:18px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 64px; padding:14px 0; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a{color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:hover{color:var(--madrone)}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em} .docnav a.home:hover{background:var(--madrone); color:var(--paper)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:28px; line-height:1.18; letter-spacing:-0.014em; margin:60px 0 16px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule)}
+h2 .marker{display:block; font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:10px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:28px 0 10px}
+h3.serif{font-family:var(--serif); font-size:20px; text-transform:none; letter-spacing:-0.005em; color:var(--ink); font-weight:600}
+p{margin:0 0 18px}
+ul,ol{margin:0 0 22px; padding-left:24px}
+li{margin-bottom:8px; padding-left:4px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+ol li::marker{color:var(--madrone); font-family:var(--mono); font-weight:600}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:22px; line-height:1.45; margin:0 0 32px; color:var(--ink)}
+p.lede::first-letter{font-family:var(--serif); font-weight:600; font-size:5em; line-height:0.82; float:left; margin:8px 14px -4px -3px; color:var(--madrone)}
+
+.timeline{margin:24px 0 32px; border-top:1px solid var(--ink)}
+.week-row{display:grid; grid-template-columns:120px 1fr; gap:24px; padding:18px 0; border-bottom:1px solid var(--rule-soft)}
+.week-label{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--madrone); padding-top:4px}
+.week-label small{display:block; color:var(--ink-3); font-weight:500; letter-spacing:0.16em; margin-bottom:4px}
+.week-body h4{font-family:var(--serif); font-weight:600; font-size:19px; margin:0 0 6px; color:var(--ink); letter-spacing:-0.01em}
+.week-body p{margin:0 0 8px; font-size:16px; color:var(--ink-2); line-height:1.55}
+.week-body ul{margin:6px 0 0; padding-left:20px; font-size:15px; color:var(--ink-2)}
+.week-body ul li{margin-bottom:4px}
+
+.roles{margin:24px 0 32px; border-top:1px solid var(--ink)}
+.role-row{display:grid; grid-template-columns:160px 1fr; gap:24px; padding:18px 0; border-bottom:1px solid var(--rule-soft)}
+.role-name{font-family:var(--serif); font-weight:600; font-style:italic; font-size:18px; color:var(--madrone)}
+.role-desc{font-size:16px; line-height:1.55; color:var(--ink-2)}
+
+.checklist{list-style:none; padding:0; margin:18px 0 28px; border-top:1px solid var(--rule-soft)}
+.checklist li{padding:12px 0 12px 32px; border-bottom:1px solid var(--rule-soft); position:relative; font-size:16.5px; line-height:1.5; margin:0}
+.checklist li::before{content:"☐"; position:absolute; left:0; top:11px; font-family:var(--mono); color:var(--ink-3); font-size:18px; font-weight:400}
+
+.where-grid{display:grid; grid-template-columns:1fr; gap:0; margin:24px 0 32px; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink)}
+.where-row{display:grid; grid-template-columns:180px 1fr; gap:20px; padding:14px 0; border-bottom:1px solid var(--rule-soft); font-size:16px}
+.where-row:last-child{border-bottom:0}
+.where-row .what{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-3); padding-top:3px}
+
+.note{margin:32px 0; padding:22px 26px; border-left:2px solid var(--ink); font-size:17px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+
+footer.colophon{margin-top:88px; padding-top:24px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:48px 22px 80px} h1.title{font-size:34px} h2{font-size:24px} p.lede{font-size:19px} p.lede::first-letter{font-size:4em} .week-row,.role-row,.where-row{grid-template-columns:1fr; gap:6px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} h2,h3{page-break-after:avoid} .week-row,.role-row,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 10</span> &nbsp;·&nbsp; Training</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">SHIP Team<br>Onboarding Guide</h1>
+<p class="subtitle">The handbook every team reads before Cycle 01. Roles, rhythm, expectations, and where to find what you need.</p>
+<div class="byline">
+<span>Draft v1</span><span class="sep">·</span>
+<span>Read time · 12 minutes</span><span class="sep">·</span>
+<span>Audience: cabinet, principals, future builder teams</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Training:</span>
+<a href="10-SHIP-Team-Onboarding-Guide.html">Onboarding</a>
+<a href="11-Bet-Writing-Primer.html">Bet-Writing</a>
+<a href="12-Doctrine-Primer.html">Doctrine</a>
+<a href="16-August-Kickoff-Facilitator-Guide.html">Kickoff</a>
+</nav>
+
+<p class="lede">Welcome to your SHIP team. You have been pulled together because Peninsula is doing something new — operating at the pace of AI rather than the pace of school district planning. This guide tells you what your team is responsible for, how the cycle works week-by-week, who else is in the system, and where everything lives. You should be able to read it in twelve minutes and be ready to start.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; What you are part of</span>The shape of the work</h2>
+
+<p>The <a class="inline" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">Open Adaptive District</a> is Peninsula's operating model for keeping pace with AI. Inside it, small cross-silo teams run six-week experiments called <strong>SHIP cycles</strong> — Sense, Hypothesize, Implement, Publish — under a quarterly intent set by the superintendent. Your team will run one bet per cycle. At the end, you publish what you learned, including what didn't work.</p>
+
+<p>You are not the only team doing this. In any given cycle, roughly ten teams are running their own bets in parallel. <a class="inline" href="02-The-Logbook-Design-Brief.html">The Logbook</a> — an agent skill any staff member can load into their personal AI — reads across all the teams' work and surfaces what's connecting, conflicting, and stuck. Your weekly written check-ins are how the Logbook sees you.</p>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; Roles on your team</span>Who does what</h2>
+
+<div class="roles">
+<div class="role-row">
+<div class="role-name">Team Lead</div>
+<div class="role-desc">Owns the bet. Drafts the Bet Brief in Week 01. Makes the final call on the end-of-cycle Decision. Can be anyone willing to lead — a teacher, an office manager, a department director, a principal, a cabinet member. Title is not the criterion; willingness to lead the work is.</div>
+</div>
+<div class="role-row">
+<div class="role-name">Scribe</div>
+<div class="role-desc">Owns the weekly check-in. Posts it every Friday by end of day or Monday morning. Does not need to do all the work — just makes sure the team's week is captured legibly in the Space.</div>
+</div>
+<div class="role-row">
+<div class="role-name">Builders</div>
+<div class="role-desc">The two to four people doing the actual experiment. Run the bet. Bring evidence back to the team. Can be any level — a director, a teacher, a paraeducator, an assistant.</div>
+</div>
+<div class="role-row">
+<div class="role-name">Sponsor (Chief)</div>
+<div class="role-desc">The chief or department head whose area the team belongs to. Doesn't run the work — clears blockers, makes the case to cabinet when the bet needs more time or different resources.</div>
+</div>
+</div>
+
+<div class="note">
+<span class="label">A team is small on purpose</span>
+Three to six people total. Smaller teams move faster, learn cleaner, and stay legible to the Logbook. If your team is bigger than six, consider whether you have one bet or two.
+</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; The cycle, week by week</span>What happens when</h2>
+
+<div class="timeline">
+<div class="week-row">
+<div class="week-label"><small>Cycle 01</small>Week 01</div>
+<div class="week-body">
+<h4>Frame the bet</h4>
+<p>The Team Lead, in conversation with the Logbook and the team, drafts a <a class="inline" href="08-Bet-Brief-Template.html">Bet Brief</a>. Hypothesis, success criteria, week-one plan, what you're not doing. Post it pinned to the team's Google Chat Space by Friday. First weekly check-in goes up by end of week.</p>
+</div>
+</div>
+<div class="week-row">
+<div class="week-label"><small>Cycle 01</small>Week 02</div>
+<div class="week-body">
+<h4>Start running the experiment</h4>
+<p>Move into Implement. Builders begin the work. Don't wait for perfect setup — start moving and adjust. The Bet Brief is still editable, but it should lock by end of Week 02.</p>
+</div>
+</div>
+<div class="week-row">
+<div class="week-label"><small>Cycle 01</small>Week 03</div>
+<div class="week-body">
+<h4>Mid-cycle pulse</h4>
+<p>The Logbook surfaces patterns from across all SHIP teams in its Week 03 digest. Check whether anyone else is working on the same problem from a different angle. This is the most likely week for a Match flag — be ready to sync briefly with another team if one comes up.</p>
+</div>
+</div>
+<div class="week-row">
+<div class="week-label"><small>Cycle 01</small>Week 04</div>
+<div class="week-body">
+<h4>Evidence accumulating</h4>
+<p>You should be seeing real signal by now — even if it's not what you expected. Weekly check-in should reflect surprises, not just status. If you are still in "we're setting up" mode in Week 04, the bet was too big.</p>
+</div>
+</div>
+<div class="week-row">
+<div class="week-label"><small>Cycle 01</small>Week 05</div>
+<div class="week-body">
+<h4>Start shaping the brief</h4>
+<p>The Team Lead and the Logbook begin drafting the end-of-cycle brief. Don't wait until Week 06. The brief will be Adoption, Decommission, or Continuation — figure out which by mid-Week 05.</p>
+</div>
+</div>
+<div class="week-row">
+<div class="week-label"><small>Cycle 01</small>Week 06</div>
+<div class="week-body">
+<h4>Publish</h4>
+<p>Finalize and publish the brief to psd401.ai. Include what worked, what didn't, what surprised you. Don't sand the rough edges off — the surprises are the most valuable part for the next team.</p>
+</div>
+</div>
+<div class="week-row">
+<div class="week-label"><small>Between</small>Plan gap (2 weeks)</div>
+<div class="week-body">
+<h4>Reform &amp; recalibrate</h4>
+<p>The cabinet reviews the cycle's briefs. The superintendent issues the next quarterly intent if it's an intent-boundary. Teams reform — sometimes the same team continues, sometimes membership shifts. New Bet Briefs get drafted for Cycle 02.</p>
+</div>
+</div>
+</div>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; Where everything lives</span>The team's working surfaces</h2>
+
+<div class="where-grid">
+<div class="where-row">
+<div class="what">Team Space</div>
+<div>Your <strong>Google Chat Space</strong> — the canonical home. All weekly check-ins, working notes, drafts, and cross-team asks go here. The Logbook reads from here. If it's not in the Space, it isn't visible.</div>
+</div>
+<div class="where-row">
+<div class="what">Bet Brief</div>
+<div>Pinned message in the Space, posted Week 01. Lives in your team's Drive folder as a Google Doc.</div>
+</div>
+<div class="where-row">
+<div class="what">Weekly Check-In</div>
+<div>Posted as a message in the Space each week. Use the <a class="inline" href="09-Weekly-Check-In-Template.html">template</a> — four short answers, Tried · Learned · Stuck · Needs.</div>
+</div>
+<div class="where-row">
+<div class="what">Quarterly Intent</div>
+<div>Lives at psd401.ai. The current intent is also available through the Logbook on request. Read it before drafting your Bet Brief.</div>
+</div>
+<div class="where-row">
+<div class="what">Cycle Brief (published)</div>
+<div>Published to psd401.ai at end of cycle. Becomes part of the public corpus. The Logbook indexes it for future teams to learn from.</div>
+</div>
+<div class="where-row">
+<div class="what">The Logbook</div>
+<div>Loaded into each team member's personal AI agent. Use it for coaching, drafting, lookups across past briefs, and writing your check-ins faster.</div>
+</div>
+</div>
+
+<h2><span class="marker">§ V &nbsp;·&nbsp; What is expected of you</span>The team's contract</h2>
+
+<ul>
+<li><strong>Post a weekly check-in.</strong> Every week. Even on a hard week. A one-sentence check-in beats no check-in.</li>
+<li><strong>Be honest in Publish.</strong> If your bet didn't work, say so. The Open Adaptive District treats Decommission Briefs as wins. Quiet abandonment is the failure mode.</li>
+<li><strong>Stay inside the intent.</strong> Read the current quarterly intent before choosing your bet. If you can't draw the line from intent to bet, you have the wrong bet.</li>
+<li><strong>Move fast on what's small.</strong> One bet per cycle. Resist scope creep — that's what the "What we're not doing" field in the Bet Brief is for.</li>
+<li><strong>Ask the Logbook for help.</strong> Drafting, coaching, looking up what other teams have learned. That's what it's for. You are not graded on how independently you can write a Bet Brief.</li>
+<li><strong>Surface needs.</strong> Specific asks ("we need a 15-minute sync with Tech") get met faster than vague ones. Put them in your check-in.</li>
+</ul>
+
+<h2><span class="marker">§ VI &nbsp;·&nbsp; A Week 01 checklist</span>What you should have done by Friday</h2>
+
+<ul class="checklist">
+<li>Team formed — Team Lead, Scribe, two to four Builders, one Sponsor named</li>
+<li>Google Chat Space created and members added</li>
+<li>The Logbook loaded into each member's personal AI agent</li>
+<li>The current quarterly intent read by every team member</li>
+<li>Bet Brief drafted in conversation with the Logbook, pinned to the Space</li>
+<li>First Weekly Check-In posted (even a brief one) by Friday</li>
+<li>Cycle end-date on every team member's calendar</li>
+</ul>
+
+<h2><span class="marker">§ VII &nbsp;·&nbsp; What is not your job</span>What you can let go</h2>
+
+<ul>
+<li><strong>You don't need to solve the problem.</strong> You need to learn something useful about it in six weeks. Solving is a bonus.</li>
+<li><strong>You don't need to defend the bet.</strong> If it doesn't work, you publish a Decommission Brief and move on. No one is grading you on outcomes.</li>
+<li><strong>You don't need to coordinate across all the teams.</strong> The Logbook does that. You just need to be legible in your Space.</li>
+<li><strong>You don't need to format anything pretty.</strong> Templates exist. The Logbook drafts your brief. Your job is the work and the honest reflection.</li>
+</ul>
+
+<h2><span class="marker">§ VIII &nbsp;·&nbsp; Where to go next</span>If you have questions</h2>
+
+<ul>
+<li>For the doctrine — the <em>why</em> behind SHIP — read the <a class="inline" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">SHIP Quick Guide</a> or the <a class="inline" href="12-Doctrine-Primer.html">Doctrine Primer</a>.</li>
+<li>For help writing your Hypothesis — read the <a class="inline" href="11-Bet-Writing-Primer.html">Bet-Writing Primer</a>.</li>
+<li>For the templates — see the <a class="inline" href="index.html">index</a>.</li>
+<li>For anything else — ask the Logbook. It knows where everything lives.</li>
+</ul>
+
+<div class="note">
+<span class="label">A welcome</span>
+You are part of something new. Peninsula is one of the first districts in the country to operate this way, and the work your team does will become part of a corpus that other districts learn from. Treat the cycle seriously — and lightly. The point is to learn, not to perform.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 10</span> &nbsp; Peninsula School District &nbsp;·&nbsp; SHIP Team Onboarding</span>
+<span>Draft v1 · May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

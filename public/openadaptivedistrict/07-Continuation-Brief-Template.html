@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continuation Brief — Template</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(ellipse 80% 60% at 15% 15%, rgba(27,61,92,0.04), transparent 60%), radial-gradient(ellipse 70% 50% at 85% 85%, rgba(154,63,34,0.025), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:18px 0 32px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,6vw,52px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 14px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:24px; padding-top:16px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.byline .stamp{color:var(--pacific); font-weight:600}
+.docnav{margin:0 0 56px; padding:14px 0; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+.docnav a{color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:hover{color:var(--madrone)}
+.docnav a:hover::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:var(--madrone)}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em} .docnav a.home:hover{background:var(--madrone); color:var(--paper)}
+h2{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.2; margin:48px 0 14px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule); letter-spacing:-0.012em}
+h2 .marker{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:24px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px; padding-left:24px}
+li{margin-bottom:6px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+ol li::marker{color:var(--madrone); font-family:var(--mono); font-weight:600}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:20px; line-height:1.5; color:var(--ink); margin:0 0 28px}
+
+.brief{margin:32px 0; background:#FAF6EA; border:1px solid var(--rule); padding:36px 40px 32px; position:relative; box-shadow:0 1px 0 var(--rule-soft), 0 10px 28px -16px rgba(23,27,34,0.2)}
+.brief::before{content:""; position:absolute; top:0; left:0; right:0; height:6px; background:repeating-linear-gradient(90deg, var(--pacific) 0 8px, transparent 8px 14px)}
+.brief-meta{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px 24px; padding-bottom:14px; margin-bottom:20px; border-bottom:2px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase}
+.brief-meta .type{color:var(--pacific); font-weight:600}
+.brief-meta .id{color:var(--ink-3)}
+.brief-title{font-family:var(--serif); font-weight:600; font-size:28px; line-height:1.15; letter-spacing:-0.014em; margin:0 0 6px; color:var(--ink)}
+.brief-team{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:24px}
+.brief-section{margin:24px 0}
+.brief-section h4{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--pacific); margin:0 0 10px; padding-bottom:6px; border-bottom:1px dashed var(--rule)}
+.brief-section p{font-size:16.5px; line-height:1.6; margin:0 0 12px; color:var(--ink)}
+.brief-section ul{margin:0 0 12px; padding-left:20px; font-size:16px}
+.brief-section li{line-height:1.55; margin-bottom:6px}
+.brief-decision{margin-top:24px; padding:18px 22px; background:rgba(27,61,92,0.08); border-left:3px solid var(--pacific)}
+.brief-decision .label{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--pacific); margin-bottom:4px; display:block}
+.brief-decision .value{font-family:var(--serif); font-weight:600; font-size:18px; letter-spacing:-0.005em; color:var(--ink)}
+.brief-decision p{margin:8px 0 0; font-size:15.5px; color:var(--ink-2); line-height:1.5}
+
+.revised{margin:14px 0; padding:14px 18px; background:rgba(184,172,146,0.15); border-left:2px solid var(--pacific); font-family:var(--serif); font-size:16px}
+.revised .lbl{display:block; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--pacific); margin-bottom:6px}
+.field-block{padding:16px 20px; background:rgba(184,172,146,0.1); border-left:2px solid var(--rule); margin:8px 0; font-style:italic; color:var(--ink-2); font-size:15.5px}
+.field-block strong{color:var(--ink); font-style:normal}
+.note{margin:28px 0; padding:18px 22px; border-left:2px solid var(--ink); font-size:16.5px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:6px}
+
+footer.colophon{margin-top:80px; padding-top:22px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:40px 22px 70px} h1.title{font-size:32px} .brief{padding:24px 22px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} .brief{box-shadow:none} h2,h3{page-break-after:avoid} .brief,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 07</span> &nbsp;·&nbsp; Brief Template</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">Continuation Brief</h1>
+<p class="subtitle">For a bet that's not done yet — one more cycle to know.</p>
+<div class="byline">
+<span class="stamp">Template</span><span class="sep">·</span>
+<span>One of three: Adoption · Decommission · Continuation</span><span class="sep">·</span>
+<span>Drafted by The Logbook</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Briefs:</span>
+<a href="05-Adoption-Brief-Template.html">Adoption</a>
+<a href="06-Decommission-Brief-Template.html">Decommission</a>
+<a href="07-Continuation-Brief-Template.html">Continuation</a>
+</nav>
+
+<p class="lede">A <strong>Continuation Brief</strong> is what a team publishes when a six-week bet needs another cycle to know. The original hypothesis is still alive but the evidence isn't yet conclusive. The team is sharpening the question and going again.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; Shared backbone, evolving question</span>Six fields, one of three patterns</h2>
+
+<p>The Continuation Brief follows the same six-field backbone as Adoption and Decommission. What's distinctive: the Decision is "continue" + a revised hypothesis. The "What others should know" field becomes "What we're testing next," and that revised hypothesis carries forward into the next cycle's Bet Brief.</p>
+
+<ol>
+<li><strong>Header strip</strong> — Continuation Brief · ID · cycle · team</li>
+<li><strong>Hypothesis</strong> — the original bet from the cycle's Bet Brief</li>
+<li><strong>What we did</strong> — moves, dates, surprises</li>
+<li><strong>What we learned</strong> — including what is still unknown and why</li>
+<li><strong>Decision</strong> — "Continue into Cycle [N+1]" + the revised hypothesis</li>
+<li><strong>What we're testing next</strong> — what changes about the bet in the next cycle</li>
+</ol>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; A worked example</span>What a published Continuation Brief looks like</h2>
+
+<div class="brief">
+<div class="brief-meta">
+<span class="type">Continuation Brief</span>
+<span class="id">Logbook 0014 · Cycle 01 · 14 Oct 2026</span>
+</div>
+<h3 class="brief-title">AI-assisted Tier 2 reading intervention notes for K–3 teachers</h3>
+<p class="brief-team">Team · Elementary Principal Team</p>
+
+<div class="brief-section">
+<h4>Hypothesis</h4>
+<p>If we give K–3 teachers an AI tool that drafts intervention notes from short audio recordings of reading sessions, we expect teachers to recover 60+ minutes per week and to have richer notes for MTSS data conversations. Success means measurable time recovery, no reduction in note quality (judged by reading specialists), and willing weekly use by at least eight of the twelve teachers we pilot with.</p>
+</div>
+
+<div class="brief-section">
+<h4>What we did</h4>
+<p>Twelve teachers across three elementary buildings piloted the tool starting Week 02. The tool records a five-minute reading session, transcribes it, and drafts an intervention note in the format our MTSS coordinator expects. Teachers reviewed and edited the draft before saving. By Week 05 we had 84 sessions logged.</p>
+<p>Surprise: teachers used the tool in unexpected ways — several used it as a self-reflection tool ("I want to hear how I did") rather than as a notes-drafting tool. That changed our measurement.</p>
+</div>
+
+<div class="brief-section">
+<h4>What we learned</h4>
+<ul>
+<li>Time recovered per teacher was 35 minutes per week — below target. The bottleneck wasn't note-drafting; it was the data entry into our MTSS system, which the tool doesn't yet touch.</li>
+<li>Reading-specialist judgments of note quality were positive — the drafts captured nuance teachers would have skipped under time pressure.</li>
+<li>Adoption was strong: 10 of 12 teachers used the tool weekly by Week 04. Two stopped due to mic quality issues in older classrooms.</li>
+<li>The "self-reflection" use case was unexpected and may be the more important value — teachers said it changed how they listened during sessions.</li>
+</ul>
+</div>
+
+<div class="brief-decision">
+<span class="label">Decision</span>
+<div class="value">Continue into Cycle 02 — revised hypothesis</div>
+<p>The original time-recovery target is the wrong measurement. We are going again with a sharpened bet focused on instructional quality and teacher growth, not just time saved. We will also expand to mic-quality remediation for the two stopped teachers.</p>
+</div>
+
+<div class="revised">
+<span class="lbl">Revised hypothesis for Cycle 02</span>
+If K–3 teachers use the AI-assisted intervention tool weekly, we expect teacher-reported instructional growth (measured by short pre/post self-assessment) to increase, and reading-specialist judgments of teacher note quality to remain at or above the Cycle 01 baseline. Success means a measurable shift in teacher self-assessment, sustained note quality, and continued voluntary use by at least 10 of 12 teachers — now expanded to 18.
+</div>
+
+<div class="brief-section" style="margin-top:24px">
+<h4>What we're testing next</h4>
+<ul>
+<li>New primary metric — teacher-reported instructional growth, not time saved.</li>
+<li>Expand pilot from 12 to 18 teachers, adding two buildings.</li>
+<li>Address mic-quality issues in older classrooms before Cycle 02 launch.</li>
+<li>Begin scoping the MTSS data-entry integration as a separate Cycle 03 bet (different team).</li>
+</ul>
+</div>
+</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; The discipline of continuing well</span>What makes this brief useful</h2>
+
+<div class="field-block"><strong>Sharpen the question.</strong> A Continuation Brief is not a "we need more time" admission. It is a more precise question than the one the team started with. State the new hypothesis explicitly.</div>
+
+<div class="field-block"><strong>Be honest about what you don't know.</strong> The "What we learned" field for a Continuation should be the most uncertain of the three brief types. List what is still unknown and what evidence would resolve it.</div>
+
+<div class="field-block"><strong>Don't continue forever.</strong> A bet that has run two full cycles without sharpening is probably a Decommission in disguise. The Logbook's accountability layer flags these patterns to the cabinet.</div>
+
+<div class="field-block"><strong>Carry the revised hypothesis forward.</strong> The new hypothesis becomes the next cycle's Bet Brief, verbatim. That is how the chain stays coherent.</div>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; How the Logbook helps</span>From open question to sharpened bet</h2>
+
+<p>The <a class="inline" href="02-The-Logbook-Design-Brief.html">Logbook</a> drafts the Continuation Brief from the team's Google Chat Space and then helps the team sharpen the revised hypothesis. It can pull patterns from how other teams have refined bets cycle over cycle, and it can flag when a "continuation" is starting to look like avoidance.</p>
+
+<div class="note">
+<span class="label">A note on cycles in series</span>
+The corpus over time becomes a sequence: an early Bet Brief, a mid-cycle check-in, a Continuation Brief, a revised Bet Brief, and eventually an Adoption or Decommission. That sequence is one of the most useful things districts will be able to fork from us — the actual trajectory of figuring something out, not just the answer.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 07</span> &nbsp; Peninsula School District &nbsp;·&nbsp; Continuation Brief Template</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

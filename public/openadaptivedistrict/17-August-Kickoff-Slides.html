@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>August Kickoff — Slides</title>
+<style>
+:root{
+  --paper:#F4EFE3; --paper-2:#EBE3D0;
+  --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0; height:100%; overflow:hidden; background:var(--ink); color:var(--ink); font-family:var(--serif); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+
+#deck{position:relative; width:100vw; height:100vh; overflow:hidden}
+.slide{
+  position:absolute; inset:0;
+  background:var(--paper);
+  display:flex; flex-direction:column;
+  padding:8vh 10vw;
+  opacity:0; visibility:hidden;
+  transition:opacity 0.4s ease;
+  overflow:auto;
+}
+.slide::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 18% 14%, rgba(154,63,34,0.025), transparent 60%), radial-gradient(ellipse 70% 50% at 84% 86%, rgba(27,61,92,0.03), transparent 60%);
+}
+.slide.active{opacity:1; visibility:visible; z-index:2}
+.slide > *{position:relative; z-index:1}
+
+/* Slide elements */
+.eyebrow{
+  font-family:var(--mono); font-size:14px; letter-spacing:0.25em;
+  text-transform:uppercase; color:var(--madrone); font-weight:600;
+  margin-bottom:32px;
+}
+.eyebrow .roman{color:var(--madrone)}
+.eyebrow .sep{color:var(--ink-3); margin:0 14px}
+.eyebrow .right{color:var(--ink-3)}
+
+h1.cover-title{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(48px, 9vw, 120px); line-height:0.95;
+  letter-spacing:-0.025em; margin:0 0 32px; color:var(--ink);
+}
+h1.cover-title em{font-style:italic; color:var(--madrone)}
+
+h2.slide-title{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(40px, 6.5vw, 80px); line-height:1.05;
+  letter-spacing:-0.02em; margin:0 0 28px; color:var(--ink);
+}
+h2.slide-title em{font-style:italic; color:var(--madrone)}
+
+.deck-deck{
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(20px, 2.6vw, 32px); line-height:1.4;
+  color:var(--ink-2); max-width:28em; margin:0 0 32px;
+}
+
+.body-text{
+  font-family:var(--serif); font-size:clamp(20px, 2.2vw, 28px);
+  line-height:1.5; color:var(--ink); max-width:38em;
+  margin:0 0 20px;
+}
+.body-text + .body-text{margin-top:0}
+.body-text strong{color:var(--ink); font-weight:600}
+
+.intent-quote{
+  background:rgba(184,172,146,0.18);
+  border-left:6px solid var(--madrone);
+  padding:32px 40px;
+  font-family:var(--serif); font-size:clamp(20px, 2.4vw, 30px);
+  line-height:1.5; color:var(--ink);
+  max-width:42em;
+}
+.intent-quote p{margin:0 0 18px}
+.intent-quote p:last-child{margin-bottom:0}
+.intent-quote strong{color:var(--madrone); display:block; font-family:var(--mono); font-size:0.55em; letter-spacing:0.18em; text-transform:uppercase; font-weight:600; margin-bottom:8px}
+
+/* SHIP grid */
+.ship-grid{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:24px;
+  margin-top:24px; max-width:48em;
+}
+.ship-phase{
+  border-top:2px solid var(--ink);
+  padding-top:18px;
+}
+.ship-phase .num{
+  font-family:var(--mono); font-size:14px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:6px;
+}
+.ship-phase .letter{
+  font-family:var(--serif); font-size:64px; font-weight:600;
+  color:var(--madrone); line-height:1; margin-bottom:8px;
+  letter-spacing:-0.02em;
+}
+.ship-phase .name{
+  font-family:var(--serif); font-weight:600; font-size:22px;
+  color:var(--ink); margin-bottom:6px; letter-spacing:-0.01em;
+}
+.ship-phase .desc{
+  font-family:var(--serif); font-size:15px; line-height:1.45;
+  color:var(--ink-2); font-style:italic;
+}
+
+/* Brief cards */
+.briefs{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+  margin-top:24px; max-width:50em;
+}
+.brief-card{
+  border:1px solid var(--rule); background:#FAF6EA;
+  padding:22px 24px; position:relative;
+}
+.brief-card.adopt{border-top:5px solid var(--moss)}
+.brief-card.kill{border-top:5px solid var(--madrone)}
+.brief-card.cont{border-top:5px solid var(--pacific)}
+.brief-card h3{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  margin:0 0 12px;
+}
+.brief-card.adopt h3{color:var(--moss)}
+.brief-card.kill h3{color:var(--madrone)}
+.brief-card.cont h3{color:var(--pacific)}
+.brief-card .for{
+  font-family:var(--serif); font-weight:600; font-size:20px;
+  color:var(--ink); margin-bottom:8px; letter-spacing:-0.01em;
+  line-height:1.2;
+}
+.brief-card p{
+  font-family:var(--serif); font-size:15px; line-height:1.5;
+  color:var(--ink-2); margin:0; font-style:italic;
+}
+
+/* Checklist big */
+.big-list{
+  list-style:none; padding:0; margin:24px 0 0;
+  max-width:42em;
+}
+.big-list li{
+  font-family:var(--serif); font-size:clamp(20px, 2.2vw, 26px);
+  line-height:1.45; padding:14px 0 14px 56px;
+  position:relative;
+  border-bottom:1px solid var(--rule-soft);
+  color:var(--ink);
+}
+.big-list li::before{
+  content:"☐"; position:absolute; left:0; top:14px;
+  font-family:var(--mono); color:var(--madrone); font-size:32px;
+  font-weight:400;
+}
+
+/* Resources grid */
+.res-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  margin-top:24px; max-width:50em;
+}
+.res{
+  border-top:2px solid var(--ink);
+  padding-top:14px;
+}
+.res .what{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:8px;
+}
+.res .where{
+  font-family:var(--serif); font-weight:600; font-size:22px;
+  color:var(--ink); margin-bottom:4px; letter-spacing:-0.01em;
+}
+.res .desc{
+  font-family:var(--serif); font-size:16px; line-height:1.45;
+  color:var(--ink-2); font-style:italic;
+}
+
+/* Final slide */
+.signoff{
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(24px, 3.2vw, 40px); line-height:1.45;
+  color:var(--ink); max-width:32em; margin:0 0 40px;
+}
+.signoff::before{
+  content:"\201C"; font-style:normal; color:var(--madrone);
+  font-size:1.4em; line-height:0; margin-right:8px;
+  position:relative; top:0.15em;
+}
+
+/* Footer / progress */
+.deck-footer{
+  position:fixed; bottom:0; left:0; right:0;
+  padding:14px 40px; display:flex; justify-content:space-between; align-items:center;
+  font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--ink-3);
+  background:linear-gradient(to top, rgba(244,239,227,0.95), transparent);
+  z-index:10; pointer-events:none;
+}
+.deck-footer .meta{display:flex; gap:16px; align-items:center}
+.deck-footer .mark{color:var(--madrone); font-weight:600}
+.deck-footer .progress{
+  font-family:var(--mono); color:var(--ink-2);
+}
+
+/* Nav controls */
+.nav-controls{
+  position:fixed; bottom:14px; left:50%; transform:translateX(-50%);
+  display:flex; gap:6px; pointer-events:auto; z-index:11;
+}
+.nav-btn{
+  background:var(--paper-2); border:1px solid var(--rule);
+  color:var(--ink); padding:6px 14px; font-family:var(--mono);
+  font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+  cursor:pointer; transition:all 0.15s; text-decoration:none;
+  font-weight:600;
+}
+.nav-btn:hover{background:var(--ink); color:var(--paper)}
+.nav-btn:disabled{opacity:0.4; cursor:not-allowed}
+
+/* Home link */
+.home-link{
+  position:fixed; top:20px; left:20px; z-index:12;
+  font-family:var(--mono); font-size:11px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--madrone); font-weight:600;
+  text-decoration:none; padding:6px 12px; border:1px solid var(--madrone);
+  background:var(--paper); transition:all 0.15s;
+}
+.home-link:hover{background:var(--madrone); color:var(--paper)}
+
+/* Small screens */
+@media (max-width:680px){
+  .slide{padding:6vh 8vw}
+  .ship-grid{grid-template-columns:repeat(2,1fr); gap:16px}
+  .briefs{grid-template-columns:1fr; gap:16px}
+  .res-grid{grid-template-columns:1fr}
+  .deck-footer{padding:10px 20px; font-size:10px}
+}
+
+@media print{
+  html, body{overflow:visible; background:white; height:auto}
+  #deck{height:auto}
+  .slide{position:relative; inset:auto; opacity:1; visibility:visible; page-break-after:always; padding:40px; min-height:auto; background:white}
+  .slide::before{display:none}
+  .deck-footer, .nav-controls, .home-link{display:none}
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="home-link">← All artifacts</a>
+
+<div id="deck">
+
+<!-- SLIDE 00 · COVER -->
+<section class="slide active" data-slide="0">
+<div class="eyebrow">
+<span class="roman">№ 17</span><span class="sep">·</span>
+<span>August Kickoff Deck</span><span class="sep">·</span>
+<span class="right">Peninsula School District</span>
+</div>
+<h1 class="cover-title">The Open<br>Adaptive <em>District</em></h1>
+<p class="deck-deck">Cycle 01 begins today. 90 minutes from now, every team has a draft Bet Brief in hand and the Logbook on their phone.</p>
+</section>
+
+<!-- SLIDE 01 · WHY WE ARE HERE -->
+<section class="slide" data-slide="1">
+<div class="eyebrow">
+<span class="roman">Slide 01</span><span class="sep">·</span>
+<span>Why we are here</span>
+</div>
+<h2 class="slide-title">A district that<br>moves at the<br>pace of <em>change.</em></h2>
+<p class="body-text">AI capability doubles every six months. District change cycles take years. That gap is where public education loses ground.</p>
+<p class="body-text">We are going to operate differently here — small cross-silo teams, six-week experiments, honest public debriefs, a quarterly intent that holds the line on what matters.</p>
+<p class="body-text"><strong>This is the start.</strong></p>
+</section>
+
+<!-- SLIDE 02 · THE QUARTERLY INTENT -->
+<section class="slide" data-slide="2">
+<div class="eyebrow">
+<span class="roman">Slide 02</span><span class="sep">·</span>
+<span>The Quarterly Intent</span>
+</div>
+<h2 class="slide-title">Three sentences.<br>No more.</h2>
+<div class="intent-quote">
+<strong>The intent for this quarter</strong>
+<p>By the end of this quarter, we are after [the outcome the superintendent names].</p>
+<p>This matters now because [the moment we are in].</p>
+<p>We will not compromise on [the non-negotiables].</p>
+</div>
+<p class="body-text" style="margin-top:32px"><em>Every team's bet lives inside this intent. The intent sets <strong>what</strong>; teams own <strong>how.</strong></em></p>
+</section>
+
+<!-- SLIDE 03 · THE SHIP CYCLE -->
+<section class="slide" data-slide="3">
+<div class="eyebrow">
+<span class="roman">Slide 03</span><span class="sep">·</span>
+<span>The SHIP cycle</span>
+</div>
+<h2 class="slide-title">Six weeks active. Two weeks to plan. <em>Repeat.</em></h2>
+
+<div class="ship-grid">
+<div class="ship-phase">
+<div class="num">Phase 01</div>
+<div class="letter">S</div>
+<div class="name">Sense</div>
+<div class="desc">What changed? What problem are we trying to solve?</div>
+</div>
+<div class="ship-phase">
+<div class="num">Phase 02</div>
+<div class="letter">H</div>
+<div class="name">Hypothesize</div>
+<div class="desc">If we do X, we expect Y. Here's how we'll know.</div>
+</div>
+<div class="ship-phase">
+<div class="num">Phase 03</div>
+<div class="letter">I</div>
+<div class="name">Implement</div>
+<div class="desc">Run the bet. Stay close. Adjust as evidence comes in.</div>
+</div>
+<div class="ship-phase">
+<div class="num">Phase 04</div>
+<div class="letter">P</div>
+<div class="name">Publish</div>
+<div class="desc">Adopt or kill. Say so publicly.</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 04 · THE THREE BRIEFS -->
+<section class="slide" data-slide="4">
+<div class="eyebrow">
+<span class="roman">Slide 04</span><span class="sep">·</span>
+<span>The three brief patterns</span>
+</div>
+<h2 class="slide-title">Every cycle ends with one of <em>three.</em></h2>
+
+<div class="briefs">
+<div class="brief-card adopt">
+<h3>Adoption Brief</h3>
+<div class="for">It worked.</div>
+<p>What we tried, what we learned, why we're scaling, what others should know.</p>
+</div>
+<div class="brief-card kill">
+<h3>Decommission Brief</h3>
+<div class="for">It didn't.</div>
+<p>What we tried, what we learned, why we're stopping, what others should not repeat.</p>
+</div>
+<div class="brief-card cont">
+<h3>Continuation Brief</h3>
+<div class="for">We need another cycle.</div>
+<p>What we tried, what we learned, what we're testing next, revised hypothesis.</p>
+</div>
+</div>
+<p class="body-text" style="margin-top:32px"><em>Decommissioning publicly is a <strong>feature,</strong> not a failure. Quiet abandonment is the failure mode.</em></p>
+</section>
+
+<!-- SLIDE 05 · THE LOGBOOK -->
+<section class="slide" data-slide="5">
+<div class="eyebrow">
+<span class="roman">Slide 05</span><span class="sep">·</span>
+<span>The Logbook</span>
+</div>
+<h2 class="slide-title">An agent skill you load into <em>your</em> AI.</h2>
+<p class="body-text"><strong>The Logbook</strong> reads your team's Google Chat Space, synthesizes across teams, coaches you through your cycle, and drafts your end-of-cycle brief.</p>
+<p class="body-text">It does four jobs:</p>
+<ul class="big-list" style="margin-top:0">
+<li><strong>Synthesize</strong> — weekly digest across teams</li>
+<li><strong>Coach</strong> — walk you through any SHIP phase</li>
+<li><strong>Draft</strong> — first drafts of your briefs</li>
+<li><strong>Flag</strong> — accountability and conflict surfacing</li>
+</ul>
+</section>
+
+<!-- SLIDE 06 · WEEK 01 CHECKLIST -->
+<section class="slide" data-slide="6">
+<div class="eyebrow">
+<span class="roman">Slide 06</span><span class="sep">·</span>
+<span>What is due Friday</span>
+</div>
+<h2 class="slide-title">By end of <em>this</em> week.</h2>
+<ul class="big-list">
+<li>Team formed — Lead, Scribe, Builders, Sponsor</li>
+<li>Google Chat Space created and members added</li>
+<li>The Logbook loaded into each member's AI</li>
+<li>Quarterly intent read together</li>
+<li>Draft Bet Brief pinned in the Space</li>
+<li>First Weekly Check-In posted</li>
+<li>Cycle end-date on every calendar</li>
+</ul>
+</section>
+
+<!-- SLIDE 07 · WHERE TO FIND HELP -->
+<section class="slide" data-slide="7">
+<div class="eyebrow">
+<span class="roman">Slide 07</span><span class="sep">·</span>
+<span>Where to find what you need</span>
+</div>
+<h2 class="slide-title">Everything lives at <em>psd401.ai.</em></h2>
+
+<div class="res-grid">
+<div class="res">
+<div class="what">For the doctrine</div>
+<div class="where">SHIP Quick Guide</div>
+<div class="desc">Five minutes. Read it first.</div>
+</div>
+<div class="res">
+<div class="what">For your hypothesis</div>
+<div class="where">Bet-Writing Primer</div>
+<div class="desc">One page. Patterns and anti-patterns.</div>
+</div>
+<div class="res">
+<div class="what">For the templates</div>
+<div class="where">The full collection index</div>
+<div class="desc">Briefs, check-ins, intents, all linked.</div>
+</div>
+<div class="res">
+<div class="what">For anything else</div>
+<div class="where">Ask the Logbook</div>
+<div class="desc">It knows where everything lives.</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 08 · CLOSE -->
+<section class="slide" data-slide="8">
+<div class="eyebrow">
+<span class="roman">Slide 08</span><span class="sep">·</span>
+<span>To close</span>
+</div>
+<p class="signoff">You are not the only district doing this — but you are one of the first. The work your team does this year will become part of a corpus other districts learn from. Treat the cycle seriously, and lightly. The point is to learn, not to perform.</p>
+<p class="body-text"><strong>Go.</strong></p>
+</section>
+
+</div>
+
+<div class="nav-controls">
+<button class="nav-btn" id="prev">← Prev</button>
+<button class="nav-btn" id="next">Next →</button>
+</div>
+
+<div class="deck-footer">
+<div class="meta">
+<span class="mark">№ 17</span>
+<span>August Kickoff Deck</span>
+</div>
+<span class="progress" id="progress">1 / 9</span>
+</div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  const progressEl = document.getElementById('progress');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+
+  function go(i){
+    if(i < 0 || i >= total) return;
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    progressEl.textContent = (current + 1) + ' / ' + total;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  prevBtn.addEventListener('click', ()=> go(current - 1));
+  nextBtn.addEventListener('click', ()=> go(current + 1));
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(current + 1); }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(current - 1); }
+    else if(e.key === 'Home') { e.preventDefault(); go(0); }
+    else if(e.key === 'End') { e.preventDefault(); go(total - 1); }
+    else if(e.key === 'f' || e.key === 'F') { e.preventDefault(); document.documentElement.requestFullscreen?.(); }
+  });
+
+  // Initial state from hash
+  const hash = parseInt(location.hash.replace('#',''), 10);
+  if(!isNaN(hash) && hash >= 1 && hash <= total) go(hash - 1);
+  else go(0);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bet Brief — Template</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 15% 15%, rgba(27,61,92,0.025), transparent 60%), radial-gradient(ellipse 70% 50% at 85% 85%, rgba(154,63,34,0.025), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:18px 0 32px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,6vw,52px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 14px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:24px; padding-top:16px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 56px; padding:14px 0; border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a{color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em} .docnav a.home:hover{background:var(--madrone); color:var(--paper)}
+.docnav a:hover{color:var(--madrone)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.2; margin:48px 0 14px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule); letter-spacing:-0.012em}
+h2 .marker{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:24px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px; padding-left:24px}
+li{margin-bottom:6px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+ol li::marker{color:var(--madrone); font-family:var(--mono); font-weight:600}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:20px; line-height:1.5; color:var(--ink); margin:0 0 28px}
+
+.template{margin:32px 0; background:#FAF6EA; border:1px solid var(--rule); padding:32px 36px 28px; position:relative; box-shadow:0 1px 0 var(--rule-soft), 0 10px 28px -16px rgba(23,27,34,0.2)}
+.template::before{content:""; position:absolute; top:0; left:0; right:0; height:5px; background:repeating-linear-gradient(90deg, var(--pacific) 0 8px, transparent 8px 14px)}
+.template-meta{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px 24px; padding-bottom:12px; margin-bottom:18px; border-bottom:2px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase}
+.template-meta .type{color:var(--pacific); font-weight:600}
+.template-meta .id{color:var(--ink-3)}
+.template h3.tt{font-family:var(--serif); font-weight:600; font-size:24px; letter-spacing:-0.012em; margin:0 0 6px; color:var(--ink); text-transform:none}
+.template .team{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:20px}
+.template .field{margin:18px 0}
+.template .field h4{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--pacific); margin:0 0 8px; padding-bottom:6px; border-bottom:1px dashed var(--rule)}
+.template .field p{font-size:16px; line-height:1.55; margin:0 0 10px; color:var(--ink)}
+.template .field .placeholder{color:var(--ink-3); font-style:italic; font-size:15px; padding:10px 14px; background:rgba(184,172,146,0.15); border-left:2px solid var(--rule); margin:6px 0}
+.template ul.field-list{margin:6px 0 10px; padding-left:20px; font-size:15.5px}
+.template ul.field-list li{line-height:1.5}
+
+.example-strip{font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin:30px 0 10px; padding-top:18px; border-top:1px solid var(--rule-soft)}
+.field-block{padding:14px 18px; background:rgba(184,172,146,0.1); border-left:2px solid var(--rule); margin:8px 0; font-size:15.5px; line-height:1.55}
+.field-block strong{color:var(--ink)}
+.note{margin:28px 0; padding:18px 22px; border-left:2px solid var(--ink); font-size:16.5px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:6px}
+
+footer.colophon{margin-top:80px; padding-top:22px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:40px 22px 70px} h1.title{font-size:32px} .template{padding:22px 20px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} .template{box-shadow:none} h2,h3{page-break-after:avoid} .template,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 08</span> &nbsp;·&nbsp; Operating Template</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">Bet Brief</h1>
+<p class="subtitle">A team's one-pager at the start of a six-week cycle. Hypothesis, success criteria, week-one plan.</p>
+<div class="byline">
+<span>Template</span><span class="sep">·</span>
+<span>Posted to the team's Google Chat Space in Week 01</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Working tools:</span>
+<a href="08-Bet-Brief-Template.html">Bet Brief</a>
+<a href="09-Weekly-Check-In-Template.html">Weekly Check-In</a>
+</nav>
+
+<p class="lede">The <strong>Bet Brief</strong> is the team's contract with itself at the start of a cycle. One page. Posted in the team's Google Chat Space within the first week. It anchors every weekly check-in that follows and every brief at the end.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; The template</span>What goes in a Bet Brief</h2>
+
+<div class="template">
+<div class="template-meta">
+<span class="type">Bet Brief</span>
+<span class="id">[Logbook ID] · Cycle [N] · Week 01</span>
+</div>
+<h3 class="tt">[Bet title — short, plain language]</h3>
+<p class="team">Team · [Department or team name] · Owner · [Name]</p>
+
+<div class="field">
+<h4>The problem</h4>
+<p class="placeholder">One paragraph. What district problem are we trying to address in this cycle? Why now? Connect to the current <a class="inline" href="04-Quarterly-Intent-Template.html">quarterly intent</a>.</p>
+</div>
+
+<div class="field">
+<h4>Hypothesis</h4>
+<p class="placeholder">If we do [X], we expect [Y]. State it plainly. The Logbook can help sharpen it — see the <a class="inline" href="11-Bet-Writing-Primer.html">Bet-Writing Primer</a>.</p>
+</div>
+
+<div class="field">
+<h4>Success criteria</h4>
+<p class="placeholder">How will we know? Two or three concrete, measurable criteria. Include at least one quantitative and one qualitative.</p>
+<ul class="field-list">
+<li>Criterion 1 — [measurable]</li>
+<li>Criterion 2 — [measurable]</li>
+<li>Criterion 3 — [measurable]</li>
+</ul>
+</div>
+
+<div class="field">
+<h4>Week-one plan</h4>
+<p class="placeholder">What the team is doing in the first week to start the experiment. Concrete actions, dates, who owns each.</p>
+</div>
+
+<div class="field">
+<h4>What we're not doing</h4>
+<p class="placeholder">Name the obvious adjacent things we will NOT take on this cycle. Keeps the bet scoped.</p>
+</div>
+
+<div class="field">
+<h4>Risks &amp; unknowns</h4>
+<p class="placeholder">Two or three things that could derail the bet, plus what is genuinely unknown at the start. Honesty here helps the Logbook surface things later.</p>
+</div>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; The fields, explained</span>What each one is doing</h2>
+
+<div class="field-block"><strong>The problem.</strong> The Bet Brief begins with the problem, not the solution. Connect it to the quarterly intent — every bet lives inside an intent. If you can't tie the bet to the current intent, you are probably running the wrong bet this cycle.</div>
+
+<div class="field-block"><strong>Hypothesis.</strong> "If [we do X], we expect [Y]." A good hypothesis is small enough to run in six weeks, specific enough to know whether it worked, and broad enough that the team has real choices about how to test it. See the <a class="inline" href="11-Bet-Writing-Primer.html">Bet-Writing Primer</a> for patterns.</div>
+
+<div class="field-block"><strong>Success criteria.</strong> Two or three concrete tests. Include at least one quantitative measure and at least one qualitative one. Avoid vanity metrics. The criteria should be falsifiable — if you couldn't fail, you didn't really have a hypothesis.</div>
+
+<div class="field-block"><strong>Week-one plan.</strong> Just the first week. Don't try to plan the full six weeks — the point of SHIP is that you adapt as evidence comes in. The Bet Brief commits to the first move only.</div>
+
+<div class="field-block"><strong>What we're not doing.</strong> Naming the scope-creep candidates up front protects the bet. When a chief or a peer asks "could you also try X?", the Bet Brief is the team's polite way to say "not this cycle."</div>
+
+<div class="field-block"><strong>Risks &amp; unknowns.</strong> What could go sideways. What you genuinely don't know yet. This list will likely change — that's fine. The Logbook reads this when flagging issues mid-cycle.</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; How it lives</span>In the Google Chat Space</h2>
+
+<p>The Bet Brief is posted as a pinned message in the team's <strong>Google Chat Space</strong> in Week 01. The team can iterate on it during Week 01 — that's expected — but by the end of Week 01 it should be locked. The Logbook reads it as the anchor for everything that follows.</p>
+
+<p>Every weekly check-in points back to it. The end-of-cycle brief — whichever pattern — opens by restating the original Hypothesis from the Bet Brief.</p>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; How the Logbook helps</span>From a problem to a sharp Bet Brief</h2>
+
+<p>Teams don't write the Bet Brief from scratch. A team member opens a thread in their Chat Space, talks the problem out with the <a class="inline" href="02-The-Logbook-Design-Brief.html">Logbook</a>, and the Logbook drafts a Bet Brief against this template. The Logbook will push back on hypotheses that are too vague, criteria that aren't falsifiable, and bets that don't connect to the current intent. The team revises and posts.</p>
+
+<div class="note">
+<span class="label">A note on size</span>
+A Bet Brief should fit on one page. If it's longer, the bet is probably too big for a single cycle. Split it or sharpen the scope before you start the work.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 08</span> &nbsp; Peninsula School District &nbsp;·&nbsp; Bet Brief Template</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

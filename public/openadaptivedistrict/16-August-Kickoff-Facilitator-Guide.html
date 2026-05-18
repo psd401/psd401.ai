@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>August Kickoff — Facilitator Guide</title>
+<style>
+:root{
+  --paper:#F4EFE3; --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-pale:#C5D2DC; --madrone:#9A3F22; --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:18px; line-height:1.62; -webkit-font-smoothing:antialiased}
+body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; background:radial-gradient(ellipse 80% 60% at 15% 15%, rgba(68,90,58,0.04), transparent 60%), radial-gradient(ellipse 70% 50% at 85% 85%, rgba(154,63,34,0.025), transparent 60%);}
+main{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:64px 32px 100px}
+.masthead{border-top:4px solid var(--ink); border-bottom:1px solid var(--rule); padding:18px 0 32px}
+.section-marker{font-family:var(--mono); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.section-marker .roman{color:var(--madrone); font-weight:600}
+h1.title{font-family:var(--serif); font-weight:600; font-size:clamp(36px,6vw,52px); line-height:1.05; letter-spacing:-0.02em; margin:0 0 14px}
+.subtitle{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink-2); margin:0; max-width:36em}
+.byline{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-top:24px; padding-top:16px; border-top:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 22px}
+.byline .sep{color:var(--rule)}
+.docnav{margin:0 0 56px; padding:14px 0; border-top:1px solid var(--rule-soft); border-bottom:1px solid var(--rule-soft); display:flex; flex-wrap:wrap; gap:6px 24px; align-items:baseline; font-family:var(--mono); font-size:12px}
+.docnav a.home{color:var(--madrone); font-weight:600; text-decoration:none; padding:4px 10px; border:1px solid var(--madrone); margin-right:12px; letter-spacing:0.06em}
+.docnav .home:hover{background:var(--madrone); color:var(--paper)}
+.docnav a:not(.home){color:var(--ink); text-decoration:none; padding:3px 0; position:relative}
+.docnav a:not(.home):hover{color:var(--madrone)}
+.docnav .lbl{text-transform:uppercase; letter-spacing:0.16em; color:var(--ink-3); font-weight:500; font-size:11px}
+h2{font-family:var(--serif); font-weight:600; font-size:26px; line-height:1.2; margin:48px 0 14px; color:var(--ink); padding-top:18px; border-top:1px solid var(--rule); letter-spacing:-0.012em}
+h2 .marker{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:8px}
+h3{font-family:var(--mono); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:var(--ink-3); margin:24px 0 8px}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 18px; padding-left:24px}
+li{margin-bottom:6px}
+ul li::marker{color:var(--madrone); font-size:0.85em}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a.inline{color:var(--pacific); text-decoration:none; border-bottom:1px solid var(--pacific-pale); padding-bottom:1px}
+a.inline:hover{color:var(--madrone); border-bottom-color:var(--madrone)}
+p.lede{font-size:20px; line-height:1.5; color:var(--ink); margin:0 0 28px}
+
+.agenda{margin:24px 0 32px; border-top:1px solid var(--ink)}
+.block{display:grid; grid-template-columns:90px 1fr; gap:24px; padding:20px 0; border-bottom:1px solid var(--rule-soft)}
+.block-time{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.16em; color:var(--madrone); padding-top:4px; text-transform:uppercase}
+.block-time small{display:block; color:var(--ink-3); font-weight:500; margin-bottom:4px; letter-spacing:0.14em}
+.block-body h4{font-family:var(--serif); font-weight:600; font-size:20px; margin:0 0 6px; color:var(--ink); letter-spacing:-0.01em}
+.block-body p{font-size:16px; line-height:1.55; margin:0 0 8px; color:var(--ink-2)}
+.block-body .lead{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--moss); margin-bottom:6px; display:block}
+.block-body ul{margin:6px 0 0; padding-left:20px; font-size:15px}
+.block-body ul li{margin-bottom:4px; color:var(--ink-2)}
+
+.materials{margin:18px 0; padding:18px 22px; background:rgba(184,172,146,0.12); border-left:3px solid var(--ink)}
+.materials .lbl{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:8px}
+.materials ul{margin:0; padding-left:20px; font-size:15.5px}
+.materials li{margin-bottom:4px}
+
+.outcomes{margin:24px 0; padding:20px 24px; background:rgba(68,90,58,0.06); border-left:3px solid var(--moss)}
+.outcomes .lbl{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--moss); display:block; margin-bottom:8px}
+.outcomes ul{margin:0; padding-left:20px; font-size:15.5px; line-height:1.55}
+.outcomes li{margin-bottom:6px}
+
+.note{margin:28px 0; padding:18px 22px; border-left:2px solid var(--ink); font-size:16.5px; line-height:1.55}
+.note .label{display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--madrone); font-weight:600; margin-bottom:6px}
+
+footer.colophon{margin-top:80px; padding-top:22px; border-top:4px solid var(--ink); font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+footer.colophon .mark{color:var(--madrone); font-weight:600}
+
+@media (max-width:680px){main{padding:40px 22px 70px} h1.title{font-size:32px} .block{grid-template-columns:1fr; gap:6px}}
+@media print{body{background:white; color:black; font-size:11pt} body::before{display:none} main{padding:0; max-width:none} .docnav{display:none} h2,h3{page-break-after:avoid} .block,.materials,.outcomes,.note{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 16</span> &nbsp;·&nbsp; Facilitator Guide</span>
+<span>Peninsula School District</span>
+</div>
+<h1 class="title">August Kickoff</h1>
+<p class="subtitle">A 90-minute session at the start of August that launches Cycle 01. Agenda, materials, what teams leave with.</p>
+<div class="byline">
+<span>Facilitator guide</span><span class="sep">·</span>
+<span>90 minutes · Cabinet &amp; principals</span><span class="sep">·</span>
+<span>First week of August 2026</span>
+</div>
+</header>
+
+<nav class="docnav">
+<a href="index.html" class="home">← All artifacts</a>
+<span class="lbl">Training:</span>
+<a href="10-SHIP-Team-Onboarding-Guide.html">Onboarding</a>
+<a href="11-Bet-Writing-Primer.html">Bet-Writing</a>
+<a href="16-August-Kickoff-Facilitator-Guide.html">Kickoff</a>
+</nav>
+
+<p class="lede">This is the session that launches the Open Adaptive District at Peninsula. 90 minutes, all cabinet and all principals in one room. By the end, every team has a draft Bet Brief in hand, their Google Chat Space stood up, the Logbook loaded into their personal AI agent, and a clear next-week task list. Facilitated by the superintendent and the CIO.</p>
+
+<h2><span class="marker">§ I &nbsp;·&nbsp; Goals for the 90 minutes</span>What we leave with</h2>
+
+<div class="outcomes">
+<span class="lbl">By the end of the session</span>
+<ul>
+<li>Every cabinet member and principal can describe SHIP in two sentences</li>
+<li>Each team has chosen a Team Lead and identified its Scribe</li>
+<li>Each team has a draft Bet Brief — not polished, but committed</li>
+<li>Each team's Google Chat Space exists and members are added</li>
+<li>The Logbook is loaded into every attendee's personal AI agent and tested once</li>
+<li>The current quarterly intent has been read together, out loud</li>
+<li>Every team has a Friday calendar reminder for their first Weekly Check-In</li>
+</ul>
+</div>
+
+<h2><span class="marker">§ II &nbsp;·&nbsp; The agenda</span>Minute by minute</h2>
+
+<div class="agenda">
+
+<div class="block">
+<div class="block-time"><small>0:00 — 0:10</small>10 min</div>
+<div class="block-body">
+<span class="lead">Lead · the superintendent</span>
+<h4>The intent for the year</h4>
+<p>the superintendent opens with why we are doing this — not a pep talk, not a policy briefing. The same three-sentence intent that will go to teams as the quarterly intent. Read it aloud. Then one sentence on what success looks like by May.</p>
+<ul>
+<li>Slide 01 · "Why we are here"</li>
+<li>Slide 02 · The current Quarterly Intent (verbatim)</li>
+</ul>
+</div>
+</div>
+
+<div class="block">
+<div class="block-time"><small>0:10 — 0:20</small>10 min</div>
+<div class="block-body">
+<span class="lead">Lead · the CIO</span>
+<h4>SHIP in two minutes</h4>
+<p>The cycle in plain language. Sense, Hypothesize, Implement, Publish. Six weeks active, two weeks plan gap. One bet per team per cycle. Briefs at the end — Adoption, Decommission, Continuation. That is the whole model. Refer to the SHIP Quick Guide for anyone who wants depth.</p>
+<ul>
+<li>Slide 03 · The SHIP cycle diagram</li>
+<li>Slide 04 · The three brief patterns</li>
+</ul>
+</div>
+</div>
+
+<div class="block">
+<div class="block-time"><small>0:20 — 0:30</small>10 min</div>
+<div class="block-body">
+<span class="lead">Lead · the CIO</span>
+<h4>The Logbook — what it does and how to load it</h4>
+<p>Two-minute overview of the Logbook (synthesize, coach, draft, flag). Then eight minutes loading the skill into each attendee's personal AI agent, live. Everyone in the room has it working before they leave this block.</p>
+</div>
+</div>
+
+<div class="materials">
+<span class="lbl">Materials for this block</span>
+<ul>
+<li>Logbook install link (sent in pre-session email; reminder on slide)</li>
+<li>One-page install instructions printed for the technologically-cautious</li>
+<li>Two people circulating to help with installs — the CIO and one Tech Department member</li>
+</ul>
+</div>
+
+<div class="block">
+<div class="block-time"><small>0:30 — 0:50</small>20 min</div>
+<div class="block-body">
+<span class="lead">Lead · Team work</span>
+<h4>Team huddles — draft your Bet Brief</h4>
+<p>Teams break into their already-assigned configurations. Each team picks one problem they want to bet on inside the quarterly intent. The team's Logbook helps them sharpen it into a hypothesis using the Bet-Writing Primer's formula. By the end of this block, every team has a draft Bet Brief — rough, not polished. Use the <a class="inline" href="08-Bet-Brief-Template.html">Bet Brief template</a> and the <a class="inline" href="11-Bet-Writing-Primer.html">Bet-Writing Primer</a>.</p>
+</div>
+</div>
+
+<div class="materials">
+<span class="lbl">Materials for this block</span>
+<ul>
+<li>Printed copies of the Bet Brief template and Bet-Writing Primer at each table</li>
+<li>Pre-assigned team configurations posted at each station</li>
+<li>the CIO and the superintendent circulating, listening, sharpening</li>
+</ul>
+</div>
+
+<div class="block">
+<div class="block-time"><small>0:50 — 1:00</small>10 min</div>
+<div class="block-body">
+<span class="lead">Lead · the CIO</span>
+<h4>Stand up your team's Google Chat Space</h4>
+<p>Each Team Lead creates their team's Google Chat Space, adds members, and pins their draft Bet Brief. The Scribe posts a placeholder for the first Weekly Check-In due Friday. Ten minutes is enough — these are not big artifacts to create.</p>
+</div>
+</div>
+
+<div class="block">
+<div class="block-time"><small>1:00 — 1:15</small>15 min</div>
+<div class="block-body">
+<span class="lead">Lead · the superintendent &amp; the CIO</span>
+<h4>Cross-team share-out</h4>
+<p>Each team gets 90 seconds to read their draft Bet Brief aloud. No debate, no commentary — just a read-around. The room hears every bet. the CIO notes any obvious early overlaps (he will surface them in the first Cabinet Weekly Read). the superintendent closes with one sentence on what she is paying attention to.</p>
+</div>
+</div>
+
+<div class="block">
+<div class="block-time"><small>1:15 — 1:30</small>15 min</div>
+<div class="block-body">
+<span class="lead">Lead · the superintendent</span>
+<h4>Q &amp; A, expectations, close</h4>
+<p>Open Q &amp; A for ten minutes. Five-minute close with three things: (1) what is due Friday — first Weekly Check-In; (2) where to ask questions during the cycle; (3) the date and place of the first cabinet-cycle review at Week 02. Calendar reminders go in before people leave.</p>
+</div>
+</div>
+
+</div>
+
+<h2><span class="marker">§ III &nbsp;·&nbsp; What to prepare before the session</span>One-week-out checklist</h2>
+
+<ul>
+<li><strong>Pre-session email</strong> — sent one week before. Includes the Logbook install link, links to the Quick Guide and Onboarding Guide, the time and place, the pre-assigned team configurations.</li>
+<li><strong>Team configurations</strong> — pre-assigned by the superintendent + the CIO. Each cabinet department has a team. Principal teams by grade band. Reviewed and adjusted in the week before.</li>
+<li><strong>Slides 01–04</strong> — kept simple. Four slides, no more.</li>
+<li><strong>Printed handouts</strong> — Bet Brief template (one per team), Bet-Writing Primer (one per team), Logbook install instructions (a few extra copies).</li>
+<li><strong>Room setup</strong> — round tables, one team per table, table tents with team names.</li>
+<li><strong>Tech support</strong> — the CIO + one Tech Department member on hand for Logbook installs. Expect 5–10% will need help.</li>
+</ul>
+
+<h2><span class="marker">§ IV &nbsp;·&nbsp; Things to say more than once</span>The lines worth repeating</h2>
+
+<ul>
+<li><em>"One bet per cycle. If you can't fit your idea in a six-week bet, that's a sign your bet is too big — split it."</em></li>
+<li><em>"Your draft Bet Brief does not need to be polished. Friday's Weekly Check-In is when we start learning."</em></li>
+<li><em>"Decommissioning a bet that doesn't work is a feature, not a failure. Plan to publish at least one Decommission Brief this year."</em></li>
+<li><em>"The Logbook is a tool, not a judge. Use it. Push back on it when it gets things wrong."</em></li>
+<li><em>"Honesty in Publish is what makes the corpus useful — to us and to other districts."</em></li>
+</ul>
+
+<h2><span class="marker">§ V &nbsp;·&nbsp; What to do in the first week after</span>The cabinet's job before Cycle 01 begins in earnest</h2>
+
+<ul>
+<li><strong>Monday after kickoff:</strong> the CIO reviews every team's Bet Brief through the Logbook. Sends a note to any team with a hypothesis that needs sharpening.</li>
+<li><strong>Tuesday:</strong> the superintendent meets with any Team Lead whose bet doesn't yet connect to the quarterly intent. 15 minutes each.</li>
+<li><strong>Wednesday:</strong> Sponsors (chiefs) check in with their department's teams. Light touch — just confirming the team has what it needs to start.</li>
+<li><strong>Thursday:</strong> The Logbook posts the first cross-team digest, even though it's still mostly setup. Cabinet reads it Friday.</li>
+<li><strong>Friday:</strong> First Weekly Check-Ins due from every team. Cycle 01 is officially underway.</li>
+</ul>
+
+<div class="note">
+<span class="label">A facilitator's note</span>
+The session is not about explaining the model fully — that is what the Onboarding Guide is for. The session is about getting every team into the work before the moment passes. 90 minutes is enough if the agenda holds and the pre-session prep happens. If the agenda slips, the part to protect is the team huddle (0:30–0:50). Everything else can compress.
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 16</span> &nbsp; Peninsula School District &nbsp;·&nbsp; August Kickoff Facilitator Guide</span>
+<span>Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="/openadaptivedistrict/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Open Adaptive District — Peninsula School District</title>
+<style>
+:root{
+  --paper:#F4EFE3; --paper-2:#EBE3D0; --paper-3:#E1D6BB;
+  --ink:#171B22; --ink-2:#3C424E; --ink-3:#6B6A60;
+  --rule:#B3A78C; --rule-soft:#D6C9AC;
+  --pacific:#1B3D5C; --pacific-2:#37607B; --pacific-pale:#C5D2DC;
+  --sage:#5F7567; --madrone:#9A3F22; --madrone-pale:#E2C0AC;
+  --moss:#445A3A;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text","Book Antiqua",Georgia,serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; padding:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:18px; line-height:1.62;
+  font-feature-settings:"kern","liga","onum";
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    radial-gradient(ellipse 80% 60% at 16% 16%, rgba(154,63,34,0.03), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 84% 84%, rgba(27,61,92,0.03), transparent 60%);
+}
+main{position:relative; z-index:2; max-width:840px; margin:0 auto; padding:64px 32px 120px}
+
+/* Cover */
+.cover{
+  border-top:6px solid var(--ink);
+  padding:36px 0 56px;
+  margin-bottom:48px;
+  position:relative;
+}
+.cover .topline{
+  font-family:var(--mono); font-size:11px; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--ink-3);
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:36px; flex-wrap:wrap; gap:8px;
+}
+.cover .topline .roman{ color:var(--madrone); font-weight:600 }
+.cover h1{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(52px, 9vw, 88px); line-height:0.98;
+  letter-spacing:-0.025em; margin:0 0 24px; color:var(--ink);
+}
+.cover h1 em{ font-style:italic; color:var(--madrone) }
+.cover .deck{
+  font-family:var(--serif); font-style:italic;
+  font-size:22px; line-height:1.45;
+  color:var(--ink-2); margin:0 0 32px; max-width:30em;
+}
+.cover .stamp{
+  display:inline-block;
+  font-family:var(--mono); font-size:11px; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--madrone);
+  padding:8px 14px;
+  border:1px solid var(--madrone);
+  margin-top:8px;
+}
+
+/* Section heads */
+.section-head{
+  margin:64px 0 18px; padding-top:18px;
+  border-top:1px solid var(--ink);
+  display:flex; align-items:baseline; gap:18px;
+  flex-wrap:wrap;
+}
+.section-head .num{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--madrone);
+}
+.section-head h2{
+  font-family:var(--serif); font-weight:600;
+  font-size:30px; line-height:1.1;
+  margin:0; color:var(--ink); letter-spacing:-0.014em;
+}
+.section-head p.head-deck{
+  margin:6px 0 0; flex:1 1 100%;
+  font-family:var(--serif); font-style:italic; font-size:17px;
+  color:var(--ink-2); max-width:36em;
+}
+
+/* Doc cards */
+.docs{
+  display:grid; grid-template-columns:1fr; gap:0;
+}
+.doc{
+  display:grid; grid-template-columns:80px 1fr auto;
+  gap:20px; padding:22px 0;
+  border-bottom:1px solid var(--rule-soft);
+  text-decoration:none; color:inherit;
+  transition:background 0.15s;
+  align-items:baseline;
+}
+.doc:hover{ background:rgba(154,63,34,0.04) }
+.doc:hover .doc-name{ color:var(--madrone) }
+.doc:hover .arrow{ color:var(--madrone); transform:translateX(3px) }
+.doc-num{
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--ink-3);
+}
+.doc-body{ min-width:0 }
+.doc-name{
+  font-family:var(--serif); font-weight:600;
+  font-size:22px; letter-spacing:-0.01em;
+  color:var(--ink); margin:0 0 4px;
+  transition:color 0.15s;
+}
+.doc-desc{
+  font-family:var(--serif); font-size:16px;
+  color:var(--ink-2); margin:0; line-height:1.5;
+}
+.doc-tag{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:6px; display:block;
+}
+.arrow{
+  font-family:var(--serif); font-size:24px; color:var(--ink-3);
+  transition:color 0.15s, transform 0.15s;
+  padding-top:2px;
+}
+.doc.draft .doc-num::after{
+  content:" · draft"; color:var(--madrone);
+}
+
+/* Lede block */
+.lede-block{
+  background:rgba(184,172,146,0.12);
+  padding:32px 36px; margin:32px 0 16px;
+  border-left:3px solid var(--madrone);
+}
+.lede-block p{ margin:0 0 14px; font-size:18px; line-height:1.55 }
+.lede-block p:last-child{ margin-bottom:0 }
+.lede-block strong{ color:var(--ink); font-weight:600 }
+
+p{ margin:0 0 18px; font-size:17.5px; line-height:1.6 }
+
+/* Footer */
+footer.colophon{
+  margin-top:96px; padding-top:28px;
+  border-top:6px solid var(--ink);
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+}
+footer.colophon .mark{ color:var(--madrone); font-weight:600 }
+
+@media (max-width:680px){
+  main{ padding:40px 22px 80px }
+  .cover{ padding:24px 0 36px }
+  .cover h1{ font-size:44px }
+  .cover .deck{ font-size:18px }
+  .section-head h2{ font-size:24px }
+  .doc{ grid-template-columns:1fr auto; gap:12px }
+  .doc-num{ grid-column:1 / -1; margin-bottom:-6px }
+  .doc-name{ font-size:19px }
+  .lede-block{ padding:22px 22px }
+}
+@media print{
+  body{ background:white; color:black; font-size:11pt }
+  body::before{ display:none }
+  main{ max-width:none; padding:0 }
+  .doc:hover{ background:none }
+}
+</style>
+</head>
+<body>
+<main>
+
+<section class="cover">
+<div class="topline">
+<span><span class="roman">№ 00</span> &nbsp;·&nbsp; Index &amp; Launch</span>
+<span>Peninsula School District</span>
+</div>
+<h1>The Open<br>Adaptive <em>District</em></h1>
+<p class="deck">A public school district built to absorb new technology at the pace technology actually moves — through cross-silo teams, short cycles, common intent, and a learning published as it happens.</p>
+<span class="stamp">Draft Collection · May 2026</span>
+</section>
+
+<div class="lede-block">
+<p><strong>What this is.</strong> This is the working set of documents that defines and operates the Open Adaptive District at Peninsula School District. The doctrine, the cycle, the agent, the templates, the briefs, the training, the action plan — all gathered in one place so any district can read it, fork it, and adapt it.</p>
+<p><strong>Where to begin.</strong> Start with the <a style="color:var(--pacific); border-bottom:1px solid var(--pacific-pale); text-decoration:none;" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">SHIP Quick Guide</a> for the doctrine, then read <a style="color:var(--pacific); border-bottom:1px solid var(--pacific-pale); text-decoration:none;" href="02-The-Logbook-Design-Brief.html">The Logbook</a> to see how it operates. Everything else is templates, training, and worked examples that hang off those two.</p>
+</div>
+
+<div class="section-head">
+<span class="num">Section 01</span>
+<h2>The doctrine</h2>
+<p class="head-deck">What the Open Adaptive District is and how it operates.</p>
+</div>
+<div class="docs">
+<a class="doc" href="01-SHIP-Open-Adaptive-District-Quick-Guide.html">
+<span class="doc-num">№ 01</span>
+<div class="doc-body">
+<p class="doc-name">SHIP Cycle Quick Guide</p>
+<p class="doc-desc">The operating model — six-week cycles of Sense · Hypothesize · Implement · Publish, run by cross-silo teams under a quarterly intent.</p>
+<span class="doc-tag">Doctrine · 5 min</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc" href="02-The-Logbook-Design-Brief.html">
+<span class="doc-num">№ 02</span>
+<div class="doc-body">
+<p class="doc-name">The Logbook · Design Brief</p>
+<p class="doc-desc">The agent skill that watches the district's Google Chat Spaces, walks teams through their cycle, and drafts every brief.</p>
+<span class="doc-tag">Design brief · 6 min</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc" href="03-Fellowship-Action-Plan-FILLED.html">
+<span class="doc-num">№ 03</span>
+<div class="doc-body">
+<p class="doc-name">Fellowship Action Plan</p>
+<p class="doc-desc">The superintendent's Google GSV Ed Leader Fellowship submission. The transformational opportunity, the year-long plan, and the public-interest extension.</p>
+<span class="doc-tag">Submission · 12 min</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc" href="04-Quarterly-Intent-Template.html">
+<span class="doc-num">№ 04</span>
+<div class="doc-body">
+<p class="doc-name">Quarterly Intent · Template</p>
+<p class="doc-desc">The three-sentence superintendent statement that sets each quarter's direction. Interactive — compose, preview, and copy.</p>
+<span class="doc-tag">Interactive template · 4 min</span>
+</div>
+<span class="arrow">→</span>
+</a>
+</div>
+
+<div class="section-head">
+<span class="num">Section 02</span>
+<h2>The end-of-cycle briefs</h2>
+<p class="head-deck">What every team produces when a cycle closes. Three patterns, one backbone. These become the publishable corpus on psd401.ai.</p>
+</div>
+<div class="docs">
+<a class="doc draft" href="05-Adoption-Brief-Template.html">
+<span class="doc-num">№ 05</span>
+<div class="doc-body">
+<p class="doc-name">Adoption Brief · Template</p>
+<p class="doc-desc">For bets that worked and are scaling. What we tried, what we learned, why we're adopting, what others should know.</p>
+<span class="doc-tag">Brief template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="06-Decommission-Brief-Template.html">
+<span class="doc-num">№ 06</span>
+<div class="doc-body">
+<p class="doc-name">Decommission Brief · Template</p>
+<p class="doc-desc">For bets that didn't work. Honest debrief — what we tried, what we learned, why we're stopping, what others should not repeat.</p>
+<span class="doc-tag">Brief template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="07-Continuation-Brief-Template.html">
+<span class="doc-num">№ 07</span>
+<div class="doc-body">
+<p class="doc-name">Continuation Brief · Template</p>
+<p class="doc-desc">For bets that need another cycle to know. What we tried, what we learned, what we're testing next, revised hypothesis.</p>
+<span class="doc-tag">Brief template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+</div>
+
+<div class="section-head">
+<span class="num">Section 03</span>
+<h2>The working tools</h2>
+<p class="head-deck">Daily and weekly templates teams use inside a cycle. These keep the work legible to the Logbook.</p>
+</div>
+<div class="docs">
+<a class="doc draft" href="08-Bet-Brief-Template.html">
+<span class="doc-num">№ 08</span>
+<div class="doc-body">
+<p class="doc-name">Bet Brief · Template</p>
+<p class="doc-desc">A team's one-pager at the start of a cycle. Hypothesis, success criteria, week-one plan.</p>
+<span class="doc-tag">Operating template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="09-Weekly-Check-In-Template.html">
+<span class="doc-num">№ 09</span>
+<div class="doc-body">
+<p class="doc-name">Weekly Check-In · Template</p>
+<p class="doc-desc">What teams post in their Google Chat Space each week. Tried · Learned · Stuck · Needs.</p>
+<span class="doc-tag">Operating template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+</div>
+
+<div class="section-head">
+<span class="num">Section 04</span>
+<h2>Training &amp; reference</h2>
+<p class="head-deck">For teams new to the model — onboarding, primers, and the August kickoff.</p>
+</div>
+<div class="docs">
+<a class="doc draft" href="10-SHIP-Team-Onboarding-Guide.html">
+<span class="doc-num">№ 10</span>
+<div class="doc-body">
+<p class="doc-name">SHIP Team Onboarding Guide</p>
+<p class="doc-desc">The handbook a new team reads before Cycle 01. Roles, rhythm, expectations, where to find what.</p>
+<span class="doc-tag">Training</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="11-Bet-Writing-Primer.html">
+<span class="doc-num">№ 11</span>
+<div class="doc-body">
+<p class="doc-name">Bet-Writing Primer</p>
+<p class="doc-desc">One page of patterns and anti-patterns. How to write a hypothesis that can actually be tested in six weeks.</p>
+<span class="doc-tag">Reference</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="12-Doctrine-Primer.html">
+<span class="doc-num">№ 12</span>
+<div class="doc-body">
+<p class="doc-name">Doctrine Primer</p>
+<p class="doc-desc">Senge, Bungay, McChrystal, Snowden, and Teece in plain English. Twelve minutes for anyone who wants the intellectual grounding.</p>
+<span class="doc-tag">Reference</span>
+</div>
+<span class="arrow">→</span>
+</a>
+</div>
+
+<div class="section-head">
+<span class="num">Section 05</span>
+<h2>Cabinet &amp; leadership</h2>
+<p class="head-deck">What the chiefs and the superintendent receive from the Logbook each week and each quarter.</p>
+</div>
+<div class="docs">
+<a class="doc draft" href="13-Cabinet-Weekly-Read-Template.html">
+<span class="doc-num">№ 13</span>
+<div class="doc-body">
+<p class="doc-name">Cabinet Weekly Read · Template</p>
+<p class="doc-desc">The five-bullet executive view the Logbook produces for the cabinet each week, tied back to the current quarterly intent.</p>
+<span class="doc-tag">Leadership template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="14-Quarterly-Synthesis-Template.html">
+<span class="doc-num">№ 14</span>
+<div class="doc-body">
+<p class="doc-name">Quarterly Synthesis · Template</p>
+<p class="doc-desc">The longer publication-ready writeup at the close of each quarter. Feeds the year-end publication.</p>
+<span class="doc-tag">Leadership template</span>
+</div>
+<span class="arrow">→</span>
+</a>
+</div>
+
+<div class="section-head">
+<span class="num">Section 06</span>
+<h2>The agent skill</h2>
+<p class="head-deck">The deep technical spec for the Logbook — how it gets built, how it gets loaded, what it knows.</p>
+</div>
+<div class="docs">
+<a class="doc draft" href="15-Logbook-Agent-Skill-Spec.html">
+<span class="doc-num">№ 15</span>
+<div class="doc-body">
+<p class="doc-name">The Logbook · Agent Skill Spec</p>
+<p class="doc-desc">System prompt, knowledge base structure, sample dialogues, boundary rules, update protocol. Everything needed to build and maintain the skill.</p>
+<span class="doc-tag">Technical spec</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc draft" href="16-August-Kickoff-Facilitator-Guide.html">
+<span class="doc-num">№ 16</span>
+<div class="doc-body">
+<p class="doc-name">August Kickoff · Facilitator Guide</p>
+<p class="doc-desc">The 90-minute session that launches Cycle 01. Agenda, exercises, slides, what teams leave with.</p>
+<span class="doc-tag">Training</span>
+</div>
+<span class="arrow">→</span>
+</a>
+<a class="doc" href="17-August-Kickoff-Slides.html">
+<span class="doc-num">№ 17</span>
+<div class="doc-body">
+<p class="doc-name">August Kickoff · Slides</p>
+<p class="doc-desc">Full-screen presentation deck for the kickoff. Nine slides — arrow keys to navigate, F for fullscreen, prints clean.</p>
+<span class="doc-tag">Presentation</span>
+</div>
+<span class="arrow">→</span>
+</a>
+</div>
+
+<footer class="colophon">
+<span><span class="mark">№ 00</span> &nbsp; Peninsula School District &nbsp;·&nbsp; psd401.ai</span>
+<span>The Open Adaptive District &nbsp; Draft May 2026</span>
+</footer>
+
+</main>
+</body>
+</html>
