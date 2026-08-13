@@ -68,14 +68,12 @@ export default async function GuidanceIndex() {
               </Button>
             </div>
           </div>
-          {/* Standing in for GU-01, which wants a real photograph of a board
-              work session — see docs/image-shoot-list.md. */}
           <ImageFrame
             id="GU-01"
             ratio="4/3"
             priority
-            src="/images/sections/hp-03-policy-document.jpg"
-            alt="A printed policy document on a table, annotated in blue ballpoint with margin notes"
+            src="/images/sections/gu-01-board-session.jpg"
+            alt="A school board work session in progress, seen wide from the back of a public meeting room"
             sizes="(max-width: 768px) 100vw, 45vw"
           />
         </div>

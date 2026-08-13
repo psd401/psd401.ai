@@ -83,11 +83,16 @@ export default async function Home() {
                 </Button>
               </div>
             </div>
+            {/* Generated stand-in. The brief calls for a real photograph of a
+                named person; this is deliberately not a likeness of anyone.
+                See docs/image-shoot-list.md. */}
             <ImageFrame
               id="HP-01"
               ratio="4/5"
               priority
-              brief="Environmental portrait of a named staff member at work. Shot on location, documentary, PNW daylight."
+              src="/images/sections/hp-01-leader-at-work.jpg"
+              alt="A district technology leader working at a standing desk, conifers visible through the window behind"
+              sizes="(max-width: 768px) 100vw, 40vw"
             />
           </div>
         </SectionRule>
@@ -249,7 +254,9 @@ export default async function Home() {
             <ImageFrame
               id="HP-04"
               ratio="3/2"
-              brief="A team mid-cycle around a table: sticky notes, a laptop, a half-finished loop on the whiteboard. Candid."
+              src="/images/sections/hp-04-cycle-session.jpg"
+              alt="School staff mid-working-session around a table, a loop of sticky notes on the whiteboard behind them"
+              sizes="(max-width: 768px) 100vw, 40vw"
             />
           </div>
           <StepRow

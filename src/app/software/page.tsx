@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { SectionHeader, SectionRule } from '@/components/ds';
+import { ImageFrame, SectionHeader, SectionRule } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { getConcepts } from '@/lib/content';
 import { SECTIONS } from '@/lib/site';
@@ -58,13 +58,23 @@ export default async function SoftwareIndex() {
       />
 
       <SectionRule ground="tint" as="header">
-        <SectionHeader
-          as="h1"
-          number="02"
-          title="Software we build"
-          meta={`${inProduction} in production of ${software.length}`}
-          lead="Built by district staff for district problems, then published so another district can run the same thing. We are not selling anything — clone it and self-host, or email us and we will help you stand it up."
-        />
+        <div className="ds-split" style={{ gap: 48, alignItems: 'center' }}>
+          <SectionHeader
+            as="h1"
+            number="02"
+            title="Software we build"
+            meta={`${inProduction} in production of ${software.length}`}
+            lead="Built by district staff for district problems, then published so another district can run the same thing. We are not selling anything — clone it and self-host, or email us and we will help you stand it up."
+          />
+          <ImageFrame
+            id="PD-01"
+            ratio="3/2"
+            priority
+            src="/images/software/pd-01-studio-in-use.jpg"
+            alt="Two staff members looking at a laptop together in a classroom after hours"
+            sizes="(max-width: 768px) 100vw, 40vw"
+          />
+        </div>
       </SectionRule>
 
       <SectionRule as="section" style={{ borderTop: 0, paddingTop: 0 }}>

@@ -79,7 +79,9 @@ export default async function OpenAdaptiveDistrict() {
             id="OAD-01"
             ratio="4/5"
             priority
-            brief="Vertical framing of a working session: four adults around a table seen from slightly above, a whiteboard behind them carrying sticky notes in a rough loop."
+            src="/images/sections/oad-01-cycle-session.jpg"
+            alt="Four staff around a table mid-discussion, a whiteboard behind them carrying sticky notes in a rough loop"
+            sizes="(max-width: 768px) 100vw, 40vw"
           />
         </div>
       </SectionRule>
