@@ -1,11 +1,24 @@
 ---
-title: 'A Classroom Teacher’s Take on AI - The Effortful Educator'
-author: 'Blake Harvard'
-source: 'The Effortful Educator'
+type: research
+title: A Classroom Teacher’s Take on AI - The Effortful Educator
+description: Blake Harvard, a high school psychology teacher, wrote this blog post on AI from a classroom teacher’s point of view.
+resource: /articles/classroom-teachers-take-ai
 date: '2025-03-18'
-type: 'Academic Opinion'
-tags: ['Article', 'Student Thinking', 'Learning']
-externalUrl: 'https://theeffortfuleducator.com/2025/03/18/a-classroom-teachers-take-on-ai/'
+tags:
+  - Article
+  - Student Thinking
+  - Learning
+author: Blake Harvard
+source: The Effortful Educator
+format: Academic Opinion
+externalUrl: https://theeffortfuleducator.com/2025/03/18/a-classroom-teachers-take-on-ai/
+status: stable
+sources:
+  - resource: https://theeffortfuleducator.com/2025/03/18/a-classroom-teachers-take-on-ai/
+    id: original
+    title: A Classroom Teacher’s Take on AI - The Effortful Educator
+    author: Blake Harvard
+    last_modified: '2025-03-18'
 ---
 
 # A Classroom Teacher’s Take on AI - The Effortful Educator

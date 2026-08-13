@@ -1,177 +1,124 @@
-import { getToolBySlug, getAllTools } from '@/lib/tools';
-import { Card, CardBody } from '@/components/ui/ClientCard';
-import { Chip } from '@/components/ui/ClientChip';
-import { HeroUILink as NextUILink } from '@/components/ui/ClientLink';
-import Link from 'next/link';
+import React from 'react';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { Breadcrumb, Button, Chip, SectionRule, SpecTable } from '@/components/ds';
+import MarkdownContent from '@/components/MarkdownContent';
+import Related from '@/components/Related';
+import { getConcept, getConcepts } from '@/lib/content';
+import { formatDate } from '@/lib/format';
+import JsonLd, { createBreadcrumbSchema, createToolSchema } from '@/components/JsonLd';
 
-interface Props {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const tools = await getAllTools();
-  return tools.map(tool => ({
-    slug: tool.slug,
-  }));
+  const tools = await getConcepts('tools');
+  return tools.map(t => ({ slug: t.slug }));
 }
 
-export default async function ToolPage(props0: Props) {
-  const params = await props0.params;
-  const tool = await getToolBySlug(params.slug);
-
-  if (!tool) {
-    notFound();
-  }
-
-  return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
-      <Link href="/tools" className="text-primary hover:underline mb-8 inline-block">
-        ← Back to Tools
-      </Link>
-
-      <article className="space-y-8">
-        <header className="space-y-4">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text">
-            {tool.title}
-          </h1>
-          <p className="text-xl text-foreground/80">{tool.description}</p>
-
-          <div className="flex flex-wrap gap-2">
-            {tool.access_type && (
-              <Chip color="primary" variant="flat" size="sm">
-                {tool.access_type}
-              </Chip>
-            )}
-            {tool.status && (
-              <Chip color="success" variant="flat" size="sm">
-                {tool.status}
-              </Chip>
-            )}
-            {tool.tags?.map(tag => (
-              <Chip key={tag} variant="flat" size="sm">
-                {tag}
-              </Chip>
-            ))}
-          </div>
-
-          <Card className="bg-content1">
-            <CardBody className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <h3 className="font-semibold text-sm text-foreground/60 mb-1">Provider</h3>
-                <p>{tool.provider}</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm text-foreground/60 mb-1">Status</h3>
-                <p>{tool.status}</p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm text-foreground/60 mb-1">Type</h3>
-                <p>{tool.access_type}</p>
-              </div>
-            </CardBody>
-          </Card>
-
-          {tool.demoUrl && (
-            <Card className="bg-primary-50 dark:bg-primary-900/20 border-none">
-              <CardBody className="py-3">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm">Launch this tool in your browser</span>
-                  <NextUILink
-                    href={tool.demoUrl}
-                    target="_blank"
-                    className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors inline-flex items-center gap-2"
-                    showAnchorIcon
-                  >
-                    Launch Tool
-                  </NextUILink>
-                </div>
-              </CardBody>
-            </Card>
-          )}
-
-          {tool.url && tool.url !== tool.demoUrl && (
-            <Card className="bg-secondary-50 dark:bg-secondary-900/20 border-none">
-              <CardBody className="py-3">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm">Additional resource for this tool</span>
-                  <NextUILink
-                    href={tool.url}
-                    target="_blank"
-                    className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary-600 transition-colors inline-flex items-center gap-2"
-                    showAnchorIcon
-                  >
-                    Visit Resource
-                  </NextUILink>
-                </div>
-              </CardBody>
-            </Card>
-          )}
-        </header>
-
-        <Card>
-          <CardBody className="prose dark:prose-invert max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-p:text-base prose-p:leading-7 prose-p:my-4 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-strong:font-bold prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6 prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6 prose-li:my-2 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:my-4 prose-blockquote:italic">
-            <Markdown
-              remarkPlugins={[remarkGfm]}
-              components={{
-                h1: ({ ...props }) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-                h2: ({ ...props }) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
-                h3: ({ ...props }) => <h3 className="text-xl font-bold mt-4 mb-2" {...props} />,
-                ul: ({ ...props }) => <ul className="list-disc pl-6 my-4 space-y-2" {...props} />,
-                ol: ({ ...props }) => (
-                  <ol className="list-decimal pl-6 my-4 space-y-2" {...props} />
-                ),
-                li: ({ ...props }) => <li className="my-1" {...props} />,
-                p: ({ ...props }) => <p className="my-4" {...props} />,
-                a: ({ ...props }) => (
-                  <a
-                    className="text-primary hover:text-primary-600 underline decoration-primary/30 hover:decoration-primary-600 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    {...props}
-                  />
-                ),
-              }}
-            >
-              {tool.content}
-            </Markdown>
-          </CardBody>
-        </Card>
-      </article>
-    </div>
-  );
-}
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const tool = await getToolBySlug(params.slug);
-
-  if (!tool) {
-    return {
-      title: 'Tool Not Found',
-      robots: { index: false, follow: false },
-    };
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const tool = await getConcept('tools', slug);
+  if (!tool) return { title: 'Not found', robots: { index: false, follow: false } };
 
   return {
     title: tool.title,
     description: tool.description,
-    openGraph: {
-      title: `${tool.title} | Peninsula SD AI`,
-      description: tool.description,
-      type: 'article',
-      images: ['/images/sections/tools-hero.jpg'],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${tool.title} | Peninsula SD AI`,
-      description: tool.description,
-      images: ['/images/sections/tools-hero.jpg'],
-    },
+    alternates: { canonical: tool.resource },
+    keywords: tool.tags,
+    openGraph: { title: tool.title, description: tool.description, url: tool.resource },
   };
+}
+
+export default async function ToolPage({ params }: Props) {
+  const { slug } = await params;
+  const tool = await getConcept('tools', slug);
+  if (!tool) notFound();
+
+  const specRows = [
+    tool.provider ? { k: 'Provider', v: tool.provider } : null,
+    tool.category ? { k: 'Category', v: tool.category } : null,
+    tool.format ? { k: 'Kind', v: tool.format } : null,
+    tool.privacy ? { k: 'Data handling', v: tool.privacy } : null,
+    tool.access_type ? { k: 'Access', v: tool.access_type } : null,
+    tool.maturity ? { k: 'Our use', v: tool.maturity } : null,
+    { k: 'Reviewed', v: formatDate(tool.date) },
+  ].filter((r): r is { k: string; v: string } => r !== null);
+
+  return (
+    <article data-section="practice">
+      <JsonLd
+        data={[
+          createToolSchema({
+            title: tool.title,
+            description: tool.description,
+            url: tool.resource,
+            date: tool.date,
+            tags: tool.tags,
+            provider: tool.provider,
+            demoUrl: tool.demoUrl,
+          }),
+          createBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Reference library', url: '/practice' },
+            { name: 'Tools', url: '/tools' },
+            { name: tool.title, url: tool.resource },
+          ]),
+        ]}
+      />
+
+      <div
+        style={{
+          borderTop: 'var(--border-rule) solid var(--sec)',
+          padding: '14px var(--gutter-page)',
+          borderBottom: '1px solid var(--hairline-faint)',
+        }}
+      >
+        <Breadcrumb
+          items={[
+            { label: 'Reference library', href: '/practice' },
+            { label: 'Tools', href: '/tools' },
+            { label: tool.title },
+          ]}
+        />
+      </div>
+
+      <SectionRule as="header" style={{ borderTop: 0 }}>
+        <div className="ds-prose-measure">
+          <div
+            style={{
+              display: 'flex',
+              gap: 10,
+              alignItems: 'center',
+              marginBottom: 18,
+              flexWrap: 'wrap',
+            }}
+          >
+            {tool.maturity && <Chip variant="solid">{tool.maturity}</Chip>}
+            {tool.privacy && <Chip variant="outline">{tool.privacy}</Chip>}
+          </div>
+          <h1 className="ds-display ds-display--page" style={{ marginBottom: 20 }}>
+            {tool.title}
+          </h1>
+          <p className="ds-lead" style={{ marginBottom: 22 }}>
+            {tool.description}
+          </p>
+          {tool.demoUrl && (
+            <Button variant="outline" href={tool.demoUrl}>
+              Visit {tool.title} →
+            </Button>
+          )}
+        </div>
+      </SectionRule>
+
+      <SectionRule ground="tint" as="section" style={{ borderTop: '1px solid var(--hairline)' }}>
+        <SpecTable rows={specRows} columns={2} caption={`${tool.title} details`} />
+      </SectionRule>
+
+      <div style={{ padding: '36px var(--gutter-page) 48px' }}>
+        <MarkdownContent content={tool.content} />
+      </div>
+
+      <Related url={tool.resource} />
+    </article>
+  );
 }

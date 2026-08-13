@@ -1,12 +1,24 @@
 ---
-title: 'ChatGPT in lesson preparation – Teacher Choices trial'
-author: 'Palak Roy, Helen Poet, Ruth Staunton, Katherine Aston, and
-David Thomas'
-source: 'Education Endowment Foundation'
+type: research
+title: ChatGPT in lesson preparation – Teacher Choices trial
+description: The UK’s Education Endowment Foundation conducted a trial looking at the effects of AI in teachers’ lesson preparation in KS3 (middle school) science teachers.
+resource: /articles/chatgpt-lesson-preparation
 date: '2025-03-01'
-type: 'Research Study'
-tags: ['Research', 'Lesson Preparation', 'Productivity']
-externalUrl: 'https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/choices-in-edtech-using-generative-ai-chatgpt-for-ks3-science-lesson-preparation-2024-teacher-choices-trial'
+tags:
+  - Research
+  - Lesson Preparation
+  - Productivity
+author: Palak Roy, Helen Poet, Ruth Staunton, Katherine Aston, and David Thomas
+source: Education Endowment Foundation
+format: Research Study
+externalUrl: https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/choices-in-edtech-using-generative-ai-chatgpt-for-ks3-science-lesson-preparation-2024-teacher-choices-trial
+status: stable
+sources:
+  - resource: https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/choices-in-edtech-using-generative-ai-chatgpt-for-ks3-science-lesson-preparation-2024-teacher-choices-trial
+    id: original
+    title: ChatGPT in lesson preparation – Teacher Choices trial
+    author: Palak Roy, Helen Poet, Ruth Staunton, Katherine Aston, and David Thomas
+    last_modified: '2025-03-01'
 ---
 
 # ChatGPT in lesson preparation – Teacher Choices trial

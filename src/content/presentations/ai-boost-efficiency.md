@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'Using AI to Boost Efficiency: A Guide for Washington Treasurers'
+description: A workshop delivered at the 2025 Washington Treasurers Association Conference to make work more efficient
+resource: /presentations/ai-boost-efficiency
 date: '2025-04-10'
+tags:
+  - Conference Session
+  - WTA Conference
 presenters:
-  - 'Ashley Murphy'
-  - 'Kris Hagel'
-audience: 'WTA Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/ai-boost-efficiency.png'
-slides: 'https://docs.google.com/presentation/d/1DugDhc98hL8FKVYUR2ozRJPUtnFhdq0sOV0IEjxLmNs/embed'
-description: 'A workshop delivered at the 2025 Washington Treasurers Association Conference to make work more efficient'
+  - Ashley Murphy
+  - Kris Hagel
+audience: WTA Conference
+format: Conference Session
+thumbnail: /images/thumbnails/ai-boost-efficiency.png
+slides: https://docs.google.com/presentation/d/1DugDhc98hL8FKVYUR2ozRJPUtnFhdq0sOV0IEjxLmNs/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1DugDhc98hL8FKVYUR2ozRJPUtnFhdq0sOV0IEjxLmNs/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Using AI to Boost Efficiency: A Guide for Washington Treasurers**

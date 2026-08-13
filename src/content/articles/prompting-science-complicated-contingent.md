@@ -1,11 +1,23 @@
 ---
+type: research
 title: 'Prompting Science Report 1: Prompt Engineering is Complicated and Contingent'
-author: 'Lennart Meincke, Ethan R. Mollick, Lilach Mollick, Dan Shapiro'
-source: 'SSRN'
+description: This report from March 2025 indicates that prompt engineering techniques and approaches have inconsistent results.
+resource: /articles/prompting-science-complicated-contingent
 date: '2025-03-05'
-type: 'Report'
-tags: ['Research', 'Prompt Engineering']
-externalUrl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5165270'
+tags:
+  - Research
+  - Prompt Engineering
+author: Lennart Meincke, Ethan R. Mollick, Lilach Mollick, Dan Shapiro
+source: SSRN
+format: Report
+externalUrl: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5165270
+status: stable
+sources:
+  - resource: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5165270
+    id: original
+    title: 'Prompting Science Report 1: Prompt Engineering is Complicated and Contingent'
+    author: Lennart Meincke, Ethan R. Mollick, Lilach Mollick, Dan Shapiro
+    last_modified: '2025-03-05'
 ---
 
 # Prompting Science Report 1: Prompt Engineering is Complicated and Contingent

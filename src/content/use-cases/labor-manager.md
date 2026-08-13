@@ -1,17 +1,21 @@
 ---
-title: 'The Labor Manager'
-description: 'AI Assistant providing access for Q&A to all PSD Labor Contracts'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Labor Management'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'Kris Hagel'
-school: 'ESC'
+type: use-case
+title: The Labor Manager
+description: AI Assistant providing access for Q&A to all PSD Labor Contracts
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/labor-manager
+date: '2025-01-24'
 tags:
-  - 'System Prompt'
-  - 'AI Assistant'
-  - 'Administration'
+  - System Prompt
+  - AI Assistant
+  - Administration
+category: Streamlining Administrative Tasks & Operations
+subject: Labor Management
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: Kris Hagel
+school: ESC
+status: stable
 ---
 
 ## Overview

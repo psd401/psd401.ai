@@ -1,13 +1,23 @@
 ---
-title: 'Engaging and Authentic AI Instruction in K-5'
+type: presentation
+title: Engaging and Authentic AI Instruction in K-5
+description: Conference session on how AI insruction is taking place in K-5
+resource: /presentations/engaging-authentic-ai-instruction
 date: '2025-02-27'
+tags:
+  - Conference Session
+  - NCCE Conference
 presenters:
-  - 'Justin Towner'
-audience: 'NCCE Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/engaging-authentic-ai-instruction.png'
-slides: 'https://docs.google.com/presentation/d/1MFdKMJClyEv2Fe6xHCuZejIHE3yDHMFYVDItS2OWP5E/embed'
-description: 'Conference session on how AI insruction is taking place in K-5'
+  - Justin Towner
+audience: NCCE Conference
+format: Conference Session
+thumbnail: /images/thumbnails/engaging-authentic-ai-instruction.png
+slides: https://docs.google.com/presentation/d/1MFdKMJClyEv2Fe6xHCuZejIHE3yDHMFYVDItS2OWP5E/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1MFdKMJClyEv2Fe6xHCuZejIHE3yDHMFYVDItS2OWP5E/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Engaging and Authentic AI Instruction in K-5: A Hands-On Approach**

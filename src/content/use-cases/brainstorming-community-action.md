@@ -1,16 +1,20 @@
 ---
-title: 'Brainstorming Community Action Plans'
-description: 'Using AI compile thoughts and then generate ideas for community action on student phone addiction'
-category: 'Enhancing Student Support & Wellbeing'
-subject: 'Digital Wellbeing'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'John Hellwich'
-school: 'ESC'
+type: use-case
+title: Brainstorming Community Action Plans
+description: Using AI compile thoughts and then generate ideas for community action on student phone addiction
+resource: /use-cases/Enhancing%20Student%20Support%20%26%20Wellbeing/brainstorming-community-action
+date: '2025-01-29'
 tags:
-  - 'Wellness'
-  - 'Brainstorming'
+  - Wellness
+  - Brainstorming
+category: Enhancing Student Support & Wellbeing
+subject: Digital Wellbeing
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: John Hellwich
+school: ESC
+status: stable
 ---
 
 ## Overview

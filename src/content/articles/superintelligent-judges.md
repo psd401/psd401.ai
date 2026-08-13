@@ -1,11 +1,23 @@
 ---
+type: research
 title: 'Superintelligent judges: Can AI models judge as well as humans?'
-author: 'Chris Wheadon, Daisy Christodoulou'
-source: 'No More Marking'
+description: In this post, the authors describe a test using an AI to evaluate student work to measure specific biases known to occur with LLMs.
+resource: /articles/superintelligent-judges
 date: '2025-01-12'
-type: 'Opinion Piece'
-tags: ['Article', 'Assessment']
-externalUrl: 'https://mikekentz.substack.com/p/the-ai-era-demands-curriculum-redesign'
+tags:
+  - Article
+  - Assessment
+author: Chris Wheadon, Daisy Christodoulou
+source: No More Marking
+format: Opinion Piece
+externalUrl: https://mikekentz.substack.com/p/the-ai-era-demands-curriculum-redesign
+status: stable
+sources:
+  - resource: https://mikekentz.substack.com/p/the-ai-era-demands-curriculum-redesign
+    id: original
+    title: 'Superintelligent judges: Can AI models judge as well as humans?'
+    author: Chris Wheadon, Daisy Christodoulou
+    last_modified: '2025-01-12'
 ---
 
 # Superintelligent judges: Can AI models judge as well as humans?

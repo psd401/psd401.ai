@@ -1,13 +1,23 @@
 ---
-title: 'Artificial Intelligence, Prompt Engineering, Deepening Our Usage'
+type: presentation
+title: Artificial Intelligence, Prompt Engineering, Deepening Our Usage
+description: A PD Session on prompt engineering delivered to the PSD Cabinet Staff
+resource: /presentations/ai-prompt-engineering-cabinet
 date: '2024-02-28'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Kris Hagel'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/ai-prompt-engineering-cabinet.png'
-slides: 'https://docs.google.com/presentation/d/1feCmFxncCLsuNboBxGnTFv92uxt0gOz3Y1tzt-LiO-c/embed'
-description: 'A PD Session on prompt engineering delivered to the PSD Cabinet Staff'
+  - Kris Hagel
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/ai-prompt-engineering-cabinet.png
+slides: https://docs.google.com/presentation/d/1feCmFxncCLsuNboBxGnTFv92uxt0gOz3Y1tzt-LiO-c/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1feCmFxncCLsuNboBxGnTFv92uxt0gOz3Y1tzt-LiO-c/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Artificial Intelligence, Prompt Engineering & Deepening Our Usage: A Guide for PSD Leaders**

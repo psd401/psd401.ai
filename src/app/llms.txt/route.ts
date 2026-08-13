@@ -1,108 +1,102 @@
-import { getAllPosts } from '@/lib/blog';
-import { getAllArticles } from '@/lib/articles';
-import { getAllPresentations } from '@/lib/presentations';
-import { getAllUseCases } from '@/lib/use-cases';
-import { getAllPolicies } from '@/lib/policies';
-import { getAllTools } from '@/lib/tools';
+import { getAllConcepts, indexable } from '@/lib/all-content';
+import { getCounts } from '@/lib/content';
+import { SITE_URL } from '@/lib/site';
+import type { ContentDir } from '@/lib/schemas';
+
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
+/**
+ * llms.txt — an INDEX, per llmstxt.org.
+ *
+ * The previous implementation inlined the full body of all ~200 documents
+ * into a single response: several megabytes, and a model reading it burned
+ * its context on content it had not asked for. That defeats the purpose of
+ * the file, which is to be the cheap thing you read FIRST.
+ *
+ * This is now links plus one-line descriptions. Full text moved to
+ * /llms-full.txt, and any individual page's markdown is at <url>.md.
+ */
+const ORDER: Array<{ dir: ContentDir; heading: string; note: string }> = [
+  {
+    dir: 'writing',
+    heading: 'Writing',
+    note: 'Notes from the people doing the work, including what did not work.',
+  },
+  {
+    dir: 'software',
+    heading: 'Software',
+    note: 'Products the district builds and runs. Open source, forkable.',
+  },
+  {
+    dir: 'guidance',
+    heading: 'Guidance',
+    note: 'The policy documents district staff work from.',
+  },
+  {
+    dir: 'presentations',
+    heading: 'Presentations',
+    note: 'Talks and workshops, published as given.',
+  },
+  {
+    dir: 'use-cases',
+    heading: 'Use cases',
+    note: 'Staff-submitted examples: the task, the tool, the outcome.',
+  },
+  { dir: 'tools', heading: 'Tools', note: 'Third-party AI tools reviewed for district use.' },
+  {
+    dir: 'articles',
+    heading: 'Research',
+    note: 'External research summarised, each linking to the original.',
+  },
+];
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://psd401.ai';
+  const [concepts, counts] = await Promise.all([getAllConcepts(), getCounts()]);
+  const published = indexable(concepts);
 
-  // Fetch all content
-  const [posts, articles, presentations, useCases, policies, tools] = await Promise.all([
-    getAllPosts(),
-    getAllArticles(),
-    getAllPresentations(),
-    getAllUseCases(),
-    getAllPolicies(),
-    getAllTools(),
-  ]);
+  const sections = ORDER.map(({ dir, heading, note }) => {
+    const items = published.filter(c => c.dir === dir);
+    if (items.length === 0) return null;
+    return [
+      `## ${heading}`,
+      '',
+      `${note} (${items.length})`,
+      '',
+      ...items.map(c => `- [${c.title}](${SITE_URL}${c.url}): ${c.description}`),
+      '',
+    ].join('\n');
+  }).filter(Boolean);
 
-  const llmsContent = `# Peninsula School District AI Implementation
-> A comprehensive resource for AI implementation in K-12 education, featuring policies, tools, use cases, and best practices from Peninsula School District.
+  const body = `# Peninsula School District — AI
 
-## Key Resources
+> A public school district in Gig Harbor, Washington, doing its AI work in the open.
+> Peninsula School District publishes the software it builds, the policies it writes,
+> the talks it gives, and the experiments that failed. ${counts.total} documents, all
+> licensed CC BY-NC-SA 4.0 and intended to be forked by other districts.
 
-### Policies & Guidelines
-${policies
-  .map(
-    policy => `- [${policy.title}](${baseUrl}/policies/${policy.slug})
-  > ${policy.description}
-  
-${policy.content}
-`
-  )
-  .join('\n')}
+This file is an index. Append \`.md\` to any URL below for its markdown source.
 
-### AI Tools & Resources
-${tools
-  .map(
-    tool => `- [${tool.title}](${baseUrl}/tools/${tool.slug})
-  > ${tool.description}
-  
-${tool.content}
-`
-  )
-  .join('\n')}
+- Full text of every document: ${SITE_URL}/llms-full.txt
+- Open Knowledge Format v0.2 bundle: ${SITE_URL}/okf
+- Structured index as JSON: ${SITE_URL}/api/content.json
+- Search: ${SITE_URL}/search?q={query}
 
-### Implementation Use Cases
-${useCases
-  .map(
-    useCase => `- [${useCase.title}](${baseUrl}/use-cases/${useCase.slug})
-  > ${useCase.description}
-  
-${useCase.content}
-`
-  )
-  .join('\n')}
+${sections.join('\n')}
+## About this site
 
-### Blog Posts
-${posts
-  .map(
-    post => `- [${post.title}](${baseUrl}/blog/${post.slug})
-  > ${post.description}
-  
-${post.content}
-`
-  )
-  .join('\n')}
-
-## Optional Resources
-
-### Presentations
-${presentations
-  .map(
-    presentation => `- [${presentation.title}](${baseUrl}/presentations/${presentation.slug})
-  > ${presentation.description}
-  
-${presentation.content}
-`
-  )
-  .join('\n')}
-
-### External Articles
-${articles
-  .map(
-    article => `- [${article.title}](${article.externalUrl || `${baseUrl}/articles/${article.slug}`})
-  > ${article.description}
-  
-${article.content}
-`
-  )
-  .join('\n')}
-
-## Metadata
-- Last Updated: ${new Date().toISOString()}
-- Content Categories: Policies, Tools, Use Cases, Blog Posts, Presentations, Articles
-- Primary Focus: K-12 Education AI Implementation
-- Institution: Peninsula School District
-- Website: ${baseUrl}
+- Organisation: Peninsula School District, Gig Harbor, Washington (9,100 students, 17 schools)
+- Contact: hagelk@psd401.net
+- Source: https://github.com/psd401/psd401.ai
+- Licence: CC BY-NC-SA 4.0
+- Counts are computed from the content, not hand-maintained.
+- \`status: draft\` documents are excluded from this index.
 `;
 
-  return new Response(llmsContent, {
+  return new Response(body, {
     headers: {
       'Content-Type': 'text/markdown; charset=utf-8',
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate',
+      'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
     },
   });
 }

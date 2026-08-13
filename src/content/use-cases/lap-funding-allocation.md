@@ -1,16 +1,20 @@
 ---
-title: 'Using AI To Create Equitable Funding Formulas'
-description: 'Using AI to vet and develop funding formulas taking into account equity factors'
-category: 'Data Analysis & Insights for Decision Making'
-subject: 'Formula Creation'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'Lisa Reaugh'
-school: 'ESC'
+type: use-case
+title: Using AI To Create Equitable Funding Formulas
+description: Using AI to vet and develop funding formulas taking into account equity factors
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/lap-funding-allocation
+date: '2025-01-29'
 tags:
-  - 'Analysis'
-  - 'Funding'
+  - Analysis
+  - Funding
+category: Data Analysis & Insights for Decision Making
+subject: Formula Creation
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: Lisa Reaugh
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,15 +1,19 @@
 ---
-title: 'Refining TPEP Goals'
-description: "Utilize Gemini's genius to assist you in crafting your evaluation goals"
-category: 'Enhancing Teaching & Learning'
-subject: 'Evaluation Goals'
-grade_level: 'Staff'
-tools_used:
-  - 'Gemini'
-author: 'Heather Whyte'
-school: 'HRMS'
+type: use-case
+title: Refining TPEP Goals
+description: Utilize Gemini's genius to assist you in crafting your evaluation goals
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/hw-refining-tpep-goals
+date: '2025-01-29'
 tags:
-  - 'TPEP'
+  - TPEP
+category: Enhancing Teaching & Learning
+subject: Evaluation Goals
+grade_level: Staff
+tools_used:
+  - Gemini
+author: Heather Whyte
+school: HRMS
+status: stable
 ---
 
 ## Prompt Used

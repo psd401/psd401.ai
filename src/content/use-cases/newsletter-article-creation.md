@@ -1,16 +1,20 @@
 ---
-title: 'Newsletter Article Creation'
-description: 'Creating focused newsletter blurbs for principals to share with staff'
-category: 'Enhancing Staff Professional Growth'
-subject: 'Content Creation'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'Natalie Boyle'
-school: 'ESC'
+type: use-case
+title: Newsletter Article Creation
+description: Creating focused newsletter blurbs for principals to share with staff
+resource: /use-cases/Enhancing%20Staff%20Professional%20Growth/newsletter-article-creation
+date: '2025-01-29'
 tags:
-  - 'Universal Design for Learning'
-  - 'Danielson Framework'
+  - Universal Design for Learning
+  - Danielson Framework
+category: Enhancing Staff Professional Growth
+subject: Content Creation
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: Natalie Boyle
+school: ESC
+status: stable
 ---
 
 ## Overview

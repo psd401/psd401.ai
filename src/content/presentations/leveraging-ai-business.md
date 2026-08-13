@@ -1,13 +1,23 @@
 ---
-title: 'Leveraging AI Tools in Your Workplace - AI For Business Leaders'
+type: presentation
+title: Leveraging AI Tools in Your Workplace - AI For Business Leaders
+description: A workshop delivered Gig Harbor Chamber Members on AI in the Workplace
+resource: /presentations/leveraging-ai-business
 date: '2024-08-05'
+tags:
+  - Public Workshop
+  - PSD Community
 presenters:
-  - 'Kris Hagel'
-audience: 'PSD Community'
-type: 'Public Workshop'
-thumbnail: '/images/thumbnails/leveraging-ai-business.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQCYEEjn_TMd5e4Prtuo82m42rNOtXyudZI1GT0XC-yaVPZ8g5ft0VLkFiWZAT1A2WayfbILL54Bl4L/embed'
-description: 'A workshop delivered Gig Harbor Chamber Members on AI in the Workplace'
+  - Kris Hagel
+audience: PSD Community
+format: Public Workshop
+thumbnail: /images/thumbnails/leveraging-ai-business.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vQCYEEjn_TMd5e4Prtuo82m42rNOtXyudZI1GT0XC-yaVPZ8g5ft0VLkFiWZAT1A2WayfbILL54Bl4L/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vQCYEEjn_TMd5e4Prtuo82m42rNOtXyudZI1GT0XC-yaVPZ8g5ft0VLkFiWZAT1A2WayfbILL54Bl4L/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Leveraging AI Tools in Your Workplace: A Guide for Business Leaders**

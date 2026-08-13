@@ -1,18 +1,22 @@
 ---
-title: 'Creating API Integration Scripts for Network Security'
-description: 'Using AI to write integrations with Have I Been Pwned AI to check passwords'
-category: 'IT & Technical Infrastructure Management'
-subject: 'AI Coding'
-grade_level: 'Staff'
-tools_used:
-  - 'Claude.ai'
-  - 'ChatGPT'
-  - 'Cursor'
-author: 'Reese Herber'
-school: 'ESC'
+type: use-case
+title: Creating API Integration Scripts for Network Security
+description: Using AI to write integrations with Have I Been Pwned AI to check passwords
+resource: /use-cases/IT%20%26%20Technical%20Infrastructure%20Management/have-i-been-pwned
+date: '2025-01-29'
 tags:
-  - 'Coding'
-  - 'Security'
+  - Coding
+  - Security
+category: IT & Technical Infrastructure Management
+subject: AI Coding
+grade_level: Staff
+tools_used:
+  - Claude.ai
+  - ChatGPT
+  - Cursor
+author: Reese Herber
+school: ESC
+status: stable
 ---
 
 ## Overview

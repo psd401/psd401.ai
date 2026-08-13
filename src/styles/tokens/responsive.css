@@ -1,0 +1,68 @@
+/* Peninsula AI — responsive scale
+   NOT from the design source. The design files are a fixed 1440px canvas and
+   ship no responsive specification; these breakpoints are derived to carry the
+   system down to phones without breaking its rules.
+
+   What is preserved: the display scale keeps tightening as it grows (the
+   signature), square corners, the 9px section rule, one section colour per
+   page. What changes: absolute sizes step down, gutters narrow, and the
+   multi-column grids collapse (handled per-component in ds.css).
+
+   Breakpoints match the component grids in ds.css — change both together. */
+
+/* Tablet — 1024px and below */
+@media (max-width: 1024px) {
+  :root {
+    --gutter-page: 28px;
+    --gutter-page-lg: 32px;
+
+    --display-hero: 54px;
+    --display-page: 46px;
+    --display-section: 34px;
+    --display-block: 27px;
+    --display-card: 23px;
+
+    --body-lead: 20px;
+    --body-intro: 18px;
+    --body-prose: 17px;
+
+    --quote-lg: 27px;
+    --quote-md: 26px;
+
+    --section-pad-y: 34px;
+    --section-pad-b: 40px;
+  }
+}
+
+/* Phone — 768px and below. The hero drops ~45% from its desktop 76px;
+   below this the tracking stops helping and starts crowding. */
+@media (max-width: 768px) {
+  :root {
+    --gutter-page: 18px;
+    --gutter-page-lg: 18px;
+
+    --display-hero: 41px;
+    --display-hero-ls: -0.035em;
+    --display-page: 36px;
+    --display-page-ls: -0.033em;
+    --display-section: 29px;
+    --display-section-ls: -0.03em;
+    --display-block: 24px;
+    --display-card: 21px;
+    --display-item: 18px;
+
+    --body-lead: 18px;
+    --body-intro: 17px;
+    --body-prose: 16.5px;
+
+    --quote-lg: 23px;
+    --quote-md: 22px;
+
+    --section-pad-y: 26px;
+    --section-pad-b: 32px;
+
+    /* The 9px rule is the section's identity and stays legible at 6px.
+       Card accents hold at 5px — thinner and they read as a border. */
+    --border-rule: 6px;
+  }
+}

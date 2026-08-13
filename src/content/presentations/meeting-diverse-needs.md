@@ -1,13 +1,23 @@
 ---
-title: 'AI Meeting the Needs of Diverse Populations'
+type: presentation
+title: AI Meeting the Needs of Diverse Populations
+description: A workshop delivered at the 2024 WASA Superintendents Conference on AI For Diverse Students
+resource: /presentations/meeting-diverse-needs
 date: '2024-05-30'
+tags:
+  - Conference Session
+  - WASA Superintendent Conference
 presenters:
-  - 'Krestin Bahr'
-audience: 'WASA Superintendent Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/meeting-diverse-needs.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTZ8Lg_HrCVwlZPRqn7pQylyYuHSeadLBVpdEhVL-eTn0dH1AHkUo7Y7byHn9CXxbJbmqPQxBQnIk7C/embed'
-description: 'A workshop delivered at the 2024 WASA Superintendents Conference on AI For Diverse Students'
+  - Krestin Bahr
+audience: WASA Superintendent Conference
+format: Conference Session
+thumbnail: /images/thumbnails/meeting-diverse-needs.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vTZ8Lg_HrCVwlZPRqn7pQylyYuHSeadLBVpdEhVL-eTn0dH1AHkUo7Y7byHn9CXxbJbmqPQxBQnIk7C/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vTZ8Lg_HrCVwlZPRqn7pQylyYuHSeadLBVpdEhVL-eTn0dH1AHkUo7Y7byHn9CXxbJbmqPQxBQnIk7C/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI Meeting the Needs of Diverse Populations: A Superintendent's Perspective**

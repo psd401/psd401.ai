@@ -1,156 +1,381 @@
-'use client';
-
-import { Card, CardBody } from '@/components/ui/ClientCard';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import {
+  Button,
+  DocCard,
+  ImageFrame,
+  PostCard,
+  ProductCard,
+  PullQuote,
+  SectionHeader,
+  SectionRule,
+  StatCell,
+  StepRow,
+} from '@/components/ds';
+import { byDateDesc, getConcepts, getCounts } from '@/lib/content';
+import { SITE_DESCRIPTION, SITE_TAGLINE } from '@/lib/site';
+import JsonLd, { createWebPageSchema } from '@/components/JsonLd';
 
-const sections = [
-  {
-    title: 'Your Foundation for AI Integration',
-    description:
-      'Access official district policies, best practices, and foundational documents for AI implementation in education.',
-    items: [
-      {
-        title: 'Understanding AI in Education: Our Official Guidance',
-        description:
-          'Find clear and comprehensive district policies and guidance to confidently navigate the use of AI in your educational practice.',
-        image: '/images/sections/policies-hero.jpg',
-        href: '/policies',
-      },
-      {
-        title: 'Exploring the Future of Learning with AI: Our Blog',
-        description:
-          'Get real-time insights into how AI is being used in Peninsula schools, with practical examples and expert perspectives.',
-        image: '/images/sections/blog-hero.jpg',
-        href: '/blog',
-      },
-      {
-        title: 'Learn from the Experts: AI in Education Presentations',
-        description:
-          'Enhance your understanding of AI in education with presentations covering key concepts, practical applications, and emerging trends.',
-        image: '/images/sections/presentations-hero.jpg',
-        href: '/presentations',
-      },
-    ],
-  },
-  {
-    title: 'See AI in Action: Real-World Examples',
-    description:
-      'Discover ready-to-use AI tools and see how your colleagues are successfully using AI in education.',
-    items: [
-      {
-        title: 'Explore & Utilize AI Tools in Education',
-        description:
-          'Find practical AI tools to streamline your workflow, personalize learning experiences, and foster student creativity.',
-        image: '/images/sections/tools-hero.jpg',
-        href: '/tools',
-      },
-      {
-        title: 'AI in Education Research & Articles',
-        description:
-          'Access thought-provoking articles from leading researchers, educators, and experts in the field of AI and education.',
-        image: '/images/sections/articles-hero.jpg',
-        href: '/articles',
-      },
-      {
-        title: 'See AI in Action: Inspiring Use Cases',
-        description:
-          'Get inspired by practical examples and learn how to implement AI solutions in your own context, with ready-to-use prompts and best practices.',
-        image: '/images/sections/use-cases-hero.jpg',
-        href: '/use-cases',
-      },
-    ],
-  },
-];
+export const metadata: Metadata = {
+  title: 'Peninsula AI — a public school district doing its AI work in the open',
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: '/' },
+  openGraph: { title: SITE_TAGLINE, description: SITE_DESCRIPTION, url: '/' },
+};
 
-export default function Home() {
+/**
+ * The homepage is the index of all five sections, and the ONE screen in the
+ * system permitted to show more than one section colour. Every band below
+ * sets its own `data-section`; nothing here mixes two colours inside a band.
+ *
+ * Every number on this page is computed from src/content/ — the design's rule
+ * is "numbers are real or absent". The design comp showed "11 six-week cycles
+ * completed"; that is not derivable from anything in the repository, so it is
+ * absent rather than guessed.
+ */
+export default async function Home() {
+  const [counts, posts, software, policies] = await Promise.all([
+    getCounts(),
+    getConcepts('writing'),
+    getConcepts('software'),
+    getConcepts('guidance'),
+  ]);
+
+  const latestPosts = byDateDesc(posts).slice(0, 3);
+  const featuredSoftware = [...software].sort((a, b) => {
+    // Production first, then alphabetical — drafts should not lead.
+    const rank = (m: string) => (m === 'Production' ? 0 : m === 'Pilot' ? 1 : 2);
+    return rank(a.maturity) - rank(b.maturity) || a.title.localeCompare(b.title);
+  });
+
   return (
-    <div className="space-y-16 pb-16">
-      {/* Hero Section */}
-      <section className="relative text-center py-24 min-h-[600px] flex items-center">
-        {/* Background Image */}
-        <div
-          className="absolute top-0 left-0 right-0 bottom-0 z-0 h-full w-full"
-          style={{
-            backgroundImage: 'url("/images/hero-bg.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: '0.65',
-          }}
-        />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
+    <>
+      <JsonLd
+        data={createWebPageSchema({ name: SITE_TAGLINE, description: SITE_DESCRIPTION, url: '/' })}
+      />
 
-        <div className="space-y-6 max-w-4xl mx-auto px-6 relative z-[2]">
-          <h1 className="text-6xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text leading-tight">
-            Empowering Education with AI: Resources & Guidance
-          </h1>
-          <p className="text-xl text-foreground/90">
-            Peninsula School District&apos;s AI Hub provides educators with the resources and
-            support to confidently integrate AI into K-12 learning, fostering innovation and
-            preparing students for the future.
-          </p>
-          <form action="/search" className="max-w-2xl mx-auto mt-8" role="search">
-            <label htmlFor="hero-search" className="sr-only">
-              Search AI resources
-            </label>
-            <div className="relative">
-              <input
-                type="search"
-                id="hero-search"
-                name="q"
-                placeholder="Explore our AI resources..."
-                className="w-full px-4 py-3 pl-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
-              />
-              <svg
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+      {/* ---------------------------------------------------------- hero */}
+      <div data-section="writing">
+        <SectionRule as="header">
+          <div className="ds-split" style={{ gap: 56, alignItems: 'center' }}>
+            <div>
+              <div className="ds-label ds-label--sec" style={{ marginBottom: 20 }}>
+                Gig Harbor, Washington · since 2023
+              </div>
+              <h1 className="ds-display ds-display--hero" style={{ marginBottom: 22 }}>
+                {SITE_TAGLINE}
+              </h1>
+              <p
+                className="ds-lead"
+                style={{ marginBottom: 28, fontSize: 'var(--body-intro)', maxWidth: '52ch' }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+                Peninsula School District has been putting AI to work across teaching, operations,
+                policy and professional learning — and publishing the whole record, including the
+                parts that did not work.
+              </p>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Button variant="solid" size="lg" href="/writing">
+                  Read the latest
+                </Button>
+                <Button variant="outline" size="lg" href="/software">
+                  See the software
+                </Button>
+              </div>
             </div>
-          </form>
-        </div>
-      </section>
-
-      {/* Content Sections */}
-      {sections.map(section => (
-        <section key={section.title} className="space-y-8">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-primary-500">{section.title}</h2>
-            <p className="text-foreground/80">{section.description}</p>
+            <ImageFrame
+              id="HP-01"
+              ratio="4/5"
+              priority
+              brief="Environmental portrait of a named staff member at work. Shot on location, documentary, PNW daylight."
+            />
           </div>
+        </SectionRule>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {section.items.map((item, index) => (
-              <Link key={item.title} href={item.href}>
-                <Card className="hover:scale-[1.02] transition-transform bg-content1 hover:bg-content2">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={400}
-                    height={300}
-                    className="object-cover w-full h-48"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={index === 0}
-                  />
-                  <CardBody className="space-y-2">
-                    <h3 className="font-bold text-lg text-primary-500">{item.title}</h3>
-                    <p className="text-foreground/80">{item.description}</p>
-                  </CardBody>
-                </Card>
-              </Link>
+      {/* ------------------------------------------------- real counts */}
+      <div className="ds-statband">
+        <div>
+          <StatCell
+            section="software"
+            value={counts.softwareInProduction}
+            label="Products in production"
+          />
+        </div>
+        <div>
+          <StatCell
+            section="presentations"
+            value={counts.presentations}
+            label="Talks and slide decks published"
+          />
+        </div>
+        <div>
+          <StatCell section="writing" value={counts.posts} label="Posts written by staff" />
+        </div>
+        <div>
+          <StatCell section="oad" value={counts.total} label="Public artefacts to fork" />
+        </div>
+      </div>
+
+      {/* ------------------------------------------------- 02 software */}
+      <div data-section="software">
+        <SectionRule ground="tint">
+          <SectionHeader
+            number="02"
+            title="Software we build"
+            size="section"
+            meta={`${counts.software} products`}
+            lead="Built by district staff for district problems, and open source so another district can run them without paying us anything."
+          />
+          <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
+            {featuredSoftware.map(p => (
+              <ProductCard
+                key={p.slug}
+                href={p.resource}
+                name={p.title}
+                line={p.description}
+                stack={p.stack}
+                status={p.status === 'draft' ? 'DRAFT' : p.maturity.toUpperCase()}
+              />
             ))}
           </div>
-        </section>
-      ))}
-    </div>
+        </SectionRule>
+      </div>
+
+      {/* -------------------------------------------------- 01 writing */}
+      <div data-section="writing">
+        <SectionRule>
+          <SectionHeader
+            number="01"
+            title="Writing"
+            size="section"
+            meta={`${counts.posts} posts`}
+            lead="Notes from the people doing the work."
+          />
+          <div className="ds-grid ds-grid--3" style={{ gap: 30, marginTop: 28 }}>
+            {latestPosts.map(p => (
+              <PostCard
+                key={p.slug}
+                href={p.resource}
+                title={p.title}
+                meta={formatMeta(p.tags?.[0], p.date)}
+                excerpt={p.description}
+                byline={p.author}
+                image={p.image ? { src: p.image, alt: '' } : { id: 'WR-XX', brief: p.title }}
+              />
+            ))}
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* ------------------------------------------------- 03 guidance */}
+      <div data-section="guidance">
+        <SectionRule ground="tint">
+          <SectionHeader
+            number="03"
+            title="Guidance"
+            size="section"
+            meta={`${counts.policies} documents`}
+            lead="The documents our own staff work from. Plain language, published in Markdown as well as on the page, and licensed so you can fork them and put your district's name on them."
+          />
+          <div className="ds-grid ds-grid--2" style={{ gap: 22, marginTop: 28 }}>
+            {policies.map(p => (
+              <DocCard
+                key={p.slug}
+                href={p.resource}
+                kind={p.category}
+                meta={p.date}
+                title={p.title}
+                description={p.description}
+              />
+            ))}
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* -------------------------------------------- 04 presentations */}
+      <div data-section="presentations">
+        <SectionRule>
+          <div className="ds-split" style={{ gap: 48, alignItems: 'center' }}>
+            <div>
+              <SectionHeader
+                number="04"
+                title="Presentations"
+                size="section"
+                lead={`${counts.presentations} talks, workshops and board sessions, published as given — slides included, not summarised.`}
+              />
+              <div style={{ marginTop: 24 }}>
+                <Button variant="outline" href="/presentations">
+                  Browse the talks
+                </Button>
+              </div>
+            </div>
+            <ImageFrame
+              id="HP-05"
+              ratio="21/9"
+              src="/images/sections/hp-05-gig-harbor.jpg"
+              alt="Puget Sound in early morning fog, conifers on the headland, a low school building in the middle distance"
+              sizes="(max-width: 768px) 100vw, 40vw"
+            />
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* ------------------------------------------------------ 05 OAD */}
+      <div data-section="oad">
+        <SectionRule ground="tint">
+          <SectionHeader
+            number="05"
+            title="The Open Adaptive District"
+            size="section"
+            lead="How the work gets done — the loop underneath all five sections."
+          />
+          <div
+            className="ds-split--wide ds-split"
+            style={{ gap: 40, alignItems: 'center', margin: '26px 0 28px' }}
+          >
+            <p
+              style={{
+                margin: 0,
+                fontSize: 27,
+                lineHeight: 1.38,
+                fontWeight: 500,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Every six weeks, a team picks one problem and builds a better way. Your AI agent keeps
+              the notes. We all share what happened — even when it flops.
+            </p>
+            <ImageFrame
+              id="HP-04"
+              ratio="3/2"
+              brief="A team mid-cycle around a table: sticky notes, a laptop, a half-finished loop on the whiteboard. Candid."
+            />
+          </div>
+          <StepRow
+            steps={[
+              {
+                n: 'STEP 1',
+                title: 'Plan',
+                body: 'Pick one problem worth six weeks. Write down what better looks like.',
+              },
+              {
+                n: 'STEP 2',
+                title: 'Do',
+                body: 'Build the better way. Small, real, in front of students or staff.',
+              },
+              {
+                n: 'STEP 3',
+                title: 'Study',
+                body: 'The agent keeps the notes. Look honestly at what moved.',
+              },
+              { n: 'STEP 4', title: 'Share', body: 'Publish it here. Especially the flops.' },
+            ]}
+          />
+          <div style={{ marginTop: 32 }}>
+            <Button variant="solid" href="/open-adaptive-district">
+              Read the playbook
+            </Button>
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* --------------------------------------------- reference library */}
+      <div data-section="practice">
+        <SectionRule>
+          <div className="ds-split" style={{ gap: 48, alignItems: 'center' }}>
+            <div>
+              <SectionHeader
+                title="The reference library"
+                size="section"
+                lead={`${counts.useCases} use cases from staff, ${counts.tools} tools we have reviewed, and ${counts.research} pieces of outside research. Not a headline section — a filing cabinet, kept open.`}
+              />
+              <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
+                <Button variant="outline" href="/practice">
+                  Open the library
+                </Button>
+                <Button variant="quiet" href="/search">
+                  Search everything →
+                </Button>
+              </div>
+            </div>
+            <PullQuote bar cite="— AI PRINCIPLES & BELIEFS">
+              We will not use AI to make a decision about a student that we would not be willing to
+              explain to that student&rsquo;s family, in person, in plain language.
+            </PullQuote>
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* ------------------------------------------------- for machines */}
+      <div data-section="software">
+        <SectionRule ground="strong" as="section">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gap: 40,
+              alignItems: 'center',
+            }}
+            className="ds-split--even"
+          >
+            <div>
+              <h2 className="ds-display ds-display--block" style={{ marginBottom: 10 }}>
+                Built for agents to read
+              </h2>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 17,
+                  lineHeight: 1.6,
+                  opacity: 'var(--text-muted)',
+                  maxWidth: '62ch',
+                }}
+              >
+                Everything on this site is published as an Open Knowledge Format bundle — plain
+                markdown with typed frontmatter, the same files the site renders. Point an agent at
+                it and it works without a custom integration.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Button variant="solid" href="/okf">
+                Open Knowledge bundle
+              </Button>
+              <Button variant="outline" href="/llms.txt">
+                llms.txt
+              </Button>
+            </div>
+          </div>
+        </SectionRule>
+      </div>
+
+      <div style={{ padding: '0 var(--gutter-page) 40px' }}>
+        <p
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 11,
+            letterSpacing: '1px',
+            opacity: 0.5,
+          }}
+        >
+          <Link href="/search">SEARCH</Link> · <Link href="/practice">LIBRARY</Link> ·{' '}
+          <a href="/feed.xml">RSS</a>
+        </p>
+      </div>
+    </>
   );
+}
+
+/** 'Engineering · Jun 2' — the mono kicker on a post card. */
+function formatMeta(tag: string | undefined, date: string): string {
+  const d = new Date(`${date}T00:00:00Z`);
+  const when = Number.isNaN(d.getTime())
+    ? date
+    : d.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        timeZone: 'UTC',
+      });
+  return tag ? `${tag} · ${when}` : when;
 }

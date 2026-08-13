@@ -1,15 +1,19 @@
 ---
-title: 'Using Quick, Draw to Teach Datasets'
-description: 'Using Quick, Draw to Teach Datasets and foundational AI Literacy'
-category: 'Enhancing Teaching & Learning'
-subject: 'AI Literacy'
-grade_level: 'K-5'
-tools_used:
-  - 'Quick, Draw!'
-author: 'Justin Towner'
-school: 'PIE'
+type: use-case
+title: Using Quick, Draw to Teach Datasets
+description: Using Quick, Draw to Teach Datasets and foundational AI Literacy
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/quickdraw-datasets
+date: '2025-01-29'
 tags:
-  - 'AI Literacy'
+  - AI Literacy
+category: Enhancing Teaching & Learning
+subject: AI Literacy
+grade_level: K-5
+tools_used:
+  - Quick, Draw!
+author: Justin Towner
+school: PIE
+status: stable
 ---
 
 ## Overview

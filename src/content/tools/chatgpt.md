@@ -1,23 +1,24 @@
 ---
-title: 'ChatGPT'
-description: 'AI-powered conversational assistant for a wide range of tasks, including education, research, and productivity.'
+type: tool
+title: ChatGPT
+description: AI-powered conversational assistant for a wide range of tasks, including education, research, and productivity.
+resource: /tools/chatgpt
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Sandbox AI'
-provider: 'OpenAI'
-status: 'Experimentation'
-access_type: 'Multi-Purpose Tool'
-demoUrl: 'https://chat.openai.com'
 tags:
-  [
-    'ConversationalAI',
-    'LessonPlanning',
-    'StudentSupport',
-    'ResearchAssistant',
-    'Coding',
-    'Writing',
-    'Productivity',
-  ]
+  - ConversationalAI
+  - LessonPlanning
+  - StudentSupport
+  - ResearchAssistant
+  - Coding
+  - Writing
+  - Productivity
+category: Education Tools
+provider: OpenAI
+privacy: Sandbox AI
+access_type: Multi-Purpose Tool
+maturity: Experimentation
+demoUrl: https://chat.openai.com
+status: stable
 ---
 
 ## Summary

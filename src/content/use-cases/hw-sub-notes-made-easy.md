@@ -1,15 +1,19 @@
 ---
-title: 'Sub Notes Made Easy'
-description: 'The quickest way to write substitute plans with a little help from Gemini.'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Substitute Plans'
-grade_level: 'Staff'
-tools_used:
-  - 'Gemini'
-author: 'Heather Whyte'
-school: 'HRMS'
+type: use-case
+title: Sub Notes Made Easy
+description: The quickest way to write substitute plans with a little help from Gemini.
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/hw-sub-notes-made-easy
+date: '2025-01-29'
 tags:
-  - 'Lesson Plans'
+  - Lesson Plans
+category: Streamlining Administrative Tasks & Operations
+subject: Substitute Plans
+grade_level: Staff
+tools_used:
+  - Gemini
+author: Heather Whyte
+school: HRMS
+status: stable
 ---
 
 ## Prompt Used

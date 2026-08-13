@@ -1,11 +1,20 @@
 ---
-title: 'Amplify GenAI'
-status: 'Production'
-type: 'Chat Environment'
-privacy: 'Vault AI'
-description: 'Enterprise platform that enables users to build custom AI assistants using their own documents and data with various LLM providers'
-demoUrl: 'https://prod-pagai.psd401.ai'
-tags: ['DocumentManagement', 'EnterpriseAI', 'CustomAssistants', 'DataPrivacy', 'KnowledgeBase']
+type: tool
+title: Amplify GenAI
+description: Enterprise platform that enables users to build custom AI assistants using their own documents and data with various LLM providers
+resource: /tools/amplify-genai
+date: '2025-01-22'
+tags:
+  - DocumentManagement
+  - EnterpriseAI
+  - CustomAssistants
+  - DataPrivacy
+  - KnowledgeBase
+privacy: Vault AI
+maturity: Production
+format: Chat Environment
+demoUrl: https://prod-pagai.psd401.ai
+status: stable
 ---
 
 ## Summary

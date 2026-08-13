@@ -1,23 +1,24 @@
 ---
-title: 'Claude'
-description: 'AI assistant by Anthropic, designed for safe, helpful, and honest conversations, supporting education, research, and productivity.'
+type: tool
+title: Claude
+description: AI assistant by Anthropic, designed for safe, helpful, and honest conversations, supporting education, research, and productivity.
+resource: /tools/claude
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Sandbox AI'
-provider: 'Anthropic'
-status: 'Experimentation'
-access_type: 'Multi-Purpose Tool'
-demoUrl: 'https://claude.ai'
 tags:
-  [
-    'ConversationalAI',
-    'LessonPlanning',
-    'StudentSupport',
-    'ResearchAssistant',
-    'Writing',
-    'Productivity',
-    'Safety',
-  ]
+  - ConversationalAI
+  - LessonPlanning
+  - StudentSupport
+  - ResearchAssistant
+  - Writing
+  - Productivity
+  - Safety
+category: Education Tools
+provider: Anthropic
+privacy: Sandbox AI
+access_type: Multi-Purpose Tool
+maturity: Experimentation
+demoUrl: https://claude.ai
+status: stable
 ---
 
 ## Summary

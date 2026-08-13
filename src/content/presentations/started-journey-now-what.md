@@ -1,14 +1,24 @@
 ---
-title: "I've Started My District's AI Journey, Now What?"
+type: presentation
+title: I've Started My District's AI Journey, Now What?
+description: A breakout session delivered at the 2025 AASA AI Super Summit on some of our learnings from four years of AI embrace and where do we go from here.
+resource: /presentations/started-journey-now-what
 date: '2025-11-19'
+tags:
+  - Conference Session
+  - AASA AI Super Summit
 presenters:
-  - 'Krestin Bahr'
-  - 'Kris Hagel'
-audience: 'AASA AI Super Summit'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/started-journey-now-what.png'
-slides: 'https://docs.google.com/presentation/d/17vFSmC-68RY-erE4zwAx3W-e-H2A1QV9CG1j47m9N-M/embed'
-description: 'A breakout session delivered at the 2025 AASA AI Super Summit on some of our learnings from four years of AI embrace and where do we go from here.'
+  - Krestin Bahr
+  - Kris Hagel
+audience: AASA AI Super Summit
+format: Conference Session
+thumbnail: /images/thumbnails/started-journey-now-what.png
+slides: https://docs.google.com/presentation/d/17vFSmC-68RY-erE4zwAx3W-e-H2A1QV9CG1j47m9N-M/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/17vFSmC-68RY-erE4zwAx3W-e-H2A1QV9CG1j47m9N-M/embed
+    id: slides
+    title: Slide deck
 ---
 
 **I've Started My District's AI Journey, Now What? A Roadmap for the Next Phase**

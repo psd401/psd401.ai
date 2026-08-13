@@ -1,17 +1,21 @@
 ---
-title: 'ChatGPT For Game Development Assitance'
-description: 'Using the ChatGPT Extension in VS Code to assist students with Game Development'
-category: 'Enhancing Teaching & Learning'
-subject: 'AI Coding'
-grade_level: '9-12'
-tools_used:
-  - 'ChatGPT'
-  - VS Code
-author: 'Sam Tilly'
-school: 'GHHS'
+type: use-case
+title: ChatGPT For Game Development Assitance
+description: Using the ChatGPT Extension in VS Code to assist students with Game Development
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/chatgpt-for-game-development
+date: '2025-01-29'
 tags:
-  - 'Coding'
-  - 'Game Development'
+  - Coding
+  - Game Development
+category: Enhancing Teaching & Learning
+subject: AI Coding
+grade_level: 9-12
+tools_used:
+  - ChatGPT
+  - VS Code
+author: Sam Tilly
+school: GHHS
+status: stable
 ---
 
 ## Overview

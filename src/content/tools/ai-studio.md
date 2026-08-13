@@ -1,25 +1,26 @@
 ---
-title: 'AI Studio'
-description: 'Open-source platform providing secure access to frontier AI models like GPT-5, Claude Opus, and Google Gemini for K-12 education.'
+type: tool
+title: AI Studio
+description: Open-source platform providing secure access to frontier AI models like GPT-5, Claude Opus, and Google Gemini for K-12 education.
+resource: /tools/ai-studio
 date: '2025-09-27'
-category: 'Education Tools'
-privacy: 'District Hosted'
-provider: 'Peninsula School District'
-status: 'Production'
-access_type: 'Multi-Purpose Tool'
-demoUrl: 'https://github.com/psd401/aistudio'
 tags:
-  [
-    'ConversationalAI',
-    'LessonPlanning',
-    'StudentSupport',
-    'ResearchAssistant',
-    'Coding',
-    'Writing',
-    'Productivity',
-    'OpenSource',
-    'MultiModel',
-  ]
+  - ConversationalAI
+  - LessonPlanning
+  - StudentSupport
+  - ResearchAssistant
+  - Coding
+  - Writing
+  - Productivity
+  - OpenSource
+  - MultiModel
+category: Education Tools
+provider: Peninsula School District
+privacy: District Hosted
+access_type: Multi-Purpose Tool
+maturity: Production
+demoUrl: https://github.com/psd401/aistudio
+status: stable
 ---
 
 ## Summary

@@ -1,51 +1,247 @@
-@import "tailwindcss";
-@config "../../tailwind.config.js";
-@plugin '../../hero.ts';
-@source '../../node_modules/@heroui/react/node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx,mjs}';
-@custom-variant dark (&:is(.dark *));
+@import 'tailwindcss';
+
+/* Peninsula AI design system. Order matters: fonts and colours define the
+   variables that typography, spacing and the components read. `responsive`
+   comes last so its media queries override the base scale. */
+@import '../styles/tokens/fonts.css';
+@import '../styles/tokens/colors.css';
+@import '../styles/tokens/typography.css';
+@import '../styles/tokens/spacing.css';
+@import '../styles/tokens/motion.css';
+@import '../styles/tokens/responsive.css';
+@import '../styles/ds.css';
+
+/* Dark mode is driven by next-themes writing data-theme on <html>, which is
+   what tokens/colors.css keys off. This variant exposes the same signal to
+   Tailwind utilities. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 @layer base {
   html {
-    font-family: var(--font-inter), system-ui, sans-serif;
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark;
   }
 
   body {
-    @apply antialiased transition-colors duration-200;
-    background-color: hsl(var(--heroui-background));
-    color: hsl(var(--heroui-foreground));
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--body-base);
+    line-height: var(--body-base-lh);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  html.light {
-    --code-bg: #1E1E1E;
+  /* There is no radius in this system. This is a backstop, not decoration:
+     it catches anything pasted in from elsewhere. The browser-chrome dots
+     opt back in explicitly. */
+  *,
+  *::before,
+  *::after {
+    border-radius: 0;
+  }
+  .ds-browser__dot {
+    border-radius: 99px;
   }
 
-  html.dark {
-    --code-bg: #1E1E1E;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Wide content must scroll inside its own box rather than the page. */
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
   }
 }
 
-/* Remove conflicting root variables */
-:root {
-  color-scheme: light dark;
+/* --------------------------------------------------------------- focus */
+/* One visible focus treatment sitewide, in the active section colour, with
+   a surface-coloured outer ring so it stays visible on tinted grounds. */
+
+:focus-visible {
+  outline: 2px solid var(--sec);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--surface);
 }
 
-/* Add smooth transitions for theme changes */
-* {
-  @apply transition-colors duration-200;
+/* On the permanently dark code ground the section colour is the wrong
+   contrast pairing — use the code foreground instead. */
+.ds-code :focus-visible {
+  outline-color: var(--on-code);
+  box-shadow: 0 0 0 4px var(--surface-code);
 }
 
-/* Global focus-visible styles for keyboard accessibility */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[tabindex]:focus-visible {
-  @apply outline-none ring-2 ring-sea-glass ring-offset-2 ring-offset-background;
+.ds-skiplink {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.ds-skiplink:focus {
+  left: var(--gutter-page);
+  top: 8px;
+  background: var(--sec);
+  color: var(--on-accent);
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  letter-spacing: var(--label-md-ls);
+  text-transform: uppercase;
 }
 
-/* Ensure focus is visible on dark backgrounds */
-.bg-pacific a:focus-visible,
-.bg-pacific button:focus-visible {
-  @apply ring-white ring-offset-pacific;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* --------------------------------------------------------------- prose */
+/* Rendered markdown. Caps at 720px per the layout spec; the display scale
+   applies to headings so an article reads as part of the same system. */
+
+.prose {
+  max-width: var(--measure-prose);
+  font-size: var(--body-prose);
+  line-height: var(--body-prose-lh);
+}
+.prose > * + * {
+  margin-top: 1.15em;
+}
+.prose h2 {
+  font-size: var(--display-block);
+  letter-spacing: var(--display-block-ls);
+  line-height: var(--display-block-lh);
+  margin-top: 2em;
+  margin-bottom: 0.1em;
+}
+.prose h3 {
+  font-size: var(--display-item);
+  letter-spacing: var(--display-item-ls);
+  line-height: var(--display-item-lh);
+  margin-top: 1.7em;
+  margin-bottom: 0.1em;
+}
+.prose h4 {
+  font-family: var(--font-mono);
+  font-size: var(--label-lg);
+  letter-spacing: var(--label-lg-ls);
+  text-transform: uppercase;
+  opacity: var(--text-label);
+  margin-top: 1.6em;
+}
+.prose p {
+  margin: 0;
+  opacity: var(--text-body);
+}
+.prose a {
+  color: var(--sec);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose a:hover {
+  text-decoration-thickness: 2px;
+}
+.prose ul,
+.prose ol {
+  margin: 0;
+  padding-left: 1.35em;
+  opacity: var(--text-body);
+}
+.prose li + li {
+  margin-top: 0.4em;
+}
+.prose blockquote {
+  margin: 1.6em 0;
+  border-left: var(--border-accent) solid var(--sec);
+  padding-left: 24px;
+  font-family: var(--font-quote);
+  font-size: var(--quote-md);
+  line-height: var(--quote-md-lh);
+  font-style: italic;
+  font-weight: 300;
+}
+.prose blockquote p {
+  opacity: 1;
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--surface-soft);
+  padding: 2px 5px;
+}
+.prose pre {
+  background: var(--surface-code);
+  color: var(--on-code);
+  padding: 20px 22px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.72;
+}
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+.prose img {
+  display: block;
+  width: 100%;
+}
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 2.2em 0;
+}
+.prose table {
+  font-size: var(--body-small);
+  line-height: var(--body-small-lh);
+  width: 100%;
+}
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 10px 16px 10px 0;
+  border-bottom: 1px solid var(--hairline-faint);
+  vertical-align: top;
+}
+.prose th {
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: var(--label-sm-ls);
+  text-transform: uppercase;
+  opacity: var(--text-label);
+  font-weight: 600;
 }

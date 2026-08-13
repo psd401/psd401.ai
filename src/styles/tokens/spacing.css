@@ -1,0 +1,35 @@
+/* Peninsula AI — spacing & geometry
+   Corners are square. There is no radius token because there is no radius:
+   the only rounded things in the system are the browser-chrome dots in a
+   product screenshot frame. Do not add one.
+
+   Source: Claude Design project 5db21ee4 · tokens/spacing.css (verbatim). */
+:root {
+  --gutter-page: 40px; /* left/right on every full-width page          */
+  --gutter-page-lg: 48px; /* wide reference pages (prompt sheet)          */
+  --canvas: 1440px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 22px;
+  --space-6: 26px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 44px;
+  --space-10: 52px;
+  --space-11: 76px;
+
+  --section-pad-y: 44px; /* top pad under the 9px rule                  */
+  --section-pad-b: 52px;
+  --measure-prose: 720px; /* article column                              */
+  --measure-lead: 58ch;
+  --measure-body: 68ch;
+
+  --border-hair: 1px;
+  --border-card: 1px;
+  --border-accent: 5px; /* left accent on a card                       */
+  --border-rule: 9px; /* the section rule                            */
+  --radius: 0;
+}

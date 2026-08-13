@@ -1,24 +1,25 @@
 ---
-title: 'Gemini'
-description: "Google's multimodal AI assistant for education, research, and productivity, supporting text, image, and code."
+type: tool
+title: Gemini
+description: Google's multimodal AI assistant for education, research, and productivity, supporting text, image, and code.
+resource: /tools/gemini
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Lifeguard AI'
-provider: 'Google'
-status: 'Production'
-access_type: 'Multi-Purpose Tool'
-demoUrl: 'https://gemini.google.com'
 tags:
-  [
-    'ConversationalAI',
-    'LessonPlanning',
-    'StudentSupport',
-    'ResearchAssistant',
-    'Coding',
-    'Writing',
-    'Productivity',
-    'Multimodal',
-  ]
+  - ConversationalAI
+  - LessonPlanning
+  - StudentSupport
+  - ResearchAssistant
+  - Coding
+  - Writing
+  - Productivity
+  - Multimodal
+category: Education Tools
+provider: Google
+privacy: Lifeguard AI
+access_type: Multi-Purpose Tool
+maturity: Production
+demoUrl: https://gemini.google.com
+status: stable
 ---
 
 ## Summary

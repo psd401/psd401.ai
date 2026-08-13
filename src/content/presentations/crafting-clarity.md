@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'Crafting Clarity: Mastering AI Prompt Engineering in Education'
+description: A workshop delivered at the 2024 WERA Conference on Prompt Engineering
+resource: /presentations/crafting-clarity
 date: '2024-12-04'
+tags:
+  - Conference Workshop
+  - WERA Conference
 presenters:
-  - 'Kris Hagel'
-  - 'James Cantonwine'
-audience: 'WERA Conference'
-type: 'Conference Workshop'
-thumbnail: '/images/thumbnails/crafting-clarity.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQ--1KpBwtB8anChO3Mr1PHgjoG3qnafBsvziSwMe8FYhHyibimRRs4Q8cy4QIY8btgmWqMqORonpFZ/embed'
-description: 'A workshop delivered at the 2024 WERA Conference on Prompt Engineering'
+  - Kris Hagel
+  - James Cantonwine
+audience: WERA Conference
+format: Conference Workshop
+thumbnail: /images/thumbnails/crafting-clarity.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vQ--1KpBwtB8anChO3Mr1PHgjoG3qnafBsvziSwMe8FYhHyibimRRs4Q8cy4QIY8btgmWqMqORonpFZ/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vQ--1KpBwtB8anChO3Mr1PHgjoG3qnafBsvziSwMe8FYhHyibimRRs4Q8cy4QIY8btgmWqMqORonpFZ/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Crafting Clarity: Mastering AI Prompt Engineering in Education**

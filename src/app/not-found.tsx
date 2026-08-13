@@ -1,51 +1,71 @@
-'use client';
-
+import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/ClientButton';
+import type { Metadata } from 'next';
+import { Button, SectionHeader, SectionRule } from '@/components/ds';
+import { SECTIONS } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center px-4">
-      <div className="text-center space-y-6 max-w-md">
-        <div className="space-y-2">
-          <h1 className="text-6xl font-bold text-primary">404</h1>
-          <h2 className="text-2xl font-semibold">Page Not Found</h2>
+    <div data-section="writing">
+      <SectionRule as="header">
+        <SectionHeader
+          as="h1"
+          title="That page is not here"
+          lead="The site was reorganised in 2026 and most old links redirect automatically. This one did not — which is our bug, not yours."
+        />
+
+        <div style={{ display: 'flex', gap: 12, marginTop: 26, flexWrap: 'wrap' }}>
+          <Button variant="solid" href="/search">
+            Search the site
+          </Button>
+          <Button variant="outline" href="/">
+            Go to the homepage
+          </Button>
         </div>
 
-        <p className="text-foreground/60">
-          The page you&apos;re looking for doesn&apos;t exist or has been moved.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/">
-            <Button color="primary" variant="solid" className="w-full">
-              Return Home
-            </Button>
-          </Link>
-          <Link href="/blog">
-            <Button variant="bordered" className="w-full">
-              Browse Blog
-            </Button>
-          </Link>
-        </div>
-
-        <div className="pt-8 text-sm text-foreground/50">
-          <p>Looking for something specific? Try these:</p>
-          <div className="flex flex-wrap gap-2 justify-center mt-2">
-            <Link href="/tools" className="text-primary hover:underline">
-              AI Tools
-            </Link>
-            <span>•</span>
-            <Link href="/use-cases" className="text-primary hover:underline">
-              Use Cases
-            </Link>
-            <span>•</span>
-            <Link href="/policies" className="text-primary hover:underline">
-              Policies
-            </Link>
+        <div style={{ marginTop: 44 }}>
+          <div className="ds-label ds-label--sm ds-label--muted" style={{ marginBottom: 14 }}>
+            The five sections
           </div>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 2 }}>
+            {SECTIONS.map(s => (
+              <li key={s.href}>
+                <Link
+                  href={s.href}
+                  style={{
+                    display: 'flex',
+                    gap: 12,
+                    alignItems: 'baseline',
+                    padding: '12px 0',
+                    borderBottom: '1px solid var(--hairline-faint)',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
+                >
+                  <span className="ds-label ds-label--xs ds-label--muted">{s.n}</span>
+                  <span className="ds-display ds-display--item">{s.name}</span>
+                  <span
+                    style={{
+                      fontSize: 'var(--body-fine)',
+                      opacity: 'var(--text-muted)',
+                      marginLeft: 'auto',
+                      textAlign: 'right',
+                      maxWidth: '46ch',
+                    }}
+                  >
+                    {s.description}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
+      </SectionRule>
     </div>
   );
 }

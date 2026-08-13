@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'Practical AI Leadership: Mastering the Basics of AI for School Leaders'
+description: A workshop delivered to PSD building administrators on understanding the basics of using AI effectively, and how you can build upon that to build resuable AI tools
+resource: /presentations/practical-ai-leadership
 date: '2024-12-03'
+tags:
+  - Internal Workshop
+  - PSD Staff
 presenters:
-  - 'Kris Hagel'
-audience: 'PSD Staff'
-type: 'Internal Workshop'
-thumbnail: '/images/thumbnails/practical-ai-leadership.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vQsjwIGKQGd0l2gES4rdVH3dHRhf-4NKEiHtmUwvV8Zwqgc7qx8yWLLnJCKTjikzjFmbruGBPLFvkK6/embed'
-description: 'A workshop delivered to PSD building administrators on understanding the basics of using AI effectively, and how you can build upon that to build resuable AI tools'
+  - Kris Hagel
+audience: PSD Staff
+format: Internal Workshop
+thumbnail: /images/thumbnails/practical-ai-leadership.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vQsjwIGKQGd0l2gES4rdVH3dHRhf-4NKEiHtmUwvV8Zwqgc7qx8yWLLnJCKTjikzjFmbruGBPLFvkK6/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vQsjwIGKQGd0l2gES4rdVH3dHRhf-4NKEiHtmUwvV8Zwqgc7qx8yWLLnJCKTjikzjFmbruGBPLFvkK6/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Practical AI for School Leaders: A Guide to Getting Started**

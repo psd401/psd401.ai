@@ -1,13 +1,23 @@
 ---
-title: 'AI - The class assistant for your “best life"'
+type: presentation
+title: AI - The class assistant for your “best life"
+description: A sharing session provided to the community at the 2023 AI for All Public Event
+resource: /presentations/ai-class-assistant
 date: '2023-11-10'
+tags:
+  - Public Workshop
+  - PSD Community
 presenters:
-  - 'Dave Stitt'
-audience: 'PSD Community'
-type: 'Public Workshop'
-thumbnail: '/images/thumbnails/ai-class-assistant.png'
-slides: 'https://docs.google.com/presentation/d/1d7WieYFFpKKv196DqD6QHbr0TcWKWW5iSwfAp-_OKzM/embed'
-description: 'A sharing session provided to the community at the 2023 AI for All Public Event'
+  - Dave Stitt
+audience: PSD Community
+format: Public Workshop
+thumbnail: /images/thumbnails/ai-class-assistant.png
+slides: https://docs.google.com/presentation/d/1d7WieYFFpKKv196DqD6QHbr0TcWKWW5iSwfAp-_OKzM/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1d7WieYFFpKKv196DqD6QHbr0TcWKWW5iSwfAp-_OKzM/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI: The Class Assistant for Your "Best Life"**

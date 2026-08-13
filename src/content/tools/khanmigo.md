@@ -1,25 +1,26 @@
 ---
-title: 'Khanmigo'
-description: 'AI-powered tutor and teaching assistant from Khan Academy, designed for safe, effective, and engaging learning.'
+type: tool
+title: Khanmigo
+description: AI-powered tutor and teaching assistant from Khan Academy, designed for safe, effective, and engaging learning.
+resource: /tools/khanmigo
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Lifeguard AI'
-provider: 'Khan Academy'
-status: 'Experimentation'
-access_type: 'AI Tutor & Teacher Assistant'
-demoUrl: 'https://www.khanmigo.ai/'
 tags:
-  [
-    'Tutor',
-    'TeachingAssistant',
-    'LessonPlanning',
-    'StudentSupport',
-    'WritingCoach',
-    'Coding',
-    'Productivity',
-    'Assessment',
-    'AIforEducation',
-  ]
+  - Tutor
+  - TeachingAssistant
+  - LessonPlanning
+  - StudentSupport
+  - WritingCoach
+  - Coding
+  - Productivity
+  - Assessment
+  - AIforEducation
+category: Education Tools
+provider: Khan Academy
+privacy: Lifeguard AI
+access_type: AI Tutor & Teacher Assistant
+maturity: Experimentation
+demoUrl: https://www.khanmigo.ai/
+status: stable
 ---
 
 ## Summary

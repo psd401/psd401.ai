@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'From Vision to Innovation: Aligning District Strategic Planning with Technology Leadership'
+description: A keynote on how small districts can leverage AI strategically by anchoring technology decisions to their strategic plan, building governance structures, and fostering internal innovation capacity.
+resource: /presentations/from-vision-to-innovation
 date: '2026-03-23'
+tags:
+  - Conference Keynote
+  - SAM Conference
 presenters:
-  - 'Krestin Bahr'
-  - 'James Cantonwine'
-audience: 'SAM Conference'
-type: 'Conference Keynote'
-thumbnail: '/images/thumbnails/from-vision-to-innovation.png'
-slides: 'https://docs.google.com/presentation/d/1NUTZIgsxWL99Bcm_WeVA81PDjNutcK7kDGvpk7KZsB8/embed'
-description: 'A keynote on how small districts can leverage AI strategically by anchoring technology decisions to their strategic plan, building governance structures, and fostering internal innovation capacity.'
+  - Krestin Bahr
+  - James Cantonwine
+audience: SAM Conference
+format: Conference Keynote
+thumbnail: /images/thumbnails/from-vision-to-innovation.png
+slides: https://docs.google.com/presentation/d/1NUTZIgsxWL99Bcm_WeVA81PDjNutcK7kDGvpk7KZsB8/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1NUTZIgsxWL99Bcm_WeVA81PDjNutcK7kDGvpk7KZsB8/embed
+    id: slides
+    title: Slide deck
 ---
 
 **From Vision to Innovation: Aligning District Strategic Planning with Technology Leadership**

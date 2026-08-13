@@ -1,17 +1,21 @@
 ---
-title: 'Job Description Specialist - CustomGPT'
-description: 'Utilizing a pre-built template for geenrating new job descriptions'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Job Descriptions'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'Kris Hagel'
-school: 'ESC'
+type: use-case
+title: Job Description Specialist - CustomGPT
+description: Utilizing a pre-built template for geenrating new job descriptions
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/job-description-specialist
+date: '2025-01-24'
 tags:
-  - 'System Prompt'
-  - 'AI Assistant'
-  - 'Human Resources'
+  - System Prompt
+  - AI Assistant
+  - Human Resources
+category: Streamlining Administrative Tasks & Operations
+subject: Job Descriptions
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: Kris Hagel
+school: ESC
+status: stable
 ---
 
 ## Overview

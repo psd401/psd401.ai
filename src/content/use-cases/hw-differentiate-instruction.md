@@ -1,15 +1,19 @@
 ---
-title: 'Using Gemini to Differentiate Instruction'
-description: 'Write Google forms assessments on the same topic for different ability levels using Gemini as a question generator.'
-category: 'Enhancing Teaching & Learning'
-subject: 'Evaluation Goals'
-grade_level: 'Staff'
-tools_used:
-  - 'Gemini'
-author: 'Heather Whyte'
-school: 'HRMS'
+type: use-case
+title: Using Gemini to Differentiate Instruction
+description: Write Google forms assessments on the same topic for different ability levels using Gemini as a question generator.
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/hw-differentiate-instruction
+date: '2025-01-29'
 tags:
-  - 'Differentiation'
+  - Differentiation
+category: Enhancing Teaching & Learning
+subject: Evaluation Goals
+grade_level: Staff
+tools_used:
+  - Gemini
+author: Heather Whyte
+school: HRMS
+status: stable
 ---
 
 ## Overview

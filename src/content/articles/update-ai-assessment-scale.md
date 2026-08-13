@@ -1,11 +1,24 @@
 ---
-title: 'Updating the AI Assessment Scale'
-author: ' Mike Perkins, Jasper Roe, Jason MacVaugh, Leon Furze'
-source: 'leonfurze.com'
+type: research
+title: Updating the AI Assessment Scale
+description: An updated article on AI and how it impacts assessments in K-12 and higher education across a range of disciplines.
+resource: /articles/update-ai-assessment-scale
 date: '2024-08-28'
-type: 'Opinion Piece'
-tags: ['Article', 'Assessment', 'Academic Integrity']
-externalUrl: 'https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/'
+tags:
+  - Article
+  - Assessment
+  - Academic Integrity
+author: ' Mike Perkins, Jasper Roe, Jason MacVaugh, Leon Furze'
+source: leonfurze.com
+format: Opinion Piece
+externalUrl: https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/
+status: stable
+sources:
+  - resource: https://leonfurze.com/2024/08/28/updating-the-ai-assessment-scale/
+    id: original
+    title: Updating the AI Assessment Scale
+    author: ' Mike Perkins, Jasper Roe, Jason MacVaugh, Leon Furze'
+    last_modified: '2024-08-28'
 ---
 
 # Updating the AI Assessment Scale

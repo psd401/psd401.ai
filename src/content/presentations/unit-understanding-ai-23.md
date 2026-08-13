@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: '2/3 Unit: Artificial Intelligence (AI)'
+description: Unit on understanding AI for students in grades 2-3 at Pioneer Elementary
+resource: /presentations/unit-understanding-ai-23
 date: '2024-05-01'
+tags:
+  - Classroom Lessons
+  - PSD Students
 presenters:
-  - 'Justin Towner'
-audience: 'PSD Students'
-type: 'Classroom Lessons'
-thumbnail: '/images/thumbnails/unit-understanding-ai.png'
-slides: 'https://docs.google.com/presentation/d/1jlfn1Qywwpf0qrsS5-WpYdqE4zgNVF-O5dFpCfGr7vc/embed'
-description: 'Unit on understanding AI for students in grades 2-3 at Pioneer Elementary'
+  - Justin Towner
+audience: PSD Students
+format: Classroom Lessons
+thumbnail: /images/thumbnails/unit-understanding-ai.png
+slides: https://docs.google.com/presentation/d/1jlfn1Qywwpf0qrsS5-WpYdqE4zgNVF-O5dFpCfGr7vc/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1jlfn1Qywwpf0qrsS5-WpYdqE4zgNVF-O5dFpCfGr7vc/embed
+    id: slides
+    title: Slide deck
 ---
 
 **2/3 Unit: Artificial Intelligence (AI) - An Introduction for Young Learners**

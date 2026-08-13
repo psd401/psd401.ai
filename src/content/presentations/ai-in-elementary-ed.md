@@ -1,13 +1,23 @@
 ---
-title: 'AI in Elementary Education'
+type: presentation
+title: AI in Elementary Education
+description: A sharing session provided to the community at the 2023 AI for All Public Event
+resource: /presentations/ai-in-elementary-ed
 date: '2023-11-10'
+tags:
+  - Public Workshop
+  - PSD Community
 presenters:
-  - 'Justin Towner'
-audience: 'PSD Community'
-type: 'Public Workshop'
-thumbnail: '/images/thumbnails/ai-in-elementary-ed.png'
-slides: 'https://docs.google.com/presentation/d/1_gIJgCo6KZ_hLkaXy78UcdTzMtrWsUqUSnGTrn4rfZY/embed'
-description: 'A sharing session provided to the community at the 2023 AI for All Public Event'
+  - Justin Towner
+audience: PSD Community
+format: Public Workshop
+thumbnail: /images/thumbnails/ai-in-elementary-ed.png
+slides: https://docs.google.com/presentation/d/1_gIJgCo6KZ_hLkaXy78UcdTzMtrWsUqUSnGTrn4rfZY/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1_gIJgCo6KZ_hLkaXy78UcdTzMtrWsUqUSnGTrn4rfZY/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI in Elementary Education: Engaging Young Learners with Artificial Intelligence**

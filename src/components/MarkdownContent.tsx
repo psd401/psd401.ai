@@ -1,248 +1,178 @@
 'use client';
 
+/**
+ * Rendered markdown body.
+ *
+ * Styling comes from the `.prose` rules in globals.css, which are built on
+ * the design tokens — headings use the display scale, code sits on the
+ * permanently dark ground, blockquotes get the 5px section accent.
+ *
+ * Two deliberate removals from the pre-redesign version:
+ *
+ *   · react-syntax-highlighter. 36 files carry fenced code, but they are
+ *     almost all ```md and ```prompt — prompts and markdown, not source.
+ *     The design specifies a single dark code ground with no highlighting,
+ *     and the library was the heaviest client dependency on the site.
+ *   · The HeroUI Button behind the copy control, now a plain button.
+ *
+ * One correctness fix: links used to open every href in a new tab, including
+ * internal ones. Only external links do now.
+ */
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Button } from '@heroui/react';
 import rehypeRaw from 'rehype-raw';
-
-interface MarkdownContentProps {
-  content: string;
-}
-
-interface CodeProps {
-  node?: any;
-  inline?: boolean;
-  className?: string;
-  children?: React.ReactNode;
-}
-
-interface VideoProps {
-  src: string;
-  title?: string;
-  height?: string;
-}
-
-interface VideoElementProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-  src?: string;
-  title?: string;
-  height?: string;
-}
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
-    <Button
-      size="sm"
-      variant="flat"
-      className="absolute right-2 top-2 bg-content2/50 hover:bg-content2"
-      onClick={handleCopy}
+    <button
+      type="button"
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch {
+          /* clipboard blocked — leave the label alone */
+        }
+      }}
+      style={{
+        position: 'absolute',
+        right: 10,
+        top: 10,
+        background: 'transparent',
+        border: '1px solid rgba(255,255,255,.28)',
+        color: 'var(--on-code)',
+        fontFamily: 'var(--font-mono)',
+        fontSize: 10,
+        letterSpacing: '1.2px',
+        textTransform: 'uppercase',
+        padding: '5px 9px',
+        cursor: 'pointer',
+      }}
     >
-      {copied ? (
-        <>
-          <CheckIcon className="h-4 w-4 mr-1" />
-          Copied!
-        </>
-      ) : (
-        <>
-          <CopyIcon className="h-4 w-4 mr-1" />
-          Copy
-        </>
-      )}
-    </Button>
+      {copied ? 'Copied' : 'Copy'}
+    </button>
   );
 }
 
-function CopyIcon({ className }: { className?: string }) {
+function YouTube({ src, title }: { src: string; title?: string }) {
+  const id = src.includes('youtu.be')
+    ? src.split('youtu.be/')[1]?.split(/[?&]/)[0]
+    : src.split('v=')[1]?.split('&')[0] || src.split('/embed/')[1]?.split(/[?&]/)[0];
+
+  if (!id) return null;
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"
+    <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', margin: '2em 0' }}>
+      <iframe
+        src={`https://www.youtube.com/embed/${id}`}
+        title={title || 'Video'}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
       />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-    </svg>
-  );
-}
-
-function Video({ src, title, height = '400px' }: VideoProps) {
-  // Handle different video types
-  if (src.includes('youtube.com') || src.includes('youtu.be')) {
-    // Convert YouTube URL to embed URL
-    const videoId = src.includes('youtu.be')
-      ? src.split('youtu.be/')[1]
-      : src.split('v=')[1]?.split('&')[0];
-    return (
-      <div className="relative w-full aspect-video rounded-lg overflow-hidden my-8">
-        <iframe
-          src={`https://www.youtube.com/embed/${videoId}`}
-          title={title || 'YouTube video'}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute top-0 left-0 w-full h-full"
-        />
-      </div>
-    );
-  }
-
-  // Handle direct video files
-  return (
-    <div className="my-8">
-      <video controls className="w-full rounded-lg" style={{ maxHeight: height }}>
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
     </div>
   );
 }
 
-export default function MarkdownContent({ content }: MarkdownContentProps) {
+/**
+ * Normalise heading levels so a body always starts at h2.
+ *
+ * The page supplies the h1. But 36 of the markdown bodies open with their own
+ * `# Title` (duplicating the page heading) and 9 more start at `###` with no
+ * `##` above them — 45 pages with a broken heading outline between them.
+ *
+ * Rather than edit 45 authored documents, shift every heading by a constant
+ * so the shallowest one in the body lands on h2. Relative structure inside
+ * the document is preserved exactly; only the offset changes.
+ */
+function shiftHeadings(markdown: string): string {
+  const lines = markdown.split('\n');
+
+  // Pass one: find the shallowest heading, ignoring fenced code — a '#' at
+  // the start of a line inside a shell block is a comment, not a heading.
+  let min = 7;
+  let inFence = false;
+  for (const line of lines) {
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const m = /^(#{1,6})\s/.exec(line);
+    if (m) min = Math.min(min, m[1].length);
+  }
+  if (min === 7) return markdown;
+
+  const shift = 2 - min;
+  if (shift === 0) return markdown;
+
+  // Pass two: apply the shift, clamped to h2–h6.
+  inFence = false;
+  return lines
+    .map(line => {
+      if (/^\s*```/.test(line)) {
+        inFence = !inFence;
+        return line;
+      }
+      if (inFence) return line;
+      return line.replace(/^(#{1,6})(\s)/, (_, hashes: string, space: string) => {
+        const level = Math.min(6, Math.max(2, hashes.length + shift));
+        return '#'.repeat(level) + space;
+      });
+    })
+    .join('\n');
+}
+
+export default function MarkdownContent({ content }: { content: string }) {
+  const normalized = React.useMemo(() => shiftHeadings(content), [content]);
+
   return (
-    <div className="prose dark:prose-invert max-w-none">
+    <div className="prose">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
         components={{
-          code({ inline, className, children, ...props }: CodeProps) {
-            const match = /language-(\w+)/.exec(className || '');
-            return !inline && match ? (
-              <div className="relative">
-                <CopyButton text={String(children).replace(/\n$/, '')} />
-                <SyntaxHighlighter
-                  style={vscDarkPlus}
-                  language={match[1]}
-                  PreTag="div"
-                  className="!mt-0 rounded-lg"
-                  customStyle={{
-                    margin: 0,
-                    padding: '1rem',
-                    backgroundColor: 'var(--code-bg)',
-                  }}
-                  {...props}
-                >
-                  {String(children).replace(/\n$/, '')}
-                </SyntaxHighlighter>
-              </div>
-            ) : (
-              <code className={`${className} bg-gray-100 dark:bg-gray-800 rounded px-1`} {...props}>
-                {children}
-              </code>
-            );
-          },
-          ul({ children }) {
-            return <ul className="list-disc pl-6 my-4 space-y-2">{children}</ul>;
-          },
-          ol({ children }) {
-            return <ol className="list-decimal pl-6 my-4 space-y-2">{children}</ol>;
-          },
-          li({ children }) {
-            return <li className="leading-relaxed">{children}</li>;
-          },
-          p({ children }) {
-            return <p className="my-4 leading-relaxed">{children}</p>;
-          },
-          h2({ children }) {
-            return <h2 className="text-2xl font-bold mt-8 mb-4">{children}</h2>;
-          },
-          h3({ children }) {
-            return <h3 className="text-xl font-bold mt-6 mb-3">{children}</h3>;
-          },
-          blockquote({ children }) {
+          pre({ children }) {
+            // Pull the raw text out for the copy button.
+            const child = React.Children.toArray(children)[0];
+            let text = '';
+            if (React.isValidElement(child)) {
+              const props = child.props as { children?: React.ReactNode };
+              text = String(props.children ?? '').replace(/\n$/, '');
+            }
             return (
-              <blockquote className="border-l-4 border-gray-300 pl-4 my-4 italic">
-                {children}
-              </blockquote>
+              <div style={{ position: 'relative' }}>
+                {text && <CopyButton text={text} />}
+                <pre>{children}</pre>
+              </div>
             );
           },
-          a({ href, children }) {
+          a({ href, children, ...rest }) {
+            const external = !!href && /^(https?:)?\/\//.test(href);
             return (
               <a
                 href={href}
-                className="text-primary hover:text-primary-600 underline decoration-primary/30 hover:decoration-primary-600 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                {...rest}
               >
                 {children}
               </a>
             );
           },
-          div(props: VideoElementProps) {
-            // Check if this is a video element
-            if (props.className === 'video') {
-              // Extract src and title from iframe if it exists
-              const children = props.children as React.ReactNode[];
-              const iframe = children?.[0];
-              if (
-                iframe &&
-                typeof iframe === 'object' &&
-                'type' in iframe &&
-                iframe.type === 'iframe'
-              ) {
-                const { src, title } = (iframe as any).props;
-                return <Video src={src} title={title} />;
-              }
-              // Fallback to direct props if no iframe
-              const { src, title, height } = props;
-              if (!src) return null;
-              return <Video src={src} title={title} height={height} />;
-            }
-            return <div {...props} />;
-          },
           iframe(props) {
-            const { src, title, ...rest } = props;
-            if (src?.includes('youtube.com/embed/')) {
-              return (
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden my-8">
-                  <iframe
-                    {...rest}
-                    src={src}
-                    title={title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute top-0 left-0 w-full h-full"
-                  />
-                </div>
-              );
+            const { src, title } = props as { src?: string; title?: string };
+            if (src && (src.includes('youtube.com') || src.includes('youtu.be'))) {
+              return <YouTube src={src} title={title} />;
             }
             return <iframe {...props} />;
           },
         }}
       >
-        {content}
+        {normalized}
       </ReactMarkdown>
     </div>
   );

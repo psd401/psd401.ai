@@ -1,15 +1,19 @@
 ---
-title: 'Student Data - Google Sheets'
-description: 'Have Gemini help you create a template for your student data and export it to Google Sheets.'
-category: 'Enhancing Teaching & Learning'
-subject: 'Student Data'
-grade_level: 'Staff'
-tools_used:
-  - 'Gemini'
-author: 'Heather Whyte'
-school: 'HRMS'
+type: use-case
+title: Student Data - Google Sheets
+description: Have Gemini help you create a template for your student data and export it to Google Sheets.
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/hw-student-data-google-sheets
+date: '2025-01-29'
 tags:
-  - 'Student Data'
+  - Student Data
+category: Enhancing Teaching & Learning
+subject: Student Data
+grade_level: Staff
+tools_used:
+  - Gemini
+author: Heather Whyte
+school: HRMS
+status: stable
 ---
 
 ## Prompt Used

@@ -1,16 +1,20 @@
 ---
-title: 'Create Interactive Decision Handler'
-description: 'Building out a decision handler for assessment accomodations using ChatGPT o1 Canvas'
-category: 'Data Analysis & Insights for Decision Making'
-subject: 'Assessment Accomodations'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'James Cantonwine'
-school: 'ESC'
+type: use-case
+title: Create Interactive Decision Handler
+description: Building out a decision handler for assessment accomodations using ChatGPT o1 Canvas
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/assessment-accomodations
+date: '2025-01-29'
 tags:
-  - 'Assessment'
-  - 'Accomodations'
+  - Assessment
+  - Accomodations
+category: Data Analysis & Insights for Decision Making
+subject: Assessment Accomodations
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: James Cantonwine
+school: ESC
+status: stable
 ---
 
 ## Overview

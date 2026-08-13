@@ -1,13 +1,23 @@
 ---
-title: 'Power & Perils of AI In Government'
+type: presentation
+title: Power & Perils of AI In Government
+description: A conference session delivered at the WA Association of Counties 2023 conference.
+resource: /presentations/power-perils-ai-government
 date: '2023-11-13'
+tags:
+  - Conference Session
+  - WA Counties Conference
 presenters:
-  - 'Krestin Bahr'
-audience: 'WA Counties Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/power-perils-ai-government.png'
-slides: 'https://docs.google.com/presentation/d/1YwpYIH35usrLDuNq3Bq4l6xOPb8tVnRl/embed'
-description: 'A conference session delivered at the WA Association of Counties 2023 conference.'
+  - Krestin Bahr
+audience: WA Counties Conference
+format: Conference Session
+thumbnail: /images/thumbnails/power-perils-ai-government.png
+slides: https://docs.google.com/presentation/d/1YwpYIH35usrLDuNq3Bq4l6xOPb8tVnRl/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1YwpYIH35usrLDuNq3Bq4l6xOPb8tVnRl/embed
+    id: slides
+    title: Slide deck
 ---
 
 **The Power and Perils of AI in Government: A Focus on K-12 Education**

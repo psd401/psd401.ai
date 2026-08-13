@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'Getting Started with PSD AI Studio: A Practical Introduction for Teachers'
+description: A hands-on professional development session introducing PSD staff to the district-hosted AI Studio platform, covering navigation, prompt engineering, classroom applications, and privacy guidelines.
+resource: /presentations/psd-ai-studio-training
 date: '2026-03-13'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Dave Stitt'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/psd-ai-studio-training.png'
-slides: 'https://docs.google.com/presentation/d/1MxNxSJHY5F_W6QLiMavIsi1hri3Izs1oBOOriHihqZA/embed'
-description: 'A hands-on professional development session introducing PSD staff to the district-hosted AI Studio platform, covering navigation, prompt engineering, classroom applications, and privacy guidelines.'
+  - Dave Stitt
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/psd-ai-studio-training.png
+slides: https://docs.google.com/presentation/d/1MxNxSJHY5F_W6QLiMavIsi1hri3Izs1oBOOriHihqZA/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1MxNxSJHY5F_W6QLiMavIsi1hri3Izs1oBOOriHihqZA/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Getting Started with PSD AI Studio: A Practical Introduction for Teachers**

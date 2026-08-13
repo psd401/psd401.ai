@@ -1,15 +1,19 @@
 ---
-title: 'Craft Professional Emails'
-description: 'Let Gemini help you find the words to express your thoughts in a professional manner. Create emails that are well-worded and succinct.'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Content Cretion'
-grade_level: 'Staff'
-tools_used:
-  - 'Gemini'
-author: 'Heather Whyte'
-school: 'HRMS'
+type: use-case
+title: Craft Professional Emails
+description: Let Gemini help you find the words to express your thoughts in a professional manner. Create emails that are well-worded and succinct.
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/hw-craft-professional-emails
+date: '2025-01-29'
 tags:
-  - 'Email'
+  - Email
+category: Streamlining Administrative Tasks & Operations
+subject: Content Cretion
+grade_level: Staff
+tools_used:
+  - Gemini
+author: Heather Whyte
+school: HRMS
+status: stable
 ---
 
 ## Prompt Used

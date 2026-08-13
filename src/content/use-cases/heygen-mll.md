@@ -1,16 +1,20 @@
 ---
-title: 'HeyGen AI Avatar for Translation'
-description: 'Using HeyGen Avatar Platform to provide content to ML students in their native language'
-category: 'Enhancing Teaching & Learning'
-subject: 'Presentation Generation'
-grade_level: 'Staff'
-tools_used:
-  - 'HeyGen'
-author: 'Karen Kennedy (Floyd)'
-school: 'GHHS'
+type: use-case
+title: HeyGen AI Avatar for Translation
+description: Using HeyGen Avatar Platform to provide content to ML students in their native language
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/heygen-mll
+date: '2025-01-24'
 tags:
-  - 'Translation'
-  - 'AI Avatar'
+  - Translation
+  - AI Avatar
+category: Enhancing Teaching & Learning
+subject: Presentation Generation
+grade_level: Staff
+tools_used:
+  - HeyGen
+author: Karen Kennedy (Floyd)
+school: GHHS
+status: stable
 ---
 
 ## Overview

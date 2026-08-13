@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'AI-Powered Efficiency: Enhancing Workflows and Well-Being'
+description: A PD Workshop offered to PSD staff on utilizing AI for efficiency and wellness
+resource: /presentations/ai-for-efficiency
 date: '2024-08-28'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Kris Hagel'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/ai-for-efficiency.png'
-slides: 'https://docs.google.com/presentation/d/1ED-72ri2NDYeU9nK7BaH60yr_dfe2300mUk3ANFaoJU/embed'
-description: 'A PD Workshop offered to PSD staff on utilizing AI for efficiency and wellness'
+  - Kris Hagel
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/ai-for-efficiency.png
+slides: https://docs.google.com/presentation/d/1ED-72ri2NDYeU9nK7BaH60yr_dfe2300mUk3ANFaoJU/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1ED-72ri2NDYeU9nK7BaH60yr_dfe2300mUk3ANFaoJU/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI-Powered Efficiency: Enhancing Workflows and Well-Being**

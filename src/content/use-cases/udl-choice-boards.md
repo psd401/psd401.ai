@@ -1,16 +1,20 @@
 ---
-title: 'MagicSchool.ai for UDL Choice Board Generation'
-description: 'Using the UDL Choice Board tool in MagicSchool to assist in lesson creation'
-category: 'Enhancing Teaching & Learning'
-subject: 'Lesson Generation'
-grade_level: '9-12'
-tools_used:
-  - 'MagicSchool.ai'
-author: 'Kara Beloate'
-school: 'PHS'
+type: use-case
+title: MagicSchool.ai for UDL Choice Board Generation
+description: Using the UDL Choice Board tool in MagicSchool to assist in lesson creation
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/udl-choice-boards
+date: '2025-01-29'
 tags:
-  - 'Universal Design for Learning'
-  - 'Choice Boards'
+  - Universal Design for Learning
+  - Choice Boards
+category: Enhancing Teaching & Learning
+subject: Lesson Generation
+grade_level: 9-12
+tools_used:
+  - MagicSchool.ai
+author: Kara Beloate
+school: PHS
+status: stable
 ---
 
 ## Overview

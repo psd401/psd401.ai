@@ -1,16 +1,20 @@
 ---
-title: 'Using MagicSchool to Modify Curriculum'
-description: 'Supporting teachers by modifying curriculum using MagicSchool'
-category: 'Enhancing Teaching & Learning'
-subject: 'Grade-Level Content'
-grade_level: 'Staff'
-tools_used:
-  - 'MagicSchool.ai'
-author: 'Allison Shepard'
-school: 'ESC'
+type: use-case
+title: Using MagicSchool to Modify Curriculum
+description: Supporting teachers by modifying curriculum using MagicSchool
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/modifying-curriculum
+date: '2025-01-29'
 tags:
-  - 'Text Levelling'
-  - 'Choice Board'
+  - Text Levelling
+  - Choice Board
+category: Enhancing Teaching & Learning
+subject: Grade-Level Content
+grade_level: Staff
+tools_used:
+  - MagicSchool.ai
+author: Allison Shepard
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: Using AI for Data Visualization of Educational Proficiency Rates
 description: Step-by-step data analysis using ChatGPT to create visualization of math proficiency rates comparing district and state trends
-category: Data Analysis & Insights for Decision Making
-tools_used:
-  - ChatGPT
-author: James Cantonwine
-school: ESC
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/proficiency-rates-visualization
+date: '2025-02-18'
 tags:
   - data visualization
   - proficiency rates
@@ -13,6 +11,12 @@ tags:
   - education data
   - state reporting
   - math proficiency
+category: Data Analysis & Insights for Decision Making
+tools_used:
+  - ChatGPT
+author: James Cantonwine
+school: ESC
+status: stable
 ---
 
 ## Overview

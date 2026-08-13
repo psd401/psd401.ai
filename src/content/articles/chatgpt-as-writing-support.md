@@ -1,11 +1,24 @@
 ---
-title: 'How do students use ChatGPT as a writing support?'
-author: 'Sarah Levine, Sarah W. Beck, Chris Mahm, Lena Phalen, Jaylen PIttman'
-source: 'International Literacy Association'
+type: research
+title: How do students use ChatGPT as a writing support?
+description: The authors walk through the historical process of writing and how that can and has changed with the advent of ChatGPT.
+resource: /articles/chatgpt-as-writing-support
 date: '2024-03-18'
-type: 'Opinion Piece'
-tags: ['Article', 'Writing', 'Academic Integrity']
-externalUrl: 'https://ila.onlinelibrary.wiley.com/doi/epdf/10.1002/jaal.1373'
+tags:
+  - Article
+  - Writing
+  - Academic Integrity
+author: Sarah Levine, Sarah W. Beck, Chris Mahm, Lena Phalen, Jaylen PIttman
+source: International Literacy Association
+format: Opinion Piece
+externalUrl: https://ila.onlinelibrary.wiley.com/doi/epdf/10.1002/jaal.1373
+status: stable
+sources:
+  - resource: https://ila.onlinelibrary.wiley.com/doi/epdf/10.1002/jaal.1373
+    id: original
+    title: How do students use ChatGPT as a writing support?
+    author: Sarah Levine, Sarah W. Beck, Chris Mahm, Lena Phalen, Jaylen PIttman
+    last_modified: '2024-03-18'
 ---
 
 # How do students use ChatGPT as a writing support?

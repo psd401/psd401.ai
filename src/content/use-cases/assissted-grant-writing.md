@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: AI-Assisted Grant Writing Process
 description: Leveraging AI to streamline grant writing by generating targeted narrative responses incorporating district data and program goals
-category: Streamlining Administrative Tasks & Operations
-tools_used:
-  - Amplify AI
-author: Mel Benner
-school: ESC
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/assissted-grant-writing
+date: '2025-02-18'
 tags:
   - grant writing
   - funding requests
@@ -14,6 +12,12 @@ tags:
   - data analysis
   - resource acquisition
   - program development
+category: Streamlining Administrative Tasks & Operations
+tools_used:
+  - Amplify AI
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

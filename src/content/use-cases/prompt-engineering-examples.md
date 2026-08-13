@@ -1,16 +1,20 @@
 ---
-title: 'Prompt Engineering Examples'
-description: 'Prompt to help generate examples for different prompt engineering concepts based on the audience'
-category: 'Enhancing Staff Professional Growth'
-subject: 'Presentation Generation'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'Kris Hagel'
-school: 'ESC'
+type: use-case
+title: Prompt Engineering Examples
+description: Prompt to help generate examples for different prompt engineering concepts based on the audience
+resource: /use-cases/Enhancing%20Staff%20Professional%20Growth/prompt-engineering-examples
+date: '2025-01-24'
 tags:
-  - 'Prompt'
-  - 'Presentations'
+  - Prompt
+  - Presentations
+category: Enhancing Staff Professional Growth
+subject: Presentation Generation
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: Kris Hagel
+school: ESC
+status: stable
 ---
 
 ## Overview

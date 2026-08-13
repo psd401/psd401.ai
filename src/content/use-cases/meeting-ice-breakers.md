@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: AI-Generated Meeting Ice Breakers for Team Building
 description: Using AI to develop inclusive opening activities for meetings with diverse groups to foster collaboration
-category: Streamlining Administrative Tasks & Operations
-tools_used:
-  - Amplify GenAI
-author: Allison Shepard
-school: ESC
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/meeting-ice-breakers
+date: '2025-02-18'
 tags:
   - meeting facilitation
   - team building
@@ -14,6 +12,12 @@ tags:
   - group dynamics
   - professional development
   - workplace culture
+category: Streamlining Administrative Tasks & Operations
+tools_used:
+  - Amplify GenAI
+author: Allison Shepard
+school: ESC
+status: stable
 ---
 
 ## Overview

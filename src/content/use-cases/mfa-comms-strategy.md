@@ -1,12 +1,9 @@
 ---
+type: use-case
 title: MFA Implementation Communication Strategy
 description: Utilizing AI to develop public-facing communications and FAQ documentation for student MultiFactor Authentication rollout
-category: IT & Technical Infrastructure Management
-tools_used:
-  - Amplify AI
-  - ChatGPT
-author: Mel Benner
-school: ESC
+resource: /use-cases/IT%20%26%20Technical%20Infrastructure%20Management/mfa-comms-strategy
+date: '2025-02-18'
 tags:
   - cybersecurity
   - MFA implementation
@@ -15,6 +12,13 @@ tags:
   - student safety
   - system security
   - parent communication
+category: IT & Technical Infrastructure Management
+tools_used:
+  - Amplify AI
+  - ChatGPT
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

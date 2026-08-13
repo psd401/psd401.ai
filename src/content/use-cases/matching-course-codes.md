@@ -1,16 +1,20 @@
 ---
-title: 'Matching Local Course Codes to State Supt. Codes'
-description: 'Using AI for data categorization to match course codes from local to state codes'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Data Categorization'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'James Cantonwine'
-school: 'ESC'
+type: use-case
+title: Matching Local Course Codes to State Supt. Codes
+description: Using AI for data categorization to match course codes from local to state codes
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/matching-course-codes
+date: '2025-01-29'
 tags:
-  - 'Data Analysis'
-  - 'Categorization'
+  - Data Analysis
+  - Categorization
+category: Streamlining Administrative Tasks & Operations
+subject: Data Categorization
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: James Cantonwine
+school: ESC
+status: stable
 ---
 
 ## Overview

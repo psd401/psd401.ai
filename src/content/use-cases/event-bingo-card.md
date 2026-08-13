@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: AI-Generated Event Engagement Bingo Card
 description: Creating an interactive bingo-style engagement tool to encourage student and family participation across multiple booths at an educational innovation event
-category: Communication & Community Engagement
-tools_used:
-  - Amplify AI
-author: Mel Benner
-school: ESC
+resource: /use-cases/Communication%20%26%20Community%20Engagement/event-bingo-card
+date: '2025-02-18'
 tags:
   - student engagement
   - family engagement
@@ -14,6 +12,12 @@ tags:
   - educational events
   - interactive learning
   - community participation
+category: Communication & Community Engagement
+tools_used:
+  - Amplify AI
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

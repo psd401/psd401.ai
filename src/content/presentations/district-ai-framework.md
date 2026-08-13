@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'From Policy to Practice: Building a District-Wide AI Framework That Works'
+description: A conference session on sharing how districts can build their own AI guidance and policies.
+resource: /presentations/district-ai-framework
 date: '2025-02-06'
+tags:
+  - Conference Session
+  - AI Innovation Summit
 presenters:
-  - 'Krestin Bahr'
-  - 'Kris Hagel'
-audience: 'AI Innovation Summit'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/ai-innovation-summit.png'
-slides: 'https://docs.google.com/presentation/d/1sBpkqxwMrbGe0QhCdkEvA6oCjDqk1XCvLZEdmyIFvSg/embed'
-description: 'A conference session on sharing how districts can build their own AI guidance and policies.'
+  - Krestin Bahr
+  - Kris Hagel
+audience: AI Innovation Summit
+format: Conference Session
+thumbnail: /images/thumbnails/ai-innovation-summit.png
+slides: https://docs.google.com/presentation/d/1sBpkqxwMrbGe0QhCdkEvA6oCjDqk1XCvLZEdmyIFvSg/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1sBpkqxwMrbGe0QhCdkEvA6oCjDqk1XCvLZEdmyIFvSg/embed
+    id: slides
+    title: Slide deck
 ---
 
 **From Policy to Practice: Building a District-Wide AI Framework That Works**

@@ -1,16 +1,20 @@
 ---
-title: 'Community Survey Analysis'
-description: 'Analyzing Survey Responses for Themes'
-category: 'Data Analysis & Insights for Decision Making'
-subject: 'Survey Analysis'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'Natalie Boyle'
-school: 'ESC'
+type: use-case
+title: Community Survey Analysis
+description: Analyzing Survey Responses for Themes
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/community-survey-analysis
+date: '2025-01-29'
 tags:
-  - 'Surveys'
-  - 'Data Analysis'
+  - Surveys
+  - Data Analysis
+category: Data Analysis & Insights for Decision Making
+subject: Survey Analysis
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: Natalie Boyle
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'AI Unpacked: Transforming Educational Data into Actionable Insights'
+description: A workshop delivered at the 2024 WERA Conference on the use of AI for Data Analysis
+resource: /presentations/ai-unpacked
 date: '2024-12-04'
+tags:
+  - Conference Workshop
+  - WERA Conference
 presenters:
-  - 'James Cantonwine'
-  - 'Kris Hagel'
-audience: 'WERA Conference'
-type: 'Conference Workshop'
-thumbnail: '/images/thumbnails/ai-unpacked.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTeNZT4rNo3qpv6NBaQY6fn_S5dJrhqVgjoSv-N78pUsJLBC8M1KMNkax8FMKEkk1kjeXd1ReyAhsX0/embed'
-description: 'A workshop delivered at the 2024 WERA Conference on the use of AI for Data Analysis'
+  - James Cantonwine
+  - Kris Hagel
+audience: WERA Conference
+format: Conference Workshop
+thumbnail: /images/thumbnails/ai-unpacked.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vTeNZT4rNo3qpv6NBaQY6fn_S5dJrhqVgjoSv-N78pUsJLBC8M1KMNkax8FMKEkk1kjeXd1ReyAhsX0/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vTeNZT4rNo3qpv6NBaQY6fn_S5dJrhqVgjoSv-N78pUsJLBC8M1KMNkax8FMKEkk1kjeXd1ReyAhsX0/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI Unpacked: Transforming Educational Data into Actionable Insights**

@@ -1,14 +1,24 @@
 ---
-title: 'Everyday AI - Session 1'
+type: presentation
+title: Everyday AI - Session 1
+description: First session of three part Everyday AI PD Sessions
+resource: /presentations/everyday-ai-1
 date: '2023-10-01'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Donna Squires'
-  - 'Angela May'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/everyday-ai.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vRt7f69MGpXx7K42-f2BIZYIsvPrIUr39ij5aZVfhXsDO2EKDhs-UEgIqVOj6KKCnmdlz3yVYmOor1V/embed'
-description: 'First session of three part Everyday AI PD Sessions'
+  - Donna Squires
+  - Angela May
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/everyday-ai.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vRt7f69MGpXx7K42-f2BIZYIsvPrIUr39ij5aZVfhXsDO2EKDhs-UEgIqVOj6KKCnmdlz3yVYmOor1V/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vRt7f69MGpXx7K42-f2BIZYIsvPrIUr39ij5aZVfhXsDO2EKDhs-UEgIqVOj6KKCnmdlz3yVYmOor1V/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Everyday A.I.: Instruction Every Student Deserves and ALL Teachers Can Provide**
