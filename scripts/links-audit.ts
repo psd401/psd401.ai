@@ -21,11 +21,31 @@ const BASE = (() => {
   return i !== -1 ? process.argv[i + 1] : 'http://localhost:3000';
 })().replace(/\/$/, '');
 
-/** The commit to treat as "before the redesign". */
+/**
+ * The commit to treat as "before the redesign".
+ *
+ * Pinned, NOT HEAD. The redesign renamed src/content/blog -> writing and
+ * policies -> guidance, so once it landed, reading the old tree from HEAD
+ * returns nothing and 45 URLs drop out of the audit silently — it would
+ * report a clean pass while checking a fraction of what it claims to.
+ * assertBaseline() below turns that failure mode into a loud one.
+ */
+const BASELINE = 'e776864';
+
 const REF = (() => {
   const i = process.argv.indexOf('--ref');
-  return i !== -1 ? process.argv[i + 1] : 'HEAD';
+  return i !== -1 ? process.argv[i + 1] : BASELINE;
 })();
+
+/** Directories that MUST exist at REF. Their absence means silent under-coverage. */
+const REQUIRED_AT_REF = [
+  'src/content/blog',
+  'src/content/policies',
+  'src/content/presentations',
+  'src/content/tools',
+  'src/content/articles',
+  'src/content/use-cases',
+];
 
 type Check = { url: string; why: string };
 
@@ -33,14 +53,47 @@ function git(args: string[]): string {
   return execFileSync('git', args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
 }
 
-/** Files under a directory at REF. */
+/**
+ * Files under a directory at REF.
+ *
+ * Reserved OKF filenames are excluded: index.md and log.md describe the
+ * bundle and were never pages, so including them invents URLs like
+ * /articles/index that have never existed and can only ever 404.
+ */
 function listAt(dir: string): string[] {
   try {
     return git(['ls-tree', '--name-only', `${REF}:${dir}`])
       .split('\n')
-      .filter(f => f.endsWith('.md'));
+      .filter(f => f.endsWith('.md'))
+      .filter(f => f !== 'index.md' && f !== 'log.md');
   } catch {
     return [];
+  }
+}
+
+/**
+ * Refuse to run against a ref that does not hold the pre-redesign tree.
+ * An audit that quietly checks less than it says it does is worse than none.
+ */
+function assertBaseline(): void {
+  const missing = REQUIRED_AT_REF.filter(d => {
+    try {
+      git(['ls-tree', '--name-only', `${REF}:${d}`]);
+      return false;
+    } catch {
+      return true;
+    }
+  });
+
+  if (missing.length) {
+    console.error(
+      `\nThe ref "${REF}" does not contain the pre-redesign content tree.\n` +
+        `Missing: ${missing.join(', ')}\n\n` +
+        `This audit reconstructs old URLs from that tree. Without it, it would\n` +
+        `silently check only a fraction of the URLs it claims to.\n\n` +
+        `Pass a ref from before the redesign:  npm run links:audit -- --ref <sha>\n`
+    );
+    process.exit(1);
   }
 }
 
@@ -137,8 +190,9 @@ function buildChecks(): Check[] {
 }
 
 async function main() {
+  assertBaseline();
   const checks = buildChecks();
-  console.log(`Auditing ${checks.length} URLs against ${BASE}\n`);
+  console.log(`Auditing ${checks.length} URLs against ${BASE} (baseline ${REF})\n`);
 
   const failures: Array<{ url: string; why: string; detail: string }> = [];
   let redirected = 0;
