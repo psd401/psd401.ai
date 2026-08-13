@@ -1,0 +1,427 @@
+/* The Open Adaptive District — section 05 of the Peninsula AI design system.
+   ==========================================================================
+   These five artefacts are hand-authored static HTML served from public/, so
+   they sit outside Next's build and cannot use the app's tokens or next/font.
+   This file carries both: the token values are copied from
+   src/styles/tokens/ and the fonts come from the Google CDN, which is the
+   fallback the design system documents for exactly this case.
+
+   Only the stylesheet was replaced. Every class here already existed in the
+   original documents — no markup and no copy was changed.
+
+   Section 05 is violet. This is the one colour these pages use.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,300..400&display=swap');
+
+:root {
+  --font-display: Gabarito, system-ui, sans-serif;
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-quote: Newsreader, Georgia, serif;
+
+  --ink: oklch(0.17 0.015 250);
+  --surface: #ffffff;
+  --surface-soft: oklch(0.975 0.003 250);
+  --on-accent: #ffffff;
+
+  /* 05 Open Adaptive District */
+  --sec: oklch(0.48 0.2 295);
+  --sec-ground: color-mix(in oklab, var(--sec) 8%, transparent);
+  --sec-ground-strong: color-mix(in oklab, var(--sec) 13%, transparent);
+
+  --hairline: color-mix(in oklab, currentColor 20%, transparent);
+  --hairline-faint: color-mix(in oklab, currentColor 13%, transparent);
+
+  --text-body: 0.86;
+  --text-muted: 0.72;
+  --text-label: 0.6;
+
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* A real theme, not an inversion: the section colour lifts to stay legible on
+   ink. These pages follow the OS, since they have no theme toggle of their own. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: oklch(0.955 0.004 250);
+    --surface: oklch(0.155 0.014 250);
+    --surface-soft: oklch(0.205 0.018 250);
+    --on-accent: oklch(0.155 0.014 250);
+    --sec: oklch(0.72 0.16 295);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  /* There is no radius in this system. */
+  border-radius: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.72;
+  color: var(--ink);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+  /* The signature 9px section rule, at the top of every artefact. */
+  border-top: 9px solid var(--sec);
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* --------------------------------------------------------------- header */
+
+header {
+  margin-bottom: 8px;
+}
+
+/* The district logo comes in two treatments: ink artwork for light grounds
+   and an all-white silhouette for dark. psd-logo.png is the white one — on a
+   white page it is invisible, which is why these documents originally shipped
+   the ink version embedded as base64. `content:` swaps the artwork without
+   needing a second <img> in the markup. The src in the HTML is the ink
+   version, so it is still correct with CSS disabled. */
+header img {
+  height: 40px;
+  width: auto;
+  display: block;
+  content: url('/images/psd-logo-ink.png');
+}
+
+@media (prefers-color-scheme: dark) {
+  header img {
+    content: url('/images/psd-logo-white.png');
+  }
+}
+
+.site {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--sec);
+  font-weight: 600;
+  margin: 18px 0 0;
+}
+
+/* ------------------------------------------------------------------ nav */
+
+.oadnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin: 22px 0 34px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.oadnav a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.oadnav a:hover {
+  color: var(--sec);
+}
+
+/* The current page, marked with a <span> rather than an <a>. */
+.oadnav span {
+  color: var(--sec);
+}
+
+/* ----------------------------------------------------------------- type */
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 62px;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 8px 0 20px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.034em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 44px 0 10px;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.14;
+  letter-spacing: -0.026em;
+  font-weight: 700;
+  color: var(--sec);
+  margin: 30px 0 8px;
+}
+
+p {
+  margin: 0 0 1.15em;
+  opacity: var(--text-body);
+}
+
+strong {
+  font-weight: 700;
+  opacity: 1;
+}
+
+em {
+  font-style: italic;
+}
+
+a {
+  color: var(--sec);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 44px 0;
+}
+
+/* The standfirst block under the masthead. */
+.lede p:first-child {
+  font-size: 22px;
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------- pull quote */
+
+blockquote {
+  margin: 32px 0;
+  border-left: 5px solid var(--sec);
+  padding: 4px 0 4px 24px;
+  background: transparent;
+}
+
+blockquote p {
+  margin: 0;
+  font-family: var(--font-quote);
+  font-size: 24px;
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 1;
+}
+
+blockquote p strong {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* ---------------------------------------------------------------- cards */
+/* A hairline box with a left accent. No shadow, no radius, no lift. */
+
+.cardgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.card {
+  display: block;
+  border: 1px solid var(--hairline);
+  border-left: 5px solid var(--sec);
+  padding: 20px 22px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur-base) var(--ease);
+}
+
+.card:hover {
+  background: var(--sec-ground);
+  text-decoration: none;
+}
+
+.card .cardtitle {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.14;
+  letter-spacing: -0.026em;
+  font-weight: 700;
+  margin: 0 0 7px;
+  opacity: 1;
+}
+
+.card .cardsub {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .cardgrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------- table */
+
+table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+th {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: var(--text-label);
+  text-align: left;
+  padding: 10px 16px 10px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+td {
+  padding: 11px 16px 11px 0;
+  border-bottom: 1px solid var(--hairline-faint);
+  vertical-align: top;
+}
+
+/* The original zebra striping. Kept as the 8% section tint rather than a
+   second grey — emphasis in this system is never a new colour. */
+tr:nth-child(even) td {
+  background: var(--sec-ground);
+}
+
+/* -------------------------------------------------------------- archive */
+
+.archive {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: var(--text-label);
+}
+
+.archive a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.archive a:hover {
+  color: var(--sec);
+}
+
+/* Alternating bands used in the longer artefacts. */
+.odd {
+  background: transparent;
+}
+
+.even {
+  background: var(--sec-ground);
+}
+
+/* --------------------------------------------------------------- focus */
+
+:focus-visible {
+  outline: 2px solid var(--sec);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--surface);
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 768px) {
+  .wrap {
+    padding: 28px 18px 56px;
+  }
+  body {
+    border-top-width: 6px;
+    font-size: 16.5px;
+  }
+  h1 {
+    font-size: 36px;
+    letter-spacing: -0.033em;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .lede p:first-child {
+    font-size: 18px;
+  }
+  blockquote p {
+    font-size: 20px;
+  }
+  .oadnav {
+    gap: 14px;
+    font-size: 14px;
+  }
+}
+
+/* --------------------------------------------------------------- print */
+/* 05-Get-Started-Flyer is meant to be printed and put on a wall. */
+
+@media print {
+  body {
+    border-top: none;
+    font-size: 11pt;
+  }
+  .oadnav,
+  .archive {
+    display: none;
+  }
+  .card {
+    break-inside: avoid;
+  }
+  h1 {
+    font-size: 28pt;
+  }
+  h2 {
+    font-size: 16pt;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

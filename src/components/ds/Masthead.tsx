@@ -55,13 +55,31 @@ export function Masthead({ sections, wordmark = 'Peninsula AI', action }: Masthe
   return (
     <header className="ds-masthead">
       <Link href="/" className="ds-masthead__brand">
+        {/* Two treatments of the district mark, swapped by CSS on data-theme.
+            psd-logo.png is an all-white silhouette — correct on ink, and
+            completely invisible on the light theme's white ground, which is
+            what it was previously rendering against. Both are rendered and
+            one is hidden, rather than switching src in JS, so the right mark
+            is in the HTML the server sends. */}
+        {/* No inline `display` here — visibility is owned by .ds-mark rules in
+            ds.css, and an inline style would win over them. */}
+        <Image
+          src="/images/psd-mark-ink.png"
+          alt=""
+          width={38}
+          height={38}
+          priority
+          className="ds-mark ds-mark--light"
+          style={{ objectFit: 'contain' }}
+        />
         <Image
           src="/images/psd-logo.png"
           alt=""
           width={38}
           height={38}
           priority
-          style={{ display: 'block', objectFit: 'contain' }}
+          className="ds-mark ds-mark--dark"
+          style={{ objectFit: 'contain' }}
         />
         <span className="ds-masthead__wordmark">{wordmark}</span>
       </Link>
