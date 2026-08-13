@@ -25,10 +25,39 @@ The second rule was about the hero:
 > This is the face of the site. Strongly prefer a real photograph of Kris — a
 > generated stand-in for a named person is worse than no photo.
 
-HP-01 is now filled with a generated environmental portrait. It is
-**deliberately not a likeness of anyone** and is never captioned with a name.
-It reads as an unnamed district technology leader at work. Replacing it with a
-real photograph of Kris is the single highest-value image change on the site.
+**The hero leads with place instead of a person.** A generated environmental
+portrait was tried there first and rejected: it read as stock photography.
+A person at a laptop could be an insurance office — nothing in the frame said
+school district, and nothing said Peninsula. The lesson generalises: for a
+generated image, a specific _place_ beats a generic _person_ every time.
+
+`hp-01-harbor-school.jpg` is the harbour in morning fog, framed by firs, with
+a school and its playing field on the far shore. It carries the same meaning
+the kicker does — "Gig Harbor, Washington · since 2023" — and it is honest,
+because no one in it is being passed off as a real named person.
+
+Two alternates sit beside it and swap by changing one `src` in
+[src/app/page.tsx](../src/app/page.tsx):
+
+| File                               | What it is                                                                            |
+| ---------------------------------- | ------------------------------------------------------------------------------------- |
+| `sections/hp-01-alt-buses.jpg`     | A row of buses in fog under firs. The most immediately "school district" of the three |
+| `sections/hp-01-alt-classroom.jpg` | Hard winter light across empty desks. The best light of the three                     |
+
+A real photograph of Kris at work is still the strongest possible version of
+this slot, and remains the single highest-value image change on the site.
+
+### The constraint behind all of this
+
+Schools are children, and nothing here generates children. That rules out
+every image that would genuinely move someone — a full classroom, a student
+mid-discovery, a family evening. What is left is buildings, buses, empty rooms
+and landscape, and those can only ever be atmospheric rather than moving.
+
+PSD already photographs its own schools and almost certainly holds media
+releases for students. **Real district photography would beat every generated
+image on this site**, and it is a request to Communications rather than
+another round of prompting.
 
 ## What was not generated
 
@@ -49,7 +78,7 @@ render without them.
 
 | Slot     | File                                | Where it appears                                   |
 | -------- | ----------------------------------- | -------------------------------------------------- |
-| HP-01    | `sections/hp-01-leader-at-work.jpg` | Homepage hero                                      |
+| HP-01    | `sections/hp-01-harbor-school.jpg`  | Homepage hero                                      |
 | HP-04    | `sections/hp-04-cycle-session.jpg`  | Homepage, 05 Open Adaptive District band           |
 | HP-05    | `sections/hp-05-gig-harbor.jpg`     | Homepage, 04 Presentations band                    |
 | GU-01    | `sections/gu-01-board-session.jpg`  | Guidance index hero                                |
