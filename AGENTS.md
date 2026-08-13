@@ -187,6 +187,33 @@ real page — `links:audit` fetches every one.
 
 ---
 
+## The Open Adaptive District artefacts
+
+Section 05's five documents are hand-authored HTML in
+`public/openadaptivedistrict/`, not markdown concepts. They render **twice**,
+on purpose:
+
+- `/open-adaptive-district/<slug>` — canonical, inside the site chrome. Built
+  by `src/app/open-adaptive-district/[slug]/page.tsx`, which reads the files
+  through [src/lib/oad.ts](src/lib/oad.ts) and injects the authored body,
+  dropping only each document's own header and mini-nav.
+- `/openadaptivedistrict/<file>.html` — the original, self-contained and
+  formatted for printing. Carries `<link rel="canonical">` to the app route so
+  the two never compete in search.
+
+Two stylesheets cover the same classes and **must change together**:
+`public/openadaptivedistrict/oad.css` for the standalone copies, and the
+`.oad-doc` block at the end of [src/styles/ds.css](src/styles/ds.css) for the
+in-site version.
+
+`src/lib/oad.ts` splits each document on `</nav>`. If someone restructures an
+artefact and removes that, the loader throws at build time rather than
+shipping a blank page — do not "fix" that by making it silent.
+
+`public/openadaptivedistrict/first-draft/` is a 19-file archive of the
+superseded original, deliberately left in its own visual style. Do not restyle
+it; the difference is what marks it as archived.
+
 ## Things that will bite you
 
 - **`type` and `status` are reserved by OKF.** Presentations, research and two

@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Button, DocCard, ImageFrame, SectionHeader, SectionRule, StepRow } from '@/components/ds';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
+import { getOadArtifacts } from '@/lib/oad';
 
 export const metadata: Metadata = {
   title: 'The Open Adaptive District',
@@ -19,50 +20,21 @@ export const metadata: Metadata = {
 /**
  * Section 05.
  *
- * The artefacts themselves are hand-authored static HTML under
- * public/openadaptivedistrict/ and are NOT rebuilt here — they are designed
- * documents, and re-flowing them into the site chrome would lose that. This
- * page is the front door to them.
+ * The five artefacts are hand-authored HTML in public/openadaptivedistrict/.
+ * They now render twice, deliberately:
  *
- * next.config.js redirects the bare /openadaptivedistrict path here but
- * deliberately leaves /openadaptivedistrict/*.html serving, so every existing
- * link into an individual artefact still resolves.
+ *   /open-adaptive-district/<slug>          canonical, inside the site chrome
+ *   /openadaptivedistrict/<file>.html       the original, self-contained and
+ *                                           formatted for printing
+ *
+ * The static copies carry a <link rel="canonical"> pointing at the app route,
+ * so the two never compete in search. next.config.js redirects the bare
+ * /openadaptivedistrict path here but leaves the .html files serving, so
+ * every existing link into an individual artefact still resolves.
  */
-const ARTIFACTS = [
-  {
-    n: '01',
-    title: 'Start Here',
-    href: '/openadaptivedistrict/01-Start-Here.html',
-    description:
-      'What the Open Adaptive District is and why a district would run one. Read this first.',
-  },
-  {
-    n: '02',
-    title: 'The Playbook',
-    href: '/openadaptivedistrict/02-The-Playbook.html',
-    description: 'The six-week cycle in full: how to run one, week by week, with the artefacts.',
-  },
-  {
-    n: '03',
-    title: "What We're Learning",
-    href: '/openadaptivedistrict/03-What-Were-Learning.html',
-    description: 'What has come out of the cycles so far — including the ones that went nowhere.',
-  },
-  {
-    n: '04',
-    title: 'The Deep Dive',
-    href: '/openadaptivedistrict/04-The-Deep-Dive.html',
-    description: 'The long-form argument, with the evidence behind it.',
-  },
-  {
-    n: '05',
-    title: 'Get Started — One Page',
-    href: '/openadaptivedistrict/05-Get-Started-Flyer.html',
-    description: 'A single page to hand to a cabinet or a board. Print it.',
-  },
-];
+export default async function OpenAdaptiveDistrict() {
+  const artifacts = await getOadArtifacts();
 
-export default function OpenAdaptiveDistrict() {
   return (
     <div data-section="oad">
       <JsonLd
@@ -72,9 +44,9 @@ export default function OpenAdaptiveDistrict() {
             description:
               "Peninsula School District's operating model for AI work: six-week plan / do / study / share cycles, published openly.",
             url: '/open-adaptive-district',
-            items: ARTIFACTS.map(a => ({
+            items: artifacts.map(a => ({
               title: a.title,
-              url: a.href,
+              url: `/open-adaptive-district/${a.slug}`,
               description: a.description,
             })),
           }),
@@ -95,10 +67,10 @@ export default function OpenAdaptiveDistrict() {
               lead="How the work gets done — the loop underneath all five sections. Every six weeks, a team picks one problem and builds a better way. The agent keeps the notes. We share what happened, even when it flops."
             />
             <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
-              <Button variant="solid" size="lg" href="/openadaptivedistrict/01-Start-Here.html">
+              <Button variant="solid" size="lg" href="/open-adaptive-district/start-here">
                 Start here
               </Button>
-              <Button variant="outline" size="lg" href="/openadaptivedistrict/02-The-Playbook.html">
+              <Button variant="outline" size="lg" href="/open-adaptive-district/playbook">
                 Read the playbook →
               </Button>
             </div>
@@ -151,18 +123,20 @@ export default function OpenAdaptiveDistrict() {
         <SectionHeader
           title="The artefacts"
           size="section"
-          meta={`${ARTIFACTS.length} documents`}
+          meta={`${artifacts.length} documents`}
           lead="Take these, change the district name, and run it. That is what they are for."
         />
         <div className="ds-grid ds-grid--2" style={{ gap: 22, marginTop: 28 }}>
-          {ARTIFACTS.map(a => (
+          {artifacts.map(a => (
             <DocCard
-              key={a.href}
-              href={a.href}
+              key={a.slug}
+              href={`/open-adaptive-district/${a.slug}`}
               kind={a.n}
               title={a.title}
               description={a.description}
-              actions={<span style={{ color: 'var(--sec)' }}>Open →</span>}
+              // DocCard is itself an anchor, so this must not contain a link.
+              // The printable standalone copy is linked from the artefact page.
+              actions={<span style={{ color: 'var(--sec)' }}>Read →</span>}
             />
           ))}
         </div>

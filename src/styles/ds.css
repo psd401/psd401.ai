@@ -1215,3 +1215,163 @@ a.ds-chip--outline:hover {
   border-color: var(--sec);
   color: var(--sec);
 }
+
+/* ------------------------------------------- Open Adaptive District docs */
+/* The five artefacts are hand-authored HTML rendered inside the site by
+   /open-adaptive-district/[slug]. These rules style the classes those
+   documents already use. They mirror public/openadaptivedistrict/oad.css,
+   which styles the same markup in the standalone printable copies — change
+   both together. The section colour comes from the page's data-section. */
+
+.oad-doc {
+  max-width: var(--measure-prose);
+  font-size: var(--body-prose);
+  line-height: var(--body-prose-lh);
+}
+.oad-doc > * + * {
+  margin-top: 1.15em;
+}
+.oad-doc p {
+  margin: 0 0 1.15em;
+  opacity: var(--text-body);
+}
+.oad-doc strong {
+  font-weight: 700;
+  opacity: 1;
+}
+.oad-doc h1 {
+  font-family: var(--font-display);
+  font-size: var(--display-page);
+  line-height: var(--display-page-lh);
+  letter-spacing: var(--display-page-ls);
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+.oad-doc h2 {
+  font-family: var(--font-display);
+  font-size: var(--display-block);
+  line-height: var(--display-block-lh);
+  letter-spacing: var(--display-block-ls);
+  margin: 2em 0 0.3em;
+}
+.oad-doc h3 {
+  font-family: var(--font-display);
+  font-size: var(--display-item);
+  line-height: var(--display-item-lh);
+  letter-spacing: var(--display-item-ls);
+  color: var(--sec);
+  margin: 1.7em 0 0.25em;
+}
+.oad-doc a {
+  color: var(--sec);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.oad-doc a:hover {
+  text-decoration-thickness: 2px;
+}
+.oad-doc hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 2.2em 0;
+}
+.oad-doc .lede p:first-child {
+  font-size: var(--body-lead);
+  line-height: var(--body-lead-lh);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  opacity: 1;
+}
+.oad-doc blockquote {
+  margin: 1.8em 0;
+  border-left: var(--border-accent) solid var(--sec);
+  padding: 4px 0 4px 24px;
+}
+.oad-doc blockquote p {
+  margin: 0;
+  font-family: var(--font-quote);
+  font-size: var(--quote-md);
+  line-height: var(--quote-md-lh);
+  font-style: italic;
+  font-weight: 300;
+  opacity: 1;
+}
+.oad-doc blockquote p strong {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 20px;
+}
+.oad-doc table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.8em 0;
+  font-size: var(--body-small);
+  line-height: var(--body-small-lh);
+}
+.oad-doc th {
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: var(--label-sm-ls);
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: var(--text-label);
+  text-align: left;
+  padding: 10px 16px 10px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.oad-doc td {
+  padding: 11px 16px 11px 0;
+  border-bottom: 1px solid var(--hairline-faint);
+  vertical-align: top;
+}
+.oad-doc tr:nth-child(even) td {
+  background: var(--sec-ground);
+}
+.oad-doc .cardgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 2em 0;
+}
+.oad-doc .card {
+  display: block;
+  border: 1px solid var(--hairline);
+  border-left: var(--border-accent) solid var(--sec);
+  padding: 20px 22px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur-base) var(--ease);
+}
+.oad-doc .card:hover {
+  background: var(--sec-ground);
+}
+.oad-doc .cardtitle {
+  font-family: var(--font-display);
+  font-size: var(--display-item);
+  line-height: var(--display-item-lh);
+  letter-spacing: var(--display-item-ls);
+  font-weight: 700;
+  margin: 0 0 7px;
+  opacity: 1;
+}
+.oad-doc .cardsub {
+  font-size: var(--body-small);
+  line-height: var(--body-small-lh);
+  opacity: var(--text-muted);
+  margin: 0;
+}
+.oad-doc .archive {
+  margin-top: 2.5em;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  font-size: var(--body-fine);
+  opacity: var(--text-label);
+}
+@media (max-width: 640px) {
+  .oad-doc .cardgrid {
+    grid-template-columns: 1fr;
+  }
+}
