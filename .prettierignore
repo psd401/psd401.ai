@@ -1,0 +1,18 @@
+# Authored content is never reformatted.
+#
+# The pre-commit hook runs `prettier --write` over every *.md file. Prettier
+# reflows markdown — list markers, emphasis characters, line wrapping, table
+# padding — and src/content/ holds documents bylined by named staff plus
+# summaries of other people's research. A formatter silently rewriting those
+# is not acceptable, and frontmatter shape is already enforced by
+# `npm run content:validate` against src/lib/schemas.ts.
+#
+# Documentation in docs/ and at the repo root IS formatted; only the OKF
+# bundle is protected.
+src/content/
+
+# Generated and vendored
+.next/
+node_modules/
+public/openadaptivedistrict/
+package-lock.json
