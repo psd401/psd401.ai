@@ -83,21 +83,17 @@ export default async function Home() {
                 </Button>
               </div>
             </div>
-            {/* The hero leads with place, not a person. The design brief asked
-                for a portrait of a named person here, and a generated stand-in
-                for that reads as stock — it could be any office anywhere and
-                says nothing about a school district.
-
-                Two alternates are in public/images/sections/ and swap by
-                changing this one src: hp-01-alt-buses.jpg (buses in fog — the
-                most immediately institutional) and hp-01-alt-classroom.jpg
-                (winter light across empty desks). */}
+            {/* PLACEHOLDER — replace with real PSD photography.
+                Four alternates sit beside it in public/images/sections/ and
+                swap by changing this one src: hp-01-alt-elementary.jpg,
+                hp-01-alt-harbor.jpg, hp-01-alt-buses.jpg,
+                hp-01-alt-empty-room.jpg. See docs/image-shoot-list.md. */}
             <ImageFrame
               id="HP-01"
               ratio="4/5"
               priority
-              src="/images/sections/hp-01-harbor-school.jpg"
-              alt="Puget Sound in morning fog seen through Douglas firs, a school and its playing field on the far shore"
+              src="/images/sections/hp-01-classroom.jpg"
+              alt="High school students working at laptops, two leaning together over one screen while a teacher listens"
               sizes="(max-width: 768px) 100vw, 40vw"
             />
           </div>

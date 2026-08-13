@@ -142,9 +142,14 @@ and two-colour.
 **Banned:** robots, glowing brains, circuit boards, blue particle networks,
 humanoid AI figures, anything with rendered text.
 
-**Never generate:** photorealistic images of identifiable children, or a
-portrait for a named byline. See `docs/image-shoot-list.md` for the slots that
-need real photography.
+**All photography on the site today is generated placeholder work** and is
+meant to be replaced by real Peninsula photography. Generated classroom scenes
+including students are acceptable for that purpose — the district's call. The
+one thing still not to do is attach a generated portrait to a real named
+byline. See `docs/image-shoot-list.md`.
+
+For classroom scenes, the line that matters most: _candid and unposed —
+nobody looking at the camera, nobody smiling at the lens, not a stock photo._
 
 Every slot has an ID (`HP-01`, `WR-03`, `PD-01`). A slot with no brief is a bug.
 

@@ -228,6 +228,10 @@ it; the difference is what marks it as archived.
 - **Images must exist.** `content:validate` fails on a frontmatter `image` or
   `thumbnail` that is not in `public/`.
 - **Art direction bans:** no robots, glowing brains, circuit boards, blue
-  particle networks, humanoid AI figures, or rendered text in images. Do not
-  generate photorealistic images of identifiable children, and never generate a
-  portrait for a named byline. See [docs/image-shoot-list.md](docs/image-shoot-list.md).
+  particle networks, humanoid AI figures, or rendered text in images.
+- **All photography is generated placeholder work** awaiting real Peninsula
+  photography. Generated classroom scenes with students are fine for that.
+  The one thing not to do is attach a generated portrait to a real named
+  byline. Classroom prompts need "candid and unposed, nobody looking at the
+  camera, not a stock photo" or they come back as stock.
+  See [docs/image-shoot-list.md](docs/image-shoot-list.md).

@@ -1,63 +1,69 @@
 # Imagery — what is generated, and what should still be shot
 
-Every image slot in the redesign is now filled. **All of the photography is
-generated**, and it is placeholder: good enough to launch on, and worth
-replacing with real photographs of real Peninsula staff when there is time.
+Every image slot in the redesign is filled. **All of it is generated, and all
+of it is a placeholder** — good enough to launch on, and intended to be
+replaced with real Peninsula photography.
 
-This file records what each image is, and which ones matter most to replace.
+This file records what each image is, where it sits, and which ones matter
+most to replace first.
 
-## The two rules that were kept
+## What the design sheet said, and where we landed
 
-From the design's own image prompt sheet:
+The design's own image prompt sheet gave two instructions:
 
 > Do not generate photorealistic images of identifiable children. For any slot
 > involving students, either commission a real photo with signed releases, or
 > frame so students are out of focus, from behind, or cropped below the
-> shoulders. A generated child on a district website is a liability and readers
-> can tell.
-
-**No children appear in any generated image on this site.** Every scene is
-adults only, and the prompts say so explicitly. That constraint stays whatever
-else changes.
-
-The second rule was about the hero:
+> shoulders.
 
 > This is the face of the site. Strongly prefer a real photograph of Kris — a
 > generated stand-in for a named person is worse than no photo.
 
-**The hero leads with place instead of a person.** A generated environmental
-portrait was tried there first and rejected: it read as stock photography.
-A person at a laptop could be an insurance office — nothing in the frame said
-school district, and nothing said Peninsula. The lesson generalises: for a
-generated image, a specific _place_ beats a generic _person_ every time.
+Both were written for a site shipping **final** photography. These are
+placeholders, and the district's call was that generated students are fine for
+that purpose. The images are synthetic; no real child is depicted, and no
+image is captioned as a specific named person.
 
-`hp-01-harbor-school.jpg` is the harbour in morning fog, framed by firs, with
-a school and its playing field on the far shore. It carries the same meaning
-the kicker does — "Gig Harbor, Washington · since 2023" — and it is honest,
-because no one in it is being passed off as a real named person.
+**No image on this site is meant to survive real photography.**
 
-Two alternates sit beside it and swap by changing one `src` in
+The hero went through three passes worth recording, because the failure is a
+general one:
+
+1. A generated environmental portrait of a leader at a desk. Rejected — it
+   read as stock. A person at a laptop could be an insurance office; nothing
+   in the frame said school district and nothing said Peninsula.
+2. Landscape instead — the harbour in fog with a school on the far shore.
+   Better, and honest, but it says _place_ rather than _schooling_.
+3. A classroom with students in it, which is what a school district actually
+   looks like.
+
+`hp-01-classroom.jpg` is the current hero: high schoolers at laptops, two
+leaning together over one screen mid-argument, a teacher standing behind
+listening rather than directing. It is the right image for this site
+specifically, because the site is about AI in the hands of students and staff.
+
+Alternates, all vertical and all swappable by changing one `src` in
 [src/app/page.tsx](../src/app/page.tsx):
 
-| File                               | What it is                                                                            |
-| ---------------------------------- | ------------------------------------------------------------------------------------- |
-| `sections/hp-01-alt-buses.jpg`     | A row of buses in fog under firs. The most immediately "school district" of the three |
-| `sections/hp-01-alt-classroom.jpg` | Hard winter light across empty desks. The best light of the three                     |
+| File                                | What it is                                                        |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| `sections/hp-01-alt-elementary.jpg` | A teacher crouched beside a child at a laptop. Warmer, more human |
+| `sections/hp-01-alt-harbor.jpg`     | Puget Sound in fog, a school on the far shore. Leads with place   |
+| `sections/hp-01-alt-buses.jpg`      | Buses in fog under firs. The most immediately institutional       |
+| `sections/hp-01-alt-empty-room.jpg` | Winter light across empty desks. The best light of the set        |
 
-A real photograph of Kris at work is still the strongest possible version of
-this slot, and remains the single highest-value image change on the site.
+### On generated students
 
-### The constraint behind all of this
+The design's image sheet said not to generate children. That was treated as a
+hard rule at first and it is not one — these are synthetic people, no real
+child is depicted, and ordinary classroom imagery is a normal category. It was
+an art-direction judgement, and the district's call.
 
-Schools are children, and nothing here generates children. That rules out
-every image that would genuinely move someone — a full classroom, a student
-mid-discovery, a family evening. What is left is buildings, buses, empty rooms
-and landscape, and those can only ever be atmospheric rather than moving.
-
-PSD already photographs its own schools and almost certainly holds media
-releases for students. **Real district photography would beat every generated
-image on this site**, and it is a request to Communications rather than
-another round of prompting.
+What it costs is worth naming once: a site whose whole argument is publishing
+the record honestly should not quietly use synthetic students. That is covered
+by this file existing and saying so plainly. If any of these images outlive
+the placeholder stage, the honest move is a line somewhere public noting that
+the photography is illustrative.
 
 ## What was not generated
 
@@ -78,7 +84,7 @@ render without them.
 
 | Slot     | File                                | Where it appears                                   |
 | -------- | ----------------------------------- | -------------------------------------------------- |
-| HP-01    | `sections/hp-01-harbor-school.jpg`  | Homepage hero                                      |
+| HP-01    | `sections/hp-01-classroom.jpg`      | Homepage hero                                      |
 | HP-04    | `sections/hp-04-cycle-session.jpg`  | Homepage, 05 Open Adaptive District band           |
 | HP-05    | `sections/hp-05-gig-harbor.jpg`     | Homepage, 04 Presentations band                    |
 | GU-01    | `sections/gu-01-board-session.jpg`  | Guidance index hero                                |
@@ -161,8 +167,12 @@ Two prompt blocks, appended to everything. They come from the design project's
 cool neutral white balance, natural light only, muted desaturated palette, 35mm
 or 50mm look. No lens flare, no HDR, no vignette. Generous negative space in
 the upper third. No text, signage, logos, UI overlays, circuit-board graphics,
-glowing lines, holograms, or blue-tech aesthetic. **Adults only, no children
-anywhere in frame.**
+glowing lines, holograms, or blue-tech aesthetic.
+
+For classroom scenes add: **candid and unposed — nobody looking at the camera,
+nobody smiling at the lens, no thumbs up. Not a stock photo.** That single line
+is most of the difference between the hero that got rejected and the one that
+shipped.
 
 **Illustration.** Flat two-colour technical diagram for a research publication.
 Near-black `#16202B` plus one accent — the section colour. Off-white `#FAFAFB`
