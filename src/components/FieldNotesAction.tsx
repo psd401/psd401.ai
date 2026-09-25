@@ -14,6 +14,7 @@
  */
 import React from 'react';
 import { Button } from '@/components/ds';
+import { NEWSLETTER } from '@/lib/newsletter';
 
 type Mode = 'confirm' | 'unsubscribe';
 type State = 'loading' | 'ready' | 'working' | 'done' | 'expired' | 'invalid' | 'error';
@@ -22,7 +23,7 @@ const COPY: Record<Mode, { button: string; done: string; doneDetail: string }> =
   confirm: {
     button: 'Confirm my subscription',
     done: 'You are subscribed.',
-    doneDetail: 'Field Notes will come to this address. Every issue has a link to unsubscribe.',
+    doneDetail: `${NEWSLETTER.name} will come to this address. Every issue has a link to unsubscribe.`,
   },
   unsubscribe: {
     button: 'Unsubscribe',

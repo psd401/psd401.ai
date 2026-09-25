@@ -7,6 +7,7 @@ import { SECTIONS } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 import { formatDate } from '@/lib/format';
 import { isSubscribeConfigured } from '@/lib/subscribe';
+import { NEWSLETTER } from '@/lib/newsletter';
 
 const SECTION = SECTIONS.find(s => s.key === 'writing')!;
 
@@ -76,6 +77,7 @@ export default async function WritingIndex() {
       >
         <SubscribeForm
           enabled={isSubscribeConfigured()}
+          title={NEWSLETTER.name}
           blurb="One thing we built, one thing we learned, one thing we would do differently."
         />
       </div>

@@ -2,10 +2,11 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { SectionHeader, SectionRule } from '@/components/ds';
 import FieldNotesAction from '@/components/FieldNotesAction';
+import { NEWSLETTER } from '@/lib/newsletter';
 
 // Reached only from an emailed link. Never indexed, never in the sitemap.
 export const metadata: Metadata = {
-  title: 'Unsubscribe from Field Notes',
+  title: `Unsubscribe from ${NEWSLETTER.name}`,
   robots: { index: false, follow: false },
 };
 
@@ -15,7 +16,7 @@ export default function FieldNotesUnsubscribePage() {
       <SectionRule as="header">
         <SectionHeader
           as="h1"
-          title="Unsubscribe from Field Notes"
+          title={`Unsubscribe from ${NEWSLETTER.name}`}
           lead="Press the button and your address is deleted from the list. No questions, no confirmation email."
         />
         <div style={{ marginTop: 28 }}>

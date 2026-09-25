@@ -76,7 +76,7 @@ function deps(): Deps {
       siteUrl: process.env.FIELD_NOTES_SITE_URL ?? SITE_URL,
     };
   }
-  throw new Error('Field Notes is not configured.');
+  throw new Error('Newsletter sign-up is not configured.');
 }
 
 export type SubscribeResult = { ok: true } | { ok: false; reason: 'provider_error' };

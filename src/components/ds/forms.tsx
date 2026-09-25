@@ -32,7 +32,7 @@ export function TextInput({ variant = 'underline', className, ...rest }: TextInp
 /* -------------------------------------------------------- SubscribeForm */
 
 type SubscribeFormProps = {
-  title?: string;
+  title: string;
   blurb?: string;
   cta?: string;
   /**
@@ -47,14 +47,14 @@ type SubscribeFormProps = {
 const FALLBACK = 'hagelk@psd401.net';
 
 /**
- * The Field Notes sign-up. Appears once per page, at the foot of a section.
+ * The newsletter sign-up. Appears once per page, at the foot of a section.
  * The submit is a mono word, not a filled button — it sits on the input rule.
  *
  * Posts to /api/subscribe. With sign-up not yet connected, the form renders
  * disabled and says so, rather than silently swallowing an address.
  */
 export function SubscribeForm({
-  title = 'Field Notes',
+  title,
   blurb,
   cta = 'Subscribe →',
   enabled,

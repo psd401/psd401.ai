@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { SectionHeader, SectionRule } from '@/components/ds';
 import FieldNotesAction from '@/components/FieldNotesAction';
+import { NEWSLETTER } from '@/lib/newsletter';
 
 // Reached only from an emailed link. Never indexed, never in the sitemap.
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function FieldNotesConfirmPage() {
         <SectionHeader
           as="h1"
           title="Confirm your subscription"
-          lead="One click to start receiving Field Notes: one thing we built, one thing we learned, and one thing we would do differently."
+          lead={`One click to start receiving ${NEWSLETTER.name}: ${NEWSLETTER.tagline}.`}
         />
         <div style={{ marginTop: 28 }}>
           <FieldNotesAction mode="confirm" />

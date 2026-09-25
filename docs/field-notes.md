@@ -88,11 +88,11 @@ credentials from it at runtime; no access keys are stored anywhere.
 
 In **App settings → Environment variables**:
 
-| Variable             | Value                                                                    |
-| -------------------- | ------------------------------------------------------------------------ |
-| `FIELD_NOTES_TABLE`  | `psd401-ai-field-notes`                                                  |
-| `FIELD_NOTES_FROM`   | e.g. `Peninsula AI <fieldnotes@psd401.ai>` — must match the SES identity |
-| `FIELD_NOTES_REGION` | Only if not `us-west-2`                                                  |
+| Variable             | Value                                                                                       |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| `FIELD_NOTES_TABLE`  | `psd401-ai-field-notes`                                                                     |
+| `FIELD_NOTES_FROM`   | `Display Name <address>` — an address the district has created, on a domain verified in SES |
+| `FIELD_NOTES_REGION` | Only if not `us-west-2`                                                                     |
 
 Amplify reserves the `AWS_` prefix, which is why these are named
 `FIELD_NOTES_`.
