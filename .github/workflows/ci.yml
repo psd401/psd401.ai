@@ -12,6 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          # Full history. links:audit rebuilds every pre-redesign URL from the
+          # pinned baseline commit in scripts/links-audit.ts; the default
+          # depth-1 clone does not contain it and the audit would exit 1.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
