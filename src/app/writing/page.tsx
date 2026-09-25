@@ -6,6 +6,7 @@ import { byDateDesc, getConcepts } from '@/lib/content';
 import { SECTIONS } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 import { formatDate } from '@/lib/format';
+import { isSubscribeConfigured } from '@/lib/subscribe';
 
 const SECTION = SECTIONS.find(s => s.key === 'writing')!;
 
@@ -73,7 +74,10 @@ export default async function WritingIndex() {
           padding: '44px var(--gutter-page)',
         }}
       >
-        <SubscribeForm blurb="One thing we built, one thing we learned, one thing we would do differently." />
+        <SubscribeForm
+          enabled={isSubscribeConfigured()}
+          blurb="One thing we built, one thing we learned, one thing we would do differently."
+        />
       </div>
     </div>
   );

@@ -35,36 +35,49 @@ type SubscribeFormProps = {
   title?: string;
   blurb?: string;
   cta?: string;
+  /**
+   * Whether sign-up is connected. Decided on the server by
+   * isSubscribeConfigured() in src/lib/subscribe.ts and passed down, because
+   * the provider credentials that decide it must never reach the browser.
+   */
+  enabled: boolean;
   className?: string;
 };
+
+const FALLBACK = 'hagelk@psd401.net';
 
 /**
  * The Field Notes sign-up. Appears once per page, at the foot of a section.
  * The submit is a mono word, not a filled button — it sits on the input rule.
  *
- * Posts to NEXT_PUBLIC_SUBSCRIBE_ENDPOINT. With no endpoint configured the
- * form renders disabled and says so, rather than silently swallowing an
- * address — a signup box that does nothing is worse than no signup box.
+ * Posts to /api/subscribe. With sign-up not yet connected, the form renders
+ * disabled and says so, rather than silently swallowing an address.
  */
 export function SubscribeForm({
   title = 'Field Notes',
   blurb,
   cta = 'Subscribe →',
+  enabled,
   className,
 }: SubscribeFormProps) {
-  const endpoint = process.env.NEXT_PUBLIC_SUBSCRIBE_ENDPOINT;
   const [state, setState] = React.useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [email, setEmail] = React.useState('');
+  const [company, setCompany] = React.useState('');
+  const openedAt = React.useRef<number>(0);
+
+  React.useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!endpoint || state === 'sending') return;
+    if (!enabled || state === 'sending') return;
     setState('sending');
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company, elapsed: Date.now() - openedAt.current }),
       });
       setState(res.ok ? 'done' : 'error');
     } catch {
@@ -74,11 +87,11 @@ export function SubscribeForm({
 
   const message =
     state === 'done'
-      ? 'Subscribed. Check your inbox to confirm.'
+      ? 'Check your inbox — we sent a link to confirm your address.'
       : state === 'error'
-        ? 'That did not go through. Try again, or email hagelk@psd401.net.'
-        : !endpoint
-          ? 'Sign-up is not connected yet — email hagelk@psd401.net to be added.'
+        ? `That did not go through. Try again, or email ${FALLBACK}.`
+        : !enabled
+          ? `Sign-up is not connected yet — email ${FALLBACK} to be added.`
           : null;
 
   return (
@@ -100,13 +113,25 @@ export function SubscribeForm({
             autoComplete="email"
             placeholder="you@district.org"
             value={email}
-            disabled={!endpoint || state === 'done'}
+            disabled={!enabled || state === 'done'}
             onChange={e => setEmail(e.target.value)}
           />
+          {/* Honeypot: off-screen and out of the tab order, so only bots fill it. */}
+          <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px' }}>
+            <input
+              type="text"
+              name="company"
+              aria-label="Leave this field empty"
+              tabIndex={-1}
+              autoComplete="off"
+              value={company}
+              onChange={e => setCompany(e.target.value)}
+            />
+          </div>
           <button
             type="submit"
             className="ds-subscribe__submit"
-            disabled={!endpoint || state === 'sending' || state === 'done'}
+            disabled={!enabled || state === 'sending' || state === 'done'}
           >
             {state === 'sending' ? 'Sending…' : cta}
           </button>
