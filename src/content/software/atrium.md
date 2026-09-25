@@ -1,7 +1,7 @@
 ---
 type: software
 title: Atrium
-description: A content workspace inside AI Studio where staff and their agents write documents and build interactive pages together, then publish them to the staff intranet.
+description: A content workspace inside AI Studio where staff and their agents write documents and build interactive pages together, then publish them to the intranet, the public web, Schoology or Google.
 resource: /software/atrium
 date: '2026-09-25'
 tags:
@@ -12,7 +12,7 @@ maturity: Production
 stack: Next.js · AWS
 repo: https://github.com/psd401/aistudio
 license: MIT
-contact: aistudio@psd401.net
+contact: hagelk@psd401.net
 image: /images/software/pd-atrium.jpg
 imageAlt: An empty classroom after hours with a laptop open on a side table
 spec:
@@ -24,19 +24,21 @@ spec:
     v: Private, group or public, set per item
   - k: Agent access
     v: The same API the editors use — over MCP, REST or skills
-  - k: Planned
-    v: Publishing connectors for Schoology and Google
+  - k: Publishes to
+    v: Staff intranet, public web, Schoology and Google — and can unpublish from each
+  - k: Exports
+    v: Open Knowledge Format bundles, for one item or a whole collection
   - k: Source
     v: Part of the AI Studio repository
   - k: Licence
     v: MIT
-status: draft
+status: stable
 generated:
   by: claude-code/opus-5-5
   at: '2026-09-25'
 ---
 
-Atrium is where staff and their [agents](/software/psd-ai-agents) make things together. It holds two kinds of content — documents, written in markdown, and interactive artifacts — versions them with visible authorship, and publishes them to the staff intranet at whatever access level the author chooses.
+Atrium is where staff and their [agents](/software/psd-ai-agents) make things together. It holds two kinds of content — documents, written in markdown, and interactive artifacts — versions them with visible authorship, and publishes them wherever they need to go: the staff intranet, the public web, Schoology or Google.
 
 ## Built for agents first
 
@@ -50,5 +52,5 @@ That is what lets an agent draft a procedure, a person edit it, and the page rec
 - **Versions with authorship.** Every version is kept, and you can see which changes came from a person and which from an agent.
 - **Permission-aware.** Items are private, shared with a group, or public. Published content becomes grounding for AI Studio's assistants — scoped to who is allowed to see it.
 - **Fed by [Atrium Capture](/software/atrium-capture).** Record a workflow in Chrome or on a Mac and it arrives in Atrium as a draft guide.
-
-Publishing to Schoology and Google is designed for but not yet built.
+- **Publishes where people already are.** One document can go to the staff intranet, the public web, a Schoology course or Google, and can be taken down from any of them. Publishing to the public web takes a separate permission from publishing internally.
+- **Exports as Open Knowledge Format.** A single item or a whole collection, in the same format this site is published in, so any agent can read it without a custom integration.

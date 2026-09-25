@@ -12,7 +12,7 @@ maturity: Production
 stack: SwiftUI · Cloud Run · Gemini
 repo: https://github.com/psd401/lessonlens
 license: MIT
-contact: hagelk@psd401.net
+contact: cantonwinej@psd401.net
 image: /images/software/lessonlens-home.png
 imageAlt: The LessonLens home screen on a Mac, offering New Recording, Import Audio and Import Video
 spec:
@@ -34,7 +34,7 @@ spec:
     v: Google, @psd401.net accounts only
   - k: Licence
     v: MIT
-status: draft
+status: stable
 generated:
   by: claude-code/opus-5-5
   at: '2026-09-25'

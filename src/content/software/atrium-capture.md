@@ -12,7 +12,7 @@ maturity: Production
 stack: Chrome extension · macOS
 repo: https://github.com/psd401/atrium-capture
 license: MIT
-contact: aistudio@psd401.net
+contact: hagelk@psd401.net
 image: /images/software/atrium-capture-review.png
 imageAlt: The Atrium Capture panel listing eight recorded steps awaiting review, beside the line "Record the workflow, not the secrets"
 spec:
@@ -32,7 +32,7 @@ spec:
     v: The staff member's AI Studio account
   - k: Licence
     v: MIT
-status: draft
+status: stable
 generated:
   by: claude-code/opus-5-5
   at: '2026-09-25'

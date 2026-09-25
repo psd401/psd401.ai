@@ -29,7 +29,7 @@ spec:
     v: Google Workspace, through Vault
   - k: Source
     v: Private repository
-status: draft
+status: stable
 generated:
   by: claude-code/opus-5-5
   at: '2026-09-25'

@@ -12,7 +12,7 @@ maturity: Production
 stack: OpenClaw · AWS · Google Workspace
 repo: https://github.com/psd401/aistudio
 license: MIT
-contact: aistudio@psd401.net
+contact: hagelk@psd401.net
 image: /images/software/pd-psd-ai-agents.jpg
 imageAlt: A staff member working at a two-monitor desk in a district office
 spec:
@@ -32,7 +32,7 @@ spec:
     v: Part of the AI Studio repository
   - k: Licence
     v: MIT
-status: draft
+status: stable
 generated:
   by: claude-code/opus-5-5
   at: '2026-09-25'

@@ -13,7 +13,7 @@ maturity: Production
 stack: Next.js 16 · AWS
 repo: https://github.com/psd401/aistudio
 license: MIT
-contact: aistudio@psd401.net
+contact: hagelk@psd401.net
 image: /images/aistudio-1.png
 imageAlt: The AI Studio home screen, with the district name above a short description of the platform
 appUrl: aistudio.psd401.ai

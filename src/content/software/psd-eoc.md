@@ -7,7 +7,7 @@ date: '2026-09-25'
 tags:
   - Operations
   - Safety
-maturity: Beta
+maturity: Production
 stack: Next.js · Expo · AWS
 repo: https://github.com/psd401/psd-eoc
 license: MIT
@@ -29,7 +29,7 @@ spec:
     v: An MCP adapter over the same capabilities as the app
   - k: Licence
     v: MIT
-status: draft
+status: stable
 generated:
   by: claude-code/opus-5-5
   at: '2026-09-25'
