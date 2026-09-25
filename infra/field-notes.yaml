@@ -1,0 +1,104 @@
+# Field Notes — subscriber list for psd401.ai
+#
+# Creates the DynamoDB table the site stores subscribers in, and a managed IAM
+# policy with exactly the permissions the site needs. Attach the policy to the
+# Amplify app's IAM compute role. Full setup: docs/field-notes.md.
+#
+# Deliberately NOT created here: the SES sending identity. Verifying a domain
+# needs DKIM DNS records and, for a new account, SES production access — both
+# are one-time steps done by hand (see the doc).
+#
+# Written in long-form intrinsic syntax (Ref:, Fn::Sub:) rather than the !Ref
+# shorthand, so the file is plain YAML any parser can check.
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Field Notes subscriber list for psd401.ai (DynamoDB table + IAM policy for the Amplify compute role)
+
+Parameters:
+  TableName:
+    Type: String
+    Default: psd401-ai-field-notes
+    Description: Name of the subscriber table. Set FIELD_NOTES_TABLE to the same value.
+  SenderIdentity:
+    Type: String
+    Description: >-
+      The verified SES identity the confirmation email is sent from — a domain
+      (e.g. psd401.ai) or a single address. Must already be verified in SES in
+      this account and region.
+
+Resources:
+  SubscribersTable:
+    Type: AWS::DynamoDB::Table
+    # Subscribers are the one thing here that cannot be recreated. Keep the
+    # table if the stack is deleted or the table is ever replaced.
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName:
+        Ref: TableName
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: sid
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        # Links identify a subscriber by a random id, never by email address.
+        # Must match SID_INDEX in src/lib/field-notes/aws.ts.
+        - IndexName: bySid
+          KeySchema:
+            - AttributeName: sid
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      # Unconfirmed sign-ups carry expiresAt and are deleted after 7 days.
+      # Confirmed subscribers have no expiresAt and never expire.
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      SSESpecification:
+        SSEEnabled: true
+      Tags:
+        - Key: app
+          Value: psd401.ai
+        - Key: purpose
+          Value: field-notes-subscribers
+
+  FieldNotesSitePolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: psd401.ai site access to the Field Notes table and SES identity. Attach to the Amplify compute role.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: SubscriberTable
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Query
+            Resource:
+              - Fn::GetAtt: [SubscribersTable, Arn]
+              - Fn::Sub: '${SubscribersTable.Arn}/index/bySid'
+          - Sid: SendConfirmationEmail
+            Effect: Allow
+            Action: ses:SendEmail
+            Resource:
+              Fn::Sub: 'arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${SenderIdentity}'
+
+Outputs:
+  TableName:
+    Description: Set FIELD_NOTES_TABLE to this.
+    Value:
+      Ref: SubscribersTable
+  PolicyArn:
+    Description: Attach this managed policy to the Amplify app's IAM compute role.
+    Value:
+      Ref: FieldNotesSitePolicy

@@ -33,6 +33,11 @@ jobs:
       - name: Validate content
         run: npm run content:validate
 
+      # The Field Notes consent flow: double opt-in, token handling, bot
+      # checks, unsubscribe. No AWS needed — runs on the in-memory driver.
+      - name: Field Notes self-test
+        run: npm run field-notes:selftest
+
       - name: Type check
         run: npm run type-check
 
