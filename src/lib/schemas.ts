@@ -88,6 +88,15 @@ export const softwareSchema = okfBase.extend({
   license: z.string().optional(),
   contact: z.string().optional(),
   image: z.string().optional(),
+  /** Alt text for `image`. Describe what is shown, not the product name. */
+  imageAlt: z.string().optional(),
+  /**
+   * The address a web screenshot was taken at, e.g. 'aistudio.psd401.ai'.
+   * Setting it is what wraps `image` in browser chrome — so leave it unset
+   * for photographs, native Mac apps and marketing assets, or the page shows
+   * a fake address bar over something that is not a web page.
+   */
+  appUrl: z.string().optional(),
   /** Rows for the technical specification table. */
   spec: z.array(z.object({ k: z.string(), v: z.string() })).optional(),
 });

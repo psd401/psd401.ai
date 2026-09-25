@@ -7,6 +7,7 @@ import {
   BrowserFrame,
   Button,
   Chip,
+  ImageFrame,
   SectionHeader,
   SectionRule,
   SpecTable,
@@ -50,8 +51,6 @@ export default async function SoftwarePage({ params }: Props) {
   const { slug } = await params;
   const item = await getConcept('software', slug);
   if (!item) notFound();
-
-  const host = item.demoUrl?.replace(/^https?:\/\//, '').replace(/\/$/, '') ?? 'psd401.net';
 
   return (
     <article data-section="software">
@@ -125,18 +124,19 @@ export default async function SoftwarePage({ params }: Props) {
               )}
               {item.contact && (
                 <Button variant="outline" size="lg" href={`mailto:${item.contact}`}>
-                  Ask us to host it →
+                  Email us →
                 </Button>
               )}
             </div>
           )}
         </div>
 
-        {item.image ? (
-          <BrowserFrame url={host}>
+        {item.image && item.appUrl ? (
+          // A web screenshot: show it in browser chrome with the real address.
+          <BrowserFrame url={item.appUrl}>
             <Image
               src={item.image}
-              alt={`${item.title} interface`}
+              alt={item.imageAlt ?? `${item.title} interface`}
               width={1200}
               height={760}
               priority
@@ -150,6 +150,15 @@ export default async function SoftwarePage({ params }: Props) {
               }}
             />
           </BrowserFrame>
+        ) : item.image ? (
+          // A photograph, native app window or product asset: no fake chrome.
+          <ImageFrame
+            src={item.image}
+            alt={item.imageAlt ?? ''}
+            ratio="3/2"
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         ) : null}
       </div>
 
@@ -166,7 +175,7 @@ export default async function SoftwarePage({ params }: Props) {
         </SectionRule>
       )}
 
-      {(item.repo || item.contact) && (
+      {item.repo && (
         <SectionRule ground="strong" as="section">
           <div className="ds-split--even ds-split" style={{ gap: 48, alignItems: 'center' }}>
             <div>

@@ -82,17 +82,19 @@ render without them.
 
 ## Placed
 
-| Slot     | File                                | Where it appears                                   |
-| -------- | ----------------------------------- | -------------------------------------------------- |
-| HP-01    | `sections/hp-01-classroom.jpg`      | Homepage hero                                      |
-| HP-04    | `sections/hp-04-cycle-session.jpg`  | Homepage, 05 Open Adaptive District band           |
-| HP-05    | `sections/hp-05-gig-harbor.jpg`     | Homepage, 04 Presentations band                    |
-| GU-01    | `sections/gu-01-board-session.jpg`  | Guidance index hero                                |
-| OAD-01   | `sections/oad-01-cycle-session.jpg` | Open Adaptive District hero                        |
-| OAD-02   | `sections/oad-02-cycle.png`         | Open Adaptive District, "The cycle"                |
-| PD-01    | `software/pd-01-studio-in-use.jpg`  | Software index hero                                |
-| PD-02 ×5 | `software/pd-*.jpg`                 | The five draft product pages                       |
-| —        | `og-default.jpg`                    | Open Graph card for any page without its own image |
+| Slot     | File                                 | Where it appears                                     |
+| -------- | ------------------------------------ | ---------------------------------------------------- |
+| HP-01    | `sections/hp-01-classroom.jpg`       | Homepage hero                                        |
+| HP-04    | `sections/hp-04-cycle-session.jpg`   | Homepage, 05 Open Adaptive District band             |
+| HP-05    | `sections/hp-05-gig-harbor.jpg`      | Homepage, 04 Presentations band                      |
+| GU-01    | `sections/gu-01-board-session.jpg`   | Guidance index hero                                  |
+| OAD-01   | `sections/oad-01-cycle-session.jpg`  | Open Adaptive District hero                          |
+| OAD-02   | `sections/oad-02-cycle.png`          | Open Adaptive District, "The cycle"                  |
+| PD-01    | `software/pd-01-studio-in-use.jpg`   | Software index hero                                  |
+| PD-02 ×4 | `software/pd-*.jpg`                  | PSD AI Agents, Atrium, PRR and EOC product pages     |
+| —        | `software/lessonlens-home.png`       | LessonLens — real screenshot from its public repo    |
+| —        | `software/atrium-capture-review.png` | Atrium Capture — its own store asset, synthetic data |
+| —        | `og-default.jpg`                     | Open Graph card for any page without its own image   |
 
 ## Generated, held in reserve
 
