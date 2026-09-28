@@ -43,9 +43,14 @@ export default async function Home() {
   ]);
 
   const latestPosts = byDateDesc(posts).slice(0, 3);
-  // Not every product is open source (PRR's repository is private), so the
-  // claim is counted, not asserted.
+  // Every product is meant to be open source, but a product only counts once
+  // its repo field is set (PRR's repository is still private). The sentence
+  // is computed so it stays true as each one is published.
   const openSource = software.filter(s => s.repo).length;
+  const openSourceLine =
+    openSource === software.length
+      ? 'All of them are open source, so another district can run them for free.'
+      : `${openSource} of the ${software.length} are open source and free for another district to run. The rest will follow.`;
   const featuredSoftware = [...software].sort((a, b) => {
     // Production first, then alphabetical — drafts should not lead.
     const rank = (m: string) => (m === 'Production' ? 0 : m === 'Pilot' ? 1 : 2);
@@ -135,7 +140,7 @@ export default async function Home() {
             title="Software we build"
             size="section"
             meta={`${counts.software} products`}
-            lead={`Built by district staff for district problems. ${openSource} of the ${counts.software} are open source, so another district can run them for free.`}
+            lead={`Built by district staff for district problems. ${openSourceLine}`}
           />
           <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
             {featuredSoftware.map(p => (
