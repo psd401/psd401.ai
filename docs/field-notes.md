@@ -63,7 +63,7 @@ out of the SES sandbox, or confirmations will only reach verified addresses:
 aws sesv2 get-account --query ProductionAccessEnabled
 ```
 
-### 2. The table and the policy
+### 2. The table and the policies
 
 ```bash
 aws cloudformation deploy \
@@ -74,15 +74,23 @@ aws cloudformation deploy \
 ```
 
 This creates the `psd401-ai-field-notes` table (retained if the stack is ever
-deleted) and a managed policy granting exactly: `GetItem`, `PutItem`,
-`UpdateItem`, `DeleteItem` and `Query` on the table, and `ses:SendEmail` on the
-sending identity. The stack outputs give the table name and the policy ARN.
+deleted) and two managed policies:
+
+- **Site policy** (`SitePolicyArn`) — exactly `GetItem`, `PutItem`,
+  `UpdateItem`, `DeleteItem` and `Query` on the table, and `ses:SendEmail` on
+  the sending identity. For the website.
+- **Sender policy** (`SenderPolicyArn`) — `Scan` and `UpdateItem` on the table,
+  `ses:SendEmail` on the sending identity, and `ses:GetAccount`. For whoever
+  sends issues; see [Sending an issue](#sending-an-issue).
+
+The stack outputs give the table name and both ARNs.
 
 ### 3. Give the site the policy
 
 In the Amplify console: **App settings → IAM roles → Compute role**. Attach the
-policy from step 2 to that role (create one if the app has none). The site gets
-credentials from it at runtime; no access keys are stored anywhere.
+site policy (`SitePolicyArn`) to that role (create one if the app has none). Do
+not attach the sender policy — the site never lists subscribers. The site gets
+credentials from the role at runtime; no access keys are stored anywhere.
 
 ### 4. Environment variables
 
@@ -116,14 +124,73 @@ Sign up with a real address on `/writing`, confirm from the email, and look for
 the item in the table with `status = confirmed`. Then unsubscribe and confirm
 the item is gone.
 
-## Not built yet: sending an issue
+## Sending an issue
 
-The list can collect and confirm subscribers. Nothing sends Field Notes to them
-yet. Before the first issue, a sender needs:
+### Write it
 
-- To read confirmed subscribers only.
-- A per-recipient unsubscribe link (`unsubscribeUrl` in `core.ts` builds it),
-  plus `List-Unsubscribe` and `List-Unsubscribe-Post` headers pointing at
-  `/api/field-notes/unsubscribe?id=…&k=…`.
-- Bounce and complaint handling: SES notifications that remove the address.
-- SES sending-rate limits respected.
+An issue is a markdown file. Keep them anywhere; the sender takes a path.
+
+```markdown
+---
+subject: What we learned from six weeks of AI-drafted IEPs
+id: 2026-10-06
+---
+
+The body, in markdown. Use absolute URLs for links and images — a relative
+path means nothing inside an email.
+```
+
+`id` is optional and defaults to the file name. It is how the sender knows who
+already has this issue, so do not change it between runs of the same issue.
+
+### Send it
+
+Four steps, in order. Only the last one emails subscribers.
+
+```bash
+# 1. Look at it. Writes one copy to a file; touches no AWS.
+npm run field-notes:send -- --issue issue.md --preview preview.html
+
+# 2. See who would get it. Sends nothing, records nothing.
+npm run field-notes:send -- --issue issue.md --dry-run
+
+# 3. Send one copy to yourself, subject prefixed [TEST].
+npm run field-notes:send -- --issue issue.md --test you@psd401.net
+
+# 4. Send it. Shows the subject and recipient count, then waits for you to
+#    type that count before anything goes out.
+npm run field-notes:send -- --issue issue.md
+```
+
+Steps 2–4 need `FIELD_NOTES_TABLE`, `FIELD_NOTES_FROM` and AWS credentials for
+an identity with the **sender policy** (`SenderPolicyArn` from the stack).
+Optional: `FIELD_NOTES_POSTAL_ADDRESS` for the footer (without it the footer
+names the town only), `FIELD_NOTES_REGION`, `FIELD_NOTES_SITE_URL`.
+
+What the sender guarantees, all covered by `npm run field-notes:selftest`:
+
+- **Confirmed subscribers only.** The store lists confirmed records and the
+  send loop checks each one again.
+- **Each copy carries its recipient's own unsubscribe link**, plus the
+  `List-Unsubscribe` and `List-Unsubscribe-Post` headers Gmail and Yahoo
+  require. Mail clients show their own "Unsubscribe" button from these.
+- **Re-running is safe.** Each recipient is recorded against the issue id as
+  their copy goes out and skipped next time. If a run dies half way, run the
+  same command again.
+- **A failed send does not stop the run.** Failures are listed at the end,
+  left unrecorded, and retried by the next run.
+- **Someone who unsubscribes mid-send stays unsubscribed.** Recording a send
+  is conditional on the record still existing.
+- **Paced to the account's SES send rate**, with backoff if SES throttles.
+
+### Bounces and complaints
+
+Handled by SES rather than by this code. Make sure the account-level
+suppression list covers both, so SES stops sending to an address that
+bounced or marked a message as spam:
+
+```bash
+aws sesv2 put-account-suppression-attributes --suppressed-reasons BOUNCE COMPLAINT
+```
+
+Suppressed addresses stay in the table but SES will not deliver to them.

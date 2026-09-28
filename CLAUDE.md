@@ -32,6 +32,14 @@ must pass. This file covers commands and architecture.
 - `npm run links:audit` — asserts every pre-redesign URL still resolves.
   Needs a running server (`npm start` in another terminal). Runs in CI.
 
+### Newsletter
+
+- `npm run field-notes:selftest` — consent flow, route handlers and issue
+  sender against the in-memory driver. No AWS. Runs in CI.
+- `npm run field-notes:send -- --issue <file.md> --preview out.html` — render
+  an issue locally. `--dry-run`, `--test <addr>` and a real send need AWS; see
+  [docs/field-notes.md](docs/field-notes.md). Never run a real send unprompted.
+
 ## Architecture
 
 ### Stack

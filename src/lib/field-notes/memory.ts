@@ -8,8 +8,9 @@
  * src/lib/subscribe.ts refuses this driver in a production build.
  */
 import type { ConfirmationMailer, Subscriber, SubscriberStore } from './core';
+import type { IssueStore } from './send';
 
-export class MemoryStore implements SubscriberStore {
+export class MemoryStore implements SubscriberStore, IssueStore {
   private byEmail = new Map<string, Subscriber>();
 
   async getByEmail(email: string) {
@@ -38,6 +39,20 @@ export class MemoryStore implements SubscriberStore {
 
   async remove(email: string) {
     this.byEmail.delete(email);
+  }
+
+  async *listConfirmed() {
+    for (const s of [...this.byEmail.values()]) {
+      if (s.status === 'confirmed') yield structuredClone(s);
+    }
+  }
+
+  async markIssueSent(email: string, issueId: string, at: string) {
+    const s = this.byEmail.get(email);
+    if (!s || s.status !== 'confirmed') return false;
+    s.issuesSent = new Set([...(s.issuesSent ?? []), issueId]);
+    s.lastIssueAt = at;
+    return true;
   }
 
   /** Test helper. */

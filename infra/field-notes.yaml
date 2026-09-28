@@ -1,8 +1,15 @@
 # Field Notes — subscriber list for psd401.ai
 #
-# Creates the DynamoDB table the site stores subscribers in, and a managed IAM
-# policy with exactly the permissions the site needs. Attach the policy to the
-# Amplify app's IAM compute role. Full setup: docs/field-notes.md.
+# Creates the DynamoDB table the site stores subscribers in, and two managed
+# IAM policies:
+#
+#   FieldNotesSitePolicy    for the Amplify app's IAM compute role — sign-up,
+#                           confirm and unsubscribe. No Scan: the site never
+#                           lists subscribers.
+#   FieldNotesSenderPolicy  for whoever runs `npm run field-notes:send` —
+#                           list confirmed subscribers, record sends, email.
+#
+# Full setup: docs/field-notes.md.
 #
 # Deliberately NOT created here: the SES sending identity. Verifying a domain
 # needs DKIM DNS records and, for a new account, SES production access — both
@@ -12,7 +19,7 @@
 # shorthand, so the file is plain YAML any parser can check.
 
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Field Notes subscriber list for psd401.ai (DynamoDB table + IAM policy for the Amplify compute role)
+Description: Field Notes subscriber list for psd401.ai (DynamoDB table + IAM policies for the site and the issue sender)
 
 Parameters:
   TableName:
@@ -93,12 +100,40 @@ Resources:
             Resource:
               Fn::Sub: 'arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${SenderIdentity}'
 
+  FieldNotesSenderPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Send an issue of the psd401.ai newsletter (scripts/field-notes-send.ts). Attach to the person or role that runs the send.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ReadConfirmedAndRecordSends
+            Effect: Allow
+            Action:
+              - dynamodb:Scan
+              - dynamodb:UpdateItem
+            Resource:
+              Fn::GetAtt: [SubscribersTable, Arn]
+          - Sid: SendIssue
+            Effect: Allow
+            Action: ses:SendEmail
+            Resource:
+              Fn::Sub: 'arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${SenderIdentity}'
+          - Sid: ReadSendRate
+            Effect: Allow
+            Action: ses:GetAccount
+            Resource: '*'
+
 Outputs:
   TableName:
     Description: Set FIELD_NOTES_TABLE to this.
     Value:
       Ref: SubscribersTable
-  PolicyArn:
-    Description: Attach this managed policy to the Amplify app's IAM compute role.
+  SitePolicyArn:
+    Description: Attach to the Amplify app's IAM compute role.
     Value:
       Ref: FieldNotesSitePolicy
+  SenderPolicyArn:
+    Description: Attach to the person or role that sends issues.
+    Value:
+      Ref: FieldNotesSenderPolicy

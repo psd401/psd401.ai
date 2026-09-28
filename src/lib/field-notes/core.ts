@@ -42,6 +42,9 @@ export type Subscriber = {
   lastSentAt?: string;
   /** Epoch seconds. DynamoDB TTL attribute; present only while pending. */
   expiresAt?: number;
+  /** Ids of issues already sent to this subscriber. Makes re-running a send safe. */
+  issuesSent?: Set<string>;
+  lastIssueAt?: string;
 };
 
 export interface SubscriberStore {

@@ -19,7 +19,8 @@
     "links:audit": "tsx scripts/links-audit.ts",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "field-notes:selftest": "tsx scripts/field-notes-selftest.ts"
+    "field-notes:selftest": "tsx scripts/field-notes-selftest.ts",
+    "field-notes:send": "tsx scripts/field-notes-send.ts"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1140.0",
