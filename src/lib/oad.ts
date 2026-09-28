@@ -34,8 +34,8 @@ export type OadArtifact = {
 };
 
 /**
- * Reading order and framing. The descriptions are the ones the index page
- * already used for these documents.
+ * Reading order and framing. Each description is the card text on the section
+ * page and the meta description of the artefact page itself.
  */
 const ARTIFACTS: Array<Omit<OadArtifact, 'title' | 'html'>> = [
   {
@@ -43,33 +43,32 @@ const ARTIFACTS: Array<Omit<OadArtifact, 'title' | 'html'>> = [
     slug: 'start-here',
     file: '01-Start-Here.html',
     description:
-      'What the Open Adaptive District is, and why a district would run one. A five-minute read.',
+      'What the protocol is, why we run it, and how a cycle works. Five minutes, and the only required reading.',
   },
   {
     n: '02',
     slug: 'playbook',
     file: '02-The-Playbook.html',
     description:
-      'How a six-week build works, start to finish: Plan, Do, Study, Share. Everything your team touches, in one place.',
+      'The three documents a team uses (build plan, weekly check-in and wrap-up) with templates.',
   },
   {
     n: '03',
     slug: 'what-were-learning',
     file: '03-What-Were-Learning.html',
-    description: 'What teams tried, what worked, and what flopped. Updated as the cycles run.',
+    description: "Every team's wrap-up as it is published, including the builds that were stopped.",
   },
   {
     n: '04',
     slug: 'deep-dive',
     file: '04-The-Deep-Dive.html',
-    description:
-      'The full thinking behind the model, with the evidence, for anyone who wants all of it.',
+    description: 'The reasoning and research behind the design, for anyone who wants it.',
   },
   {
     n: '05',
     slug: 'get-started',
     file: '05-Get-Started-Flyer.html',
-    description: 'Do this, then this. Twelve steps on one page. Print it and put it on the wall.',
+    description: 'The whole cycle as twelve steps on one page, for printing.',
   },
 ];
 

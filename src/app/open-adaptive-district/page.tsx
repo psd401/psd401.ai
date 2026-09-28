@@ -1,18 +1,19 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Button, DocCard, ImageFrame, SectionHeader, SectionRule, StepRow } from '@/components/ds';
+import { Button, DocCard, ImageFrame, SectionHeader, SectionRule } from '@/components/ds';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
+import OadCycle from '@/components/OadCycle';
 import { getOadArtifacts } from '@/lib/oad';
 
 export const metadata: Metadata = {
   title: 'The Open Adaptive District',
   description:
-    'How Peninsula School District gets its AI work done: six-week cycles where a team picks one problem, builds a better way, studies what moved, and publishes what happened — including the flops.',
+    "Peninsula School District's protocol for AI work: a small team picks one problem, spends six weeks building a better way to handle it, and publishes what happened, including what didn't work. Free for any district to adopt.",
   alternates: { canonical: '/open-adaptive-district' },
   openGraph: {
     title: 'The Open Adaptive District — Peninsula AI',
     description:
-      'Six-week cycles: plan, do, study, share. The operating model underneath everything else on this site.',
+      'Plan, do, study, share: a six-week protocol for AI work that any district can adopt.',
     url: '/open-adaptive-district',
   },
 };
@@ -42,7 +43,7 @@ export default async function OpenAdaptiveDistrict() {
           createCollectionSchema({
             name: 'The Open Adaptive District',
             description:
-              "Peninsula School District's operating model for AI work: six-week plan / do / study / share cycles, published openly.",
+              "Peninsula School District's protocol for AI work, in six-week plan, do, study and share cycles, published for other districts to adopt.",
             url: '/open-adaptive-district',
             items: artifacts.map(a => ({
               title: a.title,
@@ -64,7 +65,7 @@ export default async function OpenAdaptiveDistrict() {
               as="h1"
               number="05"
               title="The Open Adaptive District"
-              lead="How the work gets done — the loop underneath all five sections. Every six weeks, a team picks one problem and builds a better way. The agent keeps the notes. We share what happened, even when it flops."
+              lead="A protocol for AI work. A team of three to six staff picks one problem, spends six weeks building a better way to handle it, and publishes what happened, including what didn't work. We run it at Peninsula, and any district can adopt it."
             />
             <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
               <Button variant="solid" size="lg" href="/open-adaptive-district/start-here">
@@ -87,46 +88,22 @@ export default async function OpenAdaptiveDistrict() {
       </SectionRule>
 
       <SectionRule ground="tint" as="section">
-        <SectionHeader title="The cycle" size="section" />
-        <div style={{ marginTop: 28, maxWidth: 760 }}>
-          <ImageFrame
-            id="OAD-02"
-            ratio="3/2"
-            src="/images/sections/oad-02-cycle.png"
-            alt="A four-phase cycle drawn as a continuous track with week markers and one branch that leaves and rejoins"
-            sizes="(max-width: 768px) 100vw, 760px"
-          />
-        </div>
-        <div style={{ marginTop: 28 }}>
-          <StepRow
-            steps={[
-              {
-                n: 'STEP 1',
-                title: 'Plan',
-                body: 'Pick one problem worth six weeks. Write down what better looks like.',
-              },
-              {
-                n: 'STEP 2',
-                title: 'Do',
-                body: 'Build the better way. Small, real, in front of students or staff.',
-              },
-              {
-                n: 'STEP 3',
-                title: 'Study',
-                body: 'The agent keeps the notes. Look honestly at what moved.',
-              },
-              { n: 'STEP 4', title: 'Share', body: 'Publish it here. Especially the flops.' },
-            ]}
-          />
+        <SectionHeader
+          title="The cycle"
+          size="section"
+          lead="Six weeks of work, then two weeks between cycles. A team runs one build per cycle."
+        />
+        <div style={{ marginTop: 36 }}>
+          <OadCycle />
         </div>
       </SectionRule>
 
       <SectionRule as="section">
         <SectionHeader
-          title="The artefacts"
+          title="Read the protocol"
           size="section"
           meta={`${artifacts.length} documents`}
-          lead="Take these, change the district name, and run it. That is what they are for."
+          lead="Start Here is the only required reading. The rest are there when a team needs them. Other districts are welcome to copy and adapt all five."
         />
         <div className="ds-grid ds-grid--2" style={{ gap: 22, marginTop: 28 }}>
           {artifacts.map(a => (
@@ -148,7 +125,7 @@ export default async function OpenAdaptiveDistrict() {
         <div className="ds-split--even ds-split" style={{ gap: 48, alignItems: 'center' }}>
           <div>
             <h2 className="ds-display ds-display--block" style={{ marginBottom: 10 }}>
-              Running one yourself
+              Running it in your district
             </h2>
             <p
               style={{
@@ -159,8 +136,15 @@ export default async function OpenAdaptiveDistrict() {
                 maxWidth: '60ch',
               }}
             >
-              Everything here is licensed CC BY-NC-SA 4.0. If you want to talk it through before you
-              start, email us — we would rather you got it right than got it from scratch.
+              Everything here is free to copy and adapt under{' '}
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                rel="license noopener noreferrer"
+                style={{ color: 'inherit' }}
+              >
+                CC BY-NC-SA 4.0
+              </a>
+              . If you want to talk it through before you start, email us.
             </p>
           </div>
           <Button variant="solid" size="lg" href="mailto:hagelk@psd401.net">
