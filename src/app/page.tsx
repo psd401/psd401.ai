@@ -43,6 +43,9 @@ export default async function Home() {
   ]);
 
   const latestPosts = byDateDesc(posts).slice(0, 3);
+  // Not every product is open source (PRR's repository is private), so the
+  // claim is counted, not asserted.
+  const openSource = software.filter(s => s.repo).length;
   const featuredSoftware = [...software].sort((a, b) => {
     // Production first, then alphabetical — drafts should not lead.
     const rank = (m: string) => (m === 'Production' ? 0 : m === 'Pilot' ? 1 : 2);
@@ -70,9 +73,9 @@ export default async function Home() {
                 className="ds-lead"
                 style={{ marginBottom: 28, fontSize: 'var(--body-intro)', maxWidth: '52ch' }}
               >
-                Peninsula School District has been putting AI to work across teaching, operations,
-                policy and professional learning — and publishing the whole record, including the
-                parts that did not work.
+                Peninsula School District uses AI in teaching, operations, policy and professional
+                learning. We publish what we build, what we decide and what we learn, including what
+                didn&rsquo;t work.
               </p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 <Button variant="solid" size="lg" href="/writing">
@@ -120,7 +123,7 @@ export default async function Home() {
           <StatCell section="writing" value={counts.posts} label="Posts written by staff" />
         </div>
         <div>
-          <StatCell section="oad" value={counts.total} label="Public artefacts to fork" />
+          <StatCell section="oad" value={counts.total} label="Documents published here" />
         </div>
       </div>
 
@@ -132,7 +135,7 @@ export default async function Home() {
             title="Software we build"
             size="section"
             meta={`${counts.software} products`}
-            lead="Built by district staff for district problems, and open source so another district can run them without paying us anything."
+            lead={`Built by district staff for district problems. ${openSource} of the ${counts.software} are open source, so another district can run them for free.`}
           />
           <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
             {featuredSoftware.map(p => (
@@ -183,7 +186,7 @@ export default async function Home() {
             title="Guidance"
             size="section"
             meta={`${counts.policies} documents`}
-            lead="The documents our own staff work from. Plain language, published in Markdown as well as on the page, and licensed so you can fork them and put your district's name on them."
+            lead="The policies and guidance our own staff work from, in plain language. You are welcome to copy them and put your district's name on them."
           />
           <div className="ds-grid ds-grid--2" style={{ gap: 22, marginTop: 28 }}>
             {policies.map(p => (
@@ -209,7 +212,7 @@ export default async function Home() {
                 number="04"
                 title="Presentations"
                 size="section"
-                lead={`${counts.presentations} talks, workshops and board sessions, published as given — slides included, not summarised.`}
+                lead={`${counts.presentations} talks, workshops and board sessions, with the slides as they were presented.`}
               />
               <div style={{ marginTop: 24 }}>
                 <Button variant="outline" href="/presentations">
@@ -235,7 +238,7 @@ export default async function Home() {
             number="05"
             title="The Open Adaptive District"
             size="section"
-            lead="How the work gets done — the loop underneath all five sections."
+            lead="Our protocol for AI work, open for any district to adopt."
           />
           <div
             className="ds-split--wide ds-split"
@@ -250,8 +253,8 @@ export default async function Home() {
                 letterSpacing: '-0.02em',
               }}
             >
-              Every six weeks, a team picks one problem and builds a better way. Your AI agent keeps
-              the notes. We all share what happened — even when it flops.
+              A team of three to six staff picks one problem, spends six weeks building a better way
+              to handle it, and publishes what happened, including what didn&rsquo;t work.
             </p>
             <ImageFrame
               id="HP-04"
@@ -264,26 +267,30 @@ export default async function Home() {
           <StepRow
             steps={[
               {
-                n: 'STEP 1',
+                n: 'WEEK 1',
                 title: 'Plan',
-                body: 'Pick one problem worth six weeks. Write down what better looks like.',
+                body: 'Pick one problem and write a one-page build plan.',
               },
               {
-                n: 'STEP 2',
+                n: 'WEEKS 2–5',
                 title: 'Do',
-                body: 'Build the better way. Small, real, in front of students or staff.',
+                body: 'Build it, use it in real work, and check in every Friday.',
               },
               {
-                n: 'STEP 3',
+                n: 'WEEK 6',
                 title: 'Study',
-                body: 'The agent keeps the notes. Look honestly at what moved.',
+                body: 'An AI agent drafts the wrap-up from the team’s own notes.',
               },
-              { n: 'STEP 4', title: 'Share', body: 'Publish it here. Especially the flops.' },
+              {
+                n: 'WEEK 6',
+                title: 'Share',
+                body: 'Publish the wrap-up and make the call: keep it, stop it, or run it again.',
+              },
             ]}
           />
           <div style={{ marginTop: 32 }}>
-            <Button variant="solid" href="/open-adaptive-district">
-              Read the playbook
+            <Button variant="solid" href="/open-adaptive-district/start-here">
+              Start here
             </Button>
           </div>
         </SectionRule>
@@ -297,7 +304,7 @@ export default async function Home() {
               <SectionHeader
                 title="The reference library"
                 size="section"
-                lead={`${counts.useCases} use cases from staff, ${counts.tools} tools we have reviewed, and ${counts.research} pieces of outside research. Not a headline section — a filing cabinet, kept open.`}
+                lead={`${counts.useCases} use cases from staff, ${counts.tools} tools we have reviewed, and ${counts.research} summaries of outside research.`}
               />
               <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
                 <Button variant="outline" href="/practice">
@@ -308,9 +315,12 @@ export default async function Home() {
                 </Button>
               </div>
             </div>
-            <PullQuote bar cite="— AI PRINCIPLES & BELIEFS">
-              We will not use AI to make a decision about a student that we would not be willing to
-              explain to that student&rsquo;s family, in person, in plain language.
+            {/* Verbatim from src/content/guidance/principles-and-beliefs.md. A
+                quote credited to a district document must be findable in it. */}
+            <PullQuote bar cite="— AI PRINCIPLES AND BELIEFS">
+              We encourage educators to use professional judgment, even if it means questioning or
+              overriding an AI tool&rsquo;s decisions, maintaining the critical human element in
+              educational decision-making.
             </PullQuote>
           </div>
         </SectionRule>
@@ -341,9 +351,8 @@ export default async function Home() {
                   maxWidth: '62ch',
                 }}
               >
-                Everything on this site is published as an Open Knowledge Format bundle — plain
-                markdown with typed frontmatter, the same files the site renders. Point an agent at
-                it and it works without a custom integration.
+                Every page on this site is also published as plain text an AI agent can read, in the
+                Open Knowledge Format. Point your agent at it; no custom integration is needed.
               </p>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>

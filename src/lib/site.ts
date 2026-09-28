@@ -43,7 +43,7 @@ export const SECTIONS: Section[] = [
     contentDir: 'writing',
     okfType: 'post',
     description:
-      'Notes from the people doing the work — what we tried, what it cost, what we would do differently.',
+      'Notes from the people doing the work: what we tried, what it cost, and what we would do differently.',
   },
   {
     n: '02',
@@ -62,7 +62,7 @@ export const SECTIONS: Section[] = [
     contentDir: 'guidance',
     okfType: 'policy',
     description:
-      'The documents our own staff work from. Plain language, published in Markdown, licensed so you can fork them.',
+      "The policies and guidance our own staff work from, in plain language. Copy them and put your district's name on them.",
   },
   {
     n: '04',
@@ -78,7 +78,7 @@ export const SECTIONS: Section[] = [
     key: 'oad',
     name: 'Open Adaptive District',
     href: '/open-adaptive-district',
-    description: 'How the work gets done — the loop underneath all five sections.',
+    description: 'Our protocol for AI work: six-week cycles any district can adopt.',
   },
 ];
 
