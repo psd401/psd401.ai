@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Button, DocCard, ImageFrame, SectionHeader, SectionRule } from '@/components/ds';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 import OadCycle from '@/components/OadCycle';
-import { getOadArtifacts } from '@/lib/oad';
+import { getOadArtifacts, OAD_CONTACT_FORM } from '@/lib/oad';
 
 export const metadata: Metadata = {
   title: 'The Open Adaptive District',
@@ -144,11 +144,12 @@ export default async function OpenAdaptiveDistrict() {
               >
                 CC BY-NC-SA 4.0
               </a>
-              . If you want to talk it through before you start, email us.
+              . If you want to talk it through before you start, or you are already running it, send
+              us a question.
             </p>
           </div>
-          <Button variant="solid" size="lg" href="mailto:hagelk@psd401.net">
-            hagelk@psd401.net
+          <Button variant="solid" size="lg" href={OAD_CONTACT_FORM}>
+            Ask us a question →
           </Button>
         </div>
       </SectionRule>

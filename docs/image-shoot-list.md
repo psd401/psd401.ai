@@ -89,7 +89,7 @@ render without them.
 | HP-05    | `sections/hp-05-gig-harbor.jpg`      | Homepage, 04 Presentations band                      |
 | GU-01    | `sections/gu-01-board-session.jpg`   | Guidance index hero                                  |
 | OAD-01   | `sections/oad-01-cycle-session.jpg`  | Open Adaptive District hero                          |
-| OAD-02   | `sections/oad-02-cycle.png`          | Open Adaptive District, "The cycle"                  |
+| OAD-03   | `sections/oad-03-stages.jpg`         | What We're Learning, above the document              |
 | PD-01    | `software/pd-01-studio-in-use.jpg`   | Software index hero                                  |
 | PD-02 ×4 | `software/pd-*.jpg`                  | PSD AI Agents, Atrium, PRR and EOC product pages     |
 | —        | `software/lessonlens-home.png`       | LessonLens — real screenshot from its public repo    |

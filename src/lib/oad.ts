@@ -21,6 +21,13 @@ import { cache } from 'react';
 
 const DIR = path.join(process.cwd(), 'public/openadaptivedistrict');
 
+/**
+ * Where other districts send questions. A Google Form owned by hagelk@psd401.net,
+ * used instead of a published email address. Responses land in the form.
+ */
+export const OAD_CONTACT_FORM =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfXMAZqz4haz2TpK6DDSMejKd4W400BaT47i5pRU7_EdlZSBQ/viewform';
+
 export type OadArtifact = {
   slug: string;
   /** The original static file, still served and still linkable. */
@@ -31,6 +38,9 @@ export type OadArtifact = {
   n: string;
   /** Authored HTML, with the document's own header and nav removed. */
   html: string;
+  /** Optional illustration shown above the document inside the site. */
+  image?: string;
+  imageAlt?: string;
 };
 
 /**
@@ -56,6 +66,9 @@ const ARTIFACTS: Array<Omit<OadArtifact, 'title' | 'html'>> = [
     n: '03',
     slug: 'what-were-learning',
     file: '03-What-Were-Learning.html',
+    image: '/images/sections/oad-03-stages.jpg',
+    imageAlt:
+      'Four groups of staff around a looping track: planning at a table with sticky notes, building at a laptop and whiteboard, studying a bar chart, and pinning a finished page to a board',
     description: "Every team's wrap-up as it is published, including the builds that were stopped.",
   },
   {

@@ -2,7 +2,8 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Breadcrumb, SectionRule } from '@/components/ds';
+import { Breadcrumb, ImageFrame, SectionRule } from '@/components/ds';
+import OadCopyButtons from '@/components/OadCopyButtons';
 import { getOadArtifact, getOadArtifacts } from '@/lib/oad';
 import JsonLd, { createArticleSchema, createBreadcrumbSchema } from '@/components/JsonLd';
 
@@ -83,10 +84,22 @@ export default async function OadArtifactPage({ params }: Props) {
       </div>
 
       <SectionRule as="section" style={{ borderTop: 0 }}>
+        {doc.image && (
+          <div style={{ maxWidth: 'var(--measure-prose)', marginBottom: 40 }}>
+            <ImageFrame
+              ratio="3/2"
+              priority
+              src={doc.image}
+              alt={doc.imageAlt ?? ''}
+              sizes="(max-width: 768px) 100vw, 720px"
+            />
+          </div>
+        )}
         {/* SAFE: doc.html is authored markup read from this repository at
             build time (public/openadaptivedistrict/*.html). It is never user
             input and never fetched at runtime. */}
         <div className="oad-doc" dangerouslySetInnerHTML={{ __html: doc.html }} />
+        <OadCopyButtons />
 
         <p className="ds-label ds-label--sm ds-label--muted" style={{ marginTop: 40 }}>
           <a href={`/openadaptivedistrict/${doc.file}`} style={{ color: 'var(--sec)' }}>

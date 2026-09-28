@@ -1276,7 +1276,9 @@ a.ds-chip--outline:hover {
   border-top: 1px solid var(--hairline);
   margin: 2.2em 0;
 }
-.oad-doc .lede p:first-child {
+/* The paragraph straight after the title. Not p:first-child, which also
+   matched the first line of every template. */
+.oad-doc .lede > h1 + p {
   font-size: var(--body-lead);
   line-height: var(--body-lead-lh);
   font-weight: 500;
@@ -1315,6 +1317,25 @@ a.ds-chip--outline:hover {
 }
 .oad-doc li::marker {
   color: var(--sec);
+}
+
+/* Copy buttons for the templates. Filled in by OadCopyButtons after
+   hydration; empty, and hidden, until then. */
+.oad-doc .oad-copy {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.oad-doc .oad-copy:empty {
+  display: none;
+}
+.oad-doc .oad-copy + blockquote {
+  margin-top: 12px;
+}
+.oad-copy__status {
+  font-size: 14px;
+  opacity: var(--text-muted);
 }
 .oad-doc table {
   width: 100%;

@@ -34,7 +34,7 @@ const PHASES: Phase[] = [
     key: 'do',
     weeks: 'Weeks 2–5',
     name: 'Do',
-    body: 'Build it and use it in real work. Post a check-in every week.',
+    body: 'Build it and use it in real work. Post a check-in every Friday.',
     span: [2, 5],
     color: 'var(--sec-software)',
   },
