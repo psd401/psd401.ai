@@ -1544,3 +1544,262 @@ a.ds-chip--outline:hover {
     font-size: 22px;
   }
 }
+
+/* ------------------------------------------------------------- OadPlan */
+/* The fellowship action plan (/open-adaptive-district/action-plan). The
+   document keeps its own markup and class names; these rules restyle them
+   in the design system's terms. Layered on .oad-doc for body type, links,
+   lists and tables. */
+
+.oad-plan {
+  max-width: 880px;
+}
+.oad-plan .section-marker,
+.oad-plan .byline,
+.oad-plan .field > .label,
+.oad-plan .crown,
+.oad-plan .lbl,
+.oad-plan .metric-num,
+.oad-plan .chron-when,
+.oad-plan .stake-col h4,
+.oad-plan .meta,
+.oad-plan .part-banner .num,
+.oad-plan .colophon {
+  font-family: var(--font-mono);
+  font-size: var(--label-sm);
+  letter-spacing: var(--label-sm-ls);
+  text-transform: uppercase;
+}
+
+/* Masthead */
+.oad-plan .masthead .section-marker {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  opacity: var(--text-label);
+}
+.oad-plan .masthead .roman,
+.oad-plan .colophon .mark {
+  color: var(--sec);
+  opacity: 1;
+}
+.oad-plan .masthead h1.title {
+  margin: 22px 0 12px;
+}
+.oad-plan .masthead .subtitle {
+  font-size: var(--body-lead);
+  line-height: var(--body-lead-lh);
+  margin: 0 0 14px;
+}
+.oad-plan .byline .sep,
+.oad-plan .meta .sep {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+.oad-plan .byline .due,
+.oad-plan .meta .due {
+  color: var(--sec);
+}
+
+/* Part banners */
+.oad-plan .part-banner {
+  margin-top: 64px;
+  padding-top: 18px;
+  border-top: var(--border-rule) solid var(--sec);
+}
+.oad-plan .part-banner.optional {
+  border-top-color: var(--hairline);
+}
+.oad-plan .part-banner .num {
+  color: var(--sec);
+}
+.oad-plan .part-banner.optional .num {
+  color: inherit;
+  opacity: var(--text-label);
+}
+.oad-plan .part-banner h2 {
+  margin: 8px 0 0;
+  font-size: var(--display-section);
+  line-height: var(--display-section-lh);
+  letter-spacing: var(--display-section-ls);
+}
+
+/* Opportunity A / B */
+.oad-plan .monograph {
+  margin-top: 36px;
+  padding: 28px 32px 8px;
+  border: 1px solid var(--hairline);
+  border-top: var(--border-accent) solid var(--sec);
+}
+.oad-plan .monograph .crown {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.oad-plan .monograph .crown .tag {
+  background: var(--sec);
+  color: var(--on-accent);
+  padding: 4px 8px;
+}
+.oad-plan .monograph .crown .anchor {
+  opacity: var(--text-label);
+}
+.oad-plan .monograph h3.title {
+  color: inherit;
+  font-size: var(--display-card);
+  line-height: var(--display-card-lh);
+  letter-spacing: var(--display-card-ls);
+  margin: 16px 0 20px;
+}
+.oad-plan .field {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 8px 28px;
+  padding: 18px 0;
+  border-top: 1px solid var(--hairline-faint);
+}
+.oad-plan .field > .label {
+  opacity: var(--text-label);
+  padding-top: 4px;
+}
+.oad-plan .field .value > :last-child {
+  margin-bottom: 0;
+}
+.oad-plan .eval {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--hairline);
+  margin: 8px 0 20px;
+}
+.oad-plan .eval-cell {
+  padding: 16px 16px 0 0;
+}
+.oad-plan .eval-cell .lbl {
+  opacity: var(--text-label);
+  margin-bottom: 6px;
+}
+.oad-plan .eval-cell .val {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oad-plan .eval-cell .marker {
+  width: 10px;
+  height: 10px;
+  background: var(--sec);
+}
+.oad-plan .eval-cell.med .marker {
+  background: color-mix(in oklab, var(--sec) 45%, transparent);
+}
+
+/* Part 02 */
+.oad-plan h3.plan {
+  color: inherit;
+  margin: 44px 0 12px;
+}
+.oad-plan .plan-idea {
+  font-size: var(--body-lead);
+  line-height: var(--body-lead-lh);
+  opacity: 1;
+}
+.oad-plan .metric-ledger,
+.oad-plan .chronology,
+.oad-plan .next-steps {
+  border-top: 1px solid var(--hairline);
+}
+.oad-plan .metric-row,
+.oad-plan .chron-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 4px 24px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--hairline-faint);
+}
+.oad-plan .metric-num {
+  color: var(--sec);
+  padding-top: 3px;
+}
+.oad-plan .metric-row.headline {
+  background: var(--sec-ground);
+  padding: 16px;
+  margin: 0 -16px;
+}
+.oad-plan .chron-when {
+  opacity: var(--text-label);
+  padding-top: 3px;
+}
+.oad-plan .chron-row.milestone .chron-when {
+  color: var(--sec);
+  opacity: 1;
+}
+.oad-plan .chron-row.milestone .chron-what {
+  font-weight: 600;
+}
+.oad-plan .stake-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.oad-plan .stake-col h4 {
+  color: var(--sec);
+  margin: 0 0 10px;
+}
+.oad-plan .next-row {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--hairline-faint);
+}
+.oad-plan .next-row .what {
+  display: block;
+  font-weight: 600;
+}
+.oad-plan .next-row .meta {
+  display: block;
+  margin-top: 4px;
+  opacity: var(--text-muted);
+}
+
+/* SCAN tables */
+.oad-plan .sev {
+  display: inline-block;
+  min-width: 2.2em;
+  padding: 2px 6px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--label-xs);
+  font-weight: 600;
+}
+.oad-plan .sev-H {
+  background: var(--sec);
+  color: var(--on-accent);
+}
+.oad-plan .sev-M {
+  background: var(--sec-ground-strong);
+  color: var(--sec);
+}
+
+.oad-plan .colophon {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 56px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+  opacity: var(--text-label);
+}
+
+@media (max-width: 768px) {
+  .oad-plan .monograph {
+    padding: 22px 18px 4px;
+  }
+  .oad-plan .field,
+  .oad-plan .metric-row,
+  .oad-plan .chron-row,
+  .oad-plan .eval,
+  .oad-plan .stake-grid {
+    grid-template-columns: 1fr;
+  }
+}

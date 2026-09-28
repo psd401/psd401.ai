@@ -39,6 +39,13 @@ const redirects = [
     destination: '/open-adaptive-district',
     permanent: true,
   },
+  // The fellowship action plan now renders inside the site. Only this one
+  // archive file moves; the rest of first-draft/ keeps its original look.
+  {
+    source: '/openadaptivedistrict/first-draft/03-Fellowship-Action-Plan-FILLED.html',
+    destination: '/open-adaptive-district/action-plan',
+    permanent: true,
+  },
 ];
 
 const nextConfig = {

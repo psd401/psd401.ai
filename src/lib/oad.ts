@@ -127,3 +127,41 @@ export const getOadArtifact = cache(async (slug: string): Promise<OadArtifact | 
   const all = await getOadArtifacts();
   return all.find(a => a.slug === slug) ?? null;
 });
+
+/* ---------------------------------------------------------- action plan */
+
+/** The fellowship action plan, rendered in the site at this route. */
+export const ACTION_PLAN_PATH = '/open-adaptive-district/action-plan';
+
+/**
+ * The action plan Peninsula submitted for the Google & GSV Ed Leader
+ * Fellowship. It lives in the first-draft archive and is the one document in
+ * the project that is never edited, so it is shown exactly as written: the
+ * extraction keeps everything inside its <main> and drops only the archive's
+ * own navigation bar and a decorative colour strip. Relative links into the
+ * rest of the archive are made absolute so they still resolve from the
+ * app route. The static file's URL redirects here (next.config.js).
+ */
+const ACTION_PLAN_FILE = 'first-draft/03-Fellowship-Action-Plan-FILLED.html';
+
+export type ActionPlan = { title: string; html: string };
+
+export const getActionPlan = cache(async (): Promise<ActionPlan> => {
+  const raw = await fs.readFile(path.join(DIR, ACTION_PLAN_FILE), 'utf8');
+  const main = /<main>([\s\S]*?)<\/main>/i.exec(raw)?.[1];
+  if (!main) {
+    throw new Error(
+      `${ACTION_PLAN_FILE}: expected a <main> element. The file's structure changed — ` +
+        `check getActionPlan in src/lib/oad.ts before this ships a blank page.`
+    );
+  }
+  const html = main
+    .replace(/<nav class="docnav">[\s\S]*?<\/nav>/i, '')
+    .replace(/<div class="fellowship-strip">[\s\S]*?<\/div>/i, '')
+    .replace(
+      /href="(?!https?:|\/|#|mailto:)([^"]+)"/g,
+      'href="/openadaptivedistrict/first-draft/$1"'
+    )
+    .trim();
+  return { title: extractTitle(raw), html };
+});

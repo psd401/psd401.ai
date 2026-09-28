@@ -1,6 +1,6 @@
 import { getAllConcepts, indexable, STATIC_ROUTES } from '@/lib/all-content';
 import { getCategories } from '@/lib/use-cases';
-import { getOadArtifacts } from '@/lib/oad';
+import { ACTION_PLAN_PATH, getOadArtifacts } from '@/lib/oad';
 import { SITE_URL } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -79,6 +79,7 @@ export async function GET() {
         priority: '0.7',
       })
     ),
+    urlEntry({ path: ACTION_PLAN_PATH, changefreq: 'yearly', priority: '0.5' }),
     ...published.map(c =>
       urlEntry({
         path: c.url,
