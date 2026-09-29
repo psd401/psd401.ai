@@ -1,11 +1,23 @@
 ---
-title: 'Generative AI Can Harm Learning'
-author: 'Hamsa Bastani, Osbert Bastani, Alp Sungu, Haosen Ge, Özge Kabakcı, Rei Mariman'
-source: 'SSRN'
+type: research
+title: Generative AI Can Harm Learning
+description: "Students practiced with no device, a tutoring-tuned LLM or a plain LLM. The plain-LLM group did worse; the other two scored about the same."
+resource: /articles/generative-ai-can-harm-learning
 date: '2024-07-18'
-type: 'Preprint'
-tags: ['Research', 'Math']
-externalUrl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895486'
+tags:
+  - Research
+  - Math
+author: Hamsa Bastani, Osbert Bastani, Alp Sungu, Haosen Ge, Özge Kabakcı, Rei Mariman
+source: SSRN
+format: Preprint
+externalUrl: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895486
+status: stable
+sources:
+  - resource: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895486
+    id: original
+    title: Generative AI Can Harm Learning
+    author: Hamsa Bastani, Osbert Bastani, Alp Sungu, Haosen Ge, Özge Kabakcı, Rei Mariman
+    last_modified: '2024-07-18'
 ---
 
 # Generative AI Can Harm Learning

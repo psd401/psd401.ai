@@ -1,11 +1,24 @@
 ---
+type: research
 title: 'Getting started with AI: Good enough prompting'
-author: 'Ethan Mollick'
-source: 'One Useful Thing Blog'
+description: "Ethan Mollick argues that using AI well takes no prompt engineering, just about ten hours of experimenting to learn what the tools can do."
+resource: /articles/getting-started-with-ai-good-enough-prompting
 date: '2024-12-24'
-type: 'Opinion Piece'
-tags: ['Article', 'Prompt Engineering', 'AI Utilization']
-externalUrl: 'https://www.oneusefulthing.org/p/getting-started-with-ai-good-enough'
+tags:
+  - Article
+  - Prompt Engineering
+  - AI Utilization
+author: Ethan Mollick
+source: One Useful Thing Blog
+format: Opinion Piece
+externalUrl: https://www.oneusefulthing.org/p/getting-started-with-ai-good-enough
+status: stable
+sources:
+  - resource: https://www.oneusefulthing.org/p/getting-started-with-ai-good-enough
+    id: original
+    title: 'Getting started with AI: Good enough prompting'
+    author: Ethan Mollick
+    last_modified: '2024-12-24'
 ---
 
 # Getting started with AI: Good enough prompting

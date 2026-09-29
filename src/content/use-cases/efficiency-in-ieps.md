@@ -1,17 +1,21 @@
 ---
+type: use-case
 title: 'Magic School AI: Modifying Text to Support ML Students'
 description: 'Using Magic School AI: informational text generator, text leveler, text summarizer to support ML'
-category: 'Enhancing Student Support & Wellbeing'
-subject: 'Presentation Generation'
-grade_level: 'K-8'
-tools_used:
-  - 'MagicSchool.ai'
-author: 'Abby Kyffin'
-school: 'Multiple Schools'
+resource: /use-cases/Enhancing%20Student%20Support%20%26%20Wellbeing/efficiency-in-ieps
+date: '2025-01-28'
 tags:
-  - 'Translation'
-  - 'Text Generation'
-  - 'Text Leveling'
+  - Translation
+  - Text Generation
+  - Text Leveling
+category: Enhancing Student Support & Wellbeing
+subject: Presentation Generation
+grade_level: K-8
+tools_used:
+  - MagicSchool.ai
+author: Abby Kyffin
+school: Multiple Schools
+status: stable
 ---
 
 ## Overview

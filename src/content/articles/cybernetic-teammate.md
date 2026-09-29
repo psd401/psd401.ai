@@ -1,11 +1,23 @@
 ---
+type: research
 title: 'The Cybernetic Teammate: A Field Experiment on Generative AI Reshaping Teamwork and Expertise'
-author: "Fabrizio Dell'Acqua, Charles Ayoubi, Hila Lifshitz-Assaf, Raffaella Sadun, Ethan R. Mollick, Lilach Mollick, Yi Han, Jeff Goldman, Hari Nair, Stew Taub, Karim R. Lakhani"
-source: 'SSRN'
+description: "At Procter & Gamble, individuals using GenAI performed as well as teams, and teams using GenAI were most likely to produce exceptional solutions."
+resource: /articles/cybernetic-teammate
 date: '2025-03-29'
-type: 'Research'
-tags: ['Research', 'Productivity']
-externalUrl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5188231'
+tags:
+  - Research
+  - Productivity
+author: Fabrizio Dell'Acqua, Charles Ayoubi, Hila Lifshitz-Assaf, Raffaella Sadun, Ethan R. Mollick, Lilach Mollick, Yi Han, Jeff Goldman, Hari Nair, Stew Taub, Karim R. Lakhani
+source: SSRN
+format: Research
+externalUrl: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5188231
+status: stable
+sources:
+  - resource: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5188231
+    id: original
+    title: 'The Cybernetic Teammate: A Field Experiment on Generative AI Reshaping Teamwork and Expertise'
+    author: Fabrizio Dell'Acqua, Charles Ayoubi, Hila Lifshitz-Assaf, Raffaella Sadun, Ethan R. Mollick, Lilach Mollick, Yi Han, Jeff Goldman, Hari Nair, Stew Taub, Karim R. Lakhani
+    last_modified: '2025-03-29'
 ---
 
 # The Cybernetic Teammate: A Field Experiment on Generative AI Reshaping Teamwork and Expertise

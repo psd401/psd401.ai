@@ -1,13 +1,23 @@
 ---
-title: 'Artificial Intelligence, Prompt Engineering'
+type: presentation
+title: Artificial Intelligence, Prompt Engineering
+description: A PD Session on prompt engineering delivered to the staff of PHS
+resource: /presentations/ai-prompt-engineering-phs
 date: '2024-03-15'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Dave Stitt'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/ai-prompt-engineering-phs.png'
-slides: 'https://docs.google.com/presentation/d/1g0iI2mWOZ-LwP-pR845E86_CV-hb7hQI743yrflIAH8/embed'
-description: 'A PD Session on prompt engineering delivered to the staff of PHS'
+  - Dave Stitt
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/ai-prompt-engineering-phs.png
+slides: https://docs.google.com/presentation/d/1g0iI2mWOZ-LwP-pR845E86_CV-hb7hQI743yrflIAH8/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1g0iI2mWOZ-LwP-pR845E86_CV-hb7hQI743yrflIAH8/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Artificial Intelligence: Mastering Prompt Engineering**

@@ -1,11 +1,23 @@
 ---
-title: 'Can AI Help Kids Feel Creative?'
-author: 'Michele Newman'
-source: 'Sesame Workshop - Joan Ganz Cooney Center'
+type: research
+title: Can AI Help Kids Feel Creative?
+description: "Creativity shapes children’s development, identity and learning, but their creative experiences with AI are often left out of the conversation."
+resource: /articles/can-ai-help-kids-feel-creative
 date: '2024-09-24'
-type: 'Opinion Piece'
-tags: ['Article', 'Creativity']
-externalUrl: 'https://joanganzcooneycenter.org/2024/09/24/can-ai-help-kids-feel-creative/?rbref=&utm_medium=email&utm_source=sfmc&utm_campaign=451682&testind=false&sfmcsub=73209489'
+tags:
+  - Article
+  - Creativity
+author: Michele Newman
+source: Sesame Workshop - Joan Ganz Cooney Center
+format: Opinion Piece
+externalUrl: https://joanganzcooneycenter.org/2024/09/24/can-ai-help-kids-feel-creative/?rbref=&utm_medium=email&utm_source=sfmc&utm_campaign=451682&testind=false&sfmcsub=73209489
+status: stable
+sources:
+  - resource: https://joanganzcooneycenter.org/2024/09/24/can-ai-help-kids-feel-creative/?rbref=&utm_medium=email&utm_source=sfmc&utm_campaign=451682&testind=false&sfmcsub=73209489
+    id: original
+    title: Can AI Help Kids Feel Creative?
+    author: Michele Newman
+    last_modified: '2024-09-24'
 ---
 
 # Can AI Help Kids Feel Creative?

@@ -1,86 +1,112 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Gabarito, Public_Sans, IBM_Plex_Mono, Newsreader } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
-import Layout from '@/components/Layout';
+import SiteChrome from '@/components/SiteChrome';
 import Script from 'next/script';
-import JsonLd, { createOrganizationSchema } from '@/components/JsonLd';
+import JsonLd, { createOrganizationSchema, createWebSiteSchema } from '@/components/JsonLd';
+import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
 
-const inter = Inter({
+/**
+ * Four families, no overlap in role. Self-hosted through next/font rather
+ * than the Google CDN the design source used: no third-party request on page
+ * load, and next/font generates size-adjusted fallbacks so there is no shift
+ * when they swap in.
+ *
+ * The CSS variables here are consumed by src/styles/tokens/fonts.css, which
+ * maps them onto the four role names every component reads.
+ */
+const gabarito = Gabarito({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-gabarito',
+});
+
+const publicSans = Public_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-public-sans',
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600'],
+  variable: '--font-ibm-plex-mono',
+});
+
+// Pull quotes only, italic 300, at most once per screen. Not preloaded: it
+// was the largest preloaded font (64 KB) and competed with the hero image on
+// every page, though most pages never show a quote. It still loads, with
+// swap, wherever a pull quote appears.
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  style: ['italic'],
+  weight: ['300', '400'],
+  variable: '--font-newsreader',
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://psd401.ai'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Peninsula SD AI',
-    template: '%s | Peninsula SD AI',
+    default: `${SITE_NAME} — Peninsula School District`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: 'AI resources and guidance for Peninsula School District',
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: '/',
+    types: {
+      'application/rss+xml': [{ url: '/feed.xml', title: `${SITE_NAME}: everything published` }],
+      'text/markdown': [{ url: '/llms.txt', title: 'Site index for language models' }],
+    },
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'Peninsula SD AI',
-    description: 'AI resources and guidance for Peninsula School District',
-    images: ['/images/hero-bg.jpg'],
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://psd401.ai',
-    siteName: 'Peninsula SD AI',
-    title: 'Peninsula SD AI',
-    description: 'AI resources and guidance for Peninsula School District',
-    images: [
-      {
-        url: '/images/hero-bg.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Peninsula School District AI Hub',
-      },
-    ],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   icons: {
     icon: [
-      {
-        url: '/icon.png',
-        sizes: '32x32',
-        type: 'image/png',
-      },
-      {
-        url: '/icon-192.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        url: '/icon-512.png',
-        sizes: '512x512',
-        type: 'image/png',
-      },
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: [
-      {
-        url: '/apple-icon.png',
-        sizes: '180x180',
-        type: 'image/png',
-      },
-    ],
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${gabarito.variable} ${publicSans.variable} ${ibmPlexMono.variable} ${newsreader.variable}`}
+    >
       <head>
-        <JsonLd data={createOrganizationSchema()} />
+        <JsonLd data={[createOrganizationSchema(), createWebSiteSchema()]} />
+        {/* Google Analytics loads once the page is idle. gtag.js is 173 KB and
+            Lighthouse found 73 KB of it unused at load; it has no reason to
+            compete with the page's own content. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-N2ZC6D1BDX"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -89,9 +115,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
       </head>
-      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Providers>
-          <Layout>{children}</Layout>
+          <SiteChrome>{children}</SiteChrome>
         </Providers>
       </body>
     </html>

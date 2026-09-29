@@ -1,0 +1,65 @@
+/* Peninsula AI — type
+   Three roles, no overlap:
+   Gabarito       display only. Headings, numerals, product names.
+   Public Sans    everything a person reads in sentences.
+   IBM Plex Mono  labels, metadata, breadcrumbs, code. Always uppercase +
+                  tracked out when used as a label; never for sentences.
+   Newsreader     italic 300, pull quotes only. One per screen at most.
+
+   Source: Claude Design project 5db21ee4 · tokens/typography.css.
+   Font family values are wired to next/font variables set in app/layout.tsx
+   rather than to bare family names — see tokens/fonts.css. */
+:root {
+  /* display scale — tight tracking is the signature; it tightens as it grows */
+  --display-hero: 76px;
+  --display-hero-ls: -0.045em;
+  --display-hero-lh: 0.96;
+  --display-page: 62px;
+  --display-page-ls: -0.045em;
+  --display-page-lh: 0.96;
+  --display-section: 42px;
+  --display-section-ls: -0.04em;
+  --display-section-lh: 1;
+  --display-block: 32px;
+  --display-block-ls: -0.034em;
+  --display-block-lh: 1.1;
+  --display-card: 25px;
+  --display-card-ls: -0.03em;
+  --display-card-lh: 1.12;
+  --display-item: 20px;
+  --display-item-ls: -0.026em;
+  --display-item-lh: 1.14;
+
+  /* body */
+  --body-lead: 22px;
+  --body-lead-lh: 1.45;
+  --body-intro: 20px;
+  --body-intro-lh: 1.55;
+  --body-prose: 17.5px;
+  --body-prose-lh: 1.72;
+  --body-base: 16px;
+  --body-base-lh: 1.6;
+  --body-small: 15px;
+  --body-small-lh: 1.6;
+  --body-fine: 13.5px;
+  --body-fine-lh: 1.45;
+
+  /* mono labels — size, then the tracking that goes with it */
+  --label-lg: 11.5px;
+  --label-lg-ls: 1.6px;
+  --label-md: 11px;
+  --label-md-ls: 1.4px;
+  --label-sm: 10.5px;
+  --label-sm-ls: 1.2px;
+  --label-xs: 10px;
+  --label-xs-ls: 1.1px;
+
+  --quote-lg: 32px;
+  --quote-lg-lh: 1.3;
+  --quote-md: 30px;
+  --quote-md-lh: 1.34;
+
+  --weight-display: 700;
+  --weight-strong: 600;
+  --weight-body: 400;
+}

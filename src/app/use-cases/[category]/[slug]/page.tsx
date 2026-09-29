@@ -1,153 +1,132 @@
-import { getUseCaseBySlug, getAllUseCases } from '@/lib/use-cases';
-import MarkdownContent from '@/components/MarkdownContent';
-import { Chip } from '@/components/ui/ClientChip';
-import Link from 'next/link';
+import React from 'react';
+import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import JsonLd, { createBreadcrumbSchema } from '@/components/JsonLd';
+import { Breadcrumb, Chip, SectionRule, SpecTable } from '@/components/ds';
+import MarkdownContent from '@/components/MarkdownContent';
+import Related from '@/components/Related';
+import { getAllUseCases, getUseCaseBySlug, getUseCaseUrl } from '@/lib/use-cases';
+import { formatDate } from '@/lib/format';
+import JsonLd, { createBreadcrumbSchema, createHowToSchema } from '@/components/JsonLd';
 
-interface Props {
-  params: Promise<{
-    category: string;
-    slug: string;
-  }>;
-}
+type Props = { params: Promise<{ category: string; slug: string }> };
 
 export async function generateStaticParams() {
   const useCases = await getAllUseCases();
-  return useCases.map(useCase => ({
-    category: useCase.category,
-    slug: useCase.slug,
-  }));
+  // The category segment is URL-encoded in the live contract; Next encodes
+  // params itself, so pass the raw value here or it double-encodes.
+  return useCases.map(uc => ({ category: uc.category, slug: uc.slug }));
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const decodedCategory = decodeURIComponent(params.category);
-  const useCase = await getUseCaseBySlug(decodedCategory, params.slug);
-  if (!useCase) {
-    return {
-      title: 'Use Case Not Found',
-      robots: { index: false, follow: false },
-    };
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { category, slug } = await params;
+  const useCase = await getUseCaseBySlug(decodeURIComponent(category), slug);
+  if (!useCase) return { title: 'Not found', robots: { index: false, follow: false } };
 
   return {
     title: useCase.title,
     description: useCase.description,
+    // Canonical always points at the concept's own resource, so a link that
+    // arrives with a stale category segment consolidates onto one URL.
+    alternates: { canonical: useCase.resource },
+    keywords: useCase.tags,
     openGraph: {
-      title: useCase.title,
-      description: useCase.description,
       type: 'article',
-      images: ['/images/sections/use-cases-hero.jpg'],
-    },
-    twitter: {
-      card: 'summary_large_image',
       title: useCase.title,
       description: useCase.description,
-      images: ['/images/sections/use-cases-hero.jpg'],
+      url: useCase.resource,
+      images: [DEFAULT_OG_IMAGE],
     },
   };
 }
 
-export default async function UseCasePage(props: Props) {
-  const params = await props.params;
-  const decodedCategory = decodeURIComponent(params.category);
-  const useCase = await getUseCaseBySlug(decodedCategory, params.slug);
+export default async function UseCasePage({ params }: Props) {
+  const { category, slug } = await params;
+  const useCase = await getUseCaseBySlug(decodeURIComponent(category), slug);
+  if (!useCase) notFound();
 
-  if (!useCase) {
-    notFound();
-  }
-
-  const categoryDisplayName = decodedCategory
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-
-  const breadcrumbSchema = createBreadcrumbSchema([
-    { name: 'Home', url: '/' },
-    { name: 'Use Cases', url: '/use-cases' },
-    { name: categoryDisplayName, url: `/use-cases#${params.category}` },
-    { name: useCase.title },
-  ]);
+  const specRows = [
+    useCase.subject ? { k: 'Subject', v: useCase.subject } : null,
+    useCase.grade_level ? { k: 'Level', v: useCase.grade_level } : null,
+    useCase.tools_used?.length ? { k: 'Tools used', v: useCase.tools_used.join(', ') } : null,
+    useCase.author ? { k: 'Submitted by', v: useCase.author } : null,
+    useCase.school ? { k: 'Site', v: useCase.school } : null,
+    { k: 'Published', v: formatDate(useCase.date) },
+  ].filter((r): r is { k: string; v: string } => r !== null);
 
   return (
-    <>
-      <JsonLd data={breadcrumbSchema} />
-      <div className="max-w-4xl mx-auto py-8 px-4">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-8 text-sm text-foreground/60">
-          <Link href="/use-cases" className="hover:text-primary">
-            Use Cases
-          </Link>
-          <span className="mx-2" aria-hidden="true">
-            →
-          </span>
-          <Link href={`/use-cases#${params.category}`} className="hover:text-primary">
-            {categoryDisplayName}
-          </Link>
-          <span className="mx-2" aria-hidden="true">
-            →
-          </span>
-          <span aria-current="page">{useCase.title}</span>
-        </nav>
+    <article data-section="practice">
+      <JsonLd
+        data={[
+          createHowToSchema({
+            title: useCase.title,
+            description: useCase.description,
+            url: useCase.resource,
+            date: useCase.date,
+            author: useCase.author,
+            tags: useCase.tags,
+            tools: useCase.tools_used,
+            category: useCase.category,
+          }),
+          createBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Reference library', url: '/practice' },
+            { name: 'Use cases', url: '/use-cases' },
+            { name: useCase.category, url: `/use-cases/${encodeURIComponent(useCase.category)}` },
+            { name: useCase.title, url: getUseCaseUrl(useCase) },
+          ]),
+        ]}
+      />
 
-        <article className="space-y-8">
-          <header className="space-y-4">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text">
-              {useCase.title}
-            </h1>
-            <p className="text-xl text-foreground/80">{useCase.description}</p>
+      <div
+        style={{
+          borderTop: 'var(--border-rule) solid var(--sec)',
+          padding: '14px var(--gutter-page)',
+          borderBottom: '1px solid var(--hairline-faint)',
+        }}
+      >
+        <Breadcrumb
+          items={[
+            { label: 'Reference library', href: '/practice' },
+            { label: 'Use cases', href: '/use-cases' },
+            {
+              label: useCase.category,
+              href: `/use-cases/${encodeURIComponent(useCase.category)}`,
+            },
+            { label: useCase.title },
+          ]}
+        />
+      </div>
 
-            <div className="flex flex-wrap gap-2">
-              {useCase.subject && (
-                <Chip color="primary" variant="flat" size="sm">
-                  {useCase.subject}
-                </Chip>
-              )}
-              {useCase.grade_level && (
-                <Chip color="secondary" variant="flat" size="sm">
-                  Grade {useCase.grade_level}
-                </Chip>
-              )}
-              {useCase.tools_used?.map(tool => (
-                <Chip key={tool} variant="flat" size="sm">
-                  {tool}
+      <SectionRule as="header" style={{ borderTop: 0 }}>
+        <div className="ds-prose-measure">
+          <h1 className="ds-display ds-display--page" style={{ marginBottom: 20 }}>
+            {useCase.title}
+          </h1>
+          <p className="ds-lead" style={{ marginBottom: 20 }}>
+            {useCase.description}
+          </p>
+          {useCase.tools_used?.length > 0 && (
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {useCase.tools_used.map(t => (
+                <Chip key={t} variant="ghost" size="sm">
+                  {t}
                 </Chip>
               ))}
             </div>
+          )}
+        </div>
+      </SectionRule>
 
-            {useCase.tags && useCase.tags.length > 0 && (
-              <div className="space-y-2">
-                <div className="flex flex-wrap gap-2">
-                  {useCase.tags.map(tag => (
-                    <Chip key={tag} variant="flat" size="sm">
-                      {tag}
-                    </Chip>
-                  ))}
-                </div>
-              </div>
-            )}
+      <SectionRule ground="tint" as="section" style={{ borderTop: '1px solid var(--hairline)' }}>
+        <SpecTable rows={specRows} columns={2} caption="Use case details" />
+      </SectionRule>
 
-            {(useCase.author || useCase.school) && (
-              <div className="flex flex-wrap gap-4 text-sm text-foreground/60">
-                {useCase.author && <span>By {useCase.author}</span>}
-                {useCase.school && <span>at {useCase.school}</span>}
-              </div>
-            )}
-          </header>
-
-          <div className="prose dark:prose-invert max-w-none">
-            <MarkdownContent content={useCase.content} />
-          </div>
-
-          <footer className="pt-8 border-t">
-            <Link href="/use-cases" className="text-primary hover:underline">
-              ← Back to Use Cases
-            </Link>
-          </footer>
-        </article>
+      <div style={{ padding: '36px var(--gutter-page) 48px' }}>
+        <MarkdownContent content={useCase.content} />
       </div>
-    </>
+
+      <Related url={useCase.resource} />
+    </article>
   );
 }

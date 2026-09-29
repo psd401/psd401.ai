@@ -1,17 +1,21 @@
 ---
-title: 'Presentation Partner'
-description: 'simple AI assistant to help develop presentations following best practices'
-category: 'Enhancing Staff Professional Growth'
-subject: 'Presentation Generation'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'Kris Hagel'
-school: 'ESC'
+type: use-case
+title: Presentation Partner
+description: simple AI assistant to help develop presentations following best practices
+resource: /use-cases/Enhancing%20Staff%20Professional%20Growth/presentation-partner
+date: '2025-01-24'
 tags:
-  - 'System Prompt'
-  - 'AI Assistant'
-  - 'Presentations'
+  - System Prompt
+  - AI Assistant
+  - Presentations
+category: Enhancing Staff Professional Growth
+subject: Presentation Generation
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: Kris Hagel
+school: ESC
+status: stable
 ---
 
 ## Overview

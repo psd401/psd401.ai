@@ -1,22 +1,23 @@
 ---
-title: 'NotebookLM'
-description: 'AI-powered note-taking and research assistant that becomes an expert in your uploaded documents'
+type: tool
+title: NotebookLM
+description: AI-powered note-taking and research assistant that becomes an expert in your uploaded documents
+resource: /tools/notebooklm
 date: '2025-01-01'
-category: 'Research Tools'
-provider: 'Google'
-privacy: 'Lifeguard AI'
-status: 'Production'
-access_type: 'Multi-Purpose Tool'
-demoUrl: 'https://notebooklm.google'
 tags:
-  [
-    'DocumentAnalysis',
-    'MeetingNotes',
-    'ResearchAssistant',
-    'CitationManagement',
-    'SecureCollaboration',
-    'PodcastCreation',
-  ]
+  - DocumentAnalysis
+  - MeetingNotes
+  - ResearchAssistant
+  - CitationManagement
+  - SecureCollaboration
+  - PodcastCreation
+category: Research Tools
+provider: Google
+privacy: Lifeguard AI
+access_type: Multi-Purpose Tool
+maturity: Production
+demoUrl: https://notebooklm.google
+status: stable
 ---
 
 ## Summary

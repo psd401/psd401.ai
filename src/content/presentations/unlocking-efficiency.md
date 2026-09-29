@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'Unlocking Efficiency: Leveraging AI in Public School District Operations'
+description: A workshop delivered at the 2025 WASBO conference to showcase areas business officials can use AI in their workday
+resource: /presentations/unlocking-efficiency
 date: '2025-05-10'
+tags:
+  - Conference Session
+  - WASBO Conference
 presenters:
-  - 'Ashley Murphy'
-  - 'Kris Hagel'
-audience: 'WASBO Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/unlocking-efficiency.png'
-slides: 'https://docs.google.com/presentation/d/1QaLZ5NbMsbLMZOcRiLch0sB8ubfJSg2ZJm_uP0OWZvY/embed'
-description: 'A workshop delivered at the 2025 WASBO conference to showcase areas business officials can use AI in their workday'
+  - Ashley Murphy
+  - Kris Hagel
+audience: WASBO Conference
+format: Conference Session
+thumbnail: /images/thumbnails/unlocking-efficiency.png
+slides: https://docs.google.com/presentation/d/1QaLZ5NbMsbLMZOcRiLch0sB8ubfJSg2ZJm_uP0OWZvY/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1QaLZ5NbMsbLMZOcRiLch0sB8ubfJSg2ZJm_uP0OWZvY/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Unlocking Efficiency: Leveraging AI in Public School District Operations**

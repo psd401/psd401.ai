@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'AI: A Brave New World'
+description: A PD session delivered to the PSD Staff explaining AI to teachers
+resource: /presentations/ai-brave-new-world
 date: '2024-05-01'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Erin Rossing'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/ai-brave-new-world.png'
-slides: 'https://docs.google.com/presentation/d/1zKdWkf1i4fIYM_V_u1e7aTytg6fH-EO8paWRli9j_6g/embed'
-description: 'A PD session delivered to the PSD Staff explaining AI to teachers'
+  - Erin Rossing
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/ai-brave-new-world.png
+slides: https://docs.google.com/presentation/d/1zKdWkf1i4fIYM_V_u1e7aTytg6fH-EO8paWRli9j_6g/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1zKdWkf1i4fIYM_V_u1e7aTytg6fH-EO8paWRli9j_6g/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI: A Brave New World - An Introduction for Educators**

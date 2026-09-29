@@ -1,11 +1,23 @@
 ---
+type: research
 title: 'Collaborating with AI Agents: Field Experiments on Teamwork, Productivity, and Performance'
-author: 'Harang Ju, Sinan Aral'
-source: 'Arxiv'
+description: "An experiment randomly assigned human-human and human-AI teams to create marketing materials, with the AI given a range of “personality” traits."
+resource: /articles/collaborating-ai-agents
 date: '2025-03-26'
-type: 'Research'
-tags: ['Research', 'Productivity']
-externalUrl: 'https://arxiv.org/pdf/2503.18238'
+tags:
+  - Research
+  - Productivity
+author: Harang Ju, Sinan Aral
+source: Arxiv
+format: Research
+externalUrl: https://arxiv.org/pdf/2503.18238
+status: stable
+sources:
+  - resource: https://arxiv.org/pdf/2503.18238
+    id: original
+    title: 'Collaborating with AI Agents: Field Experiments on Teamwork, Productivity, and Performance'
+    author: Harang Ju, Sinan Aral
+    last_modified: '2025-03-26'
 ---
 
 # Collaborating with AI Agents: Field Experiments on Teamwork, Productivity, and Performance

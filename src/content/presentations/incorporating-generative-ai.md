@@ -1,15 +1,25 @@
 ---
-title: 'Incorporating Generative AI Three District Perspectives'
+type: presentation
+title: Incorporating Generative AI Three District Perspectives
+description: A workshop delivered at the 2024 WSSDA on District AI Perspectives
+resource: /presentations/incorporating-generative-ai
 date: '2024-11-23'
+tags:
+  - Conference Session
+  - WSSDA Conference
 presenters:
-  - 'Kris Hagel'
-  - 'Krestin Bahr'
-  - 'Jennifer Butler'
-audience: 'WSSDA Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/incorporating-generative-ai.png'
-slides: 'https://docs.google.com/presentation/d/1xAo0f4qbywxHDetUZtMK2guwodvaiexzXidbubTxHUk/embed'
-description: 'A workshop delivered at the 2024 WSSDA on District AI Perspectives'
+  - Kris Hagel
+  - Krestin Bahr
+  - Jennifer Butler
+audience: WSSDA Conference
+format: Conference Session
+thumbnail: /images/thumbnails/incorporating-generative-ai.png
+slides: https://docs.google.com/presentation/d/1xAo0f4qbywxHDetUZtMK2guwodvaiexzXidbubTxHUk/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1xAo0f4qbywxHDetUZtMK2guwodvaiexzXidbubTxHUk/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Incorporating Generative AI: Three District Perspectives**

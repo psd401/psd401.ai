@@ -1,25 +1,26 @@
 ---
-title: 'ColleagueAI'
-description: 'AI assistant platform for K-12 educators, students, school leaders, and parents, focused on lesson planning, assessment, and personalized learning.'
+type: tool
+title: ColleagueAI
+description: AI assistant platform for K-12 educators, students, school leaders, and parents, focused on lesson planning, assessment, and personalized learning.
+resource: /tools/colleagueai
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Lifeguard AI'
-provider: 'ColleagueAI'
-status: 'Experimentation'
-access_type: 'All-in-One Education Platform'
-demoUrl: 'https://www.colleague.ai/'
 tags:
-  [
-    'LessonPlanning',
-    'Assessment',
-    'AIGrading',
-    'StudentSupport',
-    'TeacherTools',
-    'SchoolLeaders',
-    'PersonalizedLearning',
-    'Productivity',
-    'AIforEducation',
-  ]
+  - LessonPlanning
+  - Assessment
+  - AIGrading
+  - StudentSupport
+  - TeacherTools
+  - SchoolLeaders
+  - PersonalizedLearning
+  - Productivity
+  - AIforEducation
+category: Education Tools
+provider: ColleagueAI
+privacy: Lifeguard AI
+access_type: All-in-One Education Platform
+maturity: Experimentation
+demoUrl: https://www.colleague.ai/
+status: stable
 ---
 
 ## Summary

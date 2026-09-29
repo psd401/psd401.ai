@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'Prompt Alchemy: Designing AI Assistants with Prompt Chaining'
+description: A workshop delivered at the 2025 WERA Conference on Prompt Chaining
+resource: /presentations/prompt-alchemy
 date: '2025-12-11'
+tags:
+  - Conference Workshop
+  - WERA Conference
 presenters:
-  - 'James Cantonwine'
-  - 'Kris Hagel'
-audience: 'WERA Conference'
-type: 'Conference Workshop'
-thumbnail: '/images/thumbnails/prompt-alchemy.png'
-slides: 'https://docs.google.com/presentation/d/1r14KWfJc6lBVzaXLu9KrAzk1MUp1GEDO0tpgthMDGG4/embed'
-description: 'A workshop delivered at the 2025 WERA Conference on Prompt Chaining'
+  - James Cantonwine
+  - Kris Hagel
+audience: WERA Conference
+format: Conference Workshop
+thumbnail: /images/thumbnails/prompt-alchemy.png
+slides: https://docs.google.com/presentation/d/1r14KWfJc6lBVzaXLu9KrAzk1MUp1GEDO0tpgthMDGG4/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1r14KWfJc6lBVzaXLu9KrAzk1MUp1GEDO0tpgthMDGG4/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Prompt Alchemy: Designing AI Assistants with Prompt Chaining**

@@ -1,16 +1,20 @@
 ---
-title: 'Using Magic School in ELA'
-description: 'Establishing guidelines and norming about the appropriate use of these powerful tools.'
-category: 'Enhancing Teaching & Learning'
-subject: 'Guidelines'
-grade_level: '9-12'
-tools_used:
-  - 'MagicSchool.ai'
-author: 'Julie Bruey'
-school: 'PHS'
+type: use-case
+title: Using Magic School in ELA
+description: Establishing guidelines and norming about the appropriate use of these powerful tools.
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/magicschool-ela
+date: '2025-01-29'
 tags:
-  - 'Guidance'
-  - 'Academic Integrity'
+  - Guidance
+  - Academic Integrity
+category: Enhancing Teaching & Learning
+subject: Guidelines
+grade_level: 9-12
+tools_used:
+  - MagicSchool.ai
+author: Julie Bruey
+school: PHS
+status: stable
 ---
 
 ## Overview

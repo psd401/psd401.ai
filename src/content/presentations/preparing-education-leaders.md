@@ -1,14 +1,24 @@
 ---
-title: 'Preparing Education Leaders to Manage AI'
+type: presentation
+title: Preparing Education Leaders to Manage AI
+description: A breakout session delivered at the 2025 Council of Chief State School Officers on supporting LEAs to lead around Artificial Intelligence
+resource: /presentations/preparing-education-leaders
 date: '2025-11-01'
+tags:
+  - Conference Session
+  - CCSSO Conference
 presenters:
-  - 'Krestin Bahr'
-  - 'James Cantonwine'
-audience: 'CCSSO Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/preparing-education-leaders.png'
-slides: 'https://docs.google.com/presentation/d/1gJqlMzS9geBVJUEn79c3wVt8dGDiGEWQq5ic4gYK_3g/embed'
-description: 'A breakout session delivered at the 2025 Council of Chief State School Officers on supporting LEAs to lead around Artificial Intelligence'
+  - Krestin Bahr
+  - James Cantonwine
+audience: CCSSO Conference
+format: Conference Session
+thumbnail: /images/thumbnails/preparing-education-leaders.png
+slides: https://docs.google.com/presentation/d/1gJqlMzS9geBVJUEn79c3wVt8dGDiGEWQq5ic4gYK_3g/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1gJqlMzS9geBVJUEn79c3wVt8dGDiGEWQq5ic4gYK_3g/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Preparing Education Leaders to Manage AI: A State-Level Playbook**

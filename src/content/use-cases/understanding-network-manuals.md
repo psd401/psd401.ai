@@ -1,16 +1,20 @@
 ---
-title: 'Using AI To Understand Large Technical Manuals'
-description: 'Uploading large, complex configuration manuals for better understanding'
-category: 'IT & Technical Infrastructure Management'
-subject: 'Knowledge Gathering'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'Bill Songstad'
-school: 'ESC'
+type: use-case
+title: Using AI To Understand Large Technical Manuals
+description: Uploading large, complex configuration manuals for better understanding
+resource: /use-cases/IT%20%26%20Technical%20Infrastructure%20Management/understanding-network-manuals
+date: '2025-01-29'
 tags:
-  - 'Knowledge Gathering'
-  - 'Network Configuration'
+  - Knowledge Gathering
+  - Network Configuration
+category: IT & Technical Infrastructure Management
+subject: Knowledge Gathering
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: Bill Songstad
+school: ESC
+status: stable
 ---
 
 ## Overview

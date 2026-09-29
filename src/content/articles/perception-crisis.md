@@ -1,11 +1,24 @@
 ---
+type: research
 title: 'The Perception Crisis: How Educational Institutions Are Missing AI Reality'
-author: 'Carlo Iacono'
-source: 'Hybrid Horizons: Exploring Human-AI Collaboration'
+description: The article discusses the growing disconnect between how institutions perceive and respond to AI versus its actual capabilities and usage in 2024-2025.
+resource: /articles/perception-crisis
 date: '2024-12-30'
-type: 'Opinion Piece'
-tags: ['Article', 'Rethinking Education', 'Change Management']
-externalUrl: 'https://hybridhorizons.substack.com/p/the-perception-crisis-how-educational?utm_campaign=post&utm_medium=web&triedRedirect=true'
+tags:
+  - Article
+  - Rethinking Education
+  - Change Management
+author: Carlo Iacono
+source: 'Hybrid Horizons: Exploring Human-AI Collaboration'
+format: Opinion Piece
+externalUrl: https://hybridhorizons.substack.com/p/the-perception-crisis-how-educational?utm_campaign=post&utm_medium=web&triedRedirect=true
+status: stable
+sources:
+  - resource: https://hybridhorizons.substack.com/p/the-perception-crisis-how-educational?utm_campaign=post&utm_medium=web&triedRedirect=true
+    id: original
+    title: 'The Perception Crisis: How Educational Institutions Are Missing AI Reality'
+    author: Carlo Iacono
+    last_modified: '2024-12-30'
 ---
 
 # The Perception Crisis: How Educational Institutions Are Missing AI Reality

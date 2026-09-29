@@ -1,21 +1,22 @@
 ---
-title: 'Magicschool.ai'
-description: 'AI platform specifically designed for educational institutions that serves as a comprehensive hub for AI tools'
+type: tool
+title: Magicschool.ai
+description: AI platform specifically designed for educational institutions that serves as a comprehensive hub for AI tools
+resource: /tools/magicschool.ai
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Lifeguard AI'
-provider: 'MagicSchool'
-status: 'Production'
-access_type: 'Multi-Purpose Tool'
-demoUrl: 'https://magischool.ai'
 tags:
-  [
-    'LessonPlanning',
-    'StudentFeedback',
-    'DifferentiatedLearning',
-    'AssessmentCreation',
-    'TeacherWorkflow',
-  ]
+  - LessonPlanning
+  - StudentFeedback
+  - DifferentiatedLearning
+  - AssessmentCreation
+  - TeacherWorkflow
+category: Education Tools
+provider: MagicSchool
+privacy: Lifeguard AI
+access_type: Multi-Purpose Tool
+maturity: Production
+demoUrl: https://magischool.ai
+status: stable
 ---
 
 ## Summary

@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: AI-Enhanced Interview Question Development for Special Education Positions
 description: Using AI to generate and refine interview questions for Special Education teaching positions based on required characteristics, skills, and certifications
-category: Streamlining Administrative Tasks & Operations
-tools_used:
-  - Amplify GenAI
-author: Allison Shepard
-school: ESC
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/interview-question-development
+date: '2025-02-18'
 tags:
   - hiring process
   - special education
@@ -14,6 +12,12 @@ tags:
   - human resources
   - teacher hiring
   - workflow optimization
+category: Streamlining Administrative Tasks & Operations
+tools_used:
+  - Amplify GenAI
+author: Allison Shepard
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,17 +1,21 @@
 ---
-title: 'Using Quick, Draw to Teach Datasets'
-description: 'Connecting AI image generators to student creative writing in K/1'
-category: 'Enhancing Teaching & Learning'
-subject: 'Image Generation'
-grade_level: 'K-1'
-tools_used:
-  - 'Canva'
-  - 'MagicSchool.ai'
-  - 'ChatGPT'
-author: 'Justin Towner'
-school: 'PIE'
+type: use-case
+title: Using Quick, Draw to Teach Datasets
+description: Connecting AI image generators to student creative writing in K/1
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/image-generators-creativity
+date: '2025-01-29'
 tags:
-  - 'Image Generation'
+  - Image Generation
+category: Enhancing Teaching & Learning
+subject: Image Generation
+grade_level: K-1
+tools_used:
+  - Canva
+  - MagicSchool.ai
+  - ChatGPT
+author: Justin Towner
+school: PIE
+status: stable
 ---
 
 ## Overview

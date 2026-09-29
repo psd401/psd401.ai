@@ -1,12 +1,9 @@
 ---
+type: use-case
 title: AI-Assisted Event Communication Management
 description: Using AI tools to streamline communication for a district-wide education innovation event by customizing email templates for 37 different booth hosts
-category: Streamlining Administrative Tasks & Operations
-tools_used:
-  - ChatGPT
-  - Amplify AI
-author: Mel Benner
-school: ESC
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/event-comms-mgmt
+date: '2025-02-18'
 tags:
   - event management
   - email communication
@@ -14,6 +11,13 @@ tags:
   - administrative efficiency
   - strategic planning
   - innovation showcase
+category: Streamlining Administrative Tasks & Operations
+tools_used:
+  - ChatGPT
+  - Amplify AI
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

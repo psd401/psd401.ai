@@ -1,11 +1,24 @@
 ---
-title: 'AI Tutoring Outperforms Active Learning'
-author: 'Gregory Kestin,Kelly Miller,Anna Klales,Timothy Milbourne,Gregorio Ponti'
-source: 'Research Square'
+type: research
+title: AI Tutoring Outperforms Active Learning
+description: "An AI tutor built on pedagogy best practices helped students learn more, in less time, than an active, instructor-led lesson."
+resource: /articles/ai-tutoring-outperforms-active-learning
 date: '2024-05-14'
-type: 'Preprint'
-tags: ['Research', 'Tutoring', 'Physics']
-externalUrl: 'https://www.researchsquare.com/article/rs-4243877/v1'
+tags:
+  - Research
+  - Tutoring
+  - Physics
+author: Gregory Kestin,Kelly Miller,Anna Klales,Timothy Milbourne,Gregorio Ponti
+source: Research Square
+format: Preprint
+externalUrl: https://www.researchsquare.com/article/rs-4243877/v1
+status: stable
+sources:
+  - resource: https://www.researchsquare.com/article/rs-4243877/v1
+    id: original
+    title: AI Tutoring Outperforms Active Learning
+    author: Gregory Kestin,Kelly Miller,Anna Klales,Timothy Milbourne,Gregorio Ponti
+    last_modified: '2024-05-14'
 ---
 
 # AI Tutoring Outperforms Active Learning

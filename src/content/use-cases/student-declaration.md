@@ -1,15 +1,18 @@
 ---
-title: 'Student Declaration of AI Ethical and Responsible Usage'
-description: 'Sample student declaration for how they used AI on an assignment'
-category: 'Enhancing Teaching & Learning'
-subject: 'Academic Integrity'
-grade_level: '9-12'
-tools_used:
-author: 'Kara Beloate'
-school: 'PHS'
+type: use-case
+title: Student Declaration of AI Ethical and Responsible Usage
+description: Sample student declaration for how they used AI on an assignment
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/student-declaration
+date: '2025-01-24'
 tags:
-  - 'Student Work'
-  - 'Academic Integrity'
+  - Student Work
+  - Academic Integrity
+category: Enhancing Teaching & Learning
+subject: Academic Integrity
+grade_level: 9-12
+author: Kara Beloate
+school: PHS
+status: stable
 ---
 
 ## Overview

@@ -1,16 +1,20 @@
 ---
-title: 'Analyzing Employee Leave'
-description: 'Using AI to analyze spreadsheet of data on employee leave to identify trends'
-category: 'Data Analysis & Insights for Decision Making'
-subject: 'Data Analysis'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-author: 'Dawnett Wright'
-school: 'ESC'
+type: use-case
+title: Analyzing Employee Leave
+description: Using AI to analyze spreadsheet of data on employee leave to identify trends
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/analyze-employee-leave
+date: '2025-01-29'
 tags:
-  - 'Analysis'
-  - 'Employee Performance'
+  - Analysis
+  - Employee Performance
+category: Data Analysis & Insights for Decision Making
+subject: Data Analysis
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+author: Dawnett Wright
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,14 +1,9 @@
 ---
+type: use-case
 title: Social Media Campaign Development for Digital Citizenship
 description: Creating a comprehensive social media campaign using AI tools to promote digital citizenship and cyberbullying prevention for families
-category: Communication & Community Engagement
-tools_used:
-  - Canva Magic Apps
-  - Magic School AI
-  - Adobe Firefly Image Generator
-  - ChatGPT
-author: Mel Benner
-school: ESC
+resource: /use-cases/Communication%20%26%20Community%20Engagement/social-media-digcit
+date: '2025-02-18'
 tags:
   - digital citizenship
   - cyberbullying prevention
@@ -17,6 +12,15 @@ tags:
   - online safety
   - Common Sense Media
   - content creation
+category: Communication & Community Engagement
+tools_used:
+  - Canva Magic Apps
+  - Magic School AI
+  - Adobe Firefly Image Generator
+  - ChatGPT
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

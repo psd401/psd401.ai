@@ -1,0 +1,19 @@
+/* Peninsula AI — webfonts
+   The design system's source loaded all four families from the Google CDN.
+   Here they are self-hosted through next/font/google, which downloads and
+   serves them from our own origin at build time: no third-party request on
+   page load, no FOUT, size-adjust fallbacks generated automatically.
+
+   The --font-<family> variables are declared by next/font in app/layout.tsx
+   and attached to <html>. This file only maps them onto the four ROLE names
+   that every component reads. Components must always use the role names
+   (--font-display, --font-body, --font-mono, --font-quote), never the
+   family names — swapping a family should be a one-line change here.
+
+   Source: Claude Design project 5db21ee4 · tokens/fonts.css (adapted). */
+:root {
+  --font-display: var(--font-gabarito), system-ui, sans-serif;
+  --font-body: var(--font-public-sans), system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-quote: var(--font-newsreader), Georgia, serif;
+}

@@ -1,154 +1,68 @@
-import fs from 'fs/promises';
-import path from 'path';
-import matter from 'gray-matter';
+/**
+ * Use cases — category grouping.
+ *
+ * The only content type that needs its own library: its route is
+ * /use-cases/[category]/[slug], where `category` is the raw frontmatter
+ * value, URL-encoded. Everything else reads src/lib/content.ts directly.
+ *
+ * The encoding is load-bearing. Categories contain spaces and ampersands
+ * ("Data Analysis & Insights for Decision Making"), so live URLs look like
+ * /use-cases/Data%20Analysis%20%26%20Insights.../slug. That is the existing
+ * public contract and it must not change — do not "tidy" these into slugs.
+ */
 import { cache } from 'react';
+import { getConcepts, getConcept, type Concept } from './content';
+import type { UseCase as UseCaseFields } from './schemas';
 
-const useCasesDirectory = path.join(process.cwd(), 'src/content/use-cases');
+export type UseCase = Concept<UseCaseFields>;
 
-export interface UseCase {
-  slug: string;
-  title: string;
-  description: string;
-  content: string;
-  category: string;
-  subject?: string;
-  grade_level?: string;
-  tools_used?: string[];
-  author?: string;
-  school?: string;
-  tags?: string[];
-  date?: string;
-}
-
-export interface Category {
+export type Category = {
+  /** Raw category name, exactly as authored. */
   name: string;
+  /** URL segment — encodeURIComponent(name). */
   slug: string;
-  description: string;
   count: number;
+};
+
+export const getAllUseCases = cache(async (): Promise<UseCase[]> => {
+  const items = await getConcepts('use-cases');
+  return items.sort((a, b) => a.title.localeCompare(b.title));
+});
+
+/** The public URL for a use case. */
+export function getUseCaseUrl(useCase: Pick<UseCase, 'category' | 'slug'>): string {
+  return `/use-cases/${encodeURIComponent(useCase.category)}/${useCase.slug}`;
 }
 
-export async function getAllUseCases(): Promise<UseCase[]> {
-  const fileNames = await fs.readdir(useCasesDirectory);
-  const allUseCases = await Promise.all(
-    fileNames
-      .filter(fileName => fileName.endsWith('.md'))
-      .map(async fileName => {
-        const slug = fileName.replace(/\.md$/, '');
-        const fullPath = path.join(useCasesDirectory, fileName);
-        const fileContents = await fs.readFile(fullPath, 'utf8');
-        const { data, content } = matter(fileContents);
-
-        return {
-          slug,
-          title: data.title,
-          description: data.description,
-          content,
-          category: data.category,
-          subject: data.subject,
-          grade_level: data.grade_level,
-          tools_used: data.tools_used || [],
-          author: data.author,
-          school: data.school,
-          tags: data.tags || [],
-          date: data.date || new Date().toISOString().split('T')[0],
-        };
-      })
-  );
-
-  return allUseCases;
-}
-
-export async function getUseCasesByCategory(): Promise<{ [key: string]: UseCase[] }> {
+export const getCategories = cache(async (): Promise<Category[]> => {
   const useCases = await getAllUseCases();
-  const useCasesByCategory: { [key: string]: UseCase[] } = {};
+  const counts = new Map<string, number>();
 
-  useCases.forEach(useCase => {
-    if (!useCasesByCategory[useCase.category]) {
-      useCasesByCategory[useCase.category] = [];
-    }
-    useCasesByCategory[useCase.category].push(useCase);
-  });
+  for (const uc of useCases) {
+    counts.set(uc.category, (counts.get(uc.category) ?? 0) + 1);
+  }
 
-  return useCasesByCategory;
-}
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, slug: encodeURIComponent(name), count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+});
 
-export async function getAllTags(): Promise<string[]> {
-  const useCases = await getAllUseCases();
-  const tags = new Set<string>();
-
-  useCases.forEach(useCase => {
-    useCase.tags?.forEach(tag => tags.add(tag));
-    if (useCase.author) tags.add(`Author: ${useCase.author}`);
-    if (useCase.school) tags.add(`School: ${useCase.school}`);
-    if (useCase.grade_level) tags.add(`Grade: ${useCase.grade_level}`);
-    if (useCase.subject) tags.add(useCase.subject);
-    useCase.tools_used?.forEach(tool => tags.add(`Tool: ${tool}`));
-  });
-
-  return Array.from(tags).sort();
-}
-
+/**
+ * Look up by category + slug. The category is matched but not required to be
+ * correct for the lookup to succeed — the slug is unique across the whole
+ * directory, so a stale category in an old link still resolves rather than
+ * 404ing. The page canonicalises to the right URL.
+ */
 export const getUseCaseBySlug = cache(
   async (category: string, slug: string): Promise<UseCase | null> => {
-    try {
-      const fullPath = path.join(useCasesDirectory, `${slug}.md`);
-      const fileContents = await fs.readFile(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
-
-      // Validate that the category matches
-      if (data.category !== category) {
-        return null;
-      }
-
-      return {
-        slug,
-        title: data.title,
-        description: data.description,
-        content,
-        category: data.category,
-        subject: data.subject,
-        grade_level: data.grade_level,
-        tools_used: data.tools_used || [],
-        author: data.author,
-        school: data.school,
-        tags: data.tags || [],
-        date: data.date || new Date().toISOString().split('T')[0],
-      };
-    } catch (error) {
-      console.error(`Error reading use-case ${category}/${slug}:`, {
-        error: error instanceof Error ? error.message : error,
-        path: path.join(useCasesDirectory, `${slug}.md`),
-        category,
-      });
-      return null;
-    }
+    void category;
+    const item = await getConcept('use-cases', slug);
+    return item ?? null;
   }
 );
 
-export async function getAllCategories(): Promise<{ [key: string]: Category }> {
+export const getUseCasesByCategory = cache(async (category: string): Promise<UseCase[]> => {
+  const decoded = decodeURIComponent(category);
   const useCases = await getAllUseCases();
-  const categories: { [key: string]: Category } = {};
-
-  // Group use cases by category and build category metadata
-  useCases.forEach(useCase => {
-    const categorySlug = useCase.category;
-
-    if (!categories[categorySlug]) {
-      // Convert slug to display name (e.g., 'classroom-use' -> 'Classroom Use')
-      const displayName = categorySlug
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-
-      categories[categorySlug] = {
-        name: displayName,
-        slug: categorySlug,
-        description: '', // Description can be added in the future if needed
-        count: 0,
-      };
-    }
-    categories[categorySlug].count++;
-  });
-
-  return categories;
-}
+  return useCases.filter(uc => uc.category === decoded);
+});

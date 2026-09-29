@@ -1,85 +1,160 @@
-import { getAllPresentations, getPresentationBySlug } from '@/lib/presentations';
-import MarkdownContent from '@/components/MarkdownContent';
+import React from 'react';
+import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
+import { Breadcrumb, Chip, SectionRule, SpecTable } from '@/components/ds';
+import MarkdownContent from '@/components/MarkdownContent';
+import Related from '@/components/Related';
+import { getConcept, getConcepts } from '@/lib/content';
+import { formatDate } from '@/lib/format';
+import JsonLd, { createBreadcrumbSchema, createPresentationSchema } from '@/components/JsonLd';
 
-interface Props {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const presentations = await getAllPresentations();
-  return presentations.map(presentation => ({
-    slug: presentation.slug,
-  }));
+  const items = await getConcepts('presentations');
+  return items.map(p => ({ slug: p.slug }));
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const presentation = await getPresentationBySlug(params.slug);
-  if (!presentation) {
-    return {
-      title: 'Presentation Not Found',
-      robots: { index: false, follow: false },
-    };
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const item = await getConcept('presentations', slug);
+  if (!item) return { title: 'Not found', robots: { index: false, follow: false } };
 
   return {
-    title: presentation.title,
-    description:
-      presentation.description || `${presentation.type} presentation for ${presentation.audience}`,
+    title: item.title,
+    description: item.description,
+    alternates: { canonical: item.resource },
+    keywords: item.tags,
     openGraph: {
-      title: presentation.title,
-      description:
-        presentation.description ||
-        `${presentation.type} presentation for ${presentation.audience}`,
       type: 'article',
-      publishedTime: presentation.date,
+      title: item.title,
+      description: item.description,
+      url: item.resource,
+      publishedTime: item.date,
+      images: [item.thumbnail ? { url: item.thumbnail } : DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: item.title,
+      description: item.description,
+      ...(item.thumbnail ? { images: [item.thumbnail] } : {}),
     },
   };
 }
 
-export default async function PresentationPage(props: Props) {
-  const params = await props.params;
-  const presentation = await getPresentationBySlug(params.slug);
+export default async function PresentationPage({ params }: Props) {
+  const { slug } = await params;
+  const item = await getConcept('presentations', slug);
+  if (!item) notFound();
 
-  if (!presentation) {
-    notFound();
-  }
+  const specRows = [
+    item.format ? { k: 'Format', v: item.format } : null,
+    item.audience ? { k: 'Audience', v: item.audience } : null,
+    item.presenters?.length ? { k: 'Presenters', v: item.presenters.join(', ') } : null,
+    { k: 'Given', v: formatDate(item.date) },
+  ].filter((r): r is { k: string; v: string } => r !== null);
 
   return (
-    <article className="max-w-4xl mx-auto">
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">{presentation.title}</h1>
-        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-          {presentation.date && <time>{new Date(presentation.date).toLocaleDateString()}</time>}
-          {presentation.presenters && presentation.presenters.length > 0 && (
-            <span>Presented by {presentation.presenters.join(', ')}</span>
-          )}
-          {presentation.type && (
-            <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded">{presentation.type}</span>
-          )}
-          {presentation.audience && (
-            <span className="bg-secondary-100 text-secondary-800 px-2 py-1 rounded">
-              For {presentation.audience}
-            </span>
-          )}
-        </div>
-      </header>
+    <article data-section="presentations">
+      <JsonLd
+        data={[
+          createPresentationSchema({
+            title: item.title,
+            description: item.description,
+            url: item.resource,
+            date: item.date,
+            image: item.thumbnail,
+            tags: item.tags,
+            presenters: item.presenters,
+            audience: item.audience,
+            format: item.format,
+            slides: item.slides,
+          }),
+          createBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Presentations', url: '/presentations' },
+            { name: item.title, url: item.resource },
+          ]),
+        ]}
+      />
 
-      {presentation.slides && (
-        <div className="mb-8">
-          <iframe
-            src={presentation.slides}
-            className="w-full aspect-video rounded-lg border"
-            allowFullScreen
-          />
+      <div
+        style={{
+          borderTop: 'var(--border-rule) solid var(--sec)',
+          background: 'var(--sec-ground)',
+          padding: '14px var(--gutter-page)',
+          borderBottom: '1px solid var(--hairline-faint)',
+        }}
+      >
+        <Breadcrumb
+          items={[{ label: '04 Presentations', href: '/presentations' }, { label: item.title }]}
+        />
+      </div>
+
+      <SectionRule as="header" style={{ borderTop: 0 }}>
+        <div style={{ maxWidth: '860px' }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: 10,
+              alignItems: 'center',
+              marginBottom: 18,
+              flexWrap: 'wrap',
+            }}
+          >
+            {item.format && <Chip variant="solid">{item.format}</Chip>}
+            <span className="ds-label ds-label--muted" style={{ textTransform: 'none' }}>
+              {formatDate(item.date)}
+            </span>
+          </div>
+          <h1 className="ds-display ds-display--page" style={{ marginBottom: 20 }}>
+            {item.title}
+          </h1>
+          <p className="ds-lead">{item.description}</p>
+        </div>
+      </SectionRule>
+
+      {item.slides && (
+        <div style={{ padding: '0 var(--gutter-page) 8px' }}>
+          <div
+            style={{
+              border: '1px solid var(--hairline)',
+              position: 'relative',
+              width: '100%',
+              aspectRatio: '16/9',
+            }}
+          >
+            <iframe
+              src={item.slides}
+              title={`Slides — ${item.title}`}
+              allowFullScreen
+              loading="lazy"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+            />
+          </div>
+          <p className="ds-label ds-label--sm" style={{ marginTop: 10 }}>
+            <a
+              href={item.slides}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--sec)' }}
+            >
+              Open the slides in a new tab →
+            </a>
+          </p>
         </div>
       )}
 
-      <MarkdownContent content={presentation.content} />
+      <SectionRule ground="tint" as="section" style={{ marginTop: 36 }}>
+        <SpecTable rows={specRows} columns={2} caption="Presentation details" />
+      </SectionRule>
+
+      <div style={{ padding: '36px var(--gutter-page) 48px' }}>
+        <MarkdownContent content={item.content} />
+      </div>
+
+      <Related url={item.resource} />
     </article>
   );
 }

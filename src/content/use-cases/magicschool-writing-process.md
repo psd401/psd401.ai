@@ -1,17 +1,21 @@
 ---
-title: 'Enhancing Writing in ELA 9 and ELA 11 with MagicSchool Tools'
-description: 'Working through the student writing process utilizing MagicSchool.ai'
-category: 'Enhancing Teaching & Learning'
-subject: 'Feedback'
-grade_level: '9-12'
-tools_used:
-  - 'MagicSchool.ai'
-author: 'Julie Bruey'
-school: 'PHS'
+type: use-case
+title: Enhancing Writing in ELA 9 and ELA 11 with MagicSchool Tools
+description: Working through the student writing process utilizing MagicSchool.ai
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/magicschool-writing-process
+date: '2025-01-29'
 tags:
-  - 'Feedback'
-  - 'Proofreading'
-  - 'Debate'
+  - Feedback
+  - Proofreading
+  - Debate
+category: Enhancing Teaching & Learning
+subject: Feedback
+grade_level: 9-12
+tools_used:
+  - MagicSchool.ai
+author: Julie Bruey
+school: PHS
+status: stable
 ---
 
 ## Overview

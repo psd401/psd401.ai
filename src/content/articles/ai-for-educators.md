@@ -1,11 +1,23 @@
 ---
+type: research
 title: 'AI for Educators: The University of Sydney'
-author: 'University of Sydney'
-source: 'Canvas'
+description: "Resources and guidelines for higher-education instructors, with AI use cases for planning, assessment and working with students."
+resource: /articles/ai-for-educators
 date: '2025-03-19'
-type: 'Resources'
-tags: ['Resources', 'AI Literacy']
-externalUrl: 'https://canvas.sydney.edu.au/courses/63765'
+tags:
+  - Resources
+  - AI Literacy
+author: University of Sydney
+source: Canvas
+format: Resources
+externalUrl: https://canvas.sydney.edu.au/courses/63765
+status: stable
+sources:
+  - resource: https://canvas.sydney.edu.au/courses/63765
+    id: original
+    title: 'AI for Educators: The University of Sydney'
+    author: University of Sydney
+    last_modified: '2025-03-19'
 ---
 
 # AI for Educators: The University of Sydney

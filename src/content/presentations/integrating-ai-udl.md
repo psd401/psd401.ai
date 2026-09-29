@@ -1,14 +1,24 @@
 ---
-title: 'Integrating Artificial Intelligence with Universal Design for Learning'
+type: presentation
+title: Integrating Artificial Intelligence with Universal Design for Learning
+description: A workshop delivered at the 2024 Model Schools Conference on How MTSS/UDL/AI all complement each other
+resource: /presentations/integrating-ai-udl
 date: '2024-06-30'
+tags:
+  - Conference Session
+  - Model Schools Conference
 presenters:
-  - 'John Yellowlees'
-  - 'Kris Hagel'
-audience: 'Model Schools Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/integrating-ai-udl.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSMj_aBOO7AZKuZ40k4Tr5cvERDkz98NKmyB9MQ0ss4kpqRUoXOxlT035_MnjC9Ng/embed'
-description: 'A workshop delivered at the 2024 Model Schools Conference on How MTSS/UDL/AI all complement each other'
+  - John Yellowlees
+  - Kris Hagel
+audience: Model Schools Conference
+format: Conference Session
+thumbnail: /images/thumbnails/integrating-ai-udl.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vSMj_aBOO7AZKuZ40k4Tr5cvERDkz98NKmyB9MQ0ss4kpqRUoXOxlT035_MnjC9Ng/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vSMj_aBOO7AZKuZ40k4Tr5cvERDkz98NKmyB9MQ0ss4kpqRUoXOxlT035_MnjC9Ng/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Integrating Artificial Intelligence with Universal Design for Learning: Enhancing Inclusive Education Through MTSS**

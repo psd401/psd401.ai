@@ -1,13 +1,9 @@
 ---
+type: use-case
 title: Automated Intercom System Data Collection and Organization
 description: Development of a Python script to automate the extraction and organization of Informacast notification system dialing codes into school-specific Google Sheets
-category: IT & Technical Infrastructure Management
-tools_used:
-  - Gemini 2.0
-  - Visual Studio Code
-  - Google Sheets
-author: Reese Herber
-school: ESC
+resource: /use-cases/IT%20%26%20Technical%20Infrastructure%20Management/python-data-collection
+date: '2025-02-18'
 tags:
   - automation
   - data management
@@ -16,6 +12,14 @@ tags:
   - system administration
   - intercom systems
   - workflow optimization
+category: IT & Technical Infrastructure Management
+tools_used:
+  - Gemini 2.0
+  - Visual Studio Code
+  - Google Sheets
+author: Reese Herber
+school: ESC
+status: stable
 ---
 
 ## Overview

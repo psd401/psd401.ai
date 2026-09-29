@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: AI-Enhanced Post-Event Survey Development
 description: Creating and refining a feedback survey for staff participants of the Focus on Education Innovation Event, with emphasis on constructive feedback collection
-category: Communication & Community Engagement
-tools_used:
-  - Amplify AI
-author: Mel Benner
-school: ESC
+resource: /use-cases/Communication%20%26%20Community%20Engagement/post-event-survey
+date: '2025-02-18'
 tags:
   - event feedback
   - survey design
@@ -14,6 +12,12 @@ tags:
   - event planning
   - data collection
   - continuous improvement
+category: Communication & Community Engagement
+tools_used:
+  - Amplify AI
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

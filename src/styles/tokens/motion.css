@@ -1,0 +1,29 @@
+/* Peninsula AI — motion
+   The system barely moves. Hover is a ground fill or an opacity drop; there
+   are no transforms, no lifts, no scale, no shadows appearing on hover.
+   Nothing bounces. If something needs to animate, it fades.
+
+   Source: Claude Design project 5db21ee4 · tokens/motion.css (verbatim). */
+:root {
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --hover-ground: var(--sec-ground);
+  --hover-fade: 0.82;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

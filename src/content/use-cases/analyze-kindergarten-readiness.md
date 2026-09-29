@@ -1,16 +1,20 @@
 ---
-title: 'Analyzing Kindergarten Readiness'
-description: 'Using AI to analyze anonymous WaKIDS data to share with local reporter on Kindergarten readiness.'
-category: 'Data Analysis & Insights for Decision Making'
-subject: 'Data Analysis'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'James Cantonwine'
-school: 'ESC'
+type: use-case
+title: Analyzing Kindergarten Readiness
+description: Using AI to analyze anonymous WaKIDS data to share with local reporter on Kindergarten readiness.
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/analyze-kindergarten-readiness
+date: '2025-01-29'
 tags:
-  - 'Analysis'
-  - 'Kindergarten Readiness'
+  - Analysis
+  - Kindergarten Readiness
+category: Data Analysis & Insights for Decision Making
+subject: Data Analysis
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: James Cantonwine
+school: ESC
+status: stable
 ---
 
 ## Overview

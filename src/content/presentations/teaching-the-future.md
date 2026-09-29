@@ -1,13 +1,23 @@
 ---
-title: 'Teaching the Future'
+type: presentation
+title: Teaching the Future
+description: A workshop delivered at the 2024 WCCT Conference on The Work we have been doing with our teachers on AI
+resource: /presentations/teaching-the-future
 date: '2024-10-20'
+tags:
+  - Conference Session
+  - WCCT Conference
 presenters:
-  - 'Kris Hagel'
-audience: 'WCCT Conference'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/teaching-the-future.png'
-slides: 'https://docs.google.com/presentation/d/16c8VlOB0lhy3DvrkjPIj6UvvCfAbfSVRsObUEqF5AvE/embed'
-description: 'A workshop delivered at the 2024 WCCT Conference on The Work we have been doing with our teachers on AI'
+  - Kris Hagel
+audience: WCCT Conference
+format: Conference Session
+thumbnail: /images/thumbnails/teaching-the-future.png
+slides: https://docs.google.com/presentation/d/16c8VlOB0lhy3DvrkjPIj6UvvCfAbfSVRsObUEqF5AvE/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/16c8VlOB0lhy3DvrkjPIj6UvvCfAbfSVRsObUEqF5AvE/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Teaching the Future: Preparing Teachers for the Transformative Impact of AI**

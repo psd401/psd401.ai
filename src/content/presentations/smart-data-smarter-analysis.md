@@ -1,13 +1,23 @@
 ---
-title: 'Smart Data, Smarter Analysis'
+type: presentation
+title: Smart Data, Smarter Analysis
+description: A conference session at the 2025 AI Innovation Summit on the use of AI for Data Analysis
+resource: /presentations/smart-data-smarter-analysis
 date: '2025-02-07'
+tags:
+  - Conference Session
+  - AI Innovation Summit
 presenters:
-  - 'James Cantonwine'
-audience: 'AI Innovation Summit'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/smart-data-smarter-analysis.png'
-slides: 'https://docs.google.com/presentation/d/13XTrg3CMR4se0Xq7tQlao0p8_z03aYMEt5ho_uckeIk/embed'
-description: 'A conference session at the 2025 AI Innovation Summit on the use of AI for Data Analysis'
+  - James Cantonwine
+audience: AI Innovation Summit
+format: Conference Session
+thumbnail: /images/thumbnails/smart-data-smarter-analysis.png
+slides: https://docs.google.com/presentation/d/13XTrg3CMR4se0Xq7tQlao0p8_z03aYMEt5ho_uckeIk/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/13XTrg3CMR4se0Xq7tQlao0p8_z03aYMEt5ho_uckeIk/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Smart Data, Smarter Analysis: Leveraging AI for Educational Insights**

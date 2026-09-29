@@ -1,23 +1,24 @@
 ---
-title: 'ClassCompanion'
-description: 'AI-powered formative assessment and feedback platform for teachers and students.'
+type: tool
+title: ClassCompanion
+description: AI-powered formative assessment and feedback platform for teachers and students.
+resource: /tools/classcompanion
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Lifeguard AI'
-provider: 'ClassCompanion'
-status: 'Experimentation'
-access_type: 'Assessment Tool'
-demoUrl: 'https://classcompanion.com'
 tags:
-  [
-    'Assessment',
-    'Feedback',
-    'FormativeAssessment',
-    'StudentSupport',
-    'TeacherTools',
-    'AIGrading',
-    'Productivity',
-  ]
+  - Assessment
+  - Feedback
+  - FormativeAssessment
+  - StudentSupport
+  - TeacherTools
+  - AIGrading
+  - Productivity
+category: Education Tools
+provider: ClassCompanion
+privacy: Lifeguard AI
+access_type: Assessment Tool
+maturity: Experimentation
+demoUrl: https://classcompanion.com
+status: stable
 ---
 
 ## Summary

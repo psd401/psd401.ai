@@ -1,107 +1,138 @@
-import { getArticleBySlug, getAllArticles } from '@/lib/articles';
-import { Card, CardBody } from '@/components/ui/ClientCard';
-import { Chip } from '@/components/ui/ClientChip';
-import { HeroUILink as NextUILink } from '@/components/ui/ClientLink';
+import React from 'react';
+import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { Metadata } from 'next';
+import { Breadcrumb, Button, Chip, SectionRule } from '@/components/ds';
+import MarkdownContent from '@/components/MarkdownContent';
+import Related from '@/components/Related';
+import { getConcept, getConcepts } from '@/lib/content';
+import { formatDate } from '@/lib/format';
+import JsonLd, { createBreadcrumbSchema, createResearchSchema } from '@/components/JsonLd';
 
-export const revalidate = 3600; // Revalidate every hour
-
-interface ArticlePageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const articles = await getAllArticles();
-  return articles.map(article => ({
-    slug: article.slug,
-  }));
+  const items = await getConcepts('articles');
+  return items.map(r => ({ slug: r.slug }));
 }
 
-export async function generateMetadata(props: ArticlePageProps): Promise<Metadata> {
-  const params = await props.params;
-  const article = await getArticleBySlug(params.slug);
-  if (!article) {
-    return {
-      title: 'Article Not Found',
-      robots: { index: false, follow: false },
-    };
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const item = await getConcept('articles', slug);
+  if (!item) return { title: 'Not found', robots: { index: false, follow: false } };
 
   return {
-    title: article.title,
-    description: article.description,
+    title: item.title,
+    description: item.description,
+    alternates: { canonical: item.resource },
+    keywords: item.tags,
     openGraph: {
-      title: article.title,
-      description: article.description,
       type: 'article',
-      publishedTime: article.date,
-      authors: article.author ? [article.author] : undefined,
-      images: article.image ? [article.image] : undefined,
+      title: item.title,
+      description: item.description,
+      url: item.resource,
+      publishedTime: item.date,
+      images: [DEFAULT_OG_IMAGE],
     },
   };
 }
 
-export default async function ArticlePage(props: ArticlePageProps) {
-  const params = await props.params;
-  const article = await getArticleBySlug(params.slug);
-
-  if (!article) {
-    notFound();
-  }
+export default async function ResearchPage({ params }: Props) {
+  const { slug } = await params;
+  const item = await getConcept('articles', slug);
+  if (!item) notFound();
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
-      <Link href="/articles" className="text-primary hover:underline mb-8 inline-block">
-        ← Back to Articles
-      </Link>
+    <article data-section="practice">
+      <JsonLd
+        data={[
+          createResearchSchema({
+            title: item.title,
+            description: item.description,
+            url: item.resource,
+            date: item.date,
+            author: item.author,
+            tags: item.tags,
+            source: item.source,
+            externalUrl: item.externalUrl,
+            format: item.format,
+          }),
+          createBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Reference library', url: '/practice' },
+            { name: 'Research', url: '/articles' },
+            { name: item.title, url: item.resource },
+          ]),
+        ]}
+      />
 
-      <article className="space-y-8">
-        <header className="space-y-4">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text">
-            {article.title}
+      <div
+        style={{
+          borderTop: 'var(--border-rule) solid var(--sec)',
+          padding: '14px var(--gutter-page)',
+          borderBottom: '1px solid var(--hairline-faint)',
+        }}
+      >
+        <Breadcrumb
+          items={[
+            { label: 'Reference library', href: '/practice' },
+            { label: 'Research', href: '/articles' },
+            { label: item.title },
+          ]}
+        />
+      </div>
+
+      <SectionRule as="header" style={{ borderTop: 0 }}>
+        <div className="ds-prose-measure">
+          <div
+            style={{
+              display: 'flex',
+              gap: 10,
+              alignItems: 'center',
+              marginBottom: 18,
+              flexWrap: 'wrap',
+            }}
+          >
+            {item.format && <Chip variant="solid">{item.format}</Chip>}
+            {item.source && <Chip variant="outline">{item.source}</Chip>}
+            <span className="ds-label ds-label--muted" style={{ textTransform: 'none' }}>
+              {formatDate(item.date)}
+            </span>
+          </div>
+          <h1 className="ds-display ds-display--page" style={{ marginBottom: 20 }}>
+            {item.title}
           </h1>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
-            {article.date && <time>{new Date(article.date).toLocaleDateString()}</time>}
-            {article.author && <span>By {article.author}</span>}
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {article.tags?.map(tag => (
-              <Chip key={tag} variant="flat" size="sm">
-                {tag}
-              </Chip>
-            ))}
-          </div>
-          {article.externalUrl && (
-            <Card className="bg-primary-50 dark:bg-primary-900/20 border-none">
-              <CardBody className="py-3">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm">
-                    Read the full article on {article.source || 'the original source'}
-                  </span>
-                  <NextUILink
-                    href={article.externalUrl}
-                    target="_blank"
-                    className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors inline-flex items-center gap-2"
-                    showAnchorIcon
-                  >
-                    Read Original Article
-                  </NextUILink>
-                </div>
-              </CardBody>
-            </Card>
+          {item.author && (
+            <p className="ds-label ds-label--sm ds-label--muted" style={{ marginBottom: 20 }}>
+              {item.author}
+            </p>
           )}
-        </header>
+          {item.externalUrl && (
+            <>
+              <Button variant="solid" href={item.externalUrl}>
+                Read the original →
+              </Button>
+              <p
+                style={{
+                  marginTop: 14,
+                  fontSize: 'var(--body-fine)',
+                  opacity: 'var(--text-muted)',
+                  maxWidth: '58ch',
+                }}
+              >
+                What follows is our summary, written for district staff. It is not the paper. If
+                this is going to inform a decision, read the original.
+              </p>
+            </>
+          )}
+        </div>
+      </SectionRule>
 
-        <Card className="prose dark:prose-invert max-w-none">
-          <CardBody className="prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-p:text-base prose-p:leading-7 prose-p:my-4 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-strong:font-bold prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6 prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6 prose-li:my-2 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:my-4 prose-blockquote:italic">
-            <div dangerouslySetInnerHTML={{ __html: article.content }} />
-          </CardBody>
-        </Card>
-      </article>
-    </div>
+      <div style={{ padding: '20px var(--gutter-page) 48px' }}>
+        <MarkdownContent content={item.content} />
+      </div>
+
+      <Related url={item.resource} />
+    </article>
   );
 }

@@ -1,15 +1,19 @@
 ---
-title: 'Using Teachable Machines to Understand Machine Learning'
-description: 'Using Teachable Machine to interact and develop understanding of machine learning'
-category: 'Enhancing Teaching & Learning'
-subject: 'AI Literacy'
-grade_level: '2-3'
-tools_used:
-  - 'Teachable Machines'
-author: 'Justin Towner'
-school: 'PIE'
+type: use-case
+title: Using Teachable Machines to Understand Machine Learning
+description: Using Teachable Machine to interact and develop understanding of machine learning
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/teachable-machines
+date: '2025-01-29'
 tags:
-  - 'AI Literacy'
+  - AI Literacy
+category: Enhancing Teaching & Learning
+subject: AI Literacy
+grade_level: 2-3
+tools_used:
+  - Teachable Machines
+author: Justin Towner
+school: PIE
+status: stable
 ---
 
 ## Overview

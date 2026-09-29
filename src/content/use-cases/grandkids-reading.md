@@ -1,15 +1,19 @@
 ---
-title: 'Providing Grade-Level Reading for Grandkids'
-description: 'Using ChatGPT to develop grade level appropriate reading stories.'
-category: 'Enhancing Student Support & Wellbeing'
-subject: 'Story Generation'
-grade_level: 'K-5'
-tools_used:
-  - 'ChatGPT'
-author: 'Bill Songstad'
-school: 'ESC'
+type: use-case
+title: Providing Grade-Level Reading for Grandkids
+description: Using ChatGPT to develop grade level appropriate reading stories.
+resource: /use-cases/Enhancing%20Student%20Support%20%26%20Wellbeing/grandkids-reading
+date: '2025-01-29'
 tags:
-  - 'Levelled Reading'
+  - Levelled Reading
+category: Enhancing Student Support & Wellbeing
+subject: Story Generation
+grade_level: K-5
+tools_used:
+  - ChatGPT
+author: Bill Songstad
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,17 +1,21 @@
 ---
-title: "Creating Efficiency for IEP's"
-description: 'Using Amplify GenAI and MagicSchool for improving the workflow of Special Education Teachers'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Productivity Enhancement'
-grade_level: 'Staff'
-tools_used:
-  - 'Amplify GenAI'
-  - 'MagicSchool.ai'
-author: 'Allison Shepard'
-school: 'ESC'
+type: use-case
+title: Creating Efficiency for IEP's
+description: Using Amplify GenAI and MagicSchool for improving the workflow of Special Education Teachers
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/magicschool-text-modify
+date: '2025-01-28'
 tags:
-  - 'Content Generation'
-  - 'Writing Improvement'
+  - Content Generation
+  - Writing Improvement
+category: Streamlining Administrative Tasks & Operations
+subject: Productivity Enhancement
+grade_level: Staff
+tools_used:
+  - Amplify GenAI
+  - MagicSchool.ai
+author: Allison Shepard
+school: ESC
+status: stable
 ---
 
 ## Overview

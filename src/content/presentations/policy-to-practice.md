@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'Advancing AI Leadership: Building Our AI Future'
+description: A workshop delivered to district office leadership on the current state of AI and our next steps forward as a district
+resource: /presentations/policy-to-practice
 date: '2024-12-16'
+tags:
+  - Internal Workshop
+  - PSD Staff
 presenters:
-  - 'Kris Hagel'
-audience: 'PSD Staff'
-type: 'Internal Workshop'
-thumbnail: '/images/thumbnails/advancing-ai-leadership.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vSRL5IHHmdasWCLMohKwKMifgSymvIK8Pbo8zioCK2L2PU08qD0QDF0_VYa4UgV8MgniXw1p6VC4Eb7/embed'
-description: 'A workshop delivered to district office leadership on the current state of AI and our next steps forward as a district'
+  - Kris Hagel
+audience: PSD Staff
+format: Internal Workshop
+thumbnail: /images/thumbnails/advancing-ai-leadership.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vSRL5IHHmdasWCLMohKwKMifgSymvIK8Pbo8zioCK2L2PU08qD0QDF0_VYa4UgV8MgniXw1p6VC4Eb7/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vSRL5IHHmdasWCLMohKwKMifgSymvIK8Pbo8zioCK2L2PU08qD0QDF0_VYa4UgV8MgniXw1p6VC4Eb7/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Harnessing the Power of AI in Education: A Leadership Guide**

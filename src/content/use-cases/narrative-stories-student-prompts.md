@@ -1,15 +1,19 @@
 ---
-title: 'Teacher-led ChatGPT for narrative stories'
-description: 'Using teacher-led ChatGPT usage to create narrative stories based on student writing prompts'
-category: 'Enhancing Teaching & Learning'
-subject: 'Narrative Writing'
-grade_level: '2-3'
-tools_used:
-  - 'ChatGPT'
-author: 'Justin Towner'
-school: 'PIE'
+type: use-case
+title: Teacher-led ChatGPT for narrative stories
+description: Using teacher-led ChatGPT usage to create narrative stories based on student writing prompts
+resource: /use-cases/Enhancing%20Teaching%20%26%20Learning/narrative-stories-student-prompts
+date: '2025-01-29'
 tags:
-  - 'Narrative Writing'
+  - Narrative Writing
+category: Enhancing Teaching & Learning
+subject: Narrative Writing
+grade_level: 2-3
+tools_used:
+  - ChatGPT
+author: Justin Towner
+school: PIE
+status: stable
 ---
 
 ## Overview

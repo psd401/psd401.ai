@@ -1,17 +1,21 @@
 ---
-title: 'Building UDL & Danielson Progression'
-description: 'Taking our UDL Priorities and Merging with Danielson for Teachers'
-category: 'Enhancing Staff Professional Growth'
-subject: 'Pedagogical Improvement'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'Natalie Boyle'
-school: 'ESC'
+type: use-case
+title: Building UDL & Danielson Progression
+description: Taking our UDL Priorities and Merging with Danielson for Teachers
+resource: /use-cases/Enhancing%20Staff%20Professional%20Growth/udl-danielson-progression
+date: '2025-01-29'
 tags:
-  - 'Universal Design for Learning'
-  - 'Danielson Framework'
-  - 'Pedagogy'
+  - Universal Design for Learning
+  - Danielson Framework
+  - Pedagogy
+category: Enhancing Staff Professional Growth
+subject: Pedagogical Improvement
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: Natalie Boyle
+school: ESC
+status: stable
 ---
 
 ## Overview

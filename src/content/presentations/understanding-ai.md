@@ -1,13 +1,23 @@
 ---
-title: 'Understanding AI in Education - Theory to Practice'
+type: presentation
+title: Understanding AI in Education - Theory to Practice
+description: A session delivered online for the AESD Online AI series
+resource: /presentations/understanding-ai
 date: '2024-10-30'
+tags:
+  - Conference Session
+  - AESD AI Series
 presenters:
-  - 'Kris Hagel'
-audience: 'AESD AI Series'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/understanding-ai.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vT330CFrDqR5XVWLQLI0suVOGXVETadqspe5rDZDDZw4USpJlcyrcbjY0XnAWAa2u7OVnaBwCNX7Q_P/embed'
-description: 'A session delivered online for the AESD Online AI series'
+  - Kris Hagel
+audience: AESD AI Series
+format: Conference Session
+thumbnail: /images/thumbnails/understanding-ai.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vT330CFrDqR5XVWLQLI0suVOGXVETadqspe5rDZDDZw4USpJlcyrcbjY0XnAWAa2u7OVnaBwCNX7Q_P/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vT330CFrDqR5XVWLQLI0suVOGXVETadqspe5rDZDDZw4USpJlcyrcbjY0XnAWAa2u7OVnaBwCNX7Q_P/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Understanding AI in Education: From Theory to Practice**

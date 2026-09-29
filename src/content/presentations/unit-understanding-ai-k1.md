@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'K/1 Unit: Artificial Intelligence (AI)'
+description: Unit on understanding AI for students in grades K-1 at Pioneer Elementary
+resource: /presentations/unit-understanding-ai-k1
 date: '2024-05-01'
+tags:
+  - Classroom Lessons
+  - PSD Students
 presenters:
-  - 'Justin Towner'
-audience: 'PSD Students'
-type: 'Classroom Lessons'
-thumbnail: '/images/thumbnails/unit-understanding-ai.png'
-slides: 'https://docs.google.com/presentation/d/1P2jva812WcZtpJ5OPLkohZQbB_K2D59QsRl17aVOI6I/embed'
-description: 'Unit on understanding AI for students in grades K-1 at Pioneer Elementary'
+  - Justin Towner
+audience: PSD Students
+format: Classroom Lessons
+thumbnail: /images/thumbnails/unit-understanding-ai.png
+slides: https://docs.google.com/presentation/d/1P2jva812WcZtpJ5OPLkohZQbB_K2D59QsRl17aVOI6I/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1P2jva812WcZtpJ5OPLkohZQbB_K2D59QsRl17aVOI6I/embed
+    id: slides
+    title: Slide deck
 ---
 
 **K/1 Unit: Artificial Intelligence (AI) - An Introduction for Young Learners**

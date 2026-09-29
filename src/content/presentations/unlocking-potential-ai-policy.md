@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'Unlocking Potential: AI Policy in PSD'
+description: A webinar talking about developing AI policy in a district
+resource: /presentations/unlocking-potential-ai-policy
 date: '2023-10-25'
+tags:
+  - Webinar
+  - Greater Phoenix Education Management Council
 presenters:
-  - 'Krestin Bahr'
-  - 'Kris Hagel'
-audience: 'Greater Phoenix Education Management Council'
-type: 'Webinar'
-thumbnail: '/images/thumbnails/unlocking-potential-ai-policy.png'
-slides: 'https://docs.google.com/presentation/d/10cH0Fnh3aEIdC2XGKa4IuD1KY0q1MLUh/embed'
-description: 'A webinar talking about developing AI policy in a district'
+  - Krestin Bahr
+  - Kris Hagel
+audience: Greater Phoenix Education Management Council
+format: Webinar
+thumbnail: /images/thumbnails/unlocking-potential-ai-policy.png
+slides: https://docs.google.com/presentation/d/10cH0Fnh3aEIdC2XGKa4IuD1KY0q1MLUh/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/10cH0Fnh3aEIdC2XGKa4IuD1KY0q1MLUh/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Unlocking Potential: AI Policy in the Peninsula School District**

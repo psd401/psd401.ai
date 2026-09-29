@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'Demystifying AI Security: Building Safe Pathways for Educational Innovation'
+description: A conference session detailing how AI is truly built in simple language to make the security concepts less intimidating.
+resource: /presentations/demystifying-ai-security
 date: '2025-02-05'
+tags:
+  - Conference Session
+  - AI Innovation Summit
 presenters:
-  - 'Kris Hagel'
-audience: 'AI Innovation Summit'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/demystifying-ai-security.png'
-slides: 'https://docs.google.com/presentation/d/1o5ODLWL_cx9X00vGE4Ih2LRe0ZFLRg5Zuvs2esVZP4c/embed'
-description: 'A conference session detailing how AI is truly built in simple language to make the security concepts less intimidating.'
+  - Kris Hagel
+audience: AI Innovation Summit
+format: Conference Session
+thumbnail: /images/thumbnails/demystifying-ai-security.png
+slides: https://docs.google.com/presentation/d/1o5ODLWL_cx9X00vGE4Ih2LRe0ZFLRg5Zuvs2esVZP4c/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1o5ODLWL_cx9X00vGE4Ih2LRe0ZFLRg5Zuvs2esVZP4c/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Demystifying AI Security: Building Safe Pathways for Educational Innovation**

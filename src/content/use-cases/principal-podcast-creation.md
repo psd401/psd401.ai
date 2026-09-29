@@ -1,16 +1,20 @@
 ---
-title: 'Flexible Methods for Principal Learning'
-description: 'Creating podcast of concepts principals need to understand to lead their staff'
-category: 'Enhancing Staff Professional Growth'
-subject: 'Professional Learning'
-grade_level: 'Staff'
-tools_used:
-  - 'NotebookLM'
-author: 'Natalie Boyle'
-school: 'ESC'
+type: use-case
+title: Flexible Methods for Principal Learning
+description: Creating podcast of concepts principals need to understand to lead their staff
+resource: /use-cases/Enhancing%20Staff%20Professional%20Growth/principal-podcast-creation
+date: '2025-01-29'
 tags:
-  - 'Universal Design for Learning'
-  - 'Danielson Framework'
+  - Universal Design for Learning
+  - Danielson Framework
+category: Enhancing Staff Professional Growth
+subject: Professional Learning
+grade_level: Staff
+tools_used:
+  - NotebookLM
+author: Natalie Boyle
+school: ESC
+status: stable
 ---
 
 ## Overview

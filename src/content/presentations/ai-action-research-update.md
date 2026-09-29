@@ -1,13 +1,23 @@
 ---
-title: 'AI Action Research - Board Update'
+type: presentation
+title: AI Action Research - Board Update
+description: A presentation delivered to the PSD Board of Directors on the work of the AI Action Research Team in 2023/2024
+resource: /presentations/ai-action-research-update
 date: '2024-05-21'
+tags:
+  - School Board Presentation
+  - PSD Community
 presenters:
-  - 'Kris Hagel'
-audience: 'PSD Community'
-type: 'School Board Presentation'
-thumbnail: '/images/thumbnails/ai-action-research-update.png'
-slides: 'https://docs.google.com/presentation/d/e/2PACX-1vTKEerCFCC_vSrLVFXqp9vKy7jWOZnfzCMXUDKfZO6lmZEr454XMes4kGmEPwLK-6ulrqTQIVd7mpy9/embed'
-description: 'A presentation delivered to the PSD Board of Directors on the work of the AI Action Research Team in 2023/2024'
+  - Kris Hagel
+audience: PSD Community
+format: School Board Presentation
+thumbnail: /images/thumbnails/ai-action-research-update.png
+slides: https://docs.google.com/presentation/d/e/2PACX-1vTKEerCFCC_vSrLVFXqp9vKy7jWOZnfzCMXUDKfZO6lmZEr454XMes4kGmEPwLK-6ulrqTQIVd7mpy9/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/e/2PACX-1vTKEerCFCC_vSrLVFXqp9vKy7jWOZnfzCMXUDKfZO6lmZEr454XMes4kGmEPwLK-6ulrqTQIVd7mpy9/embed
+    id: slides
+    title: Slide deck
 ---
 
 **AI Action Research '24 Update: Progress, Spotlights, and Future Directions**

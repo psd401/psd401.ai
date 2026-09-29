@@ -1,13 +1,23 @@
 ---
-title: 'Introduction to AI'
+type: presentation
+title: Introduction to AI
+description: A PD session provided to PSD with a early introduction to AI
+resource: /presentations/introduction-to-ai
 date: '2024-08-29'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Mel Benner'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/introduction-to-ai.png'
-slides: 'https://docs.google.com/presentation/d/1MX-viIdtL-IGuDip-DcTlKQgPhWLF98Y4DiYO0WHl6E/embed'
-description: 'A PD session provided to PSD with a early introduction to AI'
+  - Mel Benner
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/introduction-to-ai.png
+slides: https://docs.google.com/presentation/d/1MX-viIdtL-IGuDip-DcTlKQgPhWLF98Y4DiYO0WHl6E/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1MX-viIdtL-IGuDip-DcTlKQgPhWLF98Y4DiYO0WHl6E/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Professional Learning Day: Introduction to AI**

@@ -1,28 +1,73 @@
-import { getAllPresentations, getAllTags } from '@/lib/presentations';
-import PresentationsClient from './presentations-client';
-import { Metadata } from 'next';
+import React from 'react';
+import type { Metadata } from 'next';
+import { SectionHeader, SectionRule } from '@/components/ds';
+import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
+import { byDateDesc, getConcepts } from '@/lib/content';
+import { formatDate } from '@/lib/format';
+import { DEFAULT_OG_IMAGE, SECTIONS } from '@/lib/site';
+import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 
-export const revalidate = 3600; // Revalidate every hour
+const SECTION = SECTIONS.find(s => s.key === 'presentations')!;
 
 export const metadata: Metadata = {
   title: 'Presentations',
   description:
-    'AI in education presentations covering key concepts, practical applications, and emerging trends for K-12 educators.',
+    'Talks, workshops and board sessions on AI in K-12 education from Peninsula School District, each with its slides.',
+  alternates: { canonical: '/presentations' },
   openGraph: {
-    title: 'Presentations | Peninsula SD AI',
-    description: 'AI in education presentations covering key concepts and practical applications.',
-    images: ['/images/sections/presentations-hero.jpg'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Presentations | Peninsula SD AI',
-    description: 'AI in education presentations covering key concepts and practical applications.',
-    images: ['/images/sections/presentations-hero.jpg'],
+    title: 'Presentations — Peninsula AI',
+    url: '/presentations',
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
-export default async function PresentationsPage() {
-  const [presentations, allTags] = await Promise.all([getAllPresentations(), getAllTags()]);
+export default async function PresentationsIndex() {
+  const presentations = byDateDesc(await getConcepts('presentations'));
 
-  return <PresentationsClient presentations={presentations} allTags={allTags} />;
+  const items: IndexItem[] = presentations.map(p => ({
+    href: p.resource,
+    title: p.title,
+    description: p.description,
+    tags: p.tags ?? [],
+    kind: p.format,
+    meta: formatDate(p.date),
+    date: p.date,
+  }));
+
+  return (
+    <div data-section="presentations">
+      <JsonLd
+        data={[
+          createCollectionSchema({
+            name: 'Presentations — Peninsula AI',
+            description: SECTION.description,
+            url: '/presentations',
+            items: presentations.map(p => ({
+              title: p.title,
+              url: p.resource,
+              description: p.description,
+            })),
+          }),
+          createBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Presentations', url: '/presentations' },
+          ]),
+        ]}
+      />
+
+      <SectionRule ground="tint" as="header">
+        <SectionHeader
+          as="h1"
+          number="04"
+          title="Presentations"
+          meta={`${presentations.length} talks`}
+          lead="Conference sessions, workshops, professional learning and board presentations, each with its slides, and most with a short summary."
+        />
+      </SectionRule>
+
+      <SectionRule as="section" style={{ borderTop: 0, paddingTop: 0 }}>
+        <ContentIndex items={items} variant="doc" noun="talks" />
+      </SectionRule>
+    </div>
+  );
 }

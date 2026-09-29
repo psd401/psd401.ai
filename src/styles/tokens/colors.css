@@ -1,0 +1,77 @@
+/* Peninsula AI — colour
+   Five section colours carry wayfinding. A page shows ONE of them at a time.
+   Never mix two section colours in the same view except in the homepage index
+   and the global masthead.
+
+   Source: Claude Design project 5db21ee4 · tokens/colors.css (verbatim). */
+:root {
+  /* base ---------------------------------------------------------------- */
+  --ink: oklch(0.17 0.015 250); /* all text, all rules          */
+  --surface: #ffffff; /* page ground                 */
+  --surface-soft: oklch(0.975 0.003 250); /* insets, sidebars, frames    */
+  --surface-code: oklch(0.19 0.015 250); /* code blocks, always dark    */
+  --on-code: oklch(0.93 0.006 250);
+  --on-accent: #ffffff; /* text on a solid section col */
+
+  /* section colours ----------------------------------------------------- */
+  --sec-writing: oklch(0.5 0.19 258); /* 01 cobalt   */
+  --sec-software: oklch(0.47 0.12 205); /* 02 teal     */
+  --sec-guidance: oklch(0.46 0.14 150); /* 03 green    */
+  --sec-presentations: oklch(0.5 0.2 340); /* 04 magenta  */
+  --sec-oad: oklch(0.48 0.2 295); /* 05 violet   */
+
+  /* the active section — set once per page, everything else reads this --- */
+  --sec: var(--sec-writing);
+
+  /* derived ------------------------------------------------------------- */
+  --sec-ground: color-mix(in oklab, var(--sec) 8%, transparent);
+  --sec-ground-strong: color-mix(in oklab, var(--sec) 13%, transparent);
+  --hairline: color-mix(in oklab, currentColor 20%, transparent);
+  --hairline-faint: color-mix(in oklab, currentColor 13%, transparent);
+  --rule-weight: 9px;
+
+  /* text emphasis — opacity, never a second grey ------------------------ */
+  --text-strong: 1;
+  --text-body: 0.86;
+  --text-muted: 0.72;
+  --text-label: 0.6;
+}
+
+/* Dark theme. Section colours lift to stay legible on ink; --on-accent
+   inverts because a light chip on dark carries dark text. */
+[data-theme='dark'] {
+  --ink: oklch(0.955 0.004 250);
+  --surface: oklch(0.155 0.014 250);
+  --surface-soft: oklch(0.205 0.018 250);
+  --on-accent: oklch(0.155 0.014 250);
+
+  --sec-writing: oklch(0.72 0.16 258);
+  --sec-software: oklch(0.74 0.11 205);
+  --sec-guidance: oklch(0.74 0.13 150);
+  --sec-presentations: oklch(0.74 0.16 340);
+  --sec-oad: oklch(0.72 0.16 295);
+}
+
+/* Section scopes. Put one of these on <body> or a page wrapper. */
+[data-section='writing'] {
+  --sec: var(--sec-writing);
+}
+[data-section='software'] {
+  --sec: var(--sec-software);
+}
+[data-section='guidance'] {
+  --sec: var(--sec-guidance);
+}
+[data-section='presentations'] {
+  --sec: var(--sec-presentations);
+}
+[data-section='oad'] {
+  --sec: var(--sec-oad);
+}
+
+/* 'practice' is the de-prioritised reference library. It is deliberately
+   NOT a sixth section colour — it inherits ink so it never competes with
+   the five standing sections. */
+[data-section='practice'] {
+  --sec: var(--ink);
+}

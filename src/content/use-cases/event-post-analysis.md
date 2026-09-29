@@ -1,11 +1,9 @@
 ---
+type: use-case
 title: After Action Review Analysis for Educational Event
 description: Using AI to analyze multi-stakeholder feedback data to identify key successes and growth opportunities for future district events
-category: Data Analysis & Insights for Decision Making
-tools_used:
-  - Amplify AI
-author: Mel Benner
-school: ESC
+resource: /use-cases/Data%20Analysis%20%26%20Insights%20for%20Decision%20Making/event-post-analysis
+date: '2025-02-18'
 tags:
   - event analysis
   - feedback analysis
@@ -14,6 +12,12 @@ tags:
   - data-driven decisions
   - stakeholder feedback
   - event planning
+category: Data Analysis & Insights for Decision Making
+tools_used:
+  - Amplify AI
+author: Mel Benner
+school: ESC
+status: stable
 ---
 
 ## Overview

@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: 'Inclusive Intelligence: Merging UDL, Accessibility, and Privacy in AI-Enhanced Learning'
+description: A conference session delivered at the 2025 AI Empowered EDU conference on Inclusive Intelligence
+resource: /presentations/inclusive-intelligence
 date: '2025-05-14'
+tags:
+  - Conference Session
+  - AI Empowered EDU
 presenters:
-  - 'Kris Hagel'
-audience: 'AI Empowered EDU'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/inclusive-intelligence.png'
-slides: 'https://docs.google.com/presentation/d/1e4cjvuuEKnfdhSccL5FQJNUgmdocqz0JPGyKT3vA9Bo/embed'
-description: 'A conference session delivered at the 2025 AI Empowered EDU conference on Inclusive Intelligence'
+  - Kris Hagel
+audience: AI Empowered EDU
+format: Conference Session
+thumbnail: /images/thumbnails/inclusive-intelligence.png
+slides: https://docs.google.com/presentation/d/1e4cjvuuEKnfdhSccL5FQJNUgmdocqz0JPGyKT3vA9Bo/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1e4cjvuuEKnfdhSccL5FQJNUgmdocqz0JPGyKT3vA9Bo/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Inclusive Intelligence: Merging UDL, Accessibility, and Privacy in AI-Enhanced Learning**

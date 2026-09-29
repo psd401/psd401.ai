@@ -1,13 +1,23 @@
 ---
-title: 'MagicSchool AI For Teachers'
+type: presentation
+title: MagicSchool AI For Teachers
+description: Professional Development for District Staff on MagicSchool
+resource: /presentations/magicschool-ai-for-teachers
 date: '2024-08-29'
+tags:
+  - PD Session
+  - PSD Staff
 presenters:
-  - 'Chris Jardin'
-audience: 'PSD Staff'
-type: 'PD Session'
-thumbnail: '/images/thumbnails/magicschool-ai-for-teachers.png'
-slides: 'https://docs.google.com/presentation/d/1WMPm9xVXDKDe8tGMXNjsvzPUPNsFjSk515YrQyhc0fM/embed'
-description: 'Professional Development for District Staff on MagicSchool'
+  - Chris Jardin
+audience: PSD Staff
+format: PD Session
+thumbnail: /images/thumbnails/magicschool-ai-for-teachers.png
+slides: https://docs.google.com/presentation/d/1WMPm9xVXDKDe8tGMXNjsvzPUPNsFjSk515YrQyhc0fM/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1WMPm9xVXDKDe8tGMXNjsvzPUPNsFjSk515YrQyhc0fM/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Make Your Planning Easier: AI for Teachers By MagicSchool**

@@ -1,13 +1,23 @@
 ---
+type: presentation
 title: '4/5 Unit: Artificial Intelligence (AI)'
+description: Unit on understanding AI for students in grades 4-5 at Pioneer Elementary
+resource: /presentations/unit-understanding-ai-45
 date: '2024-05-01'
+tags:
+  - Classroom Lessons
+  - PSD Students
 presenters:
-  - 'Justin Towner'
-audience: 'PSD Students'
-type: 'Classroom Lessons'
-thumbnail: '/images/thumbnails/unit-understanding-ai.png'
-slides: 'https://docs.google.com/presentation/d/1N-GgKsT-2YhJdqWeDkZWbGHvobFEtRpvCidL7BqG-JU/embed'
-description: 'Unit on understanding AI for students in grades 4-5 at Pioneer Elementary'
+  - Justin Towner
+audience: PSD Students
+format: Classroom Lessons
+thumbnail: /images/thumbnails/unit-understanding-ai.png
+slides: https://docs.google.com/presentation/d/1N-GgKsT-2YhJdqWeDkZWbGHvobFEtRpvCidL7BqG-JU/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1N-GgKsT-2YhJdqWeDkZWbGHvobFEtRpvCidL7BqG-JU/embed
+    id: slides
+    title: Slide deck
 ---
 
 **4/5 Unit: Artificial Intelligence (AI) - A Deeper Dive for Upper Elementary**

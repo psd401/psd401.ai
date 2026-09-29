@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'From Policy to Practice: Building a District-Wide AI Framework That Works'
+description: A conference session on sharing how districts can build their own AI guidance and policies.
+resource: /presentations/advancing-ai-leadership
 date: '2025-01-31'
+tags:
+  - Conference Session
+  - AASA AI Super Summit
 presenters:
-  - 'Krestin Bahr'
-  - 'Kris Hagel'
-audience: 'AASA AI Super Summit'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/policy-to-practice.png'
-slides: 'https://docs.google.com/presentation/d/1chFkzyFTTbDGAVeWw0y4hiuEP-ZBAQvs/embed'
-description: 'A conference session on sharing how districts can build their own AI guidance and policies.'
+  - Krestin Bahr
+  - Kris Hagel
+audience: AASA AI Super Summit
+format: Conference Session
+thumbnail: /images/thumbnails/policy-to-practice.png
+slides: https://docs.google.com/presentation/d/1chFkzyFTTbDGAVeWw0y4hiuEP-ZBAQvs/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/1chFkzyFTTbDGAVeWw0y4hiuEP-ZBAQvs/embed
+    id: slides
+    title: Slide deck
 ---
 
 **From Policy to Practice: Building a District-Wide AI Framework That Works**

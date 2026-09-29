@@ -1,16 +1,20 @@
 ---
-title: 'ChatGPT Assistance in Grant Writing'
-description: 'Using ChatGPT Projects as a knowledge base to assist in grant writing.'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Grant Writing'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'Kelsey Parke'
-school: 'ESC'
+type: use-case
+title: ChatGPT Assistance in Grant Writing
+description: Using ChatGPT Projects as a knowledge base to assist in grant writing.
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/grant-writing-cte
+date: '2025-01-29'
 tags:
-  - 'Grant Writing'
-  - 'CTE'
+  - Grant Writing
+  - CTE
+category: Streamlining Administrative Tasks & Operations
+subject: Grant Writing
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: Kelsey Parke
+school: ESC
+status: stable
 ---
 
 ## Overview

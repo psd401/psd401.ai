@@ -1,15 +1,23 @@
 ---
-title: 'HeyGen'
-description: 'AI video generation platform for creating personalized, engaging educational and training videos.'
+type: tool
+title: HeyGen
+description: AI video generation platform for creating personalized, engaging educational and training videos.
+resource: /tools/heygen
 date: '2025-01-01'
-category: 'Education Tools'
-privacy: 'Sandbox AI'
-provider: 'HeyGen'
-status: 'Experimentation'
-access_type: 'Video Generation Tool'
-demoUrl: 'https://www.heygen.com'
 tags:
-  ['AIVideo', 'LessonPlanning', 'StudentEngagement', 'Training', 'Personalization', 'Productivity']
+  - AIVideo
+  - LessonPlanning
+  - StudentEngagement
+  - Training
+  - Personalization
+  - Productivity
+category: Education Tools
+provider: HeyGen
+privacy: Sandbox AI
+access_type: Video Generation Tool
+maturity: Experimentation
+demoUrl: https://www.heygen.com
+status: stable
 ---
 
 ## Summary

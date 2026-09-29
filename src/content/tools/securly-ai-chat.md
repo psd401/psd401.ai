@@ -1,11 +1,19 @@
 ---
-title: 'Securly AI Chat'
-status: 'Experimentation'
-type: 'Chat AI'
-privacy: 'Lifeguard AI'
-description: 'Conversational AI platform specifically designed for K-12 schools'
-demoUrl: 'https://chat.securly.com/'
-tags: ['ConversationalAI', 'StudentSafety', 'DataPrivacy', 'AcademicIntegrity']
+type: tool
+title: Securly AI Chat
+description: Conversational AI platform specifically designed for K-12 schools
+resource: /tools/securly-ai-chat
+date: '2025-01-22'
+tags:
+  - ConversationalAI
+  - StudentSafety
+  - DataPrivacy
+  - AcademicIntegrity
+privacy: Lifeguard AI
+maturity: Experimentation
+format: Chat AI
+demoUrl: https://chat.securly.com/
+status: stable
 ---
 
 **Summary**

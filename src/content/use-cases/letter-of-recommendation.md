@@ -1,16 +1,20 @@
 ---
-title: 'Easing Senior Student Letters of Recommendation'
-description: 'Using ChatGPT for Student Senior Letters of Recommendation'
-category: 'Streamlining Administrative Tasks & Operations'
-subject: 'Content Generation'
-grade_level: 'Staff'
-tools_used:
-  - 'ChatGPT'
-author: 'Kara Beloate'
-school: 'PHS'
+type: use-case
+title: Easing Senior Student Letters of Recommendation
+description: Using ChatGPT for Student Senior Letters of Recommendation
+resource: /use-cases/Streamlining%20Administrative%20Tasks%20%26%20Operations/letter-of-recommendation
+date: '2025-01-29'
 tags:
-  - 'Text Generation'
-  - 'Letters'
+  - Text Generation
+  - Letters
+category: Streamlining Administrative Tasks & Operations
+subject: Content Generation
+grade_level: Staff
+tools_used:
+  - ChatGPT
+author: Kara Beloate
+school: PHS
+status: stable
 ---
 
 ## Overview

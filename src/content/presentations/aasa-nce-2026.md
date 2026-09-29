@@ -1,14 +1,24 @@
 ---
+type: presentation
 title: 'Unlocking Efficiency: Leveraging AI in Public School District Operations'
+description: 'How Peninsula School District uses AI across operations: prompt engineering, deep research, agentic skills, legislation tracking and custom tools.'
+resource: /presentations/aasa-nce-2026
 date: '2026-02-13'
+tags:
+  - Conference Session
+  - AASA NCE
 presenters:
-  - 'Krestin Bahr'
-  - 'Kris Hagel'
-audience: 'AASA NCE'
-type: 'Conference Session'
-thumbnail: '/images/thumbnails/aasa-nce-2026.png'
-slides: 'https://docs.google.com/presentation/d/16fCzP4GofNmdkjd-JG4DLzITyNKlg2U_GYMW78vAZO8/embed'
-description: 'A conference session demonstrating how Peninsula School District uses AI across operations — from prompt engineering and deep research to agentic skills, legislation tracking, and custom-built tools on a district-hosted AI platform.'
+  - Krestin Bahr
+  - Kris Hagel
+audience: AASA NCE
+format: Conference Session
+thumbnail: /images/thumbnails/aasa-nce-2026.png
+slides: https://docs.google.com/presentation/d/16fCzP4GofNmdkjd-JG4DLzITyNKlg2U_GYMW78vAZO8/embed
+status: stable
+sources:
+  - resource: https://docs.google.com/presentation/d/16fCzP4GofNmdkjd-JG4DLzITyNKlg2U_GYMW78vAZO8/embed
+    id: slides
+    title: Slide deck
 ---
 
 **Unlocking Efficiency: Leveraging AI in Public School District Operations**
