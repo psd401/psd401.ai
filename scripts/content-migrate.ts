@@ -362,7 +362,8 @@ async function main() {
       '| File | Field | Source | Value |',
       '| --- | --- | --- | --- |',
       ...derived.map(
-        d => `| \`${d.file}\` | ${d.field} | ${d.from} | ${d.value.replace(/\|/g, '\\|')} |`
+        d =>
+          `| \`${d.file}\` | ${d.field} | ${d.from} | ${d.value.replace(/\\/g, '\\\\').replace(/\|/g, '\\|')} |`
       ),
       '',
     ].join('\n');

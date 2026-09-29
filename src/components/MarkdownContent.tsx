@@ -58,6 +58,20 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+/**
+ * Whether an iframe src points at YouTube, by its parsed hostname rather than
+ * a substring: "evil.example/youtube.com" contains "youtube.com" but is not
+ * YouTube (CodeQL js/incomplete-url-substring-sanitization).
+ */
+function isYouTube(src: string): boolean {
+  try {
+    const host = new URL(src, 'https://psd401.ai').hostname;
+    return host === 'youtu.be' || host === 'youtube.com' || host.endsWith('.youtube.com');
+  } catch {
+    return false;
+  }
+}
+
 function YouTube({ src, title }: { src: string; title?: string }) {
   const id = src.includes('youtu.be')
     ? src.split('youtu.be/')[1]?.split(/[?&]/)[0]
@@ -165,7 +179,7 @@ export default function MarkdownContent({ content }: { content: string }) {
           },
           iframe(props) {
             const { src, title } = props as { src?: string; title?: string };
-            if (src && (src.includes('youtube.com') || src.includes('youtu.be'))) {
+            if (src && isYouTube(src)) {
               return <YouTube src={src} title={title} />;
             }
             return <iframe {...props} />;
