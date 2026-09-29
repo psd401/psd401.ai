@@ -195,7 +195,8 @@ afford.
 
 ## A note on the AI Studio screenshots
 
-`aistudio-1.png` is the product's own hero image and it contains a stylised
-brain graphic. The new brand guidance bans brains in imagery. It is a real
-capture of the real application, so it stays — but the app's own artwork is now
-off-brand, and changing it is a job for the AI Studio repository.
+The AI Studio product page shows `software/ai-studio-home.webp`, a real
+capture of the current home screen (featured tools, no hero artwork), supplied
+by Hagel in September 2026. It replaced `aistudio-1.png`, whose stylised brain
+graphic went against the brand guidance's ban on brains in imagery.
+`aistudio-1.png` is no longer referenced by any page.

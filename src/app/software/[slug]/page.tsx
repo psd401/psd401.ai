@@ -135,20 +135,18 @@ export default async function SoftwarePage({ params }: Props) {
         {item.image && item.appUrl ? (
           // A web screenshot: show it in browser chrome with the real address.
           <BrowserFrame url={item.appUrl}>
+            {/* The whole screenshot at its own proportions. A fixed height with
+                object-fit: cover cropped the sides of a 16:9 capture in this
+                narrower column. 1600x900 is the intrinsic-size hint, matching
+                the 16:9 captures used here, so the box does not shift on load. */}
             <Image
               src={item.image}
               alt={item.imageAlt ?? `${item.title} interface`}
-              width={1200}
-              height={760}
+              width={1600}
+              height={900}
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
-              style={{
-                display: 'block',
-                width: '100%',
-                height: 380,
-                objectFit: 'cover',
-                objectPosition: 'top',
-              }}
+              style={{ display: 'block', width: '100%', height: 'auto' }}
             />
           </BrowserFrame>
         ) : item.image ? (
