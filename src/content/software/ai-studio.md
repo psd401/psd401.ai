@@ -14,8 +14,8 @@ stack: Next.js 16 · AWS
 repo: https://github.com/psd401/aistudio
 license: MIT
 contact: hagelk@psd401.net
-image: /images/aistudio-1.png
-imageAlt: The AI Studio home screen, with the district name above a short description of the platform
+image: /images/software/ai-studio-home.webp
+imageAlt: "The AI Studio home screen: a welcome message, a search bar, and featured tools including Nexus Chat, the Assistant Catalog, the Prompt Library, Model Compare, Assistant Architect and Tutorials"
 appUrl: aistudio.psd401.ai
 spec:
   - k: Models
