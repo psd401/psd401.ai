@@ -197,6 +197,6 @@ afford.
 
 The AI Studio product page shows `software/ai-studio-home.webp`, a real
 capture of the current home screen (featured tools, no hero artwork), supplied
-by Hagel in September 2026. It replaced `aistudio-1.png`, whose stylised brain
-graphic went against the brand guidance's ban on brains in imagery.
-`aistudio-1.png` is no longer referenced by any page.
+by Hagel in September 2026. It replaced `aistudio-1.png`, since deleted, whose
+stylised brain graphic went against the brand guidance's ban on brains in
+imagery.
