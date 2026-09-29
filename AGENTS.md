@@ -218,10 +218,12 @@ Two stylesheets cover the same classes and **must change together**:
 `.oad-doc` / `.oad-plan` blocks in [src/styles/ds.css](src/styles/ds.css) for the
 in-site version.
 
-`public/openadaptivedistrict/first-draft/` is a 19-file archive of the
+`public/openadaptivedistrict/first-draft/` is an 18-file archive of the
 superseded original, deliberately left in its own visual style. Do not restyle
-it; the difference is what marks it as archived. Its copy of the action plan
-redirects to `/open-adaptive-district/action-plan` (next.config.js).
+it; the difference is what marks it as archived. It no longer holds a copy of
+the action plan: that lives in `src/content/open-adaptive-district/action-plan.md`,
+and the old archive URL redirects to `/open-adaptive-district/action-plan`
+(next.config.js).
 
 ## Things that will bite you
 

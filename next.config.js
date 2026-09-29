@@ -30,17 +30,20 @@ const redirects = [
   { source: '/policies/:slug', destination: '/guidance/:slug', permanent: true },
 
   // 05 Open Adaptive District — was a bare static directory.
-  // NOTE: only the bare path redirects. The six real .html files under
-  // public/openadaptivedistrict/ must keep resolving, so no :path* wildcard
-  // here — a wildcard would break every inbound link to the playbook pages.
+  // NOTE: no :path* wildcard here. The printable pages at
+  // /openadaptivedistrict/0*.html (served by app/openadaptivedistrict/[file])
+  // and the first-draft/ archive must keep resolving — a wildcard would break
+  // every inbound link to them. The old static index.html is deleted; its URL
+  // redirects below.
   { source: '/openadaptivedistrict', destination: '/open-adaptive-district', permanent: true },
   {
     source: '/openadaptivedistrict/index.html',
     destination: '/open-adaptive-district',
     permanent: true,
   },
-  // The fellowship action plan now renders inside the site. Only this one
-  // archive file moves; the rest of first-draft/ keeps its original look.
+  // The fellowship action plan now lives in the content bundle and renders
+  // inside the site. Its archived static copy is deleted; the old URL, which
+  // other archive pages still link to, redirects to the in-site page.
   {
     source: '/openadaptivedistrict/first-draft/03-Fellowship-Action-Plan-FILLED.html',
     destination: '/open-adaptive-district/action-plan',
