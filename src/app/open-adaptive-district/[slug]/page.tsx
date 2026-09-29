@@ -105,7 +105,7 @@ export default async function OadDocPage({ params }: Props) {
         <OadCopyButtons />
 
         {doc.printable && (
-          <p className="ds-label ds-label--sm ds-label--muted" style={{ marginTop: 40 }}>
+          <p className="ds-label ds-label--sm" style={{ marginTop: 40 }}>
             <a href={`/openadaptivedistrict/${doc.printable}`} style={{ color: 'var(--sec)' }}>
               Open the printable version
             </a>

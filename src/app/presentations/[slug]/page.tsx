@@ -133,7 +133,7 @@ export default async function PresentationPage({ params }: Props) {
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
             />
           </div>
-          <p className="ds-label ds-label--sm ds-label--muted" style={{ marginTop: 10 }}>
+          <p className="ds-label ds-label--sm" style={{ marginTop: 10 }}>
             <a
               href={item.slides}
               target="_blank"

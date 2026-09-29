@@ -43,6 +43,11 @@
 .ds-grid {
   display: grid;
 }
+/* Grid items default to min-width: auto, so one long unbreakable label
+   (a chip, a date row) widened its card past a phone screen. */
+.ds-grid > * {
+  min-width: 0;
+}
 .ds-grid--2 {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -233,10 +238,18 @@
   border-radius: 0;
   text-decoration: none;
   white-space: nowrap;
+  max-width: 100%;
   transition:
     background var(--dur-fast) var(--ease),
     color var(--dur-fast) var(--ease),
     border-color var(--dur-fast) var(--ease);
+}
+/* Long category names ("Streamlining Administrative Tasks & ...") wrap on a
+   phone instead of pushing the page sideways. */
+@media (max-width: 768px) {
+  .ds-chip {
+    white-space: normal;
+  }
 }
 .ds-chip--sm {
   font-size: var(--label-xs);
@@ -1585,7 +1598,7 @@ a.ds-chip--outline:hover {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px 24px;
-  opacity: var(--text-label);
+  color: color-mix(in oklab, var(--ink) 66%, var(--surface));
 }
 .oad-plan .masthead .roman,
 .oad-plan .colophon .mark {
@@ -1766,7 +1779,7 @@ a.ds-chip--outline:hover {
 .oad-plan .next-row .meta {
   display: block;
   margin-top: 4px;
-  opacity: var(--text-muted);
+  color: color-mix(in oklab, var(--ink) 72%, var(--surface));
 }
 
 /* SCAN tables */
@@ -1796,7 +1809,7 @@ a.ds-chip--outline:hover {
   margin-top: 56px;
   padding-top: 16px;
   border-top: 1px solid var(--hairline);
-  opacity: var(--text-label);
+  color: color-mix(in oklab, var(--ink) 66%, var(--surface));
 }
 
 @media (max-width: 768px) {
