@@ -129,34 +129,9 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* ------------------------------------------------- 02 software */}
-      <div data-section="software">
-        <SectionRule ground="tint">
-          <SectionHeader
-            number="02"
-            title="Software we build"
-            size="section"
-            meta={`${counts.software} products`}
-            lead="Built by district staff for district problems, and all open source, so another district can run them for free."
-          />
-          <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
-            {featuredSoftware.map(p => (
-              <ProductCard
-                key={p.slug}
-                href={p.resource}
-                name={p.title}
-                line={p.description}
-                stack={p.stack}
-                status={p.status === 'draft' ? 'DRAFT' : p.maturity.toUpperCase()}
-              />
-            ))}
-          </div>
-        </SectionRule>
-      </div>
-
       {/* -------------------------------------------------- 01 writing */}
       <div data-section="writing">
-        <SectionRule>
+        <SectionRule ground="tint">
           <SectionHeader
             number="01"
             title="Writing"
@@ -174,6 +149,31 @@ export default async function Home() {
                 excerpt={p.description}
                 byline={p.author}
                 image={p.image ? { src: p.image, alt: '' } : { id: 'WR-XX', brief: p.title }}
+              />
+            ))}
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* ------------------------------------------------- 02 software */}
+      <div data-section="software">
+        <SectionRule>
+          <SectionHeader
+            number="02"
+            title="Software we build"
+            size="section"
+            meta={`${counts.software} products`}
+            lead="Built by district staff for district problems, and all open source, so another district can run them for free."
+          />
+          <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
+            {featuredSoftware.map(p => (
+              <ProductCard
+                key={p.slug}
+                href={p.resource}
+                name={p.title}
+                line={p.description}
+                stack={p.stack}
+                status={p.status === 'draft' ? 'DRAFT' : p.maturity.toUpperCase()}
               />
             ))}
           </div>
