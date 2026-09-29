@@ -160,6 +160,38 @@ export const researchSchema = okfBase.extend({
   image: z.string().optional(),
 });
 
+/**
+ * 05 Open Adaptive District: the protocol's documents and the fellowship
+ * action plan. Rendered at /open-adaptive-district/<slug>, and also served as
+ * a self-contained printable page at /openadaptivedistrict/<printable>.
+ */
+export const protocolSchema = okfBase.extend({
+  type: z.literal('protocol'),
+  date: isoDate,
+  /** Position in the reading order, e.g. '01'. Absent = not in the series. */
+  n: z
+    .string()
+    .regex(/^\d{2}$/, 'two digits, e.g. "01"')
+    .optional(),
+  /** Short name for navigation and breadcrumbs, e.g. 'Start Here'. */
+  label: z.string().min(1),
+  /**
+   * File name of the printable copy under /openadaptivedistrict/. These are
+   * the original URLs of the static pages, so they must never change.
+   */
+  printable: z
+    .string()
+    .regex(/^[\w-]+\.html$/, 'a file name like 01-Start-Here.html')
+    .optional(),
+  image: z.string().optional(),
+  imageAlt: z.string().optional(),
+  /**
+   * 'document' renders the title as the h1 above the body. 'plan' is for a
+   * body that carries its own designed markup, h1 included (the action plan).
+   */
+  layout: z.enum(['document', 'plan']).default('document'),
+});
+
 /* ------------------------------------------------------------- registry */
 
 export const SCHEMAS = {
@@ -170,6 +202,7 @@ export const SCHEMAS = {
   'use-case': useCaseSchema,
   tool: toolSchema,
   research: researchSchema,
+  protocol: protocolSchema,
 } as const;
 
 export type SchemaFor<T extends keyof typeof SCHEMAS> = z.infer<(typeof SCHEMAS)[T]>;
@@ -181,6 +214,7 @@ export type Presentation = z.infer<typeof presentationSchema>;
 export type UseCase = z.infer<typeof useCaseSchema>;
 export type Tool = z.infer<typeof toolSchema>;
 export type Research = z.infer<typeof researchSchema>;
+export type Protocol = z.infer<typeof protocolSchema>;
 
 /** Maps a content directory to the OKF type it holds. */
 export const DIR_TO_TYPE = {
@@ -191,6 +225,7 @@ export const DIR_TO_TYPE = {
   'use-cases': 'use-case',
   tools: 'tool',
   articles: 'research',
+  'open-adaptive-district': 'protocol',
 } as const satisfies Record<string, keyof typeof SCHEMAS>;
 
 export type ContentDir = keyof typeof DIR_TO_TYPE;
@@ -204,4 +239,5 @@ export const DIR_TO_URL = {
   'use-cases': '/use-cases',
   tools: '/tools',
   articles: '/articles',
+  'open-adaptive-district': '/open-adaptive-district',
 } as const satisfies Record<ContentDir, string>;

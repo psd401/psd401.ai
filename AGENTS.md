@@ -47,15 +47,16 @@ the sitemap, `llms.txt` and the RSS feed, and carry `noindex`. **Removing
 v0.2 bundle. Every markdown file is one "concept" and MUST carry a non-empty
 `type`. Full field tables are in [docs/CONTENT.md](docs/CONTENT.md).
 
-| `type`         | Directory        | URL                            | What it is                                   |
-| -------------- | ---------------- | ------------------------------ | -------------------------------------------- |
-| `post`         | `writing/`       | `/writing/<slug>`              | 01 Writing — notes from staff doing the work |
-| `software`     | `software/`      | `/software/<slug>`             | 02 Software — products the district builds   |
-| `policy`       | `guidance/`      | `/guidance/<slug>`             | 03 Guidance — documents staff work from      |
-| `presentation` | `presentations/` | `/presentations/<slug>`        | 04 Presentations — talks, as given           |
-| `use-case`     | `use-cases/`     | `/use-cases/<category>/<slug>` | Staff-submitted examples                     |
-| `tool`         | `tools/`         | `/tools/<slug>`                | Third-party tools reviewed                   |
-| `research`     | `articles/`      | `/articles/<slug>`             | External research, summarised                |
+| `type`         | Directory                 | URL                              | What it is                                                               |
+| -------------- | ------------------------- | -------------------------------- | ------------------------------------------------------------------------ |
+| `post`         | `writing/`                | `/writing/<slug>`                | 01 Writing — notes from staff doing the work                             |
+| `software`     | `software/`               | `/software/<slug>`               | 02 Software — products the district builds                               |
+| `policy`       | `guidance/`               | `/guidance/<slug>`               | 03 Guidance — documents staff work from                                  |
+| `presentation` | `presentations/`          | `/presentations/<slug>`          | 04 Presentations — talks, as given                                       |
+| `use-case`     | `use-cases/`              | `/use-cases/<category>/<slug>`   | Staff-submitted examples                                                 |
+| `tool`         | `tools/`                  | `/tools/<slug>`                  | Third-party tools reviewed                                               |
+| `research`     | `articles/`               | `/articles/<slug>`               | External research, summarised                                            |
+| `protocol`     | `open-adaptive-district/` | `/open-adaptive-district/<slug>` | 05 Open Adaptive District — the protocol's documents and the action plan |
 
 `index.md` and `log.md` are **reserved** by OKF. They describe the bundle and
 are never concepts. Do not create them by hand — `npm run okf:build` writes
@@ -187,32 +188,40 @@ real page — `links:audit` fetches every one.
 
 ---
 
-## The Open Adaptive District artefacts
+## The Open Adaptive District documents
 
-Section 05's five documents are hand-authored HTML in
-`public/openadaptivedistrict/`, not markdown concepts. They render **twice**,
-on purpose:
+Section 05's documents are OKF concepts of type `protocol` in
+`src/content/open-adaptive-district/`: the five documents of the protocol
+(`n: '01'` to `'05'`, the reading order) and the fellowship action plan (no
+`n`, `layout: plan`). Each renders **twice**, from the same HTML
+([src/lib/oad.ts](src/lib/oad.ts)), so the two cannot drift:
 
-- `/open-adaptive-district/<slug>` — canonical, inside the site chrome. Built
-  by `src/app/open-adaptive-district/[slug]/page.tsx`, which reads the files
-  through [src/lib/oad.ts](src/lib/oad.ts) and injects the authored body,
-  dropping only each document's own header and mini-nav.
-- `/openadaptivedistrict/<file>.html` — the original, self-contained and
-  formatted for printing. Carries `<link rel="canonical">` to the app route so
-  the two never compete in search.
+- `/open-adaptive-district/<slug>`: canonical, inside the site chrome
+  (`src/app/open-adaptive-district/[slug]/page.tsx`).
+- `/openadaptivedistrict/<printable>`: self-contained and formatted for
+  printing, at the documents' original static URLs
+  (`src/app/openadaptivedistrict/[file]/route.ts`). Never rename a
+  `printable` value: `links:audit` checks those five URLs.
+
+Bodies are markdown with a little raw HTML, rendered unsanitised because it is
+ours:
+
+- A copy button goes where a document has
+  `<div class="oad-copy" data-copy-label="Copy the …"></div>` directly before
+  a blockquote template (the Playbook has three).
+- The action plan's body is its own designed markup, kept as **one HTML block
+  with no blank lines**. A blank line ends the block, and the rest would be
+  parsed as markdown (an indented line becomes a code block).
 
 Two stylesheets cover the same classes and **must change together**:
-`public/openadaptivedistrict/oad.css` for the standalone copies, and the
-`.oad-doc` block at the end of [src/styles/ds.css](src/styles/ds.css) for the
+`public/openadaptivedistrict/oad.css` for the printable copies, and the
+`.oad-doc` / `.oad-plan` blocks in [src/styles/ds.css](src/styles/ds.css) for the
 in-site version.
-
-`src/lib/oad.ts` splits each document on `</nav>`. If someone restructures an
-artefact and removes that, the loader throws at build time rather than
-shipping a blank page — do not "fix" that by making it silent.
 
 `public/openadaptivedistrict/first-draft/` is a 19-file archive of the
 superseded original, deliberately left in its own visual style. Do not restyle
-it; the difference is what marks it as archived.
+it; the difference is what marks it as archived. Its copy of the action plan
+redirects to `/open-adaptive-district/action-plan` (next.config.js).
 
 ## Things that will bite you
 

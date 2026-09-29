@@ -19,6 +19,7 @@ const DIR_LABELS: Record<ContentDir, string> = {
   software: 'Software',
   guidance: 'Guidance',
   presentations: 'Presentations',
+  'open-adaptive-district': 'Open Adaptive District',
   'use-cases': 'Use cases',
   tools: 'Tools',
   articles: 'Research',
@@ -51,7 +52,7 @@ export default async function OkfPage() {
           as="h1"
           title="Open Knowledge bundle"
           meta={`OKF v${OKF_VERSION}`}
-          lead="Every post, product page, guidance document, presentation, use case, tool review and research summary on this site is published as an Open Knowledge Format bundle: a directory of markdown files with typed frontmatter. These are the same files the website renders, so what an agent reads and what a reader sees stay the same."
+          lead="Every post, product page, guidance document, presentation, Open Adaptive District document, use case, tool review and research summary on this site is published as an Open Knowledge Format bundle: a directory of markdown files with typed frontmatter. These are the same files the website renders, so what an agent reads and what a reader sees stay the same."
         />
       </SectionRule>
 

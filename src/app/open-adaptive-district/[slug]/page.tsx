@@ -4,51 +4,48 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Breadcrumb, ImageFrame, SectionRule } from '@/components/ds';
 import OadCopyButtons from '@/components/OadCopyButtons';
-import { getOadArtifact, getOadArtifacts } from '@/lib/oad';
+import { getOadDoc, getOadDocs, getOadSeries } from '@/lib/oad';
 import JsonLd, { createArticleSchema, createBreadcrumbSchema } from '@/components/JsonLd';
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const artifacts = await getOadArtifacts();
-  return artifacts.map(a => ({ slug: a.slug }));
+  const docs = await getOadDocs();
+  return docs.map(d => ({ slug: d.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const doc = await getOadArtifact(slug);
+  const doc = await getOadDoc(slug);
   if (!doc) return { title: 'Not found', robots: { index: false, follow: false } };
 
   return {
     title: doc.title,
     description: doc.description,
-    alternates: { canonical: `/open-adaptive-district/${doc.slug}` },
+    alternates: { canonical: doc.resource },
     openGraph: {
       type: 'article',
       title: doc.title,
       description: doc.description,
-      url: `/open-adaptive-district/${doc.slug}`,
+      url: doc.resource,
     },
   };
 }
 
 /**
- * An Open Adaptive District artefact, rendered inside the site.
+ * An Open Adaptive District document, rendered inside the site.
  *
- * The document's authored HTML is injected as-is; only its own header and
- * mini-nav are dropped, replaced by the real masthead, breadcrumb and footer.
- * The markup is ours, written by district staff and committed to this
- * repository — it is not user input.
- *
- * The self-contained static file stays available at its original .html URL for
- * printing and direct download, and points its canonical here.
+ * The HTML comes from src/content/open-adaptive-district/<slug>.md through
+ * renderOadHtml in src/lib/oad.ts — the same HTML the printable copy at
+ * /openadaptivedistrict/<printable> serves. The five documents of the series
+ * get a previous/next pager; the action plan (no `n`) does not.
  */
-export default async function OadArtifactPage({ params }: Props) {
+export default async function OadDocPage({ params }: Props) {
   const { slug } = await params;
-  const doc = await getOadArtifact(slug);
+  const doc = await getOadDoc(slug);
   if (!doc) notFound();
 
-  const url = `/open-adaptive-district/${doc.slug}`;
+  const crumb = doc.n ? `${doc.n} ${doc.title}` : doc.label;
 
   return (
     <article data-section="oad">
@@ -57,12 +54,13 @@ export default async function OadArtifactPage({ params }: Props) {
           createArticleSchema({
             title: doc.title,
             description: doc.description,
-            url,
+            url: doc.resource,
+            date: doc.date,
           }),
           createBreadcrumbSchema([
             { name: 'Home', url: '/' },
             { name: 'Open Adaptive District', url: '/open-adaptive-district' },
-            { name: doc.title, url },
+            { name: doc.n ? doc.title : doc.label, url: doc.resource },
           ]),
         ]}
       />
@@ -78,7 +76,7 @@ export default async function OadArtifactPage({ params }: Props) {
         <Breadcrumb
           items={[
             { label: '05 Open Adaptive District', href: '/open-adaptive-district' },
-            { label: `${doc.n} ${doc.title}` },
+            { label: crumb },
           ]}
         />
       </div>
@@ -95,35 +93,39 @@ export default async function OadArtifactPage({ params }: Props) {
             />
           </div>
         )}
-        {/* SAFE: doc.html is authored markup read from this repository at
-            build time (public/openadaptivedistrict/*.html). It is never user
-            input and never fetched at runtime. */}
-        <div className="oad-doc" dangerouslySetInnerHTML={{ __html: doc.html }} />
+        {/* SAFE: doc.html is rendered at build time from markdown committed to
+            this repository (src/content/open-adaptive-district/). It is never
+            user input and never fetched at runtime. */}
+        <div
+          className={doc.layout === 'plan' ? 'oad-doc oad-plan' : 'oad-doc'}
+          dangerouslySetInnerHTML={{ __html: doc.html }}
+        />
         <OadCopyButtons />
 
-        <p className="ds-label ds-label--sm ds-label--muted" style={{ marginTop: 40 }}>
-          <a href={`/openadaptivedistrict/${doc.file}`} style={{ color: 'var(--sec)' }}>
-            Open the standalone version
-          </a>{' '}
-          — self-contained, and formatted for printing.
-        </p>
+        {doc.printable && (
+          <p className="ds-label ds-label--sm ds-label--muted" style={{ marginTop: 40 }}>
+            <a href={`/openadaptivedistrict/${doc.printable}`} style={{ color: 'var(--sec)' }}>
+              Open the printable version
+            </a>
+          </p>
+        )}
       </SectionRule>
 
-      <OadPager slug={doc.slug} />
+      {doc.n && <OadPager slug={doc.slug} />}
     </article>
   );
 }
 
-/** Previous / next through the five artefacts, in reading order. */
+/** Previous / next through the five documents, in reading order. */
 async function OadPager({ slug }: { slug: string }) {
-  const all = await getOadArtifacts();
-  const i = all.findIndex(a => a.slug === slug);
-  const prev = i > 0 ? all[i - 1] : null;
-  const next = i < all.length - 1 ? all[i + 1] : null;
+  const series = await getOadSeries();
+  const i = series.findIndex(d => d.slug === slug);
+  const prev = i > 0 ? series[i - 1] : null;
+  const next = i >= 0 && i < series.length - 1 ? series[i + 1] : null;
 
   return (
     <nav
-      aria-label="Artefacts"
+      aria-label="Open Adaptive District documents"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -134,10 +136,7 @@ async function OadPager({ slug }: { slug: string }) {
     >
       <div>
         {prev && (
-          <Link
-            href={`/open-adaptive-district/${prev.slug}`}
-            style={{ textDecoration: 'none', color: 'inherit' }}
-          >
+          <Link href={prev.resource} style={{ textDecoration: 'none', color: 'inherit' }}>
             <span className="ds-label ds-label--xs ds-label--muted" style={{ display: 'block' }}>
               ← Previous
             </span>
@@ -149,10 +148,7 @@ async function OadPager({ slug }: { slug: string }) {
       </div>
       <div style={{ textAlign: 'right' }}>
         {next && (
-          <Link
-            href={`/open-adaptive-district/${next.slug}`}
-            style={{ textDecoration: 'none', color: 'inherit' }}
-          >
+          <Link href={next.resource} style={{ textDecoration: 'none', color: 'inherit' }}>
             <span className="ds-label ds-label--xs ds-label--muted" style={{ display: 'block' }}>
               Next →
             </span>

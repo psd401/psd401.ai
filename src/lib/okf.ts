@@ -41,6 +41,7 @@ export const OKF_TYPES = [
   'use-case',
   'tool',
   'research',
+  'protocol',
 ] as const;
 
 export type OkfType = (typeof OKF_TYPES)[number];

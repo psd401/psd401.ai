@@ -56,15 +56,16 @@ v0.2 bundle _and_ the site's source — not an export derived from it. Every
 markdown file is one "concept" carrying a required `type`. Agents consume the
 same files the site renders, from GitHub or over HTTP at `/okf`.
 
-| `type`         | Directory        | Route                          |
-| -------------- | ---------------- | ------------------------------ |
-| `post`         | `writing/`       | `/writing/<slug>`              |
-| `software`     | `software/`      | `/software/<slug>`             |
-| `policy`       | `guidance/`      | `/guidance/<slug>`             |
-| `presentation` | `presentations/` | `/presentations/<slug>`        |
-| `use-case`     | `use-cases/`     | `/use-cases/<category>/<slug>` |
-| `tool`         | `tools/`         | `/tools/<slug>`                |
-| `research`     | `articles/`      | `/articles/<slug>`             |
+| `type`         | Directory                 | Route                            |
+| -------------- | ------------------------- | -------------------------------- |
+| `post`         | `writing/`                | `/writing/<slug>`                |
+| `software`     | `software/`               | `/software/<slug>`               |
+| `policy`       | `guidance/`               | `/guidance/<slug>`               |
+| `presentation` | `presentations/`          | `/presentations/<slug>`          |
+| `use-case`     | `use-cases/`              | `/use-cases/<category>/<slug>`   |
+| `tool`         | `tools/`                  | `/tools/<slug>`                  |
+| `research`     | `articles/`               | `/articles/<slug>`               |
+| `protocol`     | `open-adaptive-district/` | `/open-adaptive-district/<slug>` |
 
 `index.md` and `log.md` are reserved by OKF and are never concepts. Field
 tables are in [docs/CONTENT.md](docs/CONTENT.md).

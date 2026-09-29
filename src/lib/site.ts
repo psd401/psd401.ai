@@ -78,6 +78,8 @@ export const SECTIONS: Section[] = [
     key: 'oad',
     name: 'Open Adaptive District',
     href: '/open-adaptive-district',
+    contentDir: 'open-adaptive-district',
+    okfType: 'protocol',
     description: 'Our protocol for AI work: six-week cycles any district can adopt.',
   },
 ];

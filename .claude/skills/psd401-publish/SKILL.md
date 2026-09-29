@@ -38,15 +38,16 @@ Leave it in place until the piece is genuinely ready.
 
 ## Step 1 — pick the type
 
-| Ask                                           | Type           | Lands at                       |
-| --------------------------------------------- | -------------- | ------------------------------ |
-| Someone at PSD writing about work they did    | `post`         | `/writing/<slug>`              |
-| A product PSD builds and runs                 | `software`     | `/software/<slug>`             |
-| A policy or guidance document staff work from | `policy`       | `/guidance/<slug>`             |
-| A talk that was given                         | `presentation` | `/presentations/<slug>`        |
-| A staff member's practical example            | `use-case`     | `/use-cases/<category>/<slug>` |
-| A third-party tool we assessed                | `tool`         | `/tools/<slug>`                |
-| Someone else's paper, summarised              | `research`     | `/articles/<slug>`             |
+| Ask                                           | Type           | Lands at                         |
+| --------------------------------------------- | -------------- | -------------------------------- |
+| Someone at PSD writing about work they did    | `post`         | `/writing/<slug>`                |
+| A product PSD builds and runs                 | `software`     | `/software/<slug>`               |
+| A policy or guidance document staff work from | `policy`       | `/guidance/<slug>`               |
+| A talk that was given                         | `presentation` | `/presentations/<slug>`          |
+| A staff member's practical example            | `use-case`     | `/use-cases/<category>/<slug>`   |
+| A third-party tool we assessed                | `tool`         | `/tools/<slug>`                  |
+| Someone else's paper, summarised              | `research`     | `/articles/<slug>`               |
+| A document of the Open Adaptive District      | `protocol`     | `/open-adaptive-district/<slug>` |
 
 If it does not fit one of these, it probably does not belong on the site yet.
 Ask rather than inventing a type — the vocabulary is closed and lives in

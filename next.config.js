@@ -80,7 +80,8 @@ const nextConfig = {
         destination: '/okf/use-cases/:slug.md',
       },
       {
-        source: '/:dir(writing|software|guidance|presentations|tools|articles)/:slug.md',
+        source:
+          '/:dir(writing|software|guidance|presentations|open-adaptive-district|tools|articles)/:slug.md',
         destination: '/okf/:dir/:slug.md',
       },
     ];

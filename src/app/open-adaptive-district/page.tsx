@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Button, DocCard, ImageFrame, SectionHeader, SectionRule } from '@/components/ds';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 import OadCycle from '@/components/OadCycle';
-import { getOadArtifacts, OAD_CONTACT_FORM } from '@/lib/oad';
+import { getOadSeries, OAD_CONTACT_FORM } from '@/lib/oad';
 
 export const metadata: Metadata = {
   title: 'The Open Adaptive District',
@@ -21,20 +21,13 @@ export const metadata: Metadata = {
 /**
  * Section 05.
  *
- * The five artefacts are hand-authored HTML in public/openadaptivedistrict/.
- * They now render twice, deliberately:
- *
- *   /open-adaptive-district/<slug>          canonical, inside the site chrome
- *   /openadaptivedistrict/<file>.html       the original, self-contained and
- *                                           formatted for printing
- *
- * The static copies carry a <link rel="canonical"> pointing at the app route,
- * so the two never compete in search. next.config.js redirects the bare
- * /openadaptivedistrict path here but leaves the .html files serving, so
- * every existing link into an individual artefact still resolves.
+ * The cards list the five documents of the protocol, in reading order, from
+ * src/content/open-adaptive-district/ (see src/lib/oad.ts). Each also has a
+ * printable copy at its original /openadaptivedistrict/<file>.html URL.
+ * next.config.js redirects the bare /openadaptivedistrict path here.
  */
 export default async function OpenAdaptiveDistrict() {
-  const artifacts = await getOadArtifacts();
+  const artifacts = await getOadSeries();
 
   return (
     <div data-section="oad">
@@ -47,7 +40,7 @@ export default async function OpenAdaptiveDistrict() {
             url: '/open-adaptive-district',
             items: artifacts.map(a => ({
               title: a.title,
-              url: `/open-adaptive-district/${a.slug}`,
+              url: a.resource,
               description: a.description,
             })),
           }),
@@ -109,8 +102,8 @@ export default async function OpenAdaptiveDistrict() {
           {artifacts.map(a => (
             <DocCard
               key={a.slug}
-              href={`/open-adaptive-district/${a.slug}`}
-              kind={a.n}
+              href={a.resource}
+              kind={a.n!}
               title={a.title}
               description={a.description}
               // DocCard is itself an anchor, so this must not contain a link.

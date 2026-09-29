@@ -159,7 +159,23 @@ Existing categories — reuse rather than inventing:
 | `image`       | no       | Path under `public/`. Must exist.                       |
 
 Bodies here are **our summary**, not the paper. The page says so explicitly
-above the fold, and the JSON-LD carries a `citation` pointing at the original.
+above the fold, and the JSON-LD marks the page as an Article we wrote, with
+`isBasedOn` carrying the original's URL, author and publisher.
+
+## `protocol` — `open-adaptive-district/` → `/open-adaptive-district/<slug>`
+
+| Field       | Required | Notes                                                                     |
+| ----------- | -------- | ------------------------------------------------------------------------- |
+| `date`      | yes      | Last revised.                                                             |
+| `label`     | yes      | Short name for nav and breadcrumbs, e.g. `Start Here`.                    |
+| `n`         | no       | Reading order, `'01'`–`'05'`. Absent = not in the series (action plan).   |
+| `printable` | no       | File name of the printable copy, e.g. `01-Start-Here.html`. Never rename. |
+| `image`     | no       | Shown above the document in the site. Path under `public/`.               |
+| `imageAlt`  | no       | Alt text for `image`.                                                     |
+| `layout`    | no       | `document` (default) or `plan` for a body carrying its own markup and h1. |
+
+The body starts at `##`; the title is the h1. See "The Open Adaptive District
+documents" in AGENTS.md for the raw-HTML rules.
 
 ---
 

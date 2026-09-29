@@ -39,6 +39,11 @@ const ORDER: Array<{ dir: ContentDir; heading: string; note: string }> = [
     note: 'Talks and workshops, published as given.',
   },
   {
+    dir: 'open-adaptive-district',
+    heading: 'Open Adaptive District',
+    note: 'Our protocol for AI work: six-week cycles any district can adopt, and the fellowship action plan behind it.',
+  },
+  {
     dir: 'use-cases',
     heading: 'Use cases',
     note: 'Staff-submitted examples: the task, the tool, the outcome.',

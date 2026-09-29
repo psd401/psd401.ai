@@ -1,6 +1,5 @@
 import { getAllConcepts, indexable, STATIC_ROUTES } from '@/lib/all-content';
 import { getCategories } from '@/lib/use-cases';
-import { ACTION_PLAN_PATH, getOadArtifacts } from '@/lib/oad';
 import { SITE_URL } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -48,11 +47,7 @@ function urlEntry({
 }
 
 export async function GET() {
-  const [concepts, categories, oad] = await Promise.all([
-    getAllConcepts(),
-    getCategories(),
-    getOadArtifacts(),
-  ]);
+  const [concepts, categories] = await Promise.all([getAllConcepts(), getCategories()]);
   const published = indexable(concepts);
 
   // The freshest concept date stands in for "when did this index last change".
@@ -69,17 +64,10 @@ export async function GET() {
         priority: '0.5',
       })
     ),
-    // The five Open Adaptive District artefacts. Only the canonical app
-    // routes are listed — the standalone .html copies point their canonical
-    // here, so listing both would advertise duplicate content.
-    ...oad.map(a =>
-      urlEntry({
-        path: `/open-adaptive-district/${a.slug}`,
-        changefreq: 'monthly',
-        priority: '0.7',
-      })
-    ),
-    urlEntry({ path: ACTION_PLAN_PATH, changefreq: 'yearly', priority: '0.5' }),
+    // Open Adaptive District documents come in with the other concepts
+    // below. Only their canonical /open-adaptive-district/<slug> routes are
+    // listed; the printable /openadaptivedistrict/*.html copies point their
+    // canonical there, so listing both would advertise duplicate content.
     ...published.map(c =>
       urlEntry({
         path: c.url,

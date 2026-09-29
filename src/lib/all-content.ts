@@ -34,6 +34,7 @@ const DIRS: ContentDir[] = [
   'software',
   'guidance',
   'presentations',
+  'open-adaptive-district',
   'use-cases',
   'tools',
   'articles',

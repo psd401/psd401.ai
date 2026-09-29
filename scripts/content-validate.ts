@@ -215,7 +215,9 @@ async function main() {
       if (href.startsWith('/')) {
         const clean =
           decodeURIComponent(href.split('#')[0].split('?')[0].replace(/\/$/, '')) || '/';
-        if (!knownPaths.has(clean)) {
+        // A file under public/ is a valid target too, e.g. the archived
+        // first-draft pages the action plan links to.
+        if (!knownPaths.has(clean) && !(await exists(path.join(PUBLIC, clean)))) {
           error(rel, `link ${href} does not resolve to a page on this site`);
         }
       }

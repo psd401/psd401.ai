@@ -145,15 +145,17 @@ export function collectTags(items: Array<{ tags?: string[] }>): string[] {
  * shown on the site comes from here.
  */
 export const getCounts = cache(async () => {
-  const [posts, software, policies, presentations, useCases, tools, research] = await Promise.all([
-    getConcepts('writing'),
-    getConcepts('software'),
-    getConcepts('guidance'),
-    getConcepts('presentations'),
-    getConcepts('use-cases'),
-    getConcepts('tools'),
-    getConcepts('articles'),
-  ]);
+  const [posts, software, policies, presentations, useCases, tools, research, protocol] =
+    await Promise.all([
+      getConcepts('writing'),
+      getConcepts('software'),
+      getConcepts('guidance'),
+      getConcepts('presentations'),
+      getConcepts('use-cases'),
+      getConcepts('tools'),
+      getConcepts('articles'),
+      getConcepts('open-adaptive-district'),
+    ]);
 
   return {
     posts: posts.length,
@@ -165,7 +167,9 @@ export const getCounts = cache(async () => {
     useCases: useCases.length,
     tools: tools.length,
     research: research.length,
-    /** Everything published on the site, as forkable artefacts. */
+    /** Open Adaptive District documents, the action plan included. */
+    protocol: protocol.length,
+    /** Everything published on the site. */
     total:
       posts.length +
       software.length +
@@ -173,6 +177,7 @@ export const getCounts = cache(async () => {
       presentations.length +
       useCases.length +
       tools.length +
-      research.length,
+      research.length +
+      protocol.length,
   };
 });

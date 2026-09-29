@@ -1,0 +1,701 @@
+---
+type: protocol
+title: 'Google & GSV Ed Leader Fellowship — Action Plan'
+label: Fellowship action plan
+description: 'The action plan Peninsula School District submitted for the Google & GSV Ed Leader Fellowship: building the Open Adaptive District, and sharing it with other districts.'
+resource: /open-adaptive-district/action-plan
+date: '2026-09-28'
+layout: plan
+tags:
+  - Open Adaptive District
+status: stable
+---
+
+<!--
+The fellowship action plan, kept as submitted apart from small corrections.
+The body is the plan's own designed markup, one HTML block with no blank
+lines (a blank line would end the block and turn the rest into markdown).
+Its classes are styled by the .oad-plan rules in src/styles/ds.css.
+-->
+
+<header class="masthead">
+<div class="section-marker">
+<span><span class="roman">№ 03</span> &nbsp;·&nbsp; Fellowship Submission</span>
+<span>Google &amp; GSV Ed Leader Fellowship · 2026–2027 Cohort</span>
+</div>
+<h1 class="title">Transformational Opportunity<br />Action Plan</h1>
+<p class="subtitle">Peninsula School District · Office of the Superintendent</p>
+<div class="byline">
+<span>Draft v1</span><span class="sep">·</span> <span>May 2026</span
+><span class="sep">·</span>
+<span class="due">Submission due May 1, 2027</span>
+</div>
+</header>
+<div class="part-banner">
+<span class="num">Part 01</span>
+<h2>Identifying the Transformational Opportunity</h2>
+</div>
+<section class="monograph a">
+<div class="crown">
+<span class="tag">Opportunity A</span>
+<span class="anchor">From the anchor chart · System change by design thinking</span>
+</div>
+<h3 class="title">Building the Open Adaptive District</h3>
+<div class="field">
+<span class="label">Description</span>
+<div class="value">
+<p>
+Peninsula is building a new way of working — a district that can keep pace with AI as
+it changes. Right now, when a new tool comes out, school districts often take years to
+figure out what to do with it. By then, the next wave has already arrived, and
+educators are exhausted. We are going to change that here.
+</p>
+<p>
+Every six weeks, small teams across the district — cabinet departments, principal
+teams by grade level, and later groups of teachers and operations staff — will choose
+one experiment to try. They will start by asking what has changed in the last six
+weeks and what problem they want to solve. They will write down what they expect to
+happen and how they will know. They will run the experiment. At the end of the cycle,
+they will share what they learned — including what did not work — and everything will
+be posted publicly on psd401.ai so families, staff, and other districts can see how we
+work. (We call this the
+<a class="inline" href="/openadaptivedistrict/first-draft/01-SHIP-Open-Adaptive-District-Quick-Guide.html">Open Adaptive District cycle</a
+>.)
+</p>
+<p>
+Each quarter, I will write a short, three-sentence statement of what we are after, why
+it matters now, and what we will not give up along the way. Teams take that direction
+and choose their own path inside it. I do not tell teams how to do their work — I tell
+them what we are after.
+<a class="inline" href="/openadaptivedistrict/first-draft/04-Quarterly-Intent-Template.html"
+>A template guides this quarterly statement.</a
+>
+</p>
+<p>
+Rather than adding more meetings to coordinate all of this, we are building an
+<a class="inline" href="/openadaptivedistrict/first-draft/02-The-Logbook-Design-Brief.html">internal AI tool</a> that
+quietly reads each team's weekly written updates and keeps everyone — including me —
+informed about what is working, what is stuck, and where teams could help each other.
+The point is simple: a district learning to use AI well should use AI to organize its
+own learning.
+</p>
+<p>
+What we are building is not an AI plan or a technology rollout. It is the district's
+ability to keep adjusting, honestly and in public, at the pace the world is actually
+moving — so that what we offer our students next year can be very different from what
+we offered them last year, and we can show our families exactly how we got there.
+</p>
+</div>
+</div>
+<div class="field">
+<span class="label">Why this is important</span>
+<div class="value">
+<p>
+AI capability is doubling on a roughly seven-month curve while traditional district
+change cycles run two to five years. Without an adaptive operating model, every new
+wave of technology creates fresh paralysis. Districts default to one of two failure
+modes: waiting for the state to act, or accepting vendor-driven adoption that bypasses
+public mission. Both deepen inequity and surrender district agency. The Open Adaptive
+District is the alternative.
+</p>
+</div>
+</div>
+<div class="field">
+<span class="label">Barriers</span>
+<div class="value">
+<ul>
+<li>
+Traditional change models (Kotter, Fullan) assume stable end-states and are too slow
+for an exponential environment
+</li>
+<li>
+Cabinet, principals, and staff prioritize what they hear most often; the operating
+model competes with forty other initiatives
+</li>
+<li>Meeting culture struggles to carry cross-silo coordination</li>
+<li>
+Some leaders treat complex problems as if they were complicated and try to
+expert-solve them
+</li>
+<li>Education norms punish public failure, which discourages honest debriefs</li>
+</ul>
+</div>
+</div>
+<div class="field">
+<span class="label">Risks</span>
+<div class="value">
+<ul>
+<li>Moving fast without governance erodes community trust</li>
+<li>Moving slowly cedes the field to vendors and consultants</li>
+<li>Capacity stays in four or five senior people instead of a system</li>
+<li>Cycles become theater — teams go through the motions without actually shipping</li>
+<li>Bets that don't work get quietly dropped instead of publicly debriefed</li>
+</ul>
+</div>
+</div>
+<div class="field">
+<span class="label">Resources needed</span>
+<div class="value">
+<ul>
+<li>Superintendent ownership and cabinet alignment (in place)</li>
+<li>The district agent (the CIO builds summer 2026)</li>
+<li>Quarterly intent discipline from the superintendent</li>
+<li>Dedicated time for cycle teams — not bolt-on</li>
+<li>Communications capacity to make wins and decommissions visible</li>
+<li>A published playbook on psd401.ai</li>
+</ul>
+</div>
+</div>
+<div class="field">
+<span class="label">How have you tried to address this</span>
+<div class="value">
+<p>
+Four years of progressive AI work at PSD: a growing roster of production AI agents we
+have built ourselves, a custom AI tools platform at
+<strong>psd401.ai/aistudio</strong> where staff create their own assistants, the
+public <strong>psd401.ai</strong> website where we share our work openly, and
+national-level conference and press visibility.
+</p>
+<p>
+<strong>What has worked:</strong> top-down permission paired with bottom-up tinkering
+across cabinet, principals, and staff; making our work visible early through
+psd401.ai, public talks, and press coverage; building tools that staff actually use.
+</p>
+<p>
+<strong>What hasn't worked yet:</strong> assuming directors would prioritize without
+being told; assuming principals would notice and replicate without scaffolding;
+treating AI as a teaching-and-learning topic rather than a district operating-model
+question.
+</p>
+<p>
+<strong>What remains underbuilt:</strong> the <em>cadence</em> — a published,
+repeatable adaptive cycle that other leaders can run without being us. The Open
+Adaptive District is that cadence.
+</p>
+</div>
+</div>
+<div class="eval">
+<div class="eval-cell high">
+<div class="lbl">Priority vs 2026–27 Goals</div>
+<div class="val"><span class="marker"></span>High Priority</div>
+</div>
+<div class="eval-cell high">
+<div class="lbl">Resourcing Difficulty</div>
+<div class="val"><span class="marker"></span>Resources available</div>
+</div>
+<div class="eval-cell high">
+<div class="lbl">Personal Passion</div>
+<div class="val"><span class="marker"></span>High personal passion</div>
+</div>
+</div>
+</section>
+<section class="monograph b">
+<div class="crown">
+<span class="tag">Opportunity B</span>
+<span class="anchor">From the anchor chart · Innovation at scale</span>
+</div>
+<h3 class="title">The Open Adaptive District<br />as a Public-Interest Model</h3>
+<div class="field">
+<span class="label">Description</span>
+<div class="value">
+<p>
+The work happening inside Peninsula is too important to keep to ourselves. Other
+districts — large and small, well-resourced and not — face the same questions we do,
+but very few have the staff, the partners, or the permission to work them out on their
+own. Without somewhere credible to look, those districts often end up buying whatever
+a vendor is selling. We want there to be a public alternative they can turn to — one
+built by districts, for districts.
+</p>
+<p>
+Across the fellowship year, we will turn Peninsula's working model into something
+other districts can actually pick up and use. Our public website, psd401.ai, will grow
+from a place where we tell stories of our work into a working library — the
+<a class="inline" href="/openadaptivedistrict/first-draft/01-SHIP-Open-Adaptive-District-Quick-Guide.html"
+>six-week cycle we run</a
+>, the
+<a class="inline" href="/openadaptivedistrict/first-draft/04-Quarterly-Intent-Template.html">templates we use</a>, the
+rules we follow about what we share and what we keep private, the
+<a class="inline" href="/openadaptivedistrict/first-draft/02-The-Logbook-Design-Brief.html">AI tools we build</a>, and
+the honest debrief from every team, including the experiments that failed. If another
+district could copy it, adapt it, or run it themselves, it will be there.
+</p>
+<p>
+In February 2027, Peninsula will host a regional gathering for superintendents and
+their teams from across the Pacific Northwest. The day will not be a conference. It
+will be a working meeting, where each district leaves with a draft of their own first
+six-week cycle, a partner district to compare notes with through the spring, and clear
+ways to keep contributing back to the shared library as they go. We hope at least
+three or four other districts are running their own cycle by the end of the school
+year.
+</p>
+<p>
+Alongside the gathering, we will publish a longer written case study describing how
+Peninsula has done this work and what we have learned. A shorter, more practical
+whitepaper will give district leaders the tools they need to start. A short visual
+piece — a video or photo essay — will help families and staff see the spirit of the
+work, not just the structure.
+</p>
+<p>
+We are not trying to put a flag on the moon. We are trying to make sure that, when the
+next wave of AI lands, public schools have a model of their own to point to — one that
+other districts had a hand in building.
+</p>
+</div>
+</div>
+<div class="field">
+<span class="label">Why this is important</span>
+<div class="value">
+<p>
+Capacity-constrained districts will otherwise be absorbed into closed vendor stacks. A
+public, district-owned alternative protects public education's agency in deciding what
+AI in education looks like. Districts deserve a seat at the table, not a seat in the
+audience. Peninsula's local work becomes a public contribution.
+</p>
+</div>
+</div>
+<div class="field">
+<span class="label">Barriers</span>
+<div class="value">
+<ul>
+<li>Regional districts have very different readiness levels</li>
+<li>Sustained inter-district collaboration is hard without immediate value</li>
+<li>PSD capacity is already stretched leading internally</li>
+<li>
+No widely shared district-centered AI operating framework currently exists for the
+coalition to rally around
+</li>
+<li>
+Other districts may pattern-match this to past "leader district shows off" efforts
+and disengage
+</li>
+</ul>
+</div>
+</div>
+<div class="field">
+<span class="label">Risks</span>
+<div class="value">
+<ul>
+<li>Coalition becomes conversation without artifacts</li>
+<li>PSD overextends and weakens the internal work</li>
+<li>
+Equity concern: early-mover districts benefit faster than capacity-constrained ones
+</li>
+<li>Framing becomes too oppositional toward vendors and burns relationships</li>
+</ul>
+</div>
+</div>
+<div class="field">
+<span class="label">Resources needed</span>
+<div class="value">
+<ul>
+<li>Convening capacity for the February symposium</li>
+<li>psd401.ai evolved into a two-way contribution platform</li>
+<li>Writing and publication time for the long-form article and whitepaper</li>
+<li>Higher education and workforce partnerships</li>
+<li>Fellowship network connections</li>
+<li>Modest funding for symposium and publication production</li>
+</ul>
+</div>
+</div>
+<div class="field">
+<span class="label">How have you tried to address this</span>
+<div class="value">
+<p>
+The primary national platform for sharing this work has been the
+<strong>American Association of School Administrators (AASA)</strong>, where the
+superintendent sits alongside peers in national conversations on AI, governance, and
+operations. Beyond AASA, Peninsula engages prominently through
+<strong>CoSN</strong> (the Consortium for School Networking) and
+<strong>Digital Promise's League of Innovative Schools</strong>, with smaller
+participation in <strong>ERDI</strong> and <strong>WASA</strong>. Public-facing
+sharing through psd401.ai, published articles, and national conference talks has
+reached district leaders well beyond those formal networks. Individual districts have
+reached out one at a time for informal mentoring.
+</p>
+<p>
+<strong>What has worked:</strong> districts across the country have been inspired by
+Peninsula's example — including at least one that stood up a full AI department after
+seeing our work. Peninsula has earned a national platform.
+</p>
+<p>
+<strong>What hasn't worked yet:</strong> sharing has been one-way; there is no
+coalition structure; no shared framework for other districts to fork.
+</p>
+</div>
+</div>
+<div class="eval">
+<div class="eval-cell high">
+<div class="lbl">Priority vs 2026–27 Goals</div>
+<div class="val"><span class="marker"></span>High Priority</div>
+</div>
+<div class="eval-cell med">
+<div class="lbl">Resourcing Difficulty</div>
+<div class="val"><span class="marker"></span>Resources might be available</div>
+</div>
+<div class="eval-cell high">
+<div class="lbl">Personal Passion</div>
+<div class="val"><span class="marker"></span>High personal passion</div>
+</div>
+</div>
+</section>
+<div class="part-banner">
+<span class="num">Part 02</span>
+<h2>Action Planning</h2>
+</div>
+<h3 class="plan">Idea</h3>
+<p class="plan-idea">
+Launch and document <strong>The Open Adaptive District</strong> — an operating model in
+which cross-silo teams run six-week cycles (Plan, Do, Study, Share)
+under a quarterly superintendent intent, coordinated through the district agent (an AI agent
+that reads team Spaces and synthesizes across the district), with every cycle's lessons
+published openly on psd401.ai. Convene a February 2027 regional symposium and co-publish a
+long-form article and whitepaper framing PSD's operating model as a portable,
+public-interest contribution other districts can adopt.
+</p>
+<h3 class="plan">How this addresses both opportunities</h3>
+<p>
+A and B are two layers of the same work.
+<strong>A is the internal practice; B is the field-facing translation.</strong> Every
+internal artifact becomes a public artifact. The cycles produce the evidence that the
+operating model works; psd401.ai publishes that evidence as the field's reference
+implementation. The February symposium activates the coalition. The publication makes the
+model citable.
+</p>
+<h3 class="plan">Metrics for success</h3>
+<div class="metric-ledger">
+<div class="metric-row headline">
+<div class="metric-num">Headline</div>
+<div>
+<strong>Proof point.</strong> ≥2 AI capabilities released after Sept 2026 absorbed into
+PSD operations within 60 days of release.
+</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-01</div>
+<div>≥4 cycles completed across ≥6 teams (Aug 2026–May 2027)</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-02</div>
+<div>≥4 public cycle debriefs on psd401.ai, including ≥1 decommissioned bet</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-03</div>
+<div>February 2027 PSD-hosted regional symposium delivered</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-04</div>
+<div>≥3 regional districts running their own cycle by May 2027</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-05</div>
+<div>1 long-form article + 1 whitepaper + multimedia playbook on psd401.ai</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-06</div>
+<div>The district agent operational from cycle one and in routine use</div>
+</div>
+<div class="metric-row">
+<div class="metric-num">M-07</div>
+<div>Quarterly intent issued by superintendent four consecutive quarters</div>
+</div>
+</div>
+<h3 class="plan">Timeline</h3>
+<div class="chronology">
+<div class="chron-row">
+<div class="chron-when">Jun – Aug 2026</div>
+<div class="chron-what">
+Doctrine finalized · psd401.ai v2 scoped · async agent prototyped with Tech · cabinet
+and principal August kickoff
+</div>
+</div>
+<div class="chron-row">
+<div class="chron-when">Sep – Oct 2026</div>
+<div class="chron-what">
+Cycle 01 across cabinet department teams and principal grade-band teams
+</div>
+</div>
+<div class="chron-row">
+<div class="chron-when">Nov 2026</div>
+<div class="chron-what">
+First debriefs published · teacher teams and operational staff layered in · Cycle 02
+begins
+</div>
+</div>
+<div class="chron-row">
+<div class="chron-when">Dec 2026 – Jan 2027</div>
+<div class="chron-what">
+Cycle 03 · symposium logistics finalized · whitepaper drafted
+</div>
+</div>
+<div class="chron-row milestone">
+<div class="chron-when">Feb 2027</div>
+<div class="chron-what">Regional symposium hosted at PSD</div>
+</div>
+<div class="chron-row">
+<div class="chron-when">Mar – Apr 2027</div>
+<div class="chron-what">
+Cycle 04 · long-form article finalized · coalition commitments collected
+</div>
+</div>
+<div class="chron-row milestone">
+<div class="chron-when">May 1, 2027</div>
+<div class="chron-what">
+Fellowship deliverables submitted — publication, whitepaper, psd401.ai v2 live,
+coalition documented
+</div>
+</div>
+</div>
+<h3 class="plan">Stakeholders</h3>
+<div class="stake-grid">
+<div class="stake-col">
+<h4>Internal core</h4>
+<ul>
+<li>Superintendent</li>
+<li>Cabinet</li>
+<li>Board (sponsor)</li>
+<li>Principals</li>
+</ul>
+</div>
+<div class="stake-col">
+<h4>Builder layer</h4>
+<ul>
+<li>Teacher teams (in-building or cross-district)</li>
+<li>Operational staff (Tech · ESS · Business)</li>
+<li>Any group ready to run a cycle</li>
+</ul>
+</div>
+<div class="stake-col">
+<h4>External</h4>
+<ul>
+<li>Students &amp; families</li>
+<li>Regional superintendents</li>
+<li>Higher-ed &amp; workforce</li>
+<li>Fellowship peers</li>
+</ul>
+</div>
+</div>
+<h3 class="plan">Support needed</h3>
+<ul>
+<li>Executive coaching and thought partnership from the fellowship network</li>
+<li>Legal and governance review for the publish-vs-redact rule</li>
+<li>Symposium logistics and facilitation</li>
+<li>Editorial support for publication</li>
+<li>Documentation and case-study writing support</li>
+</ul>
+<h3 class="plan">Required resources</h3>
+<p>
+Project management capacity (the CIO and the Director of Research and Assessment as primary
+stewards) · cabinet and principal time inside the cycles · psd401.ai v2 build resources ·
+modest funding for symposium production and publication design · travel for one or two
+coalition pre-meetings.
+</p>
+<h3 class="plan">Risks &amp; wonders</h3>
+<ul>
+<li>Will teams treat the cycles as theater if leadership pressure is uneven?</li>
+<li>
+Will principals feel observed or empowered by the async digest? The answer depends on
+tone, not mechanism.
+</li>
+<li>
+Will the coalition want a charter and artifact before the symposium, or is informal
+coalition-building sufficient in year one?
+</li>
+<li>
+Does the publication serve PSD's narrative or the field's adoption? They overlap but are
+not identical.
+</li>
+<li>How honest can decommissioning be in public without political cost?</li>
+</ul>
+<h3 class="plan">Immediate next steps</h3>
+<div class="next-steps">
+<div class="next-row">
+<div>
+<span class="what">Finalize Open Adaptive District doctrine</span
+><span class="meta"
+>the CIO &amp; the superintendent<span class="sep">·</span
+><span class="due">Within 2 weeks</span></span
+>
+</div>
+</div>
+<div class="next-row">
+<div>
+<span class="what">Build the district agent prototype</span
+><span class="meta"
+>the CIO · Tech department<span class="sep">·</span
+><span class="due">By Jul 15</span></span
+>
+</div>
+</div>
+<div class="next-row">
+<div>
+<span class="what">Cabinet alignment session</span
+><span class="meta"
+>the superintendent<span class="sep">·</span><span class="due">Late July</span></span
+>
+</div>
+</div>
+<div class="next-row">
+<div>
+<span class="what">August all-administrator kickoff — Cycle 01</span
+><span class="meta"
+>the superintendent &amp; the CIO<span class="sep">·</span
+><span class="due">First week of August</span></span
+>
+</div>
+</div>
+<div class="next-row">
+<div>
+<span class="what">psd401.ai v2 design spec</span
+><span class="meta"
+>the Director of Research and Assessment &amp; Communications<span class="sep">·</span
+><span class="due">6 weeks</span></span
+>
+</div>
+</div>
+<div class="next-row">
+<div>
+<span class="what">Symposium save-the-date to regional superintendents</span
+><span class="meta"
+>the superintendent<span class="sep">·</span><span class="due">8 weeks</span></span
+>
+</div>
+</div>
+<div class="next-row">
+<div>
+<span class="what">Whitepaper outline</span
+><span class="meta"
+>the CIO &amp; the superintendent<span class="sep">·</span
+><span class="due">12 weeks</span></span
+>
+</div>
+</div>
+</div>
+<div class="part-banner optional">
+<span class="num">Appendix · Optional</span>
+<h2>TregoED SCAN Protocol</h2>
+</div>
+<h3 class="plan">S — See the issues</h3>
+<p>
+The district is operating in a moment when AI is transforming learning, work, communication,
+and public expectations on a months-long curve. The issue is not whether AI will be used in
+schools; it is whether districts will build the institutional capacity to govern, integrate,
+and direct AI responsibly — and whether public education will define its own model before
+closed vendor stacks define one for it.
+</p>
+<h3 class="plan">C — Clarify the issues</h3>
+<p>
+<strong>"Adaptive District"</strong> means a district whose decision and execution loops
+match the pace of the change it operates in. <strong>"Public-interest model"</strong> means
+an approach centered on equity, transparency, interoperability, and district agency —
+distinct from market dependence.
+</p>
+<h3 class="plan">A — Assess priorities</h3>
+<table class="scan">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Clarify</th>
+<th>Sev</th>
+<th>Urg</th>
+<th>Grth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI is outpacing district decision cycles</td>
+<td>Districts react more quickly than they design</td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+</tr>
+<tr>
+<td>Vendor capture of public-ed AI direction</td>
+<td>Closed stacks harden faster than public alternatives</td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+</tr>
+<tr>
+<td>Cross-silo info flow is broken</td>
+<td>Coordination depends on meetings that don't work</td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-M">M</span></td>
+</tr>
+<tr>
+<td>Public failure is culturally punished</td>
+<td>Killing bets is hidden, so learning is lost</td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-M">M</span></td>
+<td><span class="sev sev-H">H</span></td>
+</tr>
+<tr>
+<td>Field has no shared adaptive framework</td>
+<td>No reference model for other districts to fork</td>
+<td><span class="sev sev-M">M</span></td>
+<td><span class="sev sev-M">M</span></td>
+<td><span class="sev sev-H">H</span></td>
+</tr>
+<tr>
+<td>Trust and communication must be proactive</td>
+<td>Families and staff need clarity before scale</td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+<td><span class="sev sev-H">H</span></td>
+</tr>
+</tbody>
+</table>
+<h3 class="plan">N — Name next steps</h3>
+<table class="scan">
+<thead>
+<tr>
+<th>Action</th>
+<th>By Whom</th>
+<th>By When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finalize Open Adaptive District doctrine</td>
+<td>the superintendent &amp; the CIO</td>
+<td>Within 2 weeks</td>
+</tr>
+<tr>
+<td>Build the district agent prototype</td>
+<td>the CIO</td>
+<td>By July 15</td>
+</tr>
+<tr>
+<td>Align cabinet on operating model</td>
+<td>the superintendent</td>
+<td>Late July</td>
+</tr>
+<tr>
+<td>August all-administrator kickoff for cycle 01</td>
+<td>the superintendent &amp; the CIO</td>
+<td>First week of August</td>
+</tr>
+<tr>
+<td>psd401.ai v2 design spec</td>
+<td>the Director of Research and Assessment &amp; Communications</td>
+<td>Within 6 weeks</td>
+</tr>
+<tr>
+<td>Symposium save-the-date to regional superintendents</td>
+<td>the superintendent</td>
+<td>Within 8 weeks</td>
+</tr>
+<tr>
+<td>Whitepaper outline</td>
+<td>the CIO &amp; the superintendent</td>
+<td>Within 12 weeks</td>
+</tr>
+</tbody>
+</table>
+<footer class="colophon">
+<span
+><span class="mark">№ 03</span> &nbsp; Peninsula School District &nbsp;·&nbsp; the
+Superintendent, Superintendent</span
+>
+<span>Google &amp; GSV Fellowship &nbsp; Draft v1</span>
+</footer>

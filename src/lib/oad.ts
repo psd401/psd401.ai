@@ -1,25 +1,26 @@
 /**
- * The Open Adaptive District artefacts.
+ * The Open Adaptive District documents.
  *
- * Five hand-authored HTML documents live in public/openadaptivedistrict/.
- * They are designed documents — the flyer is meant to be printed and put on a
- * wall — so they stay there, self-contained and directly linkable at their
- * original .html URLs.
+ * Source: src/content/open-adaptive-district/*.md, OKF type `protocol` — the
+ * five documents of the protocol plus the fellowship action plan. Each one
+ * renders twice, from the same HTML so the two cannot drift apart:
  *
- * This module reads them at build time and extracts the authored content so
- * the same documents can also render as real pages inside the site chrome:
- * masthead, footer, breadcrumbs, theme, metadata, JSON-LD, sitemap and search.
- * Those app routes are canonical; the static files carry a <link rel=
- * "canonical"> pointing at them, so the two copies never compete.
+ *   /open-adaptive-district/<slug>       canonical, inside the site chrome
+ *   /openadaptivedistrict/<printable>    self-contained and formatted for
+ *                                        printing, at the documents' original
+ *                                        static URLs (app/openadaptivedistrict)
  *
- * Nothing is rewritten. The extraction drops only the document's own <header>
- * and mini-nav, which the site chrome replaces.
+ * Bodies are markdown with a little raw HTML: the copy-button placeholders in
+ * the Playbook, and the action plan's own designed markup. Both are written by
+ * district staff and committed to this repository, never user input, so they
+ * are rendered without sanitising.
  */
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import { cache } from 'react';
-
-const DIR = path.join(process.cwd(), 'public/openadaptivedistrict');
+import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
+import remarkHtml from 'remark-html';
+import { getConcepts, type Concept } from './content';
+import type { Protocol } from './schemas';
 
 /**
  * Where other districts send questions. A Google Form owned by hagelk@psd401.net,
@@ -28,149 +29,69 @@ const DIR = path.join(process.cwd(), 'public/openadaptivedistrict');
 export const OAD_CONTACT_FORM =
   'https://docs.google.com/forms/d/e/1FAIpQLSfXMAZqz4haz2TpK6DDSMejKd4W400BaT47i5pRU7_EdlZSBQ/viewform';
 
-export type OadArtifact = {
-  slug: string;
-  /** The original static file, still served and still linkable. */
-  file: string;
-  title: string;
-  description: string;
-  /** Position in the reading order, e.g. '01'. */
-  n: string;
-  /** Authored HTML, with the document's own header and nav removed. */
+export type OadDoc = Concept<Protocol> & {
+  /** The rendered document, ready for .oad-doc (site) or .wrap (printable). */
   html: string;
-  /** Optional illustration shown above the document inside the site. */
-  image?: string;
-  imageAlt?: string;
 };
 
-/**
- * Reading order and framing. Each description is the card text on the section
- * page and the meta description of the artefact page itself.
- */
-const ARTIFACTS: Array<Omit<OadArtifact, 'title' | 'html'>> = [
-  {
-    n: '01',
-    slug: 'start-here',
-    file: '01-Start-Here.html',
-    description:
-      'What the protocol is, why we run it, and how a cycle works. Five minutes, and the only required reading.',
-  },
-  {
-    n: '02',
-    slug: 'playbook',
-    file: '02-The-Playbook.html',
-    description:
-      'The three documents a team uses (build plan, weekly check-in and wrap-up) with templates.',
-  },
-  {
-    n: '03',
-    slug: 'what-were-learning',
-    file: '03-What-Were-Learning.html',
-    image: '/images/sections/oad-03-stages.jpg',
-    imageAlt:
-      'Four groups of staff around a looping track: planning at a table with sticky notes, building at a laptop and whiteboard, studying a bar chart, and pinning a finished page to a board',
-    description: "Every team's wrap-up as it is published, including the builds that were stopped.",
-  },
-  {
-    n: '04',
-    slug: 'deep-dive',
-    file: '04-The-Deep-Dive.html',
-    description: 'The reasoning and research behind the design, for anyone who wants it.',
-  },
-  {
-    n: '05',
-    slug: 'get-started',
-    file: '05-Get-Started-Flyer.html',
-    description: 'The whole cycle as twelve steps on one page, for printing.',
-  },
-];
-
-function extractTitle(html: string): string {
-  const m = /<title>([\s\S]*?)<\/title>/i.exec(html);
-  if (!m) return 'The Open Adaptive District';
-  // The title becomes page metadata, which React escapes again, so entities
-  // written in the HTML (e.g. &amp;) have to be decoded first.
-  return m[1]
-    .trim()
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, '&');
+export function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-/**
- * Everything inside `.wrap` after the document's own nav, minus the closing
- * `.wrap` div. The header and nav are dropped because the site chrome and
- * breadcrumb replace them; every other byte is the author's.
- */
-function extractBody(html: string, file: string): string {
-  const afterNav = html.split('</nav>')[1];
-  if (afterNav === undefined) {
-    throw new Error(
-      `${file}: expected a </nav> to split on. The artefact's structure changed — ` +
-        `check src/lib/oad.ts before this ships a blank page.`
-    );
-  }
-  const close = afterNav.lastIndexOf('</div>');
-  if (close === -1) {
-    throw new Error(`${file}: could not find the closing .wrap div.`);
-  }
-  return afterNav.slice(0, close).trim();
+/** 'The goals stay the same' → 'the-goals-stay-the-same'. */
+function slugify(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&[a-z#0-9]+;/gi, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
-export const getOadArtifacts = cache(async (): Promise<OadArtifact[]> => {
-  return Promise.all(
-    ARTIFACTS.map(async meta => {
-      const raw = await fs.readFile(path.join(DIR, meta.file), 'utf8');
-      return {
-        ...meta,
-        title: extractTitle(raw).replace(/\s*—\s*Peninsula School District\s*$/, ''),
-        html: extractBody(raw, meta.file),
-      };
-    })
+async function renderBody(markdown: string): Promise<string> {
+  const html = String(
+    await remark().use(remarkGfm).use(remarkHtml, { sanitize: false }).process(markdown)
   );
-});
-
-export const getOadArtifact = cache(async (slug: string): Promise<OadArtifact | null> => {
-  const all = await getOadArtifacts();
-  return all.find(a => a.slug === slug) ?? null;
-});
-
-/* ---------------------------------------------------------- action plan */
-
-/** The fellowship action plan, rendered in the site at this route. */
-export const ACTION_PLAN_PATH = '/open-adaptive-district/action-plan';
+  // Anchor ids on section headings, as the hand-written HTML had.
+  return html.replace(
+    /<h([2-4])>([\s\S]*?)<\/h\1>/g,
+    (_m, level: string, inner: string) => `<h${level} id="${slugify(inner)}">${inner}</h${level}>`
+  );
+}
 
 /**
- * The action plan Peninsula submitted for the Google & GSV Ed Leader
- * Fellowship. It lives in the first-draft archive and is the one document in
- * the project that is never edited, so it is shown exactly as written: the
- * extraction keeps everything inside its <main> and drops only the archive's
- * own navigation bar and a decorative colour strip. Relative links into the
- * rest of the archive are made absolute so they still resolve from the
- * app route. The static file's URL redirects here (next.config.js).
+ * A document's HTML. For the usual layout that is the title as the h1 and the
+ * body after it, inside .lede, which both stylesheets key on (the paragraph
+ * straight after the h1 is the lead). The plan layout's body carries its own
+ * h1 and structure.
  */
-const ACTION_PLAN_FILE = 'first-draft/03-Fellowship-Action-Plan-FILLED.html';
+async function renderOadHtml(doc: Concept<Protocol>): Promise<string> {
+  const body = (await renderBody(doc.content)).trim();
+  if (doc.layout === 'plan') return body;
+  return `<div class="lede">\n<h1 id="${doc.slug}">${escapeHtml(doc.title)}</h1>\n${body}\n</div>`;
+}
 
-export type ActionPlan = { title: string; html: string };
+/** Every OAD document, the action plan included. */
+export const getOadDocs = cache(async (): Promise<OadDoc[]> => {
+  const concepts = await getConcepts('open-adaptive-district');
+  const docs = await Promise.all(concepts.map(async c => ({ ...c, html: await renderOadHtml(c) })));
+  return docs.sort((a, b) => (a.n ?? '99').localeCompare(b.n ?? '99'));
+});
 
-export const getActionPlan = cache(async (): Promise<ActionPlan> => {
-  const raw = await fs.readFile(path.join(DIR, ACTION_PLAN_FILE), 'utf8');
-  const main = /<main>([\s\S]*?)<\/main>/i.exec(raw)?.[1];
-  if (!main) {
-    throw new Error(
-      `${ACTION_PLAN_FILE}: expected a <main> element. The file's structure changed — ` +
-        `check getActionPlan in src/lib/oad.ts before this ships a blank page.`
-    );
-  }
-  const html = main
-    .replace(/<nav class="docnav">[\s\S]*?<\/nav>/i, '')
-    .replace(/<div class="fellowship-strip">[\s\S]*?<\/div>/i, '')
-    .replace(
-      /href="(?!https?:|\/|#|mailto:)([^"]+)"/g,
-      'href="/openadaptivedistrict/first-draft/$1"'
-    )
-    .trim();
-  return { title: extractTitle(raw), html };
+/** The five documents of the protocol, in reading order (those with an `n`). */
+export const getOadSeries = cache(async (): Promise<OadDoc[]> => {
+  return (await getOadDocs()).filter(d => d.n);
+});
+
+export const getOadDoc = cache(async (slug: string): Promise<OadDoc | null> => {
+  return (await getOadDocs()).find(d => d.slug === slug) ?? null;
+});
+
+/** The document served at /openadaptivedistrict/<file>, or null. */
+export const getOadPrintable = cache(async (file: string): Promise<OadDoc | null> => {
+  return (await getOadDocs()).find(d => d.printable === file) ?? null;
 });

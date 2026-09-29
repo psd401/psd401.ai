@@ -6,51 +6,52 @@ import { createPortal } from 'react-dom';
 /**
  * "Copy" buttons for the templates in the Open Adaptive District documents.
  *
- * The documents are authored HTML injected into the page, so they cannot
+ * The documents are markdown rendered to HTML on the server, so they cannot
  * carry React components. Instead a document marks where a button goes with
- * an empty placeholder naming the template to copy:
+ * an empty placeholder straight before the template, which is a blockquote:
  *
- *   <div class="oad-copy" data-copy-target="build-plan" data-copy-label="Copy the build plan"></div>
- *   <blockquote id="build-plan">…</blockquote>
+ *   <div class="oad-copy" data-copy-label="Copy the build plan"></div>
+ *
+ *   > **Team:** \_\_\_ …
  *
  * This component finds those placeholders after hydration and renders a
- * button into each. The standalone printable copy has no script, so the
- * placeholder stays empty there and takes no space.
+ * button into each that copies the blockquote after it. The printable copy
+ * has no script, so the placeholder stays empty there and takes no space.
  */
 export default function OadCopyButtons() {
   const [slots, setSlots] = React.useState<HTMLElement[]>([]);
 
   React.useEffect(() => {
     setSlots(
-      Array.from(document.querySelectorAll<HTMLElement>('.oad-doc .oad-copy[data-copy-target]'))
+      Array.from(document.querySelectorAll<HTMLElement>('.oad-doc .oad-copy')).filter(
+        slot => slot.nextElementSibling?.tagName === 'BLOCKQUOTE'
+      )
     );
   }, []);
 
   return (
     <>
-      {slots.map(slot =>
+      {slots.map((slot, i) =>
         createPortal(
           <CopyButton
-            targetId={slot.dataset.copyTarget!}
+            target={slot.nextElementSibling as HTMLElement}
             label={slot.dataset.copyLabel ?? 'Copy the template'}
           />,
           slot,
-          slot.dataset.copyTarget
+          String(i)
         )
       )}
     </>
   );
 }
 
-function CopyButton({ targetId, label }: { targetId: string; label: string }) {
+function CopyButton({ target, label }: { target: HTMLElement; label: string }) {
   const [state, setState] = React.useState<'idle' | 'copied' | 'failed'>('idle');
 
   async function copy() {
-    const el = document.getElementById(targetId);
-    if (!el) return setState('failed');
     try {
       // innerText keeps the paragraph breaks, so the paste reads as a form.
-      await navigator.clipboard.writeText(el.innerText.trim());
+      await navigator.clipboard.writeText(target.innerText.trim());
       setState('copied');
       window.setTimeout(() => setState('idle'), 2500);
     } catch {
