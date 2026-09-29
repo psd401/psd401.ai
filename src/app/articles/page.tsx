@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { Breadcrumb, SectionHeader, SectionRule } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { byDateDesc, getConcepts } from '@/lib/content';
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   description:
     'External research, papers and opinion on AI in education that Peninsula School District has read and summarised. Every entry links to the original.',
   alternates: { canonical: '/articles' },
-  openGraph: { title: 'Research — Peninsula AI', url: '/articles' },
+  openGraph: { title: 'Research — Peninsula AI', url: '/articles', images: [DEFAULT_OG_IMAGE] },
 };
 
 export default async function ResearchIndex() {

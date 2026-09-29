@@ -1,7 +1,7 @@
 ---
 type: presentation
 title: 'Unlocking Efficiency: Leveraging AI in Public School District Operations'
-description: A conference session demonstrating how Peninsula School District uses AI across operations — from prompt engineering and deep research to agentic skills, legislation tracking, and custom-built tools on a district-hosted AI platform.
+description: 'How Peninsula School District uses AI across operations: prompt engineering, deep research, agentic skills, legislation tracking and custom tools.'
 resource: /presentations/aasa-nce-2026
 date: '2026-02-13'
 tags:

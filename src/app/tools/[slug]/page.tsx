@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
 import { Breadcrumb, Button, Chip, SectionRule, SpecTable } from '@/components/ds';
 import MarkdownContent from '@/components/MarkdownContent';
@@ -25,7 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: tool.description,
     alternates: { canonical: tool.resource },
     keywords: tool.tags,
-    openGraph: { title: tool.title, description: tool.description, url: tool.resource },
+    openGraph: {
+      title: tool.title,
+      description: tool.description,
+      url: tool.resource,
+      images: [DEFAULT_OG_IMAGE],
+    },
   };
 }
 

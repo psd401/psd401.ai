@@ -82,19 +82,19 @@ render without them.
 
 ## Placed
 
-| Slot     | File                                 | Where it appears                                     |
-| -------- | ------------------------------------ | ---------------------------------------------------- |
-| HP-01    | `sections/hp-01-classroom.jpg`       | Homepage hero                                        |
-| HP-04    | `sections/hp-04-cycle-session.jpg`   | Homepage, 05 Open Adaptive District band             |
-| HP-05    | `sections/hp-05-gig-harbor.jpg`      | Homepage, 04 Presentations band                      |
-| GU-01    | `sections/gu-01-board-session.jpg`   | Guidance index hero                                  |
-| OAD-01   | `sections/oad-01-cycle-session.jpg`  | Open Adaptive District hero                          |
-| OAD-03   | `sections/oad-03-stages.jpg`         | What We're Learning, above the document              |
-| PD-01    | `software/pd-01-studio-in-use.jpg`   | Software index hero                                  |
-| PD-02 ×4 | `software/pd-*.jpg`                  | PSD AI Agents, Atrium, PRR and EOC product pages     |
-| —        | `software/lessonlens-home.png`       | LessonLens — real screenshot from its public repo    |
-| —        | `software/atrium-capture-review.png` | Atrium Capture — its own store asset, synthetic data |
-| —        | `og-default.jpg`                     | Open Graph card for any page without its own image   |
+| Slot     | File                                 | Where it appears                                                                |
+| -------- | ------------------------------------ | ------------------------------------------------------------------------------- |
+| HP-01    | `sections/hp-01-classroom.jpg`       | Homepage hero                                                                   |
+| HP-04    | `sections/hp-04-cycle-session.jpg`   | Homepage, 05 Open Adaptive District band                                        |
+| HP-05    | `sections/hp-05-gig-harbor.jpg`      | Homepage, 04 Presentations band                                                 |
+| GU-01    | `sections/gu-01-board-session.jpg`   | Guidance index hero                                                             |
+| OAD-01   | `sections/oad-01-cycle-session.jpg`  | Open Adaptive District hero                                                     |
+| OAD-03   | `sections/oad-03-stages.jpg`         | What We're Learning, above the document                                         |
+| PD-01    | `software/pd-01-studio-in-use.jpg`   | Software index hero                                                             |
+| PD-02 ×4 | `software/pd-*.jpg`                  | PSD AI Agents, Atrium, PRR and EOC product pages                                |
+| —        | `software/lessonlens-home.png`       | LessonLens — real screenshot from its public repo                               |
+| —        | `software/atrium-capture-review.png` | Atrium Capture — its own store asset, synthetic data                            |
+| —        | `/opengraph-image` (generated)       | Open Graph card for any page without its own image; src/app/opengraph-image.tsx |
 
 ## Generated, held in reserve
 
@@ -152,7 +152,7 @@ images/sections/use-cases-hero.jpg
 `use-cases-hero.jpg` was the worst, with "Personalearning Learning",
 "Berlovabiet Learning" and "Neural Netwsork" rendered into the image.
 `hero-bg.jpg` was the Open Graph fallback for the whole site;
-`og-default.jpg` replaces it.
+The generated card at `/opengraph-image` replaces it.
 
 **Kept:** `psd-logo.png` and the logo variants, the favicons, the Creative
 Commons badges, and all four `aistudio-*.png` product screenshots — real

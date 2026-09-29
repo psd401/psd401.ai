@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { Button, DocCard, ImageFrame, SectionHeader, SectionRule } from '@/components/ds';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 import OadCycle from '@/components/OadCycle';
@@ -8,13 +9,14 @@ import { getOadSeries, OAD_CONTACT_FORM } from '@/lib/oad';
 export const metadata: Metadata = {
   title: 'The Open Adaptive District',
   description:
-    "Peninsula School District's protocol for AI work: a small team picks one problem, spends six weeks building a better way to handle it, and publishes what happened, including what didn't work. Free for any district to adopt.",
+    'A protocol for AI work from Peninsula School District: a small team picks one problem, spends six weeks improving it, and publishes what happened.',
   alternates: { canonical: '/open-adaptive-district' },
   openGraph: {
     title: 'The Open Adaptive District — Peninsula AI',
     description:
       'Plan, do, study, share: a six-week protocol for AI work that any district can adopt.',
     url: '/open-adaptive-district',
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

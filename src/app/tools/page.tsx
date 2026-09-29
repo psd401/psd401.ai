@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { Breadcrumb, SectionHeader, SectionRule } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { getConcepts } from '@/lib/content';
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     'AI tools reviewed for use in Peninsula School District — what each one does, who provides it, where the data goes, and how far we have taken it.',
   alternates: { canonical: '/tools' },
-  openGraph: { title: 'Tools — Peninsula AI', url: '/tools' },
+  openGraph: { title: 'Tools — Peninsula AI', url: '/tools', images: [DEFAULT_OG_IMAGE] },
 };
 
 export default async function ToolsIndex() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { Button, DocCard, SectionHeader, SectionRule, StatCell } from '@/components/ds';
 import { byDateDesc, getConcepts, getCounts } from '@/lib/content';
 import { getCategories, getUseCaseUrl } from '@/lib/use-cases';
@@ -11,7 +12,11 @@ export const metadata: Metadata = {
   description:
     "Staff-submitted use cases, reviewed AI tools, and external research — the reference material behind Peninsula School District's AI work.",
   alternates: { canonical: '/practice' },
-  openGraph: { title: 'The reference library — Peninsula AI', url: '/practice' },
+  openGraph: {
+    title: 'The reference library — Peninsula AI',
+    url: '/practice',
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 /**

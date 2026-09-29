@@ -2,7 +2,7 @@
 type: protocol
 title: 'Google & GSV Ed Leader Fellowship — Action Plan'
 label: Fellowship action plan
-description: 'The action plan Peninsula School District submitted for the Google & GSV Ed Leader Fellowship: building the Open Adaptive District, and sharing it with other districts.'
+description: "Peninsula School District's action plan for the Google & GSV Ed Leader Fellowship: building the Open Adaptive District and sharing it."
 resource: /open-adaptive-district/action-plan
 date: '2026-09-28'
 layout: plan

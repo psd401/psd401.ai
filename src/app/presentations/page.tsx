@@ -4,7 +4,7 @@ import { SectionHeader, SectionRule } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { byDateDesc, getConcepts } from '@/lib/content';
 import { formatDate } from '@/lib/format';
-import { SECTIONS } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SECTIONS } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 
 const SECTION = SECTIONS.find(s => s.key === 'presentations')!;
@@ -14,7 +14,11 @@ export const metadata: Metadata = {
   description:
     'Talks, workshops and board sessions on AI in K-12 education from Peninsula School District, each with its slides.',
   alternates: { canonical: '/presentations' },
-  openGraph: { title: 'Presentations — Peninsula AI', url: '/presentations' },
+  openGraph: {
+    title: 'Presentations — Peninsula AI',
+    url: '/presentations',
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 export default async function PresentationsIndex() {

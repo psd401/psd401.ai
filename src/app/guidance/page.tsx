@@ -10,7 +10,7 @@ import {
 } from '@/components/ds';
 import { getConcepts } from '@/lib/content';
 import { formatMonthYear } from '@/lib/format';
-import { SECTIONS } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SECTIONS } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 
 const SECTION = SECTIONS.find(s => s.key === 'guidance')!;
@@ -18,9 +18,9 @@ const SECTION = SECTIONS.find(s => s.key === 'guidance')!;
 export const metadata: Metadata = {
   title: 'Guidance',
   description:
-    "Peninsula School District's AI guidance: principles and beliefs, rights and responsibilities, data security, and syllabus language for classrooms. Other districts are welcome to adapt it, with credit.",
+    "Peninsula School District's AI guidance: principles and beliefs, rights and responsibilities, data security, and classroom syllabus language.",
   alternates: { canonical: '/guidance' },
-  openGraph: { title: 'Guidance — Peninsula AI', url: '/guidance' },
+  openGraph: { title: 'Guidance — Peninsula AI', url: '/guidance', images: [DEFAULT_OG_IMAGE] },
 };
 
 export default async function GuidanceIndex() {

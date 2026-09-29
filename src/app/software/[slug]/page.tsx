@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: item.title,
       description: item.description,
       url: item.resource,
-      ...(item.image ? { images: [{ url: item.image }] } : {}),
+      images: [item.image ? { url: item.image } : DEFAULT_OG_IMAGE],
     },
     // Drafts carry unreviewed copy written from the product name alone.
     // Keep them off search results until a human has been through them.

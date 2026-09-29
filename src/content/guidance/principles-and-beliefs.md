@@ -1,7 +1,7 @@
 ---
 type: policy
 title: Peninsula School District AI Principles and Beliefs
-description: The promise of Artificial Intelligence (AI) in the Peninsula School District is substantial. AI enhances and streamlines the efforts of human instructors rather than substituting them.
+description: "Peninsula School District's AI principles and beliefs. AI enhances and streamlines the efforts of human instructors rather than substituting them."
 resource: /guidance/principles-and-beliefs
 date: '2024-08-09'
 category: Guidance

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
 import { Breadcrumb, Chip, ImageFrame, SectionRule } from '@/components/ds';
 import MarkdownContent from '@/components/MarkdownContent';
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
-      ...(post.image ? { images: [{ url: post.image }] } : {}),
+      images: [post.image ? { url: post.image } : DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: 'summary_large_image',
@@ -93,14 +94,20 @@ export default async function WritingPost({ params }: Props) {
           <p className="ds-lead" style={{ marginBottom: 22 }}>
             {post.description}
           </p>
+          {/* Muting sits on the text, not the row, so the link keeps full
+              contrast (it measured 2.8:1 when the whole row was muted). */}
           <div
-            className="ds-label ds-label--sm ds-label--muted"
+            className="ds-label ds-label--sm"
             style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}
           >
-            <span>{post.author}</span>
-            <span aria-hidden="true">·</span>
-            <span>{readingTime(post.content)}</span>
-            <span aria-hidden="true">·</span>
+            <span className="ds-label--muted">{post.author}</span>
+            <span className="ds-label--muted" aria-hidden="true">
+              ·
+            </span>
+            <span className="ds-label--muted">{readingTime(post.content)}</span>
+            <span className="ds-label--muted" aria-hidden="true">
+              ·
+            </span>
             <a href={`${post.resource}.md`} style={{ color: 'var(--sec)' }}>
               Read as markdown
             </a>

@@ -4,14 +4,19 @@ import { CodeBlock, SectionHeader, SectionRule, SpecTable, StatCell } from '@/co
 import { getAllConcepts } from '@/lib/all-content';
 import { OKF_VERSION } from '@/lib/okf';
 import { DIR_TO_TYPE, type ContentDir } from '@/lib/schemas';
-import { SITE_URL } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SITE_URL } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createWebPageSchema } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Open Knowledge bundle',
-  description: `Everything Peninsula School District publishes about AI, as an Open Knowledge Format v${OKF_VERSION} bundle: plain markdown with typed frontmatter, readable by any agent without a custom integration.`,
+  description:
+    'Everything Peninsula School District publishes about AI, as an Open Knowledge Format bundle an agent can read without a custom integration.',
   alternates: { canonical: '/okf' },
-  openGraph: { title: 'Open Knowledge bundle — Peninsula AI', url: '/okf' },
+  openGraph: {
+    title: 'Open Knowledge bundle — Peninsula AI',
+    url: '/okf',
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 const DIR_LABELS: Record<ContentDir, string> = {

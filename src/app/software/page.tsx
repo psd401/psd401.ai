@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { ImageFrame, SectionHeader, SectionRule } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { getConcepts } from '@/lib/content';
-import { SECTIONS } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SECTIONS } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 
 const SECTION = SECTIONS.find(s => s.key === 'software')!;
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'Products Peninsula School District builds and runs, all open source. Built by district staff for district problems, for any district to run.',
   alternates: { canonical: '/software' },
-  openGraph: { title: 'Software — Peninsula AI', url: '/software' },
+  openGraph: { title: 'Software — Peninsula AI', url: '/software', images: [DEFAULT_OG_IMAGE] },
 };
 
 const MATURITY_RANK: Record<string, number> = { Production: 0, Pilot: 1, Beta: 2, Retired: 3 };

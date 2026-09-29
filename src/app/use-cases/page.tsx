@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { Breadcrumb, SectionHeader, SectionRule } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { getAllUseCases, getCategories, getUseCaseUrl } from '@/lib/use-cases';
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     'Practical examples of AI in use across Peninsula School District, submitted by staff — the task, the tool, and what came out of it.',
   alternates: { canonical: '/use-cases' },
-  openGraph: { title: 'Use cases — Peninsula AI', url: '/use-cases' },
+  openGraph: { title: 'Use cases — Peninsula AI', url: '/use-cases', images: [DEFAULT_OG_IMAGE] },
 };
 
 export default async function UseCasesIndex() {

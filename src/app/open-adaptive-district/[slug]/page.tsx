@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Breadcrumb, ImageFrame, SectionRule } from '@/components/ds';
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: doc.title,
       description: doc.description,
       url: doc.resource,
+      images: [doc.image ? { url: doc.image } : DEFAULT_OG_IMAGE],
     },
   };
 }

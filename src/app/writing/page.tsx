@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { SectionHeader, SectionRule, SubscribeForm } from '@/components/ds';
 import ContentIndex, { type IndexItem } from '@/components/ContentIndex';
 import { byDateDesc, getConcepts } from '@/lib/content';
-import { SECTIONS } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SECTIONS } from '@/lib/site';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 import { formatDate } from '@/lib/format';
 import { isSubscribeConfigured } from '@/lib/subscribe';
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     'Notes from the people doing the AI work at Peninsula School District: what we built, what we decided, and what we learned.',
   alternates: { canonical: '/writing' },
-  openGraph: { title: 'Writing — Peninsula AI', url: '/writing' },
+  openGraph: { title: 'Writing — Peninsula AI', url: '/writing', images: [DEFAULT_OG_IMAGE] },
 };
 
 export default async function WritingIndex() {
@@ -68,19 +68,24 @@ export default async function WritingIndex() {
         <ContentIndex items={items} variant="post" slotPrefix="WR" noun="posts" />
       </SectionRule>
 
-      <div
-        style={{
-          borderTop: '1px solid var(--hairline)',
-          background: 'var(--sec-ground)',
-          padding: '44px var(--gutter-page)',
-        }}
-      >
-        <SubscribeForm
-          enabled={isSubscribeConfigured()}
-          title={NEWSLETTER.name}
-          blurb="Get an email when we publish something new."
-        />
-      </div>
+      {/* Hidden until the AWS side (DynamoDB table, SES identity) is set up —
+          see docs/field-notes.md. Showing a form that can only say "not
+          connected yet" is worse than no form. */}
+      {isSubscribeConfigured() && (
+        <div
+          style={{
+            borderTop: '1px solid var(--hairline)',
+            background: 'var(--sec-ground)',
+            padding: '44px var(--gutter-page)',
+          }}
+        >
+          <SubscribeForm
+            enabled
+            title={NEWSLETTER.name}
+            blurb="Get an email when we publish something new."
+          />
+        </div>
+      )}
     </div>
   );
 }

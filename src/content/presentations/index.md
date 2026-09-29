@@ -6,7 +6,7 @@ Concept type: `presentation` · 43 entries
 
 ## Concepts
 
-* [Unlocking Efficiency: Leveraging AI in Public School District Operations](/presentations/aasa-nce-2026.md) - A conference session demonstrating how Peninsula School District uses AI across operations — from prompt engineering and deep research to agentic skills, legislation tracking, and custom-built tools on a district-hosted AI platform.
+* [Unlocking Efficiency: Leveraging AI in Public School District Operations](/presentations/aasa-nce-2026.md) - How Peninsula School District uses AI across operations: prompt engineering, deep research, agentic skills, legislation tracking and custom tools.
 * [From Policy to Practice: Building a District-Wide AI Framework That Works](/presentations/advancing-ai-leadership.md) - A conference session on sharing how districts can build their own AI guidance and policies.
 * [AI Action Research - Board Update](/presentations/ai-action-research-update.md) - A presentation delivered to the PSD Board of Directors on the work of the AI Action Research Team in 2023/2024
 * [Using AI to Boost Efficiency: A Guide for Washington Treasurers](/presentations/ai-boost-efficiency.md) - A workshop delivered at the 2025 Washington Treasurers Association Conference to make work more efficient

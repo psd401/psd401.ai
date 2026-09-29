@@ -379,7 +379,7 @@ a.ds-chip--outline:hover {
 .ds-browser__url {
   font-family: var(--font-mono);
   font-size: 11px;
-  opacity: 0.5;
+  opacity: var(--text-label);
   margin-left: 12px;
 }
 
@@ -536,10 +536,15 @@ a.ds-chip--outline:hover {
 .ds-masthead__link[aria-current='page'] {
   color: var(--sec);
 }
+/* 10px text: at 0.5 opacity it measured 2.3–3.6:1, below WCAG AA's 4.5:1.
+   The current section's number shows at full strength in its colour. */
 .ds-masthead__n {
   font-family: var(--font-mono);
   font-size: 10px;
-  opacity: 0.5;
+  opacity: var(--text-label);
+}
+.ds-masthead__link[aria-current='page'] .ds-masthead__n {
+  opacity: 1;
 }
 .ds-masthead__toggle {
   display: none;
@@ -1040,7 +1045,7 @@ a.ds-chip--outline:hover {
   font-size: var(--label-xs);
   letter-spacing: var(--label-xs-ls);
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: var(--text-muted);
   margin-top: 10px;
 }
 @media (max-width: 768px) {
@@ -1069,6 +1074,8 @@ a.ds-chip--outline:hover {
 .ds-productcard:hover {
   background: var(--sec-ground);
 }
+/* Muting goes on the row's other items, not the row: opacity on the row
+   also dimmed the status, which measured 2.4:1 at 10px (AA needs 4.5:1). */
 .ds-productcard__row {
   display: flex;
   justify-content: space-between;
@@ -1076,11 +1083,12 @@ a.ds-chip--outline:hover {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 1px;
-  opacity: 0.55;
+}
+.ds-productcard__row > :not(.ds-productcard__status) {
+  opacity: var(--text-muted);
 }
 .ds-productcard__status {
   color: var(--sec);
-  opacity: 1;
 }
 .ds-productcard__name {
   font-family: var(--font-display);
@@ -1113,7 +1121,7 @@ a.ds-chip--outline:hover {
   font-size: var(--label-xs);
   letter-spacing: var(--label-xs-ls);
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: var(--text-label);
   margin-bottom: 12px;
 }
 .ds-footer__link {

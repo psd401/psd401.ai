@@ -13,6 +13,24 @@ export const dynamic = 'force-static';
  * an agent that lands on robots.txt finds the machine-readable surfaces
  * without crawling the HTML.
  */
+/**
+ * A crawler follows only the most specific group that names it, so each
+ * named group repeats the wildcard's Disallow: /search. Without it these bots
+ * would ignore that line and crawl every search-results URL.
+ */
+const AI_CRAWLERS = [
+  'GPTBot',
+  'OAI-SearchBot',
+  'ChatGPT-User',
+  'ClaudeBot',
+  'Claude-Web',
+  'anthropic-ai',
+  'PerplexityBot',
+  'Google-Extended',
+  'Applebot-Extended',
+  'CCBot',
+];
+
 export async function GET() {
   const body = `# https://www.robotstxt.org/robotstxt.html
 # Peninsula School District publishes this work to be reused.
@@ -23,36 +41,7 @@ Allow: /
 Disallow: /search
 
 # Answer engines and model crawlers, allowed explicitly.
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
+${AI_CRAWLERS.map(ua => `User-agent: ${ua}\nAllow: /\nDisallow: /search\n`).join('\n')}
 Sitemap: ${SITE_URL}/sitemap.xml
 
 # Machine-readable surfaces

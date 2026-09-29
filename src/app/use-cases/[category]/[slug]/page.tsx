@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
 import { Breadcrumb, Chip, SectionRule, SpecTable } from '@/components/ds';
 import MarkdownContent from '@/components/MarkdownContent';
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: useCase.title,
       description: useCase.description,
       url: useCase.resource,
+      images: [DEFAULT_OG_IMAGE],
     },
   };
 }

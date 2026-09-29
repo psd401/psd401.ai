@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/site';
 import { notFound } from 'next/navigation';
 import { Breadcrumb, Chip, SectionRule } from '@/components/ds';
 import MarkdownContent from '@/components/MarkdownContent';
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: policy.description,
       url: policy.resource,
       publishedTime: policy.date,
+      images: [DEFAULT_OG_IMAGE],
     },
   };
 }
@@ -94,11 +96,13 @@ export default async function GuidancePage({ params }: Props) {
           <p className="ds-lead" style={{ marginBottom: 18 }}>
             {policy.description}
           </p>
-          <div className="ds-label ds-label--sm ds-label--muted">
+          <div className="ds-label ds-label--sm">
             <a href={`${policy.resource}.md`} style={{ color: 'var(--sec)' }}>
               Read as markdown
             </a>{' '}
-            · Licensed CC BY-NC-SA 4.0. Adapt it, with credit
+            <span className="ds-label--muted">
+              · Licensed CC BY-NC-SA 4.0. Adapt it, with credit
+            </span>
           </div>
         </div>
       </SectionRule>

@@ -14,14 +14,19 @@ import {
   StepRow,
 } from '@/components/ds';
 import { byDateDesc, getConcepts, getCounts } from '@/lib/content';
-import { SITE_DESCRIPTION, SITE_TAGLINE } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_TAGLINE } from '@/lib/site';
 import JsonLd, { createWebPageSchema } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Peninsula AI — a public school district doing its AI work in the open',
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
-  openGraph: { title: SITE_TAGLINE, description: SITE_DESCRIPTION, url: '/' },
+  openGraph: {
+    title: SITE_TAGLINE,
+    description: SITE_DESCRIPTION,
+    url: '/',
+    images: [DEFAULT_OG_IMAGE],
+  },
 };
 
 /**
@@ -370,7 +375,7 @@ export default async function Home() {
             fontFamily: 'var(--font-mono)',
             fontSize: 11,
             letterSpacing: '1px',
-            opacity: 0.5,
+            opacity: 'var(--text-label)',
           }}
         >
           <Link href="/search">SEARCH</Link> · <Link href="/practice">LIBRARY</Link> ·{' '}

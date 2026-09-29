@@ -11,6 +11,19 @@ export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://psd401.ai';
 
 export const SITE_NAME = 'Peninsula AI';
 export const SITE_TAGLINE = 'A public school district doing its AI work in the open.';
+/**
+ * The social preview image for any page without its own, rendered by
+ * src/app/opengraph-image.tsx. Every page that sets openGraph must include
+ * it: Next replaces the whole openGraph object per page, so a page that
+ * leaves out images ends up with no preview image at all.
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: '/opengraph-image',
+  width: 1200,
+  height: 630,
+  alt: 'Peninsula AI: a public school district doing its AI work in the open.',
+};
+
 export const SITE_DESCRIPTION =
   'Peninsula School District publishes its AI work in public: the software it builds, the guidance it writes, the talks it gives, and what it learns along the way.';
 

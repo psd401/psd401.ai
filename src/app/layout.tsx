@@ -6,7 +6,7 @@ import { Providers } from './providers';
 import SiteChrome from '@/components/SiteChrome';
 import Script from 'next/script';
 import JsonLd, { createOrganizationSchema, createWebSiteSchema } from '@/components/JsonLd';
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
+import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
 
 /**
  * Four families, no overlap in role. Self-hosted through next/font rather
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: ['/images/og-default.jpg'],
+    images: [DEFAULT_OG_IMAGE.url],
   },
   openGraph: {
     type: 'website',
@@ -74,14 +74,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: '/images/og-default.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Peninsula School District — AI in the open',
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   icons: {
     icon: [
