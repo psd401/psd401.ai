@@ -54,7 +54,7 @@ export default async function GuidanceIndex() {
           <div>
             <SectionHeader
               as="h1"
-              number="03"
+              number="01"
               title="Guidance"
               meta={`${policies.length} documents`}
               lead="The guidance our own staff work from, in plain language. Other districts are welcome to adapt it, with credit to Peninsula School District."

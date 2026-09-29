@@ -15,18 +15,18 @@ agent reads and what a reader sees stay the same.
 
 163 concepts across 8 directories.
 
-Licensed CC BY-NC-SA 4.0. Fork it and put your district's name on it.
+Licensed CC BY-NC-SA 4.0. Adapt it for your district, with credit.
 
 ## Directories
 
-* [01 Writing](/writing/index.md) — `post`, 15 concepts. Notes from the people doing the work: what we built, decided and learned.
-* [02 Software](/software/index.md) — `software`, 7 concepts. Products the district builds and runs, all open source.
-* [03 Guidance](/guidance/index.md) — `policy`, 4 concepts. The guidance our own staff work from.
-* [04 Presentations](/presentations/index.md) — `presentation`, 43 concepts. Talks and slides, published as given.
+* [01 Guidance](/guidance/index.md) — `policy`, 4 concepts. The guidance our own staff work from.
+* [02 Writing](/writing/index.md) — `post`, 15 concepts. Notes from the people doing the work: what we built, decided and learned.
+* [03 Presentations](/presentations/index.md) — `presentation`, 43 concepts. Talks and slides, published as given.
+* [04 Software](/software/index.md) — `software`, 7 concepts. Products the district builds and runs, all open source.
+* [05 Open Adaptive District](/open-adaptive-district/index.md) — `protocol`, 6 concepts. Our protocol for AI work: six-week cycles any district can adopt.
 * [Use cases](/use-cases/index.md) — `use-case`, 50 concepts. Practical examples of AI in use across the district, submitted by staff.
 * [Tools](/tools/index.md) — `tool`, 12 concepts. AI tools reviewed for district use.
 * [Research](/articles/index.md) — `research`, 26 concepts. External research and articles on AI in education.
-* [05 Open Adaptive District](/open-adaptive-district/index.md) — `protocol`, 6 concepts. Our protocol for AI work: six-week cycles any district can adopt.
 
 ## Conventions
 

@@ -27,10 +27,10 @@ const ROOT = process.cwd();
 const CONTENT = path.join(ROOT, 'src/content');
 
 const DIR_TITLES: Record<ContentDir, string> = {
-  writing: '01 Writing',
-  software: '02 Software',
-  guidance: '03 Guidance',
-  presentations: '04 Presentations',
+  guidance: '01 Guidance',
+  writing: '02 Writing',
+  presentations: '03 Presentations',
+  software: '04 Software',
   'open-adaptive-district': '05 Open Adaptive District',
   'use-cases': 'Use cases',
   tools: 'Tools',
@@ -120,7 +120,7 @@ async function writeRootIndex(all: Array<{ dir: ContentDir; entries: Entry[] }>)
     '',
     `${total} concepts across ${all.length} directories.`,
     '',
-    "Licensed CC BY-NC-SA 4.0. Fork it and put your district's name on it.",
+    'Licensed CC BY-NC-SA 4.0. Adapt it for your district, with credit.',
     '',
     '## Directories',
     '',

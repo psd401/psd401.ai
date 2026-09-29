@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 };
 
 const DIR_LABELS: Record<ContentDir, string> = {
-  writing: 'Writing',
-  software: 'Software',
   guidance: 'Guidance',
+  writing: 'Writing',
   presentations: 'Presentations',
+  software: 'Software',
   'open-adaptive-district': 'Open Adaptive District',
   'use-cases': 'Use cases',
   tools: 'Tools',

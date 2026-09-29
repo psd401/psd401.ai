@@ -29,10 +29,10 @@ it, leave it out. "What flopped" is a first-class category.
 
 |     | Section                | Colour  | Token                 | Route                     |
 | --- | ---------------------- | ------- | --------------------- | ------------------------- |
-| 01  | Writing                | cobalt  | `--sec-writing`       | `/writing`                |
-| 02  | Software               | teal    | `--sec-software`      | `/software`               |
-| 03  | Guidance               | green   | `--sec-guidance`      | `/guidance`               |
-| 04  | Presentations          | magenta | `--sec-presentations` | `/presentations`          |
+| 01  | Guidance               | green   | `--sec-guidance`      | `/guidance`               |
+| 02  | Writing                | cobalt  | `--sec-writing`       | `/writing`                |
+| 03  | Presentations          | magenta | `--sec-presentations` | `/presentations`          |
+| 04  | Software               | teal    | `--sec-software`      | `/software`               |
 | 05  | Open Adaptive District | violet  | `--sec-oad`           | `/open-adaptive-district` |
 
 The reference library (`data-section="practice"`) resolves `--sec` to `--ink`,

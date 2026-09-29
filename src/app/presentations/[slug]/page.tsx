@@ -88,7 +88,7 @@ export default async function PresentationPage({ params }: Props) {
         }}
       >
         <Breadcrumb
-          items={[{ label: '04 Presentations', href: '/presentations' }, { label: item.title }]}
+          items={[{ label: '03 Presentations', href: '/presentations' }, { label: item.title }]}
         />
       </div>
 

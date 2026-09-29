@@ -106,13 +106,10 @@ export default async function Home() {
       </div>
 
       {/* ------------------------------------------------- real counts */}
+      {/* Same order as the sections: Writing, Presentations, Software. */}
       <div className="ds-statband">
         <div>
-          <StatCell
-            section="software"
-            value={counts.softwareInProduction}
-            label="Products in production"
-          />
+          <StatCell section="writing" value={counts.posts} label="Posts written by staff" />
         </div>
         <div>
           <StatCell
@@ -122,43 +119,47 @@ export default async function Home() {
           />
         </div>
         <div>
-          <StatCell section="writing" value={counts.posts} label="Posts written by staff" />
+          <StatCell
+            section="software"
+            value={counts.softwareInProduction}
+            label="Products in production"
+          />
         </div>
         <div>
           <StatCell section="oad" value={counts.total} label="Documents published here" />
         </div>
       </div>
 
-      {/* ------------------------------------------------- 02 software */}
-      <div data-section="software">
+      {/* ----------------------------------------------------- 01 guidance */}
+      <div data-section="guidance">
         <SectionRule ground="tint">
           <SectionHeader
-            number="02"
-            title="Software we build"
+            number="01"
+            title="Guidance"
             size="section"
-            meta={`${counts.software} products`}
-            lead="Built by district staff for district problems, and all open source, so another district can run them for free."
+            meta={`${counts.policies} documents`}
+            lead="The guidance our own staff work from, in plain language. Other districts are welcome to adapt it, with credit to Peninsula School District."
           />
-          <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
-            {featuredSoftware.map(p => (
-              <ProductCard
+          <div className="ds-grid ds-grid--2" style={{ gap: 22, marginTop: 28 }}>
+            {policies.map(p => (
+              <DocCard
                 key={p.slug}
                 href={p.resource}
-                name={p.title}
-                line={p.description}
-                stack={p.stack}
-                status={p.status === 'draft' ? 'DRAFT' : p.maturity.toUpperCase()}
+                kind={p.category}
+                meta={p.date}
+                title={p.title}
+                description={p.description}
               />
             ))}
           </div>
         </SectionRule>
       </div>
 
-      {/* -------------------------------------------------- 01 writing */}
+      {/* ------------------------------------------------------ 02 writing */}
       <div data-section="writing">
         <SectionRule>
           <SectionHeader
-            number="01"
+            number="02"
             title="Writing"
             size="section"
             meta={`${counts.posts} posts`}
@@ -180,38 +181,13 @@ export default async function Home() {
         </SectionRule>
       </div>
 
-      {/* ------------------------------------------------- 03 guidance */}
-      <div data-section="guidance">
-        <SectionRule ground="tint">
-          <SectionHeader
-            number="03"
-            title="Guidance"
-            size="section"
-            meta={`${counts.policies} documents`}
-            lead="The policies and guidance our own staff work from, in plain language. You are welcome to copy them and put your district's name on them."
-          />
-          <div className="ds-grid ds-grid--2" style={{ gap: 22, marginTop: 28 }}>
-            {policies.map(p => (
-              <DocCard
-                key={p.slug}
-                href={p.resource}
-                kind={p.category}
-                meta={p.date}
-                title={p.title}
-                description={p.description}
-              />
-            ))}
-          </div>
-        </SectionRule>
-      </div>
-
-      {/* -------------------------------------------- 04 presentations */}
+      {/* ------------------------------------------------ 03 presentations */}
       <div data-section="presentations">
-        <SectionRule>
+        <SectionRule ground="tint">
           <div className="ds-split" style={{ gap: 48, alignItems: 'center' }}>
             <div>
               <SectionHeader
-                number="04"
+                number="03"
                 title="Presentations"
                 size="section"
                 lead={`${counts.presentations} talks, workshops and board sessions, with the slides as they were presented.`}
@@ -229,6 +205,31 @@ export default async function Home() {
               alt="Puget Sound in early morning fog, conifers on the headland, a low school building in the middle distance"
               sizes="(max-width: 768px) 100vw, 40vw"
             />
+          </div>
+        </SectionRule>
+      </div>
+
+      {/* ----------------------------------------------------- 04 software */}
+      <div data-section="software">
+        <SectionRule>
+          <SectionHeader
+            number="04"
+            title="Software we build"
+            size="section"
+            meta={`${counts.software} products`}
+            lead="Built by district staff for district problems, and all open source, so another district can run them for free."
+          />
+          <div className="ds-grid ds-grid--3" style={{ gap: 16, marginTop: 28 }}>
+            {featuredSoftware.map(p => (
+              <ProductCard
+                key={p.slug}
+                href={p.resource}
+                name={p.title}
+                line={p.description}
+                stack={p.stack}
+                status={p.status === 'draft' ? 'DRAFT' : p.maturity.toUpperCase()}
+              />
+            ))}
           </div>
         </SectionRule>
       </div>

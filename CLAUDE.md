@@ -95,10 +95,10 @@ masthead.
 
 |     | Section                | Colour  | Route                     |
 | --- | ---------------------- | ------- | ------------------------- |
-| 01  | Writing                | cobalt  | `/writing`                |
-| 02  | Software               | teal    | `/software`               |
-| 03  | Guidance               | green   | `/guidance`               |
-| 04  | Presentations          | magenta | `/presentations`          |
+| 01  | Guidance               | green   | `/guidance`               |
+| 02  | Writing                | cobalt  | `/writing`                |
+| 03  | Presentations          | magenta | `/presentations`          |
+| 04  | Software               | teal    | `/software`               |
 | 05  | Open Adaptive District | violet  | `/open-adaptive-district` |
 
 **A page shows one section colour.** Set `data-section` once on the page

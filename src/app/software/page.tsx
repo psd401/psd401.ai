@@ -61,7 +61,7 @@ export default async function SoftwareIndex() {
         <div className="ds-split" style={{ gap: 48, alignItems: 'center' }}>
           <SectionHeader
             as="h1"
-            number="02"
+            number="04"
             title="Software we build"
             meta={`${inProduction} in production of ${software.length}`}
             lead="Built by district staff for district problems, then published so another district can run the same thing."

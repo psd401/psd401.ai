@@ -70,7 +70,7 @@ export default async function GuidancePage({ params }: Props) {
         }}
       >
         <Breadcrumb
-          items={[{ label: '03 Guidance', href: '/guidance' }, { label: policy.title }]}
+          items={[{ label: '01 Guidance', href: '/guidance' }, { label: policy.title }]}
         />
       </div>
 
