@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# Read-only: CI checks out, installs, validates and builds. It writes nothing.
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest

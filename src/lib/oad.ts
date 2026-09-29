@@ -44,8 +44,17 @@ export function escapeHtml(s: string): string {
 
 /** 'The goals stay the same' → 'the-goals-stay-the-same'. */
 function slugify(html: string): string {
-  return html
-    .replace(/<[^>]+>/g, '')
+  // Strip tags until none are left: a single pass can leave a tag behind
+  // when tags are nested inside each other's text (CodeQL
+  // js/incomplete-multi-character-sanitization). The result is limited to
+  // [a-z0-9-] below either way, so this is belt and braces.
+  let text = html;
+  let previous: string;
+  do {
+    previous = text;
+    text = text.replace(/<[^>]*>/g, '');
+  } while (text !== previous);
+  return text
     .replace(/&[a-z#0-9]+;/gi, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
