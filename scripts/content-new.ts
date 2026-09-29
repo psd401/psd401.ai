@@ -34,6 +34,8 @@ function slugify(title: string): string {
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[̀-ͯ]/g, '')
+    // Drop apostrophes so "We're" becomes "were", not "we-re".
+    .replace(/['‘’]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
   if (slug.length <= MAX_SLUG) return slug;
