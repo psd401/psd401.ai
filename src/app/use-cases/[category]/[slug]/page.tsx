@@ -69,7 +69,7 @@ export default async function UseCasePage({ params }: Props) {
           createBreadcrumbSchema([
             { name: 'Home', url: '/' },
             { name: 'Reference library', url: '/practice' },
-            { name: 'Use Cases', url: '/use-cases' },
+            { name: 'Use cases', url: '/use-cases' },
             { name: useCase.category, url: `/use-cases/${encodeURIComponent(useCase.category)}` },
             { name: useCase.title, url: getUseCaseUrl(useCase) },
           ]),
@@ -86,7 +86,7 @@ export default async function UseCasePage({ params }: Props) {
         <Breadcrumb
           items={[
             { label: 'Reference library', href: '/practice' },
-            { label: 'Use Cases', href: '/use-cases' },
+            { label: 'Use cases', href: '/use-cases' },
             {
               label: useCase.category,
               href: `/use-cases/${encodeURIComponent(useCase.category)}`,

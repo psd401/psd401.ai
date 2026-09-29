@@ -152,11 +152,14 @@ export function createSoftwareSchema(
   }
 ): JsonLdSchema {
   const { repo, license, maturity, stack, ...base } = args;
+  // common() stamps the site's CC BY-NC-SA licence on the page. Software
+  // carries its own licence, or none at all until it is published.
+  const page: Record<string, unknown> = common(base);
+  delete page.license;
   return {
     '@type': 'SoftwareApplication',
-    ...common(base),
+    ...page,
     applicationCategory: 'EducationalApplication',
-    operatingSystem: 'Web',
     ...(repo ? { codeRepository: repo, downloadUrl: repo } : {}),
     ...(license ? { license } : {}),
     ...(stack ? { runtimePlatform: stack } : {}),
@@ -166,18 +169,25 @@ export function createSoftwareSchema(
   };
 }
 
-/** Third-party tools in the reference library. */
+/**
+ * A tool in the reference library. The page is our review, so it is the
+ * WebPage we author; the tool, usually someone else's product, is what it is
+ * about.
+ */
 export function createToolSchema(
   args: BaseArgs & { provider?: string; demoUrl?: string }
 ): JsonLdSchema {
   const { provider, demoUrl, ...base } = args;
   return {
-    '@type': 'SoftwareApplication',
+    '@type': 'WebPage',
     ...common(base),
-    applicationCategory: 'EducationalApplication',
-    operatingSystem: 'Web',
-    ...(demoUrl ? { url: demoUrl, sameAs: demoUrl } : {}),
-    ...(provider ? { provider: { '@type': 'Organization', name: provider } } : {}),
+    about: {
+      '@type': 'SoftwareApplication',
+      name: base.title,
+      applicationCategory: 'EducationalApplication',
+      ...(demoUrl ? { url: demoUrl } : {}),
+      ...(provider ? { provider: { '@type': 'Organization', name: provider } } : {}),
+    },
   };
 }
 
@@ -214,25 +224,25 @@ export function createHowToSchema(
   };
 }
 
-/** External research, with a citation pointing at the real source. */
+/**
+ * Our summary of outside research. The page is an Article we wrote; the
+ * original work, with its own author and publisher, is what it is based on.
+ */
 export function createResearchSchema(
   args: BaseArgs & { source?: string; externalUrl?: string; format?: string }
 ): JsonLdSchema {
-  const { source, externalUrl, format, ...base } = args;
+  const { source, externalUrl, format, author, ...base } = args;
   return {
-    '@type': 'ScholarlyArticle',
+    '@type': 'Article',
     ...common(base),
-    ...(format ? { genre: format } : {}),
-    ...(externalUrl
-      ? {
-          citation: {
-            '@type': 'CreativeWork',
-            url: externalUrl,
-            ...(source ? { publisher: { '@type': 'Organization', name: source } } : {}),
-          },
-          sameAs: externalUrl,
-        }
-      : {}),
+    isBasedOn: {
+      '@type': 'CreativeWork',
+      name: base.title,
+      ...(externalUrl ? { url: externalUrl } : {}),
+      ...(author ? { author: { '@type': 'Person', name: author } } : {}),
+      ...(source ? { publisher: { '@type': 'Organization', name: source } } : {}),
+      ...(format ? { genre: format } : {}),
+    },
   };
 }
 

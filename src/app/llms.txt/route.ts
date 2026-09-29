@@ -21,7 +21,7 @@ const ORDER: Array<{ dir: ContentDir; heading: string; note: string }> = [
   {
     dir: 'writing',
     heading: 'Writing',
-    note: 'Notes from the people doing the work, including what did not work.',
+    note: 'Notes from the people doing the work: what we built, decided and learned.',
   },
   {
     dir: 'software',
@@ -31,7 +31,7 @@ const ORDER: Array<{ dir: ContentDir; heading: string; note: string }> = [
   {
     dir: 'guidance',
     heading: 'Guidance',
-    note: 'The policy documents district staff work from.',
+    note: 'The guidance district staff work from.',
   },
   {
     dir: 'presentations',
@@ -43,11 +43,11 @@ const ORDER: Array<{ dir: ContentDir; heading: string; note: string }> = [
     heading: 'Use cases',
     note: 'Staff-submitted examples: the task, the tool, the outcome.',
   },
-  { dir: 'tools', heading: 'Tools', note: 'Third-party AI tools reviewed for district use.' },
+  { dir: 'tools', heading: 'Tools', note: 'AI tools reviewed for district use.' },
   {
     dir: 'articles',
     heading: 'Research',
-    note: 'External research summarised, each linking to the original.',
+    note: 'External research summarized, each linking to the original.',
   },
 ];
 
@@ -71,11 +71,11 @@ export async function GET() {
   const body = `# Peninsula School District — AI
 
 > A public school district in Gig Harbor, Washington, doing its AI work in the open.
-> Peninsula School District publishes the software it builds, the policies it writes,
-> the talks it gives, and the experiments that failed. ${counts.total} documents, all
-> licensed CC BY-NC-SA 4.0 and intended to be forked by other districts.
+> Peninsula School District publishes the software it builds, the guidance it writes,
+> the talks it gives, and what it learns along the way. ${counts.total} documents, all
+> licensed CC BY-NC-SA 4.0 and intended to be adapted by other districts.
 
-This file is an index. Append \`.md\` to any URL below for its markdown source.
+This file is an index. Append \`.md\` to any content URL below for its markdown source.
 
 - Full text of every document: ${SITE_URL}/llms-full.txt
 - Open Knowledge Format v0.2 bundle: ${SITE_URL}/okf
@@ -85,10 +85,10 @@ This file is an index. Append \`.md\` to any URL below for its markdown source.
 ${sections.join('\n')}
 ## About this site
 
-- Organisation: Peninsula School District, Gig Harbor, Washington (9,100 students, 17 schools)
+- Organization: Peninsula School District, Gig Harbor, Washington
 - Contact: hagelk@psd401.net
 - Source: https://github.com/psd401/psd401.ai
-- Licence: CC BY-NC-SA 4.0
+- License: CC BY-NC-SA 4.0
 - Counts are computed from the content, not hand-maintained.
 - \`status: draft\` documents are excluded from this index.
 `;

@@ -60,7 +60,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 # llms-full.txt ${SITE_URL}/llms-full.txt   full text of every document
 # OKF bundle    ${SITE_URL}/okf             Open Knowledge Format v0.2
 # Content API   ${SITE_URL}/api/content.json
-# Any page      append .md to its URL for the markdown source
+# Any content page  append .md to its URL for the markdown source
 `;
 
   return new Response(body, {

@@ -64,7 +64,7 @@ export default async function ToolsIndex() {
           as="h1"
           title="Tools"
           meta={`${tools.length} reviewed`}
-          lead="What we have looked at, who provides it, and where the data goes. Being listed here is not an endorsement — it means we assessed it."
+          lead="What we have looked at, who provides it, and where the data goes. A listing here is not an endorsement."
         />
         <ContentIndex items={items} variant="doc" noun="tools" />
       </SectionRule>

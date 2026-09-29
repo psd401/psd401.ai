@@ -87,7 +87,7 @@ export function SubscribeForm({
 
   const message =
     state === 'done'
-      ? 'Check your inbox — we sent a link to confirm your address.'
+      ? 'Check your inbox. If you are not already subscribed, we sent a link to confirm your address.'
       : state === 'error'
         ? `That did not go through. Try again, or email ${FALLBACK}.`
         : !enabled

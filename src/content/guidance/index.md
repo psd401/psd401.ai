@@ -1,6 +1,6 @@
 # 03 Guidance
 
-The policy documents our own staff work from.
+The guidance our own staff work from.
 
 Concept type: `policy` · 4 entries
 

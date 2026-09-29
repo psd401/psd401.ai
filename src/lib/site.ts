@@ -12,7 +12,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://psd401.ai';
 export const SITE_NAME = 'Peninsula AI';
 export const SITE_TAGLINE = 'A public school district doing its AI work in the open.';
 export const SITE_DESCRIPTION =
-  'Peninsula School District publishes its AI work in public: the software it builds, the policies it writes, the talks it gives, and the experiments that failed.';
+  'Peninsula School District publishes its AI work in public: the software it builds, the guidance it writes, the talks it gives, and what it learns along the way.';
 
 /** Section colour keys, matching [data-section] in tokens/colors.css. */
 export type SectionKey = 'writing' | 'software' | 'guidance' | 'presentations' | 'oad' | 'practice';
@@ -43,7 +43,7 @@ export const SECTIONS: Section[] = [
     contentDir: 'writing',
     okfType: 'post',
     description:
-      'Notes from the people doing the work: what we tried, what it cost, and what we would do differently.',
+      'Notes from the people doing the work: what we built, what we decided, and what we learned.',
   },
   {
     n: '02',
@@ -62,7 +62,7 @@ export const SECTIONS: Section[] = [
     contentDir: 'guidance',
     okfType: 'policy',
     description:
-      "The policies and guidance our own staff work from, in plain language. Copy them and put your district's name on them.",
+      'The guidance our own staff work from, in plain language. Other districts are welcome to adapt it, with credit.',
   },
   {
     n: '04',
@@ -94,7 +94,7 @@ export const PRACTICE_SECTIONS: Section[] = [
   {
     n: '',
     key: 'practice',
-    name: 'Use Cases',
+    name: 'Use cases',
     href: '/use-cases',
     contentDir: 'use-cases',
     okfType: 'use-case',

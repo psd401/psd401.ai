@@ -6,11 +6,11 @@ import { getAllUseCases, getCategories, getUseCaseUrl } from '@/lib/use-cases';
 import JsonLd, { createBreadcrumbSchema, createCollectionSchema } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Use Cases',
+  title: 'Use cases',
   description:
     'Practical examples of AI in use across Peninsula School District, submitted by staff — the task, the tool, and what came out of it.',
   alternates: { canonical: '/use-cases' },
-  openGraph: { title: 'Use Cases — Peninsula AI', url: '/use-cases' },
+  openGraph: { title: 'Use cases — Peninsula AI', url: '/use-cases' },
 };
 
 export default async function UseCasesIndex() {
@@ -32,7 +32,7 @@ export default async function UseCasesIndex() {
       <JsonLd
         data={[
           createCollectionSchema({
-            name: 'Use Cases — Peninsula AI',
+            name: 'Use cases — Peninsula AI',
             description: 'Practical examples of AI in use across Peninsula School District.',
             url: '/use-cases',
             items: useCases.map(uc => ({
@@ -44,7 +44,7 @@ export default async function UseCasesIndex() {
           createBreadcrumbSchema([
             { name: 'Home', url: '/' },
             { name: 'Reference library', url: '/practice' },
-            { name: 'Use Cases', url: '/use-cases' },
+            { name: 'Use cases', url: '/use-cases' },
           ]),
         ]}
       />
@@ -57,7 +57,7 @@ export default async function UseCasesIndex() {
         }}
       >
         <Breadcrumb
-          items={[{ label: 'Reference library', href: '/practice' }, { label: 'Use Cases' }]}
+          items={[{ label: 'Reference library', href: '/practice' }, { label: 'Use cases' }]}
         />
       </div>
 

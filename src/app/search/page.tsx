@@ -43,7 +43,7 @@ export default async function SearchPage({ searchParams }: Props) {
         <SectionHeader
           as="h1"
           title="Search"
-          meta={`${counts.total} concepts`}
+          meta={`${counts.total} documents`}
           lead="Everything the district publishes: writing, software, guidance, talks, use cases, tools and research."
         />
 
@@ -111,7 +111,7 @@ export default async function SearchPage({ searchParams }: Props) {
             </p>
             <p style={{ opacity: 'var(--text-muted)' }}>
               Search covers titles, descriptions, tags and the full text of all {counts.total}{' '}
-              concepts. Try a shorter or more general term.
+              documents. Try a shorter or more general term.
             </p>
           </div>
         ) : (

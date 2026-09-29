@@ -1,4 +1,4 @@
-# Use Cases
+# Use cases
 
 Practical examples of AI in use across the district, submitted by staff.
 

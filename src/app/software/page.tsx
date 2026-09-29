@@ -11,7 +11,7 @@ const SECTION = SECTIONS.find(s => s.key === 'software')!;
 export const metadata: Metadata = {
   title: 'Software',
   description:
-    'Products Peninsula School District builds and runs, all open source. Built by district staff for district problems — clone them or ask us to help you stand one up.',
+    'Products Peninsula School District builds and runs, all open source. Built by district staff for district problems, for any district to run.',
   alternates: { canonical: '/software' },
   openGraph: { title: 'Software — Peninsula AI', url: '/software' },
 };
@@ -64,14 +64,14 @@ export default async function SoftwareIndex() {
             number="02"
             title="Software we build"
             meta={`${inProduction} in production of ${software.length}`}
-            lead="Built by district staff for district problems, then published so another district can run the same thing. We are not selling anything — clone it and self-host, or email us and we will help you stand it up."
+            lead="Built by district staff for district problems, then published so another district can run the same thing."
           />
           <ImageFrame
             id="PD-01"
             ratio="3/2"
             priority
             src="/images/software/pd-01-studio-in-use.jpg"
-            alt="Two staff members looking at a laptop together in a classroom after hours"
+            alt="Two people looking at a laptop together in a classroom after hours"
             sizes="(max-width: 768px) 100vw, 40vw"
           />
         </div>

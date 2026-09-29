@@ -62,7 +62,7 @@ export default async function PracticeHub() {
         <SectionHeader
           as="h1"
           title="The reference library"
-          lead="What staff actually did, which tools we reviewed, and the outside research we read. This is the filing cabinet behind the five sections — kept open, kept current, and not dressed up."
+          lead="What staff actually did, which tools we reviewed, and the outside research we read. It sits behind the five sections, and it is searchable."
         />
       </SectionRule>
 

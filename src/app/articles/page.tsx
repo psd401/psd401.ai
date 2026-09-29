@@ -66,7 +66,7 @@ export default async function ResearchIndex() {
           as="h1"
           title="Research"
           meta={`${research.length} pieces`}
-          lead="Papers, studies and opinion from outside the district that shaped how we work. Each entry is our summary; the link goes to the original, which you should read if it matters to a decision."
+          lead="Papers, studies and opinion from outside the district that we have read. Each entry is our summary; the link goes to the original, which you should read if it matters to a decision."
         />
         <ContentIndex items={items} variant="doc" noun="research pieces" />
       </SectionRule>

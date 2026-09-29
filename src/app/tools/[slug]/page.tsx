@@ -41,7 +41,7 @@ export default async function ToolPage({ params }: Props) {
     tool.privacy ? { k: 'Data handling', v: tool.privacy } : null,
     tool.access_type ? { k: 'Access', v: tool.access_type } : null,
     tool.maturity ? { k: 'Our use', v: tool.maturity } : null,
-    { k: 'Reviewed', v: formatDate(tool.date) },
+    { k: 'Added', v: formatDate(tool.date) },
   ].filter((r): r is { k: string; v: string } => r !== null);
 
   return (

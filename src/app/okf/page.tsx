@@ -51,7 +51,7 @@ export default async function OkfPage() {
           as="h1"
           title="Open Knowledge bundle"
           meta={`OKF v${OKF_VERSION}`}
-          lead="Everything on this site is published as an Open Knowledge Format bundle — a directory of markdown files with typed frontmatter. It is not a build artefact or an export: these are the same files the website renders, so what an agent reads and what a reader sees cannot drift apart."
+          lead="Every post, product page, guidance document, presentation, use case, tool review and research summary on this site is published as an Open Knowledge Format bundle: a directory of markdown files with typed frontmatter. These are the same files the website renders, so what an agent reads and what a reader sees stay the same."
         />
       </SectionRule>
 
@@ -89,7 +89,7 @@ ${SITE_URL}/llms-full.txt             # every concept, full text, one file`}
           <p
             style={{ fontSize: 'var(--body-small)', lineHeight: 1.6, opacity: 'var(--text-muted)' }}
           >
-            Any page on this site also serves its own markdown: append{' '}
+            Any of those pages also serves its own markdown: append{' '}
             <code style={{ fontFamily: 'var(--font-mono)' }}>.md</code> to its URL.
           </p>
         </div>
@@ -149,7 +149,7 @@ ${SITE_URL}/llms-full.txt             # every concept, full text, one file`}
                 k: 'Reserved files',
                 v: 'index.md and log.md are never concepts — they describe the bundle.',
               },
-              { k: 'Licence', v: "CC BY-NC-SA 4.0. Fork it and put your district's name on it." },
+              { k: 'License', v: 'CC BY-NC-SA 4.0. Adapt it for your district, with credit.' },
             ]}
           />
         </div>

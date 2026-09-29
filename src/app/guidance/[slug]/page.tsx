@@ -98,7 +98,7 @@ export default async function GuidancePage({ params }: Props) {
             <a href={`${policy.resource}.md`} style={{ color: 'var(--sec)' }}>
               Read as markdown
             </a>{' '}
-            · Licensed CC BY-NC-SA 4.0 — fork it
+            · Licensed CC BY-NC-SA 4.0. Adapt it, with credit
           </div>
         </div>
       </SectionRule>

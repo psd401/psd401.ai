@@ -14,7 +14,7 @@ const SECTION = SECTIONS.find(s => s.key === 'writing')!;
 export const metadata: Metadata = {
   title: 'Writing',
   description:
-    'Notes from the people doing the work — what we tried, what it cost, what we would do differently. The posts about failures are the ones other districts email us about.',
+    'Notes from the people doing the AI work at Peninsula School District: what we built, what we decided, and what we learned.',
   alternates: { canonical: '/writing' },
   openGraph: { title: 'Writing — Peninsula AI', url: '/writing' },
 };
@@ -60,7 +60,7 @@ export default async function WritingIndex() {
           number="01"
           title="Writing"
           meta={`${posts.length} posts`}
-          lead="Notes from the people doing the work — what we tried, what it cost, what we would do differently. The posts about failures are the ones other districts email us about."
+          lead="Notes from the people doing the work: what we built, what we decided, and what we learned."
         />
       </SectionRule>
 
@@ -78,7 +78,7 @@ export default async function WritingIndex() {
         <SubscribeForm
           enabled={isSubscribeConfigured()}
           title={NEWSLETTER.name}
-          blurb="One thing we built, one thing we learned, one thing we would do differently."
+          blurb="Get an email when we publish something new."
         />
       </div>
     </div>

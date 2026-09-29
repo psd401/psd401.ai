@@ -16,7 +16,7 @@ export default function NotFound() {
         <SectionHeader
           as="h1"
           title="That page is not here"
-          lead="The site was reorganised in 2026 and most old links redirect automatically. This one did not — which is our bug, not yours."
+          lead="The site was reorganized in 2026, and most old links redirect automatically. This one did not, and that is our mistake."
         />
 
         <div style={{ display: 'flex', gap: 12, marginTop: 26, flexWrap: 'wrap' }}>

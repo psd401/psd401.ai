@@ -94,7 +94,7 @@ export default async function SoftwarePage({ params }: Props) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <Chip variant="solid">{item.status === 'draft' ? 'Draft' : item.maturity}</Chip>
-            {item.license && <Chip variant="ghost">{item.license} licence</Chip>}
+            {item.license && <Chip variant="ghost">{item.license} license</Chip>}
             <span className="ds-label ds-label--muted" style={{ textTransform: 'none' }}>
               Updated {formatDate(item.date)}
             </span>
@@ -191,8 +191,8 @@ export default async function SoftwarePage({ params }: Props) {
                   maxWidth: '60ch',
                 }}
               >
-                Clone it and self-host, or email us and we will help you stand it up. We are not
-                selling anything — we would rather more districts had this.
+                The code is in the repository. If you want to talk it through before you start,
+                email us.
               </p>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>

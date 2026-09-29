@@ -1,6 +1,6 @@
 # 01 Writing
 
-Notes from the people doing the work — including what did not work.
+Notes from the people doing the work: what we built, decided and learned.
 
 Concept type: `post` · 15 entries
 

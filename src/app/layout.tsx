@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
     types: {
-      'application/rss+xml': [{ url: '/feed.xml', title: `${SITE_NAME} — all writing` }],
+      'application/rss+xml': [{ url: '/feed.xml', title: `${SITE_NAME}: everything published` }],
       'text/markdown': [{ url: '/llms.txt', title: 'Site index for language models' }],
     },
   },

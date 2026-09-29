@@ -12,7 +12,7 @@ const SECTION = SECTIONS.find(s => s.key === 'presentations')!;
 export const metadata: Metadata = {
   title: 'Presentations',
   description:
-    'Talks, workshops and board sessions given by Peninsula School District staff on AI in K-12 education — published as given, with the slides, not summarised.',
+    'Talks, workshops and board sessions on AI in K-12 education from Peninsula School District, each with its slides.',
   alternates: { canonical: '/presentations' },
   openGraph: { title: 'Presentations — Peninsula AI', url: '/presentations' },
 };
@@ -57,7 +57,7 @@ export default async function PresentationsIndex() {
           number="04"
           title="Presentations"
           meta={`${presentations.length} talks`}
-          lead="Conference sessions, workshops, professional learning and board presentations — published as given, with the slides attached rather than summarised. Take any of it and use it."
+          lead="Conference sessions, workshops, professional learning and board presentations, each with its slides, and most with a short summary."
         />
       </SectionRule>
 
