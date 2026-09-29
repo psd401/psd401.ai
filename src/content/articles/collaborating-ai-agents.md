@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'Collaborating with AI Agents: Field Experiments on Teamwork, Productivity, and Performance'
-description: This experiment randomly assigned human-human and human-AI teams to develop and improve marketing materials. AI tools were also prompted with a range of “personality” traits.
+description: "An experiment randomly assigned human-human and human-AI teams to create marketing materials, with the AI given a range of “personality” traits."
 resource: /articles/collaborating-ai-agents
 date: '2025-03-26'
 tags:

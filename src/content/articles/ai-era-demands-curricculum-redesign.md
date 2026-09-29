@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'The AI Era Demands Curriculum Redesign: Stories from the Frontlines of Change'
-description: This post by a teacher outlines an assessment practice of evaluating students’ chat history with an LLM as a way of encouraging students to think more deeply about the content and their interactions…
+description: "A teacher’s assessment practice: grading students’ chat histories with an LLM, so they think more deeply about the content and how they use AI."
 resource: /articles/ai-era-demands-curricculum-redesign
 date: '2024-12-24'
 tags:

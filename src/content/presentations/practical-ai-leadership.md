@@ -1,7 +1,7 @@
 ---
 type: presentation
 title: 'Practical AI Leadership: Mastering the Basics of AI for School Leaders'
-description: A workshop delivered to PSD building administrators on understanding the basics of using AI effectively, and how you can build upon that to build resuable AI tools
+description: "A workshop for PSD building administrators on the basics of using AI well, and on building reusable AI tools from there."
 resource: /presentations/practical-ai-leadership
 date: '2024-12-03'
 tags:

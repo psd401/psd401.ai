@@ -1,7 +1,7 @@
 ---
 type: policy
 title: Data Security With AI
-description: As we explore the exciting possibilities of Artificial Intelligence in education, it's crucial to understand how to use these powerful tools responsibly and securely, especially when working with…
+description: "Four levels of AI tools, each with a different level of data security, and what each means for working with student data."
 resource: /guidance/data-security-ai-guidance
 date: '2025-01-30'
 category: Guidance

@@ -1,7 +1,7 @@
 ---
 type: post
 title: 'Introducing AI Studio: Your Gateway to Advanced AI Tools'
-description: PSD announces AI Studio, a secure platform providing access to frontier generative AI models for staff and students, featuring cost-effective API management and custom tool development capabilities.
+description: "PSD announces AI Studio, a secure platform giving staff and students access to frontier AI models, with cost-effective API management and custom tools."
 resource: /writing/introducing-ai-studio
 date: '2025-09-27'
 tags:

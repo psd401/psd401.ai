@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'The Impact of Generative AI on Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence Effects From a Survey of Knowledge Workers'
-description: 'This study surveyed professionals using AI about: 1) the cognitive effort required to perform tasks with an AI, 2) their confidence in LLM’s outputs, and 3) the critical thinking skills they used…'
+description: "A survey of professionals using AI found their critical thinking declined when they had high confidence in the AI’s output."
 resource: /articles/impact-critical-thinking-knowledge-workers
 date: '2025-03-25'
 tags:

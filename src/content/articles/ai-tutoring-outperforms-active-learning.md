@@ -1,7 +1,7 @@
 ---
 type: research
 title: AI Tutoring Outperforms Active Learning
-description: An AI tutor designed in alignment with best practices in pedagogy and from educational psychology helped students learn material more effectively and in less time when compared to an active,…
+description: "An AI tutor built on pedagogy best practices helped students learn more, in less time, than an active, instructor-led lesson."
 resource: /articles/ai-tutoring-outperforms-active-learning
 date: '2024-05-14'
 tags:

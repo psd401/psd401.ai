@@ -25,7 +25,7 @@ Concept type: `presentation` · 43 entries
 * [Everyday AI - Session 1](/presentations/everyday-ai-1.md) - First session of three part Everyday AI PD Sessions
 * [Everyday AI - Session 2](/presentations/everyday-ai-2.md) - Second session of three part Everyday AI PD Sessions
 * [Everyday AI - Session 3](/presentations/everyday-ai-3.md) - Third session of three part Everyday AI PD Sessions
-* [From Vision to Innovation: Aligning District Strategic Planning with Technology Leadership](/presentations/from-vision-to-innovation.md) - A keynote on how small districts can leverage AI strategically by anchoring technology decisions to their strategic plan, building governance structures, and fostering internal innovation capacity.
+* [From Vision to Innovation: Aligning District Strategic Planning with Technology Leadership](/presentations/from-vision-to-innovation.md) - A keynote on how small districts can use AI strategically: tie technology decisions to the strategic plan, build governance, and grow innovation.
 * [Inclusive Intelligence: Merging UDL, Accessibility, and Privacy in AI-Enhanced Learning](/presentations/inclusive-intelligence.md) - A conference session delivered at the 2025 AI Empowered EDU conference on Inclusive Intelligence
 * [Incorporating Generative AI Three District Perspectives](/presentations/incorporating-generative-ai.md) - A workshop delivered at the 2024 WSSDA on District AI Perspectives
 * [Integrating Artificial Intelligence with Universal Design for Learning](/presentations/integrating-ai-udl.md) - A workshop delivered at the 2024 Model Schools Conference on How MTSS/UDL/AI all complement each other
@@ -35,10 +35,10 @@ Concept type: `presentation` · 43 entries
 * [AI Meeting the Needs of Diverse Populations](/presentations/meeting-diverse-needs.md) - A workshop delivered at the 2024 WASA Superintendents Conference on AI For Diverse Students
 * [Advancing AI Leadership: Building Our AI Future](/presentations/policy-to-practice.md) - A workshop delivered to district office leadership on the current state of AI and our next steps forward as a district
 * [Power & Perils of AI In Government](/presentations/power-perils-ai-government.md) - A conference session delivered at the WA Association of Counties 2023 conference.
-* [Practical AI Leadership: Mastering the Basics of AI for School Leaders](/presentations/practical-ai-leadership.md) - A workshop delivered to PSD building administrators on understanding the basics of using AI effectively, and how you can build upon that to build resuable AI tools
+* [Practical AI Leadership: Mastering the Basics of AI for School Leaders](/presentations/practical-ai-leadership.md) - A workshop for PSD building administrators on the basics of using AI well, and on building reusable AI tools from there.
 * [Preparing Education Leaders to Manage AI](/presentations/preparing-education-leaders.md) - A breakout session delivered at the 2025 Council of Chief State School Officers on supporting LEAs to lead around Artificial Intelligence
 * [Prompt Alchemy: Designing AI Assistants with Prompt Chaining](/presentations/prompt-alchemy.md) - A workshop delivered at the 2025 WERA Conference on Prompt Chaining
-* [Getting Started with PSD AI Studio: A Practical Introduction for Teachers](/presentations/psd-ai-studio-training.md) - A hands-on professional development session introducing PSD staff to the district-hosted AI Studio platform, covering navigation, prompt engineering, classroom applications, and privacy guidelines.
+* [Getting Started with PSD AI Studio: A Practical Introduction for Teachers](/presentations/psd-ai-studio-training.md) - Hands-on training introducing PSD staff to AI Studio: navigation, prompt engineering, classroom uses and privacy guidelines.
 * [Smart Data, Smarter Analysis](/presentations/smart-data-smarter-analysis.md) - A conference session at the 2025 AI Innovation Summit on the use of AI for Data Analysis
 * [I've Started My District's AI Journey, Now What?](/presentations/started-journey-now-what.md) - A breakout session delivered at the 2025 AASA AI Super Summit on some of our learnings from four years of AI embrace and where do we go from here.
 * [Teaching the Future](/presentations/teaching-the-future.md) - A workshop delivered at the 2024 WCCT Conference on The Work we have been doing with our teachers on AI

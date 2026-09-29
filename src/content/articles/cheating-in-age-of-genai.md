@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'Cheating in the age of generative AI: A high school survey study of cheating behaviors before and after the release of ChatGPT'
-description: The researchers analyzed anonymous survey data from three high schools to see if self-reported cheating numbers changed following the introduction of ChatGPT and similar technologies.
+description: "Researchers used anonymous survey data from three high schools to see whether self-reported cheating changed after ChatGPT arrived."
 resource: /articles/cheating-in-age-of-genai
 date: '2024-01-28'
 tags:

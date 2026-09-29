@@ -1,7 +1,7 @@
 ---
 type: presentation
 title: 'Getting Started with PSD AI Studio: A Practical Introduction for Teachers'
-description: A hands-on professional development session introducing PSD staff to the district-hosted AI Studio platform, covering navigation, prompt engineering, classroom applications, and privacy guidelines.
+description: "Hands-on training introducing PSD staff to AI Studio: navigation, prompt engineering, classroom uses and privacy guidelines."
 resource: /presentations/psd-ai-studio-training
 date: '2026-03-13'
 tags:

@@ -1,7 +1,7 @@
 ---
 type: research
 title: Evaluating large language models in analysing classroom dialogue
-description: This study compared the outputs of an LLM with humans when analyzing classroom dialogue. Overall, the LLM and humans largely agreed on their coding and qualitative analysis.
+description: "A study comparing an LLM with human researchers analyzing classroom dialogue. They largely agreed on coding and qualitative analysis."
 resource: /articles/evaluating-llms-in-analysing-classroom-dialogue
 date: '2024-10-03'
 tags:

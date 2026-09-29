@@ -38,10 +38,14 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
 });
 
-// Pull quotes only, italic 300, at most once per screen.
+// Pull quotes only, italic 300, at most once per screen. Not preloaded: it
+// was the largest preloaded font (64 KB) and competed with the hero image on
+// every page, though most pages never show a quote. It still loads, with
+// swap, wherever a pull quote appears.
 const newsreader = Newsreader({
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
   style: ['italic'],
   weight: ['300', '400'],
   variable: '--font-newsreader',
@@ -95,11 +99,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <JsonLd data={[createOrganizationSchema(), createWebSiteSchema()]} />
+        {/* Google Analytics loads once the page is idle. gtag.js is 173 KB and
+            Lighthouse found 73 KB of it unused at load; it has no reason to
+            compete with the page's own content. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-N2ZC6D1BDX"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

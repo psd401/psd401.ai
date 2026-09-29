@@ -1,7 +1,7 @@
 ---
 type: post
 title: How Can AI Tools Like ChatGPT Help Students With Accommodations?
-description: Danielle Flores, Special Education Teacher at Henderson Bay High School shares how she is using AI tools to personalize learning for students with accomodations.
+description: "Danielle Flores, a special education teacher at Henderson Bay High School, uses AI tools to personalize learning for students with accommodations."
 resource: /writing/helping-with-accomdations
 date: '2025-01-21'
 tags:

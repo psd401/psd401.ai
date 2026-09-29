@@ -1,7 +1,7 @@
 ---
 type: presentation
 title: 'From Vision to Innovation: Aligning District Strategic Planning with Technology Leadership'
-description: A keynote on how small districts can leverage AI strategically by anchoring technology decisions to their strategic plan, building governance structures, and fostering internal innovation capacity.
+description: "A keynote on how small districts can use AI strategically: tie technology decisions to the strategic plan, build governance, and grow innovation."
 resource: /presentations/from-vision-to-innovation
 date: '2026-03-23'
 tags:

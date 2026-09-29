@@ -1,7 +1,7 @@
 ---
 type: software
 title: PSD EOC
-description: Emergency notification and operations for school districts — activate an incident or a drill, notify staff, work the event in a live timeline, and keep an append-only record.
+description: "Emergency notification and operations for districts: start an incident or drill, notify staff, work it in a live timeline, keep an append-only record."
 resource: /software/psd-eoc
 date: '2026-09-25'
 tags:

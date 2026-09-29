@@ -1,7 +1,7 @@
 ---
 type: research
 title: Generative AI Can Harm Learning
-description: 'Students were taught a review lesson and then were randomly assisted to one of three practice sessions: open book with no devices, access to an LLM optimized for tutoring, or access to an LLM with no…'
+description: "Students practiced with no device, a tutoring-tuned LLM or a plain LLM. The plain-LLM group did worse; the other two scored about the same."
 resource: /articles/generative-ai-can-harm-learning
 date: '2024-07-18'
 tags:

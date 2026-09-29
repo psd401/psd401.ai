@@ -1,7 +1,7 @@
 ---
 type: research
 title: Can AI Help Kids Feel Creative?
-description: We talk about kids and AI, and we talk about creativity and AI. But while we know that creativity impacts children’s development, identity formation, and learning, children’s creative experiences…
+description: "Creativity shapes children’s development, identity and learning, but their creative experiences with AI are often left out of the conversation."
 resource: /articles/can-ai-help-kids-feel-creative
 date: '2024-09-24'
 tags:

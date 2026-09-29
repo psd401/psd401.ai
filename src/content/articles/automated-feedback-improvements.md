@@ -1,7 +1,7 @@
 ---
 type: research
 title: Automated Feedback Improves Teachers’ Questioning Quality in Brick-and-Mortar Classrooms
-description: Teachers used an AI tool that transcribed portions of their instruction, analyzed the transcript for question types, and then provided feedback to the teacher toward improving their use of “focusing…
+description: "An AI tool analyzed transcripts of teachers’ instruction and gave feedback on “focusing questions.” Questioning changed; other instruction did not."
 resource: /articles/automated-feedback-improvements
 date: '2025-02-25'
 tags:

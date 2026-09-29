@@ -1,7 +1,7 @@
 ---
 type: policy
 title: Student Rights and Responsibilities Handbook Language
-description: In alignment with the Peninsula School District's commitment to Universal Design for Learning (UDL) and ethical AI use, this classroom embraces AI technologies to enhance educational experiences and…
+description: "Handbook language on students’ rights and responsibilities when using AI tools such as ChatGPT, in line with UDL and ethical AI use."
 resource: /guidance/rights-and-responsibilities
 date: '2024-08-30'
 category: Guidance

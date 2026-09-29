@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'The Cybernetic Teammate: A Field Experiment on Generative AI Reshaping Teamwork and Expertise'
-description: 'An experiment at Proctor & Gamble compared performance across four categories: an individual working alone, an individual working with GenAI, a pair of professionals, and a pair of professionals…'
+description: "At Procter & Gamble, individuals using GenAI performed as well as teams, and teams using GenAI were most likely to produce exceptional solutions."
 resource: /articles/cybernetic-teammate
 date: '2025-03-29'
 tags:

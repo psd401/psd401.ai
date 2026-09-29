@@ -1,7 +1,7 @@
 ---
 type: post
 title: Build Products Our Agents Can Use
-description: The closed system is now a liability. A call to EdTech vendors, districts, and standards bodies to make products safe for district-owned agents to use, before districts build the replacements themselves.
+description: "A call to EdTech vendors, districts and standards bodies: make products safe for district-owned agents, or districts will build the replacements."
 resource: /writing/build-products-our-agents-can-use
 date: '2026-05-26'
 tags:

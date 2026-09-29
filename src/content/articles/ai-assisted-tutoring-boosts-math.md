@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'Study: AI-Assisted Tutoring Boosts Students’ Math Skills'
-description: This article links to a paper about using an LLM to improve the work of human tutors. Tutors’ effectiveness increased, with the weakest tutors experiencing the largest gains from the tool.
+description: "A paper on using an LLM to support human tutors. Tutors became more effective, and the weakest tutors gained the most."
 resource: /articles/ai-assisted-tutoring-boosts-math
 date: '2024-10-07'
 tags:

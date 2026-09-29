@@ -1,7 +1,7 @@
 ---
 type: software
 title: Atrium
-description: A content workspace inside AI Studio where staff and their agents write documents and build interactive pages together, then publish them to the staff intranet or the public web.
+description: "A workspace in AI Studio where staff and their agents write documents and build pages together, then publish them to the intranet or the web."
 resource: /software/atrium
 date: '2026-09-25'
 tags:

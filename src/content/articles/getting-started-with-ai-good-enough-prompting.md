@@ -1,7 +1,7 @@
 ---
 type: research
 title: 'Getting started with AI: Good enough prompting'
-description: 'In his article "Getting Started with AI: Good Enough Prompting," Ethan Mollick discusses the challenges users face when interacting with AI systems like ChatGPT, particularly when they treat these…'
+description: "Ethan Mollick argues that using AI well takes no prompt engineering, just about ten hours of experimenting to learn what the tools can do."
 resource: /articles/getting-started-with-ai-good-enough-prompting
 date: '2024-12-24'
 tags:

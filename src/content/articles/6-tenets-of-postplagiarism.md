@@ -1,7 +1,7 @@
 ---
 type: research
 title: '6 Tenets of Postplagiarism: Writing in the Age of Artificial Intelligence'
-description: 'In her article "6 Tenets of Postplagiarism: Writing in the Age of Artificial Intelligence," Dr. Sarah Elaine Eaton explores how AI is reshaping writing and academic integrity.'
+description: "Dr. Sarah Elaine Eaton explores how AI is reshaping writing and academic integrity in “6 Tenets of Postplagiarism.”"
 resource: /articles/6-tenets-of-postplagiarism
 date: '2023-02-25'
 tags:

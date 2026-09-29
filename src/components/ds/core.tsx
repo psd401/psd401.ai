@@ -215,11 +215,16 @@ export function ImageFrame({
         className={cx('ds-frame__img', className)}
         style={{ position: 'relative', width: '100%', aspectRatio: ratio }}
       >
+        {/* `priority` is deprecated in Next 16. For the above-the-fold image
+            it now maps to preload (early discovery), eager loading, and
+            fetchpriority=high, which Lighthouse found missing on the hero. */}
         <Image
           src={src}
           alt={alt}
           fill
-          priority={priority}
+          preload={priority}
+          loading={priority ? 'eager' : undefined}
+          fetchPriority={priority ? 'high' : undefined}
           sizes={sizes}
           style={{ objectFit: 'cover' }}
         />

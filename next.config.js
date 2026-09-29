@@ -55,6 +55,9 @@ const nextConfig = {
   turbopack: { root: import.meta.dirname },
 
   images: {
+    // AVIF first where the browser takes it: noticeably smaller than WebP
+    // for the photographic images this site uses.
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: 'fastly.picsum.photos' },
       { protocol: 'https', hostname: 'picsum.photos' },
