@@ -58,7 +58,7 @@ export default async function PresentationsIndex() {
       <SectionRule ground="tint" as="header">
         <SectionHeader
           as="h1"
-          number="04"
+          number="03"
           title="Presentations"
           meta={`${presentations.length} talks`}
           lead="Conference sessions, workshops, professional learning and board presentations, each with its slides, and most with a short summary."

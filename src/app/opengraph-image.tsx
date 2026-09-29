@@ -16,7 +16,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 const INK = '#0a1016';
-const SECTIONS = ['#005ccc', '#006c7b', '#006c28', '#a61b86', '#6a37bf'];
+// Guidance, Writing, Presentations, Software, OAD — the section order.
+const SECTIONS = ['#006c28', '#005ccc', '#a61b86', '#006c7b', '#6a37bf'];
 
 export default function OpengraphImage() {
   return new ImageResponse(

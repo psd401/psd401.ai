@@ -86,7 +86,7 @@ render without them.
 | -------- | ------------------------------------ | ------------------------------------------------------------------------------- |
 | HP-01    | `sections/hp-01-classroom.jpg`       | Homepage hero                                                                   |
 | HP-04    | `sections/hp-04-cycle-session.jpg`   | Homepage, 05 Open Adaptive District band                                        |
-| HP-05    | `sections/hp-05-gig-harbor.jpg`      | Homepage, 04 Presentations band                                                 |
+| HP-05    | `sections/hp-05-gig-harbor.jpg`      | Homepage, 03 Presentations band                                                 |
 | GU-01    | `sections/gu-01-board-session.jpg`   | Guidance index hero                                                             |
 | OAD-01   | `sections/oad-01-cycle-session.jpg`  | Open Adaptive District hero                                                     |
 | OAD-03   | `sections/oad-03-stages.jpg`         | What We're Learning, above the document                                         |

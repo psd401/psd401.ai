@@ -85,7 +85,7 @@ export default async function SoftwarePage({ params }: Props) {
           borderBottom: '1px solid var(--hairline-faint)',
         }}
       >
-        <Breadcrumb items={[{ label: '02 Software', href: '/software' }, { label: item.title }]} />
+        <Breadcrumb items={[{ label: '04 Software', href: '/software' }, { label: item.title }]} />
       </div>
 
       <div

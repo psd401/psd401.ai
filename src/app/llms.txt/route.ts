@@ -19,24 +19,24 @@ export const revalidate = 3600;
  */
 const ORDER: Array<{ dir: ContentDir; heading: string; note: string }> = [
   {
-    dir: 'writing',
-    heading: 'Writing',
-    note: 'Notes from the people doing the work: what we built, decided and learned.',
-  },
-  {
-    dir: 'software',
-    heading: 'Software',
-    note: 'Products the district builds and runs. Open source, forkable.',
-  },
-  {
     dir: 'guidance',
     heading: 'Guidance',
     note: 'The guidance district staff work from.',
   },
   {
+    dir: 'writing',
+    heading: 'Writing',
+    note: 'Notes from the people doing the work: what we built, decided and learned.',
+  },
+  {
     dir: 'presentations',
     heading: 'Presentations',
     note: 'Talks and workshops, published as given.',
+  },
+  {
+    dir: 'software',
+    heading: 'Software',
+    note: 'Products the district builds and runs. Open source, forkable.',
   },
   {
     dir: 'open-adaptive-district',

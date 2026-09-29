@@ -57,7 +57,7 @@ export default async function WritingIndex() {
       <SectionRule ground="tint" as="header">
         <SectionHeader
           as="h1"
-          number="01"
+          number="02"
           title="Writing"
           meta={`${posts.length} posts`}
           lead="Notes from the people doing the work: what we built, what we decided, and what we learned."

@@ -80,7 +80,7 @@ export default async function WritingPost({ params }: Props) {
           borderBottom: '1px solid var(--hairline-faint)',
         }}
       >
-        <Breadcrumb items={[{ label: '01 Writing', href: '/writing' }, { label: post.title }]} />
+        <Breadcrumb items={[{ label: '02 Writing', href: '/writing' }, { label: post.title }]} />
       </div>
 
       <SectionRule as="header" style={{ borderTop: 0 }}>

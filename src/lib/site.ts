@@ -50,25 +50,6 @@ export type Section = {
 export const SECTIONS: Section[] = [
   {
     n: '01',
-    key: 'writing',
-    name: 'Writing',
-    href: '/writing',
-    contentDir: 'writing',
-    okfType: 'post',
-    description:
-      'Notes from the people doing the work: what we built, what we decided, and what we learned.',
-  },
-  {
-    n: '02',
-    key: 'software',
-    name: 'Software',
-    href: '/software',
-    contentDir: 'software',
-    okfType: 'software',
-    description: 'Products in production, built by district staff for district problems.',
-  },
-  {
-    n: '03',
     key: 'guidance',
     name: 'Guidance',
     href: '/guidance',
@@ -78,13 +59,32 @@ export const SECTIONS: Section[] = [
       'The guidance our own staff work from, in plain language. Other districts are welcome to adapt it, with credit.',
   },
   {
-    n: '04',
+    n: '02',
+    key: 'writing',
+    name: 'Writing',
+    href: '/writing',
+    contentDir: 'writing',
+    okfType: 'post',
+    description:
+      'Notes from the people doing the work: what we built, what we decided, and what we learned.',
+  },
+  {
+    n: '03',
     key: 'presentations',
     name: 'Presentations',
     href: '/presentations',
     contentDir: 'presentations',
     okfType: 'presentation',
     description: 'Talks and slides, published as given.',
+  },
+  {
+    n: '04',
+    key: 'software',
+    name: 'Software',
+    href: '/software',
+    contentDir: 'software',
+    okfType: 'software',
+    description: 'Products in production, built by district staff for district problems.',
   },
   {
     n: '05',

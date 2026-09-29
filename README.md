@@ -30,13 +30,13 @@ cd psd401.ai/src/content   # the bundle root
 
 ## Sections
 
-|     | Section                                                            | What it holds                                                     |
-| --- | ------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| 01  | [Writing](https://psd401.ai/writing)                               | Notes from the people doing the work, including what did not work |
-| 02  | [Software](https://psd401.ai/software)                             | Products the district builds and runs, all open source            |
-| 03  | [Guidance](https://psd401.ai/guidance)                             | The policy documents our own staff work from                      |
-| 04  | [Presentations](https://psd401.ai/presentations)                   | Talks and slides, published as given                              |
-| 05  | [Open Adaptive District](https://psd401.ai/open-adaptive-district) | The six-week cycle underneath all of it                           |
+|     | Section                                                            | What it holds                                          |
+| --- | ------------------------------------------------------------------ | ------------------------------------------------------ |
+| 01  | [Guidance](https://psd401.ai/guidance)                             | The guidance our own staff work from                   |
+| 02  | [Writing](https://psd401.ai/writing)                               | Notes from the people doing the work                   |
+| 03  | [Presentations](https://psd401.ai/presentations)                   | Talks and slides, published as given                   |
+| 04  | [Software](https://psd401.ai/software)                             | Products the district builds and runs, all open source |
+| 05  | [Open Adaptive District](https://psd401.ai/open-adaptive-district) | The six-week cycle underneath all of it                |
 
 Plus a [reference library](https://psd401.ai/practice) of staff use cases,
 reviewed tools, and external research.

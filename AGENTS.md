@@ -49,14 +49,14 @@ v0.2 bundle. Every markdown file is one "concept" and MUST carry a non-empty
 
 | `type`         | Directory                 | URL                              | What it is                                                               |
 | -------------- | ------------------------- | -------------------------------- | ------------------------------------------------------------------------ |
-| `post`         | `writing/`                | `/writing/<slug>`                | 01 Writing — notes from staff doing the work                             |
-| `software`     | `software/`               | `/software/<slug>`               | 02 Software — products the district builds                               |
-| `policy`       | `guidance/`               | `/guidance/<slug>`               | 03 Guidance — documents staff work from                                  |
-| `presentation` | `presentations/`          | `/presentations/<slug>`          | 04 Presentations — talks, as given                                       |
+| `policy`       | `guidance/`               | `/guidance/<slug>`               | 01 Guidance — documents staff work from                                  |
+| `post`         | `writing/`                | `/writing/<slug>`                | 02 Writing — notes from staff doing the work                             |
+| `presentation` | `presentations/`          | `/presentations/<slug>`          | 03 Presentations — talks, as given                                       |
+| `software`     | `software/`               | `/software/<slug>`               | 04 Software — products the district builds                               |
+| `protocol`     | `open-adaptive-district/` | `/open-adaptive-district/<slug>` | 05 Open Adaptive District — the protocol's documents and the action plan |
 | `use-case`     | `use-cases/`              | `/use-cases/<category>/<slug>`   | Staff-submitted examples                                                 |
 | `tool`         | `tools/`                  | `/tools/<slug>`                  | Third-party tools reviewed                                               |
 | `research`     | `articles/`               | `/articles/<slug>`               | External research, summarised                                            |
-| `protocol`     | `open-adaptive-district/` | `/open-adaptive-district/<slug>` | 05 Open Adaptive District — the protocol's documents and the action plan |
 
 `index.md` and `log.md` are **reserved** by OKF. They describe the bundle and
 are never concepts. Do not create them by hand — `npm run okf:build` writes

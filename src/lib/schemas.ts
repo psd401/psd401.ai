@@ -67,7 +67,7 @@ export const okfBase = z.object({
 
 /* ------------------------------------------------------- per-type schemas */
 
-/** 01 Writing. */
+/** 02 Writing. */
 export const postSchema = okfBase.extend({
   type: z.literal('post'),
   date: isoDate,
@@ -75,7 +75,7 @@ export const postSchema = okfBase.extend({
   image: z.string().optional(),
 });
 
-/** 02 Software. */
+/** 04 Software. */
 export const softwareSchema = okfBase.extend({
   type: z.literal('software'),
   date: isoDate,
@@ -101,14 +101,14 @@ export const softwareSchema = okfBase.extend({
   spec: z.array(z.object({ k: z.string(), v: z.string() })).optional(),
 });
 
-/** 03 Guidance. */
+/** 01 Guidance. */
 export const policySchema = okfBase.extend({
   type: z.literal('policy'),
   date: isoDate,
   category: z.string().optional(),
 });
 
-/** 04 Presentations. */
+/** 03 Presentations. */
 export const presentationSchema = okfBase.extend({
   type: z.literal('presentation'),
   date: isoDate,
@@ -218,26 +218,28 @@ export type Protocol = z.infer<typeof protocolSchema>;
 
 /** Maps a content directory to the OKF type it holds. */
 export const DIR_TO_TYPE = {
-  writing: 'post',
-  software: 'software',
+  // Key order is the section order (01-05), then the reference library.
+  // The bundle's root index lists directories in this order.
   guidance: 'policy',
+  writing: 'post',
   presentations: 'presentation',
+  software: 'software',
+  'open-adaptive-district': 'protocol',
   'use-cases': 'use-case',
   tools: 'tool',
   articles: 'research',
-  'open-adaptive-district': 'protocol',
 } as const satisfies Record<string, keyof typeof SCHEMAS>;
 
 export type ContentDir = keyof typeof DIR_TO_TYPE;
 
 /** Maps a content directory to its public URL prefix. */
 export const DIR_TO_URL = {
-  writing: '/writing',
-  software: '/software',
   guidance: '/guidance',
+  writing: '/writing',
   presentations: '/presentations',
+  software: '/software',
+  'open-adaptive-district': '/open-adaptive-district',
   'use-cases': '/use-cases',
   tools: '/tools',
   articles: '/articles',
-  'open-adaptive-district': '/open-adaptive-district',
 } as const satisfies Record<ContentDir, string>;
