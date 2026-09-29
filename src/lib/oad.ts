@@ -87,7 +87,16 @@ const ARTIFACTS: Array<Omit<OadArtifact, 'title' | 'html'>> = [
 
 function extractTitle(html: string): string {
   const m = /<title>([\s\S]*?)<\/title>/i.exec(html);
-  return m ? m[1].trim() : 'The Open Adaptive District';
+  if (!m) return 'The Open Adaptive District';
+  // The title becomes page metadata, which React escapes again, so entities
+  // written in the HTML (e.g. &amp;) have to be decoded first.
+  return m[1]
+    .trim()
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&');
 }
 
 /**
