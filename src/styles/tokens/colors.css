@@ -14,10 +14,10 @@
   --on-accent: #ffffff; /* text on a solid section col */
 
   /* section colours ----------------------------------------------------- */
-  --sec-writing: oklch(0.5 0.19 258); /* 01 cobalt   */
-  --sec-software: oklch(0.47 0.12 205); /* 02 teal     */
-  --sec-guidance: oklch(0.46 0.14 150); /* 03 green    */
-  --sec-presentations: oklch(0.5 0.2 340); /* 04 magenta  */
+  --sec-writing: oklch(0.5 0.19 258); /* 02 cobalt   */
+  --sec-software: oklch(0.47 0.12 205); /* 04 teal     */
+  --sec-guidance: oklch(0.46 0.14 150); /* 01 green    */
+  --sec-presentations: oklch(0.5 0.2 340); /* 03 magenta  */
   --sec-oad: oklch(0.48 0.2 295); /* 05 violet   */
 
   /* the active section — set once per page, everything else reads this --- */
@@ -74,4 +74,14 @@
    the five standing sections. */
 [data-section='practice'] {
   --sec: var(--ink);
+}
+
+/* The derived grounds must be re-declared wherever the section changes. A
+   custom property's var() is resolved on the element that declares it, so
+   declaring these only on :root fixed them to the default section colour
+   (writing's cobalt), and every tinted area on every page came out blue.
+   Declared here, var(--sec) resolves against that element's own section. */
+[data-section] {
+  --sec-ground: color-mix(in oklab, var(--sec) 8%, transparent);
+  --sec-ground-strong: color-mix(in oklab, var(--sec) 13%, transparent);
 }
