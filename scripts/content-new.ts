@@ -27,14 +27,22 @@ function arg(name: string): string | undefined {
   return i !== -1 ? process.argv[i + 1] : undefined;
 }
 
+const MAX_SLUG = 72;
+
 function slugify(title: string): string {
-  return title
+  const slug = title
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[̀-ͯ]/g, '')
+    // Drop apostrophes so "We're" becomes "were", not "we-re".
+    .replace(/['‘’]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 72);
+    .replace(/^-+|-+$/g, '');
+  if (slug.length <= MAX_SLUG) return slug;
+  // Cut at the last whole word that fits. A plain slice could end mid-word
+  // or on a hyphen, and the slug is the page's permanent URL.
+  const end = slug.slice(0, MAX_SLUG + 1).lastIndexOf('-');
+  return end > 0 ? slug.slice(0, end) : slug.slice(0, MAX_SLUG);
 }
 
 function today(): string {

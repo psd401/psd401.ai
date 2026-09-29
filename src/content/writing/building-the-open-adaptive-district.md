@@ -1,7 +1,7 @@
 ---
 type: post
 title: 'Building the Open Adaptive District: What We''re Doing and Why It Matters for Public Education'
-description: 'Superintendent Krestin Bahr on what Peninsula School District is building through the Open Adaptive District, and why public education needs a voice in how AI is built for schools.'
+description: 'Superintendent Krestin Bahr on what Peninsula School District is building through the Open Adaptive District, and why schools need a voice in how AI is built.'
 resource: /writing/building-the-open-adaptive-district
 date: '2026-09-29'
 tags:
