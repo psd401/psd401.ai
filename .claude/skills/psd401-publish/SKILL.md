@@ -1,6 +1,6 @@
 ---
 name: psd401-publish
-description: Publish content to psd401.ai — blog posts, software pages, policy guidance, presentations, use cases, tools, and research summaries. Handles the whole loop: pick the type, scaffold correct OKF frontmatter, write in house voice, validate, and open a PR. Use whenever adding or editing content on this site. Triggers on: write a post, add a use case, publish, new blog, add a tool, add a presentation, document a product, add research.
+description: Publish content to psd401.ai — blog posts, software pages, policy guidance, presentations, use cases, tools, and research summaries. Handles the whole loop: pick the type, scaffold correct OKF frontmatter, write in house voice, validate, open a PR, wait for CI, merge and confirm the page is live. Has step-by-step playbooks for turning a Google Slides link into a presentation page and an author's text and images into a blog post. Use whenever adding or editing content on this site. Triggers on: write a post, add a blog post, add a use case, publish, new blog, add a tool, add a presentation, Google Slides link, document a product, add research.
 user-invocable: true
 ---
 
@@ -13,6 +13,19 @@ bookkeeping — it is what makes the page exist.
 
 Read [AGENTS.md](../../../AGENTS.md) for the full contract and
 [docs/CONTENT.md](../../../docs/CONTENT.md) for exact field tables.
+
+## Playbooks
+
+The two most common requests have their own step-by-step playbooks. Follow
+them start to finish; they cover everything below for their type.
+
+| You were given                            | Playbook                           |
+| ----------------------------------------- | ---------------------------------- |
+| A Google Slides link                      | [presentation.md](presentation.md) |
+| A post's text (Doc, paste, file) + images | [post.md](post.md)                 |
+
+Both end with [ship.md](ship.md): branch, checks, PR, wait for CI, merge,
+confirm the page is live. Use it for any other type too.
 
 ## The loop
 
@@ -119,7 +132,8 @@ A post with no image is fine. The layout falls back to a holding frame.
 npm run content:validate && npm run type-check && npm run lint && npm run build
 ```
 
-Then commit on a branch and open a PR. Never commit directly to `main`.
+Then follow [ship.md](ship.md): commit on a branch, open a PR, wait for CI,
+merge, and confirm the page is live. Never commit directly to `main`.
 
 Commit messages on this repo are detailed — say what changed and why, not just
 "add post".
