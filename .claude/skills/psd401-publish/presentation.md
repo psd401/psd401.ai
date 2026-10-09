@@ -53,6 +53,11 @@ Drive refuses exports over 10 MB. If that happens, read `deck.txt` and fetch
 thumbnails (step 4's command, any slide's `objectId`) for the slides whose text
 is thin.
 
+**Look for students.** The page embeds every slide for the public, and the
+first slide becomes the thumbnail. If a student can be identified on any
+slide, ask the person to confirm the student is cleared for publication before
+going further.
+
 ## 3. Work out the details
 
 List the values already in use, and reuse one exactly when it fits. The site
