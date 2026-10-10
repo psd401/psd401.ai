@@ -2,7 +2,7 @@
 
 Talks and slides, published as given.
 
-Concept type: `presentation` · 44 entries
+Concept type: `presentation` · 45 entries
 
 ## Concepts
 
@@ -17,6 +17,7 @@ Concept type: `presentation` · 44 entries
 * [Artificial Intelligence, Prompt Engineering, Deepening Our Usage](/presentations/ai-prompt-engineering-cabinet.md) - A PD Session on prompt engineering delivered to the PSD Cabinet Staff
 * [Artificial Intelligence, Prompt Engineering](/presentations/ai-prompt-engineering-phs.md) - A PD Session on prompt engineering delivered to the staff of PHS
 * [AI Unpacked: Transforming Educational Data into Actionable Insights](/presentations/ai-unpacked.md) - A workshop delivered at the 2024 WERA Conference on the use of AI for Data Analysis
+* [Unlocking Efficiency: Leveraging AI in Public School District Operations](/presentations/asbo-ace-2026.md) - Ashley Murphy and Kris Hagel show school business officials how Peninsula uses AI for routing, reconciliations, enrollment, evaluations and budget dashboards.
 * [Developing Guidance and Guardrails In PSD](/presentations/az-superintendent-leadership-network-2026.md) - Krestin Bahr and Kris Hagel walk Arizona superintendents through how Peninsula built AI guidance, trained staff, listened to students and built its own tools.
 * [ChatGPT Hacks to Streamline Your Workday](/presentations/chatgpt-hacks-workday.md) - A workshop delivered at the 2024 WASBO Business Managers Conference on Using ChatGPT To Streamline Workflows
 * [Crafting Clarity: Mastering AI Prompt Engineering in Education](/presentations/crafting-clarity.md) - A workshop delivered at the 2024 WERA Conference on Prompt Engineering
