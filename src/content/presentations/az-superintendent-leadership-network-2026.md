@@ -42,4 +42,4 @@ Superintendent Krestin Bahr and Chief Information Officer Kris Hagel presented t
 
 **Looking Ahead:**
 
-PSD's next step is the [Open Adaptive District](/open-adaptive-district/start-here.md), supported by a Google and GSV fellowship: teams run six-week cycles to build something that improves a process in their own area, then publish what worked and what failed. The presenters noted that this year's seniors will graduate without systemwide teaching about AI, said districts have to move quickly, and asked others to share their own work, good or bad. The district's 2025-2026 AI survey was due to go out three weeks after the session.
+PSD's next step is the [Open Adaptive District](/open-adaptive-district/start-here.md), supported by a Google and GSV fellowship: teams run six-week cycles to build something that improves a process in their own area, then publish what worked and what failed. The presenters noted that this year's seniors will graduate without systemwide teaching about AI, said districts have to move quickly, and asked others to share their own work, good or bad.
