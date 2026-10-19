@@ -106,7 +106,7 @@ const privacy: TrustPage = {
 
 ## In short
 
-You can read every page on this site without an account and without giving us anything. We collect two kinds of information: anonymous usage statistics, and the email address of anyone who signs up for Field Notes. We do not sell either, and we do not use either for advertising.
+You can read every page on this site without an account and without giving us anything. We collect three kinds of information: usage statistics through Google Analytics, the request logs every web host keeps, and the email address of anyone who signs up for Field Notes. We do not sell any of it, and we do not use any of it for advertising.
 
 ## Usage statistics
 
@@ -123,7 +123,7 @@ If you sign up for Field Notes on the Writing page, we store:
 - an unsubscribe key
 - when you signed up and confirmed
 
-These are kept in the district's own Amazon Web Services account, and email is sent through Amazon SES. No mailing-list company is involved. We send one confirmation email, and nothing else until you confirm. Unconfirmed sign-ups are deleted after seven days. Unsubscribing, through the link in any email, deletes your record outright; we keep no list of former subscribers. Your email address never appears in a link we send you, so it does not reach server logs or analytics.
+These are kept in the district's own Amazon Web Services account, and email is sent through Amazon SES. No mailing-list company is involved. We send one confirmation email, and nothing else until you confirm. Unconfirmed sign-ups expire after seven days: the confirmation link stops working, and Amazon's automatic expiry deletes the record, usually within a few days after that. Unsubscribing, through the link in any email, deletes your record outright; we keep no list of former subscribers. The table has point-in-time recovery switched on, so a deleted record can remain in its backups for up to 35 days. Your email address never appears in a link we send you, so it does not reach server logs or analytics.
 
 ## Server logs
 
