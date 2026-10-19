@@ -78,12 +78,17 @@ function isHtml(r: Awaited<ReturnType<typeof get>>, status = 200) {
   assert.ok(r.type.startsWith(HTML), `content-type "${r.type}"`);
 }
 
-/** Visible text of an HTML page's <main>, roughly. */
+/**
+ * Prose text of an HTML page's <main>: the contents of its paragraphs and
+ * list items. Only measured, never rendered. Reading <p> and <li> rather than
+ * stripping <script> keeps JSON-LD out of the count without regex HTML
+ * filtering, and tags are split out rather than replaced.
+ */
 function mainText(html: string): string {
   const main = html.match(/<main[\s\S]*?<\/main>/i)?.[0] ?? html;
-  return main
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
+  return [...main.matchAll(/<(p|li)\b[^>]*>([\s\S]*?)<\/\1>/gi)]
+    .map(m => m[2].split(/<[^>]*>/).join(' '))
+    .join(' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
