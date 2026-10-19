@@ -17,7 +17,7 @@
  *   any index     → CollectionPage + ItemList
  */
 import React from 'react';
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, absoluteUrl } from '@/lib/site';
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL, SITE_DESCRIPTION, absoluteUrl } from '@/lib/site';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type JsonLdSchema = Record<string, any>;
@@ -72,6 +72,13 @@ export function createOrganizationSchema(): JsonLdSchema {
       addressLocality: 'Gig Harbor',
       addressRegion: 'WA',
       addressCountry: 'US',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: CONTACT_EMAIL,
+      url: absoluteUrl('/contact'),
+      availableLanguage: 'en',
     },
     sameAs: [
       'https://github.com/psd401',

@@ -163,6 +163,7 @@ If you touched routes or redirects, also:
 ```bash
 npm start                     # one terminal
 npm run links:audit           # another
+npm run agent:audit           # markdown negotiation, 404s, metadata, trust pages
 ```
 
 ---
@@ -171,15 +172,16 @@ npm run links:audit           # another
 
 Keep these working; they are the point of the site, not an add-on.
 
-| Surface                | What it is                                                                  |
-| ---------------------- | --------------------------------------------------------------------------- |
-| `/llms.txt`            | Index of everything, with links. Must stay an INDEX — do not inline bodies. |
-| `/llms-full.txt`       | Every document in full. The heavy one, opt-in.                              |
-| `/okf`                 | The OKF bundle, browsable. `/okf/<dir>/<slug>.md` serves raw markdown.      |
-| `/<section>/<slug>.md` | Any page's markdown source, via a rewrite.                                  |
-| `/api/content.json`    | Typed index of every concept. CORS open.                                    |
-| `/sitemap.xml`         | Generated from content. Never hand-add a route.                             |
-| `/feed.xml`            | RSS across all content types, not just posts.                               |
+| Surface                 | What it is                                                                                                                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/llms.txt`             | Index of everything, with links. Must stay an INDEX — do not inline bodies.                                                      |
+| `/llms-full.txt`        | Every document in full. The heavy one, opt-in.                                                                                   |
+| `/okf`                  | The OKF bundle, browsable. `/okf/<dir>/<slug>.md` serves raw markdown.                                                           |
+| `/<section>/<slug>.md`  | Any page's markdown source, via a rewrite.                                                                                       |
+| `Accept: text/markdown` | `/`, the trust pages and every concept URL answer in markdown; unknown URLs get a markdown 404. `npm run agent:audit` proves it. |
+| `/api/content.json`     | Typed index of every concept. CORS open.                                                                                         |
+| `/sitemap.xml`          | Generated from content. Never hand-add a route.                                                                                  |
+| `/feed.xml`             | RSS across all content types, not just posts.                                                                                    |
 
 The sitemap used to hard-code `/about` and `/contact`, neither of which ever
 existed, so Google was handed two 404s on every crawl. Anything added to

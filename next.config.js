@@ -51,6 +51,21 @@ const redirects = [
   },
 ];
 
+/** Content directories whose concepts render at /<dir>/<slug>. */
+const CONCEPT_DIRS =
+  'writing|software|guidance|presentations|open-adaptive-district|tools|articles';
+
+/**
+ * Matches an Accept header that asks for markdown and does not ask for HTML.
+ * Next anchors `value` as ^...$. A browser's Accept always lists text/html,
+ * so this never changes what a person sees.
+ */
+const WANTS_MARKDOWN = {
+  type: 'header',
+  key: 'accept',
+  value: '(?!.*text/html).*text/markdown.*',
+};
+
 const nextConfig = {
   // Pin the workspace root to this directory. Without it, a git worktree (or
   // any checkout nested under another package-lock.json) makes Turbopack infer
@@ -73,24 +88,50 @@ const nextConfig = {
   },
 
   async rewrites() {
-    return [
-      { source: '/robots.txt', destination: '/api/robots' },
+    return {
+      beforeFiles: [
+        // Any page's markdown source sits beside it: /writing/my-post.md.
+        // A widely-followed convention for agent-readable sites, and it costs
+        // nothing — both shapes hit the same handler that serves the bundle.
+        // The use-cases rule comes first because its URLs carry an extra
+        // category segment; the category is not needed to resolve the file.
+        // These must precede the negotiation rules below, which would
+        // otherwise read `my-post.md` as a slug.
+        {
+          source: '/use-cases/:category/:slug.md',
+          destination: '/okf/use-cases/:slug.md',
+        },
+        {
+          source: `/:dir(${CONCEPT_DIRS})/:slug.md`,
+          destination: '/okf/:dir/:slug.md',
+        },
 
-      // Any page's markdown source sits beside it: /writing/my-post.md.
-      // A widely-followed convention for agent-readable sites, and it costs
-      // nothing — both shapes hit the same handler that serves the bundle.
-      // The use-cases rule comes first because its URLs carry an extra
-      // category segment; the category is not needed to resolve the file.
-      {
-        source: '/use-cases/:category/:slug.md',
-        destination: '/okf/use-cases/:slug.md',
-      },
-      {
-        source:
-          '/:dir(writing|software|guidance|presentations|open-adaptive-district|tools|articles)/:slug.md',
-        destination: '/okf/:dir/:slug.md',
-      },
-    ];
+        // Content negotiation (acceptmarkdown.com). The same URL answers
+        // with markdown when the request asks for it and not for HTML.
+        // Browsers always send text/html, so they never match.
+        { source: '/', has: [WANTS_MARKDOWN], destination: '/markdown/home' },
+        {
+          source: '/:page(about|contact|privacy)',
+          has: [WANTS_MARKDOWN],
+          destination: '/markdown/:page',
+        },
+        {
+          source: '/use-cases/:category/:slug',
+          has: [WANTS_MARKDOWN],
+          destination: '/okf/use-cases/:slug.md',
+        },
+        {
+          source: `/:dir(${CONCEPT_DIRS})/:slug`,
+          has: [WANTS_MARKDOWN],
+          destination: '/okf/:dir/:slug.md',
+        },
+      ],
+      afterFiles: [{ source: '/robots.txt', destination: '/api/robots' }],
+      // Fallback rewrites run only when no page, file or dynamic route
+      // matched: the request is about to 404. An agent gets the 404 as
+      // markdown, with links to llms.txt and the sitemap.
+      fallback: [{ source: '/:path*', has: [WANTS_MARKDOWN], destination: '/markdown/not-found' }],
+    };
   },
 };
 

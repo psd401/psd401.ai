@@ -62,7 +62,7 @@ jobs:
             curl -sf -o /dev/null http://localhost:3000/ && break
             sleep 1
           done
-          npm run links:audit
+          npm run links:audit && npm run agent:audit
           STATUS=$?
           kill $SERVER_PID 2>/dev/null || true
           exit $STATUS

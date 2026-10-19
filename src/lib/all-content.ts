@@ -80,6 +80,9 @@ export const STATIC_ROUTES: Array<{ path: string; priority: string; changefreq: 
   { path: '/use-cases', priority: '0.7', changefreq: 'monthly' },
   { path: '/tools', priority: '0.7', changefreq: 'monthly' },
   { path: '/articles', priority: '0.7', changefreq: 'monthly' },
+  { path: '/about', priority: '0.4', changefreq: 'yearly' },
+  { path: '/contact', priority: '0.4', changefreq: 'yearly' },
+  { path: '/privacy', priority: '0.3', changefreq: 'yearly' },
 ];
 
 /** Concepts that should be indexed — drafts are excluded. */

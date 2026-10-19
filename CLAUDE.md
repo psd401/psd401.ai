@@ -31,6 +31,10 @@ must pass. This file covers commands and architecture.
 - `npm run validate` — lint + format + content validation
 - `npm run links:audit` — asserts every pre-redesign URL still resolves.
   Needs a running server (`npm start` in another terminal). Runs in CI.
+- `npm run agent:audit` — markdown content negotiation, markdown 404s,
+  homepage metadata, Organization JSON-LD and the /about, /contact, /privacy
+  pages, over HTTP. Needs a running server; `-- --base https://psd401.ai`
+  checks production. Runs in CI.
 
 ### Newsletter
 
