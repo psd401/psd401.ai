@@ -95,7 +95,20 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
         </div>
 
         <div className="ds-footer__bar">
-          <span>© {year} Peninsula School District</span>
+          <span style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 14 }}>
+            <span>© {year} Peninsula School District</span>
+            {/* The footer grid is four columns by design; the trust pages
+                sit in the bar beside the copyright instead of a fifth. */}
+            <Link href="/about" style={{ textDecoration: 'none' }}>
+              About
+            </Link>
+            <Link href="/contact" style={{ textDecoration: 'none' }}>
+              Contact
+            </Link>
+            <Link href="/privacy" style={{ textDecoration: 'none' }}>
+              Privacy
+            </Link>
+          </span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <a
               href={LICENSE.href}

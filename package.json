@@ -17,6 +17,7 @@
     "content:new": "tsx scripts/content-new.ts",
     "okf:build": "tsx scripts/okf-build.ts",
     "links:audit": "tsx scripts/links-audit.ts",
+    "agent:audit": "tsx scripts/agent-audit.ts",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "field-notes:selftest": "tsx scripts/field-notes-selftest.ts",

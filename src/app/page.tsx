@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
+    // Next replaces the layout's openGraph object wholesale, so the type set
+    // there does not reach this page unless it is repeated.
+    type: 'website',
     title: SITE_TAGLINE,
     description: SITE_DESCRIPTION,
     url: '/',

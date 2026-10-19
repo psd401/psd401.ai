@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { DIR_TO_TYPE } from '@/lib/schemas';
+import { markdownResponse, notFoundMarkdown } from '@/lib/agent-markdown';
 
 export const dynamic = 'force-static';
 
@@ -11,6 +12,9 @@ export const dynamic = 'force-static';
  *   /okf/writing/my-post.md        the bundle path, directly
  *   /writing/my-post.md            rewritten here by next.config.js, so any
  *                                  page's markdown source sits beside it
+ *
+ * A third reaches it through content negotiation: /writing/my-post with
+ * `Accept: text/markdown` is rewritten here by next.config.js.
  *
  * Content type is text/markdown so an agent gets the source, while a browser
  * still renders it as text rather than downloading it.
@@ -45,7 +49,7 @@ export async function GET(_request: Request, ctx: { params: Promise<{ path: stri
     segments.length > 2 ||
     segments.some(s => s.includes('..') || s.includes('/') || s.includes('\\'))
   ) {
-    return new Response('Not found', { status: 404 });
+    return notFound();
   }
 
   const [first, second] = segments;
@@ -53,28 +57,30 @@ export async function GET(_request: Request, ctx: { params: Promise<{ path: stri
   const file = second ?? first;
 
   if (!ALLOWED_DIRS.has(dir) || !file.endsWith('.md')) {
-    return new Response('Not found', { status: 404 });
+    return notFound();
   }
 
   const target = path.join(CONTENT, dir, file);
 
   // Belt and braces: the resolved path must still be inside the bundle.
   if (!path.resolve(target).startsWith(path.resolve(CONTENT) + path.sep)) {
-    return new Response('Not found', { status: 404 });
+    return notFound();
   }
 
   let body: string;
   try {
     body = await fs.readFile(target, 'utf8');
   } catch {
-    return new Response('Not found', { status: 404 });
+    return notFound();
   }
 
-  return new Response(body, {
-    headers: {
-      'Content-Type': 'text/markdown; charset=utf-8',
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
+  return markdownResponse(body);
+}
+
+/**
+ * A 404 that an agent can read. Content-negotiated requests for a missing
+ * concept (`/writing/no-such-post` with Accept: text/markdown) land here too.
+ */
+function notFound(): Response {
+  return markdownResponse(notFoundMarkdown(), { status: 404 });
 }

@@ -24,6 +24,9 @@ export const DEFAULT_OG_IMAGE = {
   alt: 'Peninsula AI: a public school district doing its AI work in the open.',
 };
 
+/** Published contact for the site: llms.txt, content.json, JSON-LD, /contact. */
+export const CONTACT_EMAIL = 'hagelk@psd401.net';
+
 export const SITE_DESCRIPTION =
   'Peninsula School District publishes its AI work in public: the software it builds, the guidance it writes, the talks it gives, and what it learns along the way.';
 
