@@ -2,7 +2,7 @@
 
 Talks and slides, published as given.
 
-Concept type: `presentation` · 45 entries
+Concept type: `presentation` · 46 entries
 
 ## Concepts
 
@@ -24,6 +24,7 @@ Concept type: `presentation` · 45 entries
 * [Demystifying AI Security: Building Safe Pathways for Educational Innovation](/presentations/demystifying-ai-security.md) - A conference session detailing how AI is truly built in simple language to make the security concepts less intimidating.
 * [From Policy to Practice: Building a District-Wide AI Framework That Works](/presentations/district-ai-framework.md) - A conference session on sharing how districts can build their own AI guidance and policies.
 * [Engaging and Authentic AI Instruction in K-5](/presentations/engaging-authentic-ai-instruction.md) - Conference session on how AI insruction is taking place in K-5
+* [Agents do the work](/presentations/erdi-ncitl-2026.md) - Kris Hagel and Ryan Gravette explain what an AI agent is, how Peninsula runs agents for staff and IT, and what districts should ask of vendors.
 * [Everyday AI - Session 1](/presentations/everyday-ai-1.md) - First session of three part Everyday AI PD Sessions
 * [Everyday AI - Session 2](/presentations/everyday-ai-2.md) - Second session of three part Everyday AI PD Sessions
 * [Everyday AI - Session 3](/presentations/everyday-ai-3.md) - Third session of three part Everyday AI PD Sessions
