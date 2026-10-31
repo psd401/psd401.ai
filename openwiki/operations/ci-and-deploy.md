@@ -12,6 +12,7 @@ openwiki:
     - There is no unit-test runner; the content validator and the Field Notes self-test are the tests.
     - links:audit needs full git history because it reads a pinned pre-redesign baseline commit.
     - Workflow uses refs are pinned to commit SHAs and kept current by Dependabot.
+    - All five org reusable callers (psd-ci, openwiki-update, claude-review and its skip variant, security-scan) share one `PSD401/.github` v1.1.0 SHA pin.
     - bun installs and runs scripts; Node still runs next build and tsx.
   validation_commands: ['bun run content:validate', 'bun run field-notes:selftest', 'bun run type-check', 'bun run lint']
 ---
@@ -53,5 +54,8 @@ The site is an AWS Amplify Next.js SSR app (the app id is noted in `amplify.yml`
 ## Change navigation
 
 - Changing the install tool or Bun version: update `ci.yml`, `amplify.yml`, and docs together (the Bun conversion touched workflows, skills, scripts' usage text, README and AGENTS).
+- Adding a script that should gate merges: add it to `ci.yml` and, if it is cheap and offline, to the `test-command` in `psd-ci.yml`.
+- Do not run the audits by default; only when routing, redirects, rewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
+EADME and AGENTS).
 - Adding a script that should gate merges: add it to `ci.yml` and, if it is cheap and offline, to the `test-command` in `psd-ci.yml`.
 - Do not run the audits by default; only when routing, redirects, rewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
