@@ -11,7 +11,7 @@
  *           Amplify reserves the AWS_ prefix for its own variables, hence the
  *           FIELD_NOTES_ names.
  *   memory  In-process list, confirmation links printed to the server log.
- *           For `npm run dev` only — refused in a production build.
+ *           For `bun run dev` only — refused in a production build.
  *
  * With neither configured, the form renders disabled with an email fallback
  * and the routes answer 503. The flow itself is src/lib/field-notes/core.ts.

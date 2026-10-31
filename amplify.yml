@@ -1,0 +1,22 @@
+# Amplify build spec for psd401.ai (app d1w7tkzdqq9izp, Next.js SSR).
+# A build spec in the repo takes precedence over the one saved in the Amplify
+# console. This replaces the console's `npm ci` / `npm run build` now that the
+# repo uses bun (bun.lock, no package-lock.json). Node still runs `next build`;
+# bun installs the dependencies and runs the scripts.
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install -g bun@1.2.23
+        - bun install --frozen-lockfile
+    build:
+      commands:
+        - bun run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*

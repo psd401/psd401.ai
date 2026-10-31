@@ -6,7 +6,7 @@
 #   FieldNotesSitePolicy    for the Amplify app's IAM compute role — sign-up,
 #                           confirm and unsubscribe. No Scan: the site never
 #                           lists subscribers.
-#   FieldNotesSenderPolicy  for whoever runs `npm run field-notes:send` —
+#   FieldNotesSenderPolicy  for whoever runs `bun run field-notes:send` —
 #                           list confirmed subscribers, record sends, email.
 #
 # Full setup: docs/field-notes.md.

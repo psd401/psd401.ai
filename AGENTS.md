@@ -27,10 +27,10 @@ to bury.
 ### The loop
 
 ```bash
-npm run content:new -- --type post --title "..."   # scaffold, never hand-write frontmatter
+bun run content:new -- --type post --title "..."   # scaffold, never hand-write frontmatter
 # write the piece
-npm run okf:build                                   # refresh the bundle indexes
-npm run content:validate                            # must pass; CI runs it too
+bun run okf:build                                   # refresh the bundle indexes
+bun run content:validate                            # must pass; CI runs it too
 ```
 
 `content:new` emits every required field correctly quoted and a `resource`
@@ -59,13 +59,13 @@ v0.2 bundle. Every markdown file is one "concept" and MUST carry a non-empty
 | `research`     | `articles/`               | `/articles/<slug>`               | External research, summarised                                            |
 
 `index.md` and `log.md` are **reserved** by OKF. They describe the bundle and
-are never concepts. Do not create them by hand — `npm run okf:build` writes
+are never concepts. Do not create them by hand — `bun run okf:build` writes
 them.
 
 ### URLs never change
 
 Every URL that existed before the 2026 redesign still resolves. Redirects live
-in [next.config.js](next.config.js) and `npm run links:audit` proves it against
+in [next.config.js](next.config.js) and `bun run links:audit` proves it against
 a running server.
 
 Two things this constrains:
@@ -155,15 +155,15 @@ directly will pull `index.md` and `log.md` in as ghost entries.
 ### Before you finish
 
 ```bash
-npm run content:validate && npm run type-check && npm run lint && npm run build
+bun run content:validate && bun run type-check && bun run lint && bun run build
 ```
 
 If you touched routes or redirects, also:
 
 ```bash
-npm start                     # one terminal
-npm run links:audit           # another
-npm run agent:audit           # markdown negotiation, 404s, metadata, trust pages
+bun run start                     # one terminal
+bun run links:audit           # another
+bun run agent:audit           # markdown negotiation, 404s, metadata, trust pages
 ```
 
 ---
@@ -178,7 +178,7 @@ Keep these working; they are the point of the site, not an add-on.
 | `/llms-full.txt`        | Every document in full. The heavy one, opt-in.                                                                                   |
 | `/okf`                  | The OKF bundle, browsable. `/okf/<dir>/<slug>.md` serves raw markdown.                                                           |
 | `/<section>/<slug>.md`  | Any page's markdown source, via a rewrite.                                                                                       |
-| `Accept: text/markdown` | `/`, the trust pages and every concept URL answer in markdown; unknown URLs get a markdown 404. `npm run agent:audit` proves it. |
+| `Accept: text/markdown` | `/`, the trust pages and every concept URL answer in markdown; unknown URLs get a markdown 404. `bun run agent:audit` proves it. |
 | `/api/content.json`     | Typed index of every concept. CORS open.                                                                                         |
 | `/sitemap.xml`          | Generated from content. Never hand-add a route.                                                                                  |
 | `/feed.xml`             | RSS across all content types, not just posts.                                                                                    |

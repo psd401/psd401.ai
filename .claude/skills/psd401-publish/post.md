@@ -118,7 +118,7 @@ no image is fine.
 ## 5. Scaffold and write
 
 ```bash
-npm run content:new -- --type post --title "<title>" --slug <slug> \
+bun run content:new -- --type post --title "<title>" --slug <slug> \
   --author "<author>" --tags "<tag>" --description "<one sentence>" [--date <YYYY-MM-DD>]
 ```
 

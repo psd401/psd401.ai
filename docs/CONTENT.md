@@ -1,9 +1,9 @@
 # Content field reference
 
 Exact frontmatter for every concept type. Enforced by
-[src/lib/schemas.ts](../src/lib/schemas.ts) and checked by `npm run content:validate`.
+[src/lib/schemas.ts](../src/lib/schemas.ts) and checked by `bun run content:validate`.
 
-Do not hand-write frontmatter — run `npm run content:new -- --type <type> --title "..."`
+Do not hand-write frontmatter — run `bun run content:new -- --type <type> --title "..."`
 and edit the result. See [AGENTS.md](../AGENTS.md) for house style and the
 publishing loop.
 
@@ -182,7 +182,7 @@ documents" in AGENTS.md for the raw-HTML rules.
 ## Reserved files
 
 `index.md` and `log.md` are reserved by OKF at any level. They describe the
-bundle and are never concepts. `npm run okf:build` writes them; do not edit
+bundle and are never concepts. `bun run okf:build` writes them; do not edit
 them by hand — `content:validate` fails if they are stale.
 
 ## What validation checks

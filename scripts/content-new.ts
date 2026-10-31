@@ -1,9 +1,9 @@
 /**
  * Scaffold a new concept with correct frontmatter.
  *
- *   npm run content:new -- --type post --title "What we learned about IEP drafts"
- *   npm run content:new -- --type use-case --title "..." --category "Enhancing Teaching & Learning"
- *   npm run content:new -- --type software --title "LessonLens" --maturity Pilot
+ *   bun run content:new -- --type post --title "What we learned about IEP drafts"
+ *   bun run content:new -- --type use-case --title "..." --category "Enhancing Teaching & Learning"
+ *   bun run content:new -- --type software --title "LessonLens" --maturity Pilot
  *
  * Guessing the frontmatter shape is the single most common way an agent
  * produces a file that does not render. This removes the guess: it emits
@@ -11,7 +11,7 @@
  * `resource` that already matches where the file will live.
  *
  * The output is validated before it is written, so this can never produce a
- * file that `npm run content:validate` would reject.
+ * file that `bun run content:validate` would reject.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -57,7 +57,7 @@ const DIR_FOR_TYPE = Object.fromEntries(
 function usage(message?: string): never {
   if (message) console.error(`\n${message}\n`);
   console.error(`Usage:
-  npm run content:new -- --type <type> --title "<title>" [options]
+  bun run content:new -- --type <type> --title "<title>" [options]
 
 Types:
 ${OKF_TYPES.map(t => `  ${t.padEnd(14)}→ src/content/${DIR_FOR_TYPE[t]}/`).join('\n')}
@@ -73,7 +73,7 @@ Common options:
   --force      overwrite an existing file
 
 Example:
-  npm run content:new -- --type post \\
+  bun run content:new -- --type post \\
     --title "IEP drafts: stopped after two weeks" \\
     --author "Kris Hagel" --tags "What flopped,Special Services"
 `);
@@ -196,8 +196,8 @@ Before publishing:
    description, its search result, and its entry in llms.txt.
 2. Fill in every TODO above.
 3. Remove \`status: draft\` so the page is indexed and appears in the feed.
-4. Run \`npm run okf:build\` to refresh the bundle indexes.
-5. Run \`npm run content:validate\`.
+4. Run \`bun run okf:build\` to refresh the bundle indexes.
+5. Run \`bun run content:validate\`.
 
 House style is in AGENTS.md. The short version: first person plural, past
 tense, specific. Sentence case headings. No emoji. Real numbers or none.
@@ -223,7 +223,7 @@ Publish the failures.
   console.log(`  type      ${type}`);
   console.log(`  url       ${resource}`);
   console.log(`  status    draft (not indexed until you clear this)`);
-  console.log(`\nNext: write it, then \`npm run okf:build && npm run content:validate\`.\n`);
+  console.log(`\nNext: write it, then \`bun run okf:build && bun run content:validate\`.\n`);
 }
 
 main().catch(err => {

@@ -5,7 +5,7 @@
 # padding — and src/content/ holds documents bylined by named staff plus
 # summaries of other people's research. A formatter silently rewriting those
 # is not acceptable, and frontmatter shape is already enforced by
-# `npm run content:validate` against src/lib/schemas.ts.
+# `bun run content:validate` against src/lib/schemas.ts.
 #
 # Documentation in docs/ and at the repo root IS formatted; only the OKF
 # bundle is protected.

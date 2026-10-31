@@ -11,7 +11,7 @@
  *     entries.
  *   · Frontmatter is validated against src/lib/schemas.ts.
  *   · Validation is LENIENT at runtime and STRICT in CI. A malformed file
- *     should fail the build via `npm run content:validate`, not take the
+ *     should fail the build via `bun run content:validate`, not take the
  *     live site down mid-render.
  */
 import fs from 'node:fs/promises';

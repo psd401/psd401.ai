@@ -1,7 +1,7 @@
 /**
  * Field Notes self-test — proves the consent flow without an AWS account.
  *
- *   npm run field-notes:selftest
+ *   bun run field-notes:selftest
  *
  * Part 1 drives src/lib/field-notes/core.ts with an in-memory store, a clock
  * we control, and a mailer we can make fail.

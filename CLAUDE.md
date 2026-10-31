@@ -10,37 +10,37 @@ must pass. This file covers commands and architecture.
 
 ### Core
 
-- `npm run dev` — development server at http://localhost:3000
-- `npm run build` — production build
-- `npm start` — serve the production build
-- `npm run type-check` — TypeScript, no emit
+- `bun run dev` — development server at http://localhost:3000
+- `bun run build` — production build
+- `bun run start` — serve the production build
+- `bun run type-check` — TypeScript, no emit
 
 ### Content
 
-- `npm run content:new -- --type <type> --title "..."` — scaffold a concept
+- `bun run content:new -- --type <type> --title "..."` — scaffold a concept
   with valid frontmatter. Never hand-write frontmatter.
-- `npm run okf:build` — regenerate the OKF bundle's `index.md` files and
+- `bun run okf:build` — regenerate the OKF bundle's `index.md` files and
   `log.md`. Run after adding or removing content.
-- `npm run content:validate` — OKF conformance, schemas, links, images, index
+- `bun run content:validate` — OKF conformance, schemas, links, images, index
   freshness. Runs in CI.
 
 ### Quality
 
-- `npm run lint` / `npm run lint:fix`
-- `npm run format` / `npm run format:check`
-- `npm run validate` — lint + format + content validation
-- `npm run links:audit` — asserts every pre-redesign URL still resolves.
-  Needs a running server (`npm start` in another terminal). Runs in CI.
-- `npm run agent:audit` — markdown content negotiation, markdown 404s,
+- `bun run lint` / `bun run lint:fix`
+- `bun run format` / `bun run format:check`
+- `bun run validate` — lint + format + content validation
+- `bun run links:audit` — asserts every pre-redesign URL still resolves.
+  Needs a running server (`bun run start` in another terminal). Runs in CI.
+- `bun run agent:audit` — markdown content negotiation, markdown 404s,
   homepage metadata, Organization JSON-LD and the /about, /contact, /privacy
   pages, over HTTP. Needs a running server; `-- --base https://psd401.ai`
   checks production. Runs in CI.
 
 ### Newsletter
 
-- `npm run field-notes:selftest` — consent flow, route handlers and issue
+- `bun run field-notes:selftest` — consent flow, route handlers and issue
   sender against the in-memory driver. No AWS. Runs in CI.
-- `npm run field-notes:send -- --issue <file.md> --preview out.html` — render
+- `bun run field-notes:send -- --issue <file.md> --preview out.html` — render
   an issue locally. `--dry-run`, `--test <addr>` and a real send need AWS; see
   [docs/field-notes.md](docs/field-notes.md). Never run a real send unprompted.
 
@@ -112,7 +112,7 @@ exception, because it is the index of all five.
 ### URLs are permanent
 
 Every URL that existed before the redesign still resolves — redirects are in
-[next.config.js](next.config.js), proven by `npm run links:audit`. Do not
+[next.config.js](next.config.js), proven by `bun run links:audit`. Do not
 rename a slug; a file's name is its permanent public URL. `/tools`,
 `/articles` and `/use-cases` deliberately kept their original paths.
 

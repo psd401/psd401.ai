@@ -1,7 +1,7 @@
 /**
  * One-time migration: convert src/content/ into a conformant OKF v0.2 bundle.
  *
- *   npx tsx scripts/content-migrate.ts [--dry]
+ *   bunx tsx scripts/content-migrate.ts [--dry]
  *
  * This rewrites FRONTMATTER ONLY. The body of every file is preserved
  * byte-for-byte: the script slices the raw string after the closing `---` and

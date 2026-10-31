@@ -31,15 +31,15 @@ confirm the page is live. Use it for any other type too.
 
 ```bash
 # 1. Scaffold. Never hand-write frontmatter.
-npm run content:new -- --type post --title "IEP drafts: stopped after two weeks"
+bun run content:new -- --type post --title "IEP drafts: stopped after two weeks"
 
 # 2. Write the piece. Fill every TODO.
 
 # 3. Refresh the bundle indexes.
-npm run okf:build
+bun run okf:build
 
 # 4. Validate. Must pass.
-npm run content:validate
+bun run content:validate
 ```
 
 `content:new` prints the file path and the URL it will live at. It creates
@@ -129,7 +129,7 @@ A post with no image is fine. The layout falls back to a holding frame.
 ## Step 4 — ship
 
 ```bash
-npm run content:validate && npm run type-check && npm run lint && npm run build
+bun run content:validate && bun run type-check && bun run lint && bun run build
 ```
 
 Then follow [ship.md](ship.md): commit on a branch, open a PR, wait for CI,
@@ -146,7 +146,7 @@ typo is fine; restyling someone's prose to the voice guide is not.
 
 **Never rename a slug.** A file's name is its permanent public URL, and those
 URLs are in slide decks and other districts' documentation. If something must
-move, add a redirect in `next.config.js` and re-run `npm run links:audit`.
+move, add a redirect in `next.config.js` and re-run `bun run links:audit`.
 
 ## When validation fails
 
@@ -157,6 +157,6 @@ The error names the file and the field. Common ones:
 | `OKF: frontmatter must contain a non-empty type` | You hand-wrote the file. Scaffold it instead.       |
 | `date: must be YYYY-MM-DD`                       | Quote it: `date: '2026-08-12'`.                     |
 | `description: drives the page meta description`  | Write one real sentence.                            |
-| `stale index — run npm run okf:build`            | You added or removed a file.                        |
+| `stale index — run bun run okf:build`            | You added or removed a file.                        |
 | `image points at ... which does not exist`       | Add the file to `public/` or drop the field.        |
 | `link ... does not resolve to a page`            | Check the path; use the concept's `resource` value. |

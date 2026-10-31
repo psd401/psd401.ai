@@ -17,7 +17,7 @@ account. No mailing-list vendor is involved.
    `/api/field-notes/unsubscribe` also accepts RFC 8058 one-click requests, which
    Gmail and Yahoo require from bulk senders.
 
-Privacy properties, all covered by `npm run field-notes:selftest`:
+Privacy properties, all covered by `bun run field-notes:selftest`:
 
 - Links identify a subscriber by a random id and carry their token in the URL
   fragment. **An email address never appears in a URL**, so none reaches server
@@ -44,7 +44,7 @@ No AWS account needed. Put this in `.env.development.local` (git-ignored):
 FIELD_NOTES_DRIVER=memory
 ```
 
-Restart `npm run dev`. The form is live; subscribers are kept in memory, and
+Restart `bun run dev`. The form is live; subscribers are kept in memory, and
 each confirmation link is printed to the dev server's log instead of emailed.
 Open the printed link to finish the flow. The memory driver is refused in a
 production build.
@@ -108,8 +108,9 @@ Amplify reserves the `AWS_` prefix, which is why these are named
 ### 5. Make them visible at runtime
 
 Amplify exposes console variables to the build, but **not** to server code at
-runtime. The API routes run at runtime, so add this line to the build spec
-(**App settings → Build settings**), in `build.commands` before `npm run build`:
+runtime. The API routes run at runtime, so add this line to the build spec,
+[amplify.yml](../amplify.yml) in the repo root (it takes precedence over the
+console's build settings), in `build.commands` before `bun run build`:
 
 ```yaml
 - env | grep -e '^FIELD_NOTES_' >> .env.production
@@ -149,17 +150,17 @@ Four steps, in order. Only the last one emails subscribers.
 
 ```bash
 # 1. Look at it. Writes one copy to a file; touches no AWS.
-npm run field-notes:send -- --issue issue.md --preview preview.html
+bun run field-notes:send -- --issue issue.md --preview preview.html
 
 # 2. See who would get it. Sends nothing, records nothing.
-npm run field-notes:send -- --issue issue.md --dry-run
+bun run field-notes:send -- --issue issue.md --dry-run
 
 # 3. Send one copy to yourself, subject prefixed [TEST].
-npm run field-notes:send -- --issue issue.md --test you@psd401.net
+bun run field-notes:send -- --issue issue.md --test you@psd401.net
 
 # 4. Send it. Shows the subject and recipient count, then waits for you to
 #    type that count before anything goes out.
-npm run field-notes:send -- --issue issue.md
+bun run field-notes:send -- --issue issue.md
 ```
 
 Steps 2–4 need `FIELD_NOTES_TABLE`, `FIELD_NOTES_FROM` and AWS credentials for
@@ -167,7 +168,7 @@ an identity with the **sender policy** (`SenderPolicyArn` from the stack).
 Optional: `FIELD_NOTES_POSTAL_ADDRESS` for the footer (without it the footer
 names the town only), `FIELD_NOTES_REGION`, `FIELD_NOTES_SITE_URL`.
 
-What the sender guarantees, all covered by `npm run field-notes:selftest`:
+What the sender guarantees, all covered by `bun run field-notes:selftest`:
 
 - **Confirmed subscribers only.** The store lists confirmed records and the
   send loop checks each one again.

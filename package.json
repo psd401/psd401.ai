@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "npm run lint && npm run format:check && npm run content:validate",
+    "validate": "bun run lint && bun run format:check && bun run content:validate",
     "type-check": "tsc --noEmit",
     "content:validate": "tsx scripts/content-validate.ts",
     "content:new": "tsx scripts/content-new.ts",
