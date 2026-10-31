@@ -39,7 +39,7 @@ There is no test framework. The checks are:
 
 - `ci.yml` (push/PR to `main`, read-only token, `fetch-depth: 0`): install with `--frozen-lockfile` → `content:validate` → `field-notes:selftest` → `type-check` → `lint` → `build` → start server and run `links:audit && agent:audit`.
 - `psd-ci.yml`: calls the org reusable `PSD401/.github` PSD CI; `typecheck-command` is `bun run type-check` (the script is named `type-check`, not `typecheck`) and `test-command` is `bun run content:validate && bun run field-notes:selftest`.
-- `security-scan.yml`: org reusable security scan on PR, push and weekly cron.
+- `security-scan.yml`: org reusable security scan (`PSD401/.github` `reusable-security-scan.yml`, pinned to the v1.1.0 commit SHA) on PR, push and weekly cron. Bumping the pin is a Dependabot-driven change, not a repo code change.
 - `claude-review.yml` / `claude.yml`: org reusable Claude review on PRs (skipped for Dependabot with a no-op job that still reports the required `claude-review` check) and an `@claude` mention bot.
 - `openwiki-update.yml`: calls the org reusable OpenWiki workflow on push to `main`, weekly, or manually (concurrency group cancels superseded runs). It regenerates `openwiki/`; hand edits to generated pages are discouraged by the block in [AGENTS.md](../../AGENTS.md).
 - All `uses:` refs are SHA-pinned; `.github/dependabot.yml` updates `github-actions` and `bun` weekly with a 7-day cooldown, grouping minor and patch bumps.
