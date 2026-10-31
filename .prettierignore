@@ -15,4 +15,6 @@ src/content/
 .next/
 node_modules/
 public/openadaptivedistrict/
+# Written by the OpenWiki workflow; regenerated on every push to main.
+openwiki/
 package-lock.json
