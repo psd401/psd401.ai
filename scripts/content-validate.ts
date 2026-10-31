@@ -2,7 +2,7 @@
  * Validate src/content/ — the gate that makes this bundle safe for agents to
  * write to.
  *
- *   npm run content:validate
+ *   bun run content:validate
  *
  * Exits non-zero on any ERROR. Runs in CI on every push and pull request.
  *
@@ -12,7 +12,7 @@
  *   · Schema violation against src/lib/schemas.ts.
  *   · A link to a site path that does not resolve to a real concept.
  *   · An image path that does not exist in public/.
- *   · A stale directory index (run `npm run okf:build`).
+ *   · A stale directory index (run `bun run okf:build`).
  *   · Duplicate slugs within a directory.
  *
  * Warnings (reported, not fatal):
@@ -229,7 +229,7 @@ async function main() {
   for (const dir of dirs) {
     const indexPath = path.join(CONTENT, dir, 'index.md');
     if (!(await exists(indexPath))) {
-      error(`src/content/${dir}/index.md`, 'missing — run `npm run okf:build`');
+      error(`src/content/${dir}/index.md`, 'missing — run `bun run okf:build`');
       continue;
     }
     const index = await fs.readFile(indexPath, 'utf8');
@@ -241,13 +241,13 @@ async function main() {
     if (missing.length || extra.length) {
       error(
         `src/content/${dir}/index.md`,
-        `stale index — run \`npm run okf:build\`${missing.length ? ` (missing: ${missing.slice(0, 3).join(', ')}${missing.length > 3 ? '…' : ''})` : ''}${extra.length ? ` (removed: ${extra.slice(0, 3).join(', ')})` : ''}`
+        `stale index — run \`bun run okf:build\`${missing.length ? ` (missing: ${missing.slice(0, 3).join(', ')}${missing.length > 3 ? '…' : ''})` : ''}${extra.length ? ` (removed: ${extra.slice(0, 3).join(', ')})` : ''}`
       );
     }
   }
 
   if (!(await exists(path.join(CONTENT, 'index.md')))) {
-    error('src/content/index.md', 'bundle root index missing — run `npm run okf:build`');
+    error('src/content/index.md', 'bundle root index missing — run `bun run okf:build`');
   }
 
   // OKF conformance rule 1 applies to the WHOLE bundle, not just the content

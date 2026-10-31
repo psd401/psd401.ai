@@ -15,16 +15,16 @@ a worktree instead:
 
 ```bash
 git worktree add ../psd401-<slug> -b content/<slug> origin/main
-cd ../psd401-<slug> && npm ci
+cd ../psd401-<slug> && bun install --frozen-lockfile
 ```
 
-Install dependencies once per checkout: `npm ci` if `node_modules/` is missing.
+Install dependencies once per checkout: `bun install --frozen-lockfile` if `node_modules/` is missing.
 
 ## 2. Build the bundle and run the checks
 
 ```bash
-npm run okf:build
-npm run content:validate && npm run type-check && npm run lint && npm run build
+bun run okf:build
+bun run content:validate && bun run type-check && bun run lint && bun run build
 ```
 
 All four must pass. `content:validate` names the file and field on failure;

@@ -1,9 +1,9 @@
 /**
  * Assert that every URL the site had BEFORE the redesign still resolves.
  *
- *   npm run build && npm start        # in one terminal
- *   npm run links:audit               # in another
- *   npm run links:audit -- --base http://localhost:3001
+ *   bun run build && bun run start        # in one terminal
+ *   bun run links:audit               # in another
+ *   bun run links:audit -- --base http://localhost:3001
  *
  * The redesign renumbered the information architecture. Old URLs live in
  * slide decks, QR codes, press articles and other districts' documentation,
@@ -91,7 +91,7 @@ function assertBaseline(): void {
         `Missing: ${missing.join(', ')}\n\n` +
         `This audit reconstructs old URLs from that tree. Without it, it would\n` +
         `silently check only a fraction of the URLs it claims to.\n\n` +
-        `Pass a ref from before the redesign:  npm run links:audit -- --ref <sha>\n`
+        `Pass a ref from before the redesign:  bun run links:audit -- --ref <sha>\n`
     );
     process.exit(1);
   }

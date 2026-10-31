@@ -52,8 +52,8 @@ library.
 ```bash
 git clone https://github.com/psd401/psd401.ai
 cd psd401.ai
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 Then open http://localhost:3000.
@@ -61,21 +61,21 @@ Then open http://localhost:3000.
 ## Working on it
 
 ```bash
-npm run content:new -- --type post --title "..."   # scaffold a new concept
-npm run okf:build                                   # refresh bundle indexes
-npm run content:validate                            # OKF + schemas + links + images
-npm run type-check && npm run lint && npm run build
+bun run content:new -- --type post --title "..."   # scaffold a new concept
+bun run okf:build                                   # refresh bundle indexes
+bun run content:validate                            # OKF + schemas + links + images
+bun run type-check && bun run lint && bun run build
 ```
 
 If you touch routes or redirects, run the URL audit — every URL that existed
 before the 2026 redesign must still resolve:
 
 ```bash
-npm start          # one terminal
-npm run links:audit # another
+bun run start          # one terminal
+bun run links:audit # another
 ```
 
-`npm run content:validate` and `npm run links:audit` both run in CI.
+`bun run content:validate` and `bun run links:audit` both run in CI.
 
 **Contributing or working with an AI agent?** Read [AGENTS.md](AGENTS.md)
 first — it is the working contract. Field reference is in

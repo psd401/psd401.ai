@@ -1,16 +1,16 @@
 /**
  * Send an issue of the newsletter.
  *
- *   npm run field-notes:send -- --issue path/to/issue.md --preview out.html
+ *   bun run field-notes:send -- --issue path/to/issue.md --preview out.html
  *       Render one copy to a file and open it in a browser. No AWS.
  *
- *   npm run field-notes:send -- --issue path/to/issue.md --dry-run
+ *   bun run field-notes:send -- --issue path/to/issue.md --dry-run
  *       Count who would receive it. Sends nothing, records nothing.
  *
- *   npm run field-notes:send -- --issue path/to/issue.md --test you@psd401.net
+ *   bun run field-notes:send -- --issue path/to/issue.md --test you@psd401.net
  *       Send one copy, subject prefixed [TEST], to one address. Records nothing.
  *
- *   npm run field-notes:send -- --issue path/to/issue.md
+ *   bun run field-notes:send -- --issue path/to/issue.md
  *       Send to every confirmed subscriber who has not had this issue. Shows
  *       what it is about to do and waits for you to type the recipient count.
  *

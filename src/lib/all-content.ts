@@ -71,7 +71,7 @@ export const getAllConcepts = cache(async (): Promise<FlatConcept[]> => {
 
 /**
  * Static routes that genuinely exist. Anything added here must be a real
- * page — `npm run links:audit` fetches every one of them.
+ * page — `bun run links:audit` fetches every one of them.
  */
 export const STATIC_ROUTES: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },

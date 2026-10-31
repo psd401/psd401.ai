@@ -115,7 +115,7 @@ the link → Viewer**. Never change a file's sharing yourself.
 ## 6. Scaffold
 
 ```bash
-npm run content:new -- --type presentation --title "<title>" --slug <slug> \
+bun run content:new -- --type presentation --title "<title>" --slug <slug> \
   --date <YYYY-MM-DD> --presenters "<Name One>,<Name Two>" \
   --audience "<audience>" --format "<format>" --tags "<format>,<audience>" \
   --description "<one sentence>"

@@ -1,9 +1,9 @@
 /**
  * Assert the site answers agents the way it claims to.
  *
- *   npm run build && npm start        # in one terminal
- *   npm run agent:audit               # in another
- *   npm run agent:audit -- --base https://psd401.ai
+ *   bun run build && bun run start        # in one terminal
+ *   bun run agent:audit               # in another
+ *   bun run agent:audit -- --base https://psd401.ai
  *
  * Covers, over real HTTP so the next.config.js rewrites and headers are part
  * of what is tested:

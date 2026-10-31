@@ -11,7 +11,7 @@ import { SITE_URL } from '@/lib/site';
  * nav, styled by public/openadaptivedistrict/oad.css (which has print rules),
  * and a canonical pointing at the in-site page so search engines see one copy.
  *
- * `npm run links:audit` checks all five URLs still answer 200.
+ * `bun run links:audit` checks all five URLs still answer 200.
  */
 export const dynamic = 'force-static';
 export const dynamicParams = false;

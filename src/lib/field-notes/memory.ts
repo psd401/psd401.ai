@@ -2,7 +2,7 @@
  * In-memory driver for local development and the self-test.
  *
  * FIELD_NOTES_DRIVER=memory makes the whole Field Notes flow clickable in
- * `npm run dev` with no AWS account: subscribers live in process memory, and
+ * `bun run dev` with no AWS account: subscribers live in process memory, and
  * the confirmation link is printed to the server log instead of emailed.
  *
  * src/lib/subscribe.ts refuses this driver in a production build.

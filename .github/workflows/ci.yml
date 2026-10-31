@@ -22,47 +22,52 @@ jobs:
           # depth-1 clone does not contain it and the audit would exit 1.
           fetch-depth: 0
 
+      # Node still runs Next.js and the tsx scripts; bun installs and runs them.
       - name: Setup Node.js
         uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
         with:
           node-version: '20'
-          cache: 'npm'
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: '1.2.23'
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       # Content first: a malformed markdown file is the most likely breakage on
       # this repo and the cheapest to catch. Checks OKF v0.2 conformance, the
       # Zod schemas, every internal link, every image path, and index freshness.
       - name: Validate content
-        run: npm run content:validate
+        run: bun run content:validate
 
       # The Field Notes consent flow: double opt-in, token handling, bot
       # checks, unsubscribe. No AWS needed — runs on the in-memory driver.
       - name: Field Notes self-test
-        run: npm run field-notes:selftest
+        run: bun run field-notes:selftest
 
       - name: Type check
-        run: npm run type-check
+        run: bun run type-check
 
       - name: Lint
-        run: npm run lint
+        run: bun run lint
 
       - name: Build
-        run: npm run build
+        run: bun run build
 
       # Every URL that existed before the 2026 redesign must still resolve.
       # These live in slide decks and other districts' documentation, so a
       # broken redirect is not recoverable by editing our own links.
       - name: Audit redirects
         run: |
-          npm start &
+          bun run start &
           SERVER_PID=$!
           for i in $(seq 1 60); do
             curl -sf -o /dev/null http://localhost:3000/ && break
             sleep 1
           done
-          npm run links:audit && npm run agent:audit
+          bun run links:audit && bun run agent:audit
           STATUS=$?
           kill $SERVER_PID 2>/dev/null || true
           exit $STATUS
