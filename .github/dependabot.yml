@@ -7,3 +7,15 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
+
+  # Dependencies, from bun.lock (the repo moved from npm to bun in #54).
+  # Minor and patch updates arrive as one grouped PR; majors arrive alone.
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
