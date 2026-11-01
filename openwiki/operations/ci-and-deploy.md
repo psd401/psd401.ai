@@ -5,7 +5,7 @@ description: How psd401.ai is validated, built and deployed (GitHub Actions CI, 
 tags: [ci, github-actions, amplify, bun, audits, dependabot]
 openwiki:
   roles: [operations, delivery, testing]
-  change_kinds: [ci, deploy, tooling]
+  change_kinds: [ci, deploy, tooling, node-runtime]
   source_paths: [.github/workflows/ci.yml, .github/workflows/psd-ci.yml, .github/workflows/openwiki-update.yml, .github/workflows/security-scan.yml, .github/workflows/claude-review.yml, .github/workflows/claude.yml, .github/dependabot.yml, amplify.yml, package.json, .husky/pre-commit, scripts/links-audit.ts, scripts/agent-audit.ts]
   test_paths: [scripts/content-validate.ts, scripts/field-notes-selftest.ts, scripts/links-audit.ts, scripts/agent-audit.ts]
   invariants:
@@ -13,7 +13,8 @@ openwiki:
     - links:audit needs full git history because it reads a pinned pre-redesign baseline commit.
     - Workflow uses refs are pinned to commit SHAs and kept current by Dependabot.
     - All five org reusable callers (psd-ci, openwiki-update, claude-review and its skip variant, security-scan) share one `PSD401/.github` v1.1.0 SHA pin.
-    - bun installs and runs scripts; Node still runs next build and tsx.
+    - bun installs and runs scripts; Node 24 runs next build and tsx.
+    - "Node 24 is the runtime everywhere: ci.yml, psd-ci.yml, amplify.yml (nvm install 24) and the engines floor >=24 in package.json. @types/node tracks it and Dependabot ignores its semver-major bumps."
   validation_commands: ['bun run content:validate', 'bun run field-notes:selftest', 'bun run type-check', 'bun run lint']
 ---
 
@@ -21,7 +22,7 @@ openwiki:
 
 ## Runtime and tooling
 
-The repo standardised on **bun** (lockfile `bun.lock`, no `package-lock.json`; Bun pinned to `1.2.23` in both `ci.yml` and `amplify.yml`). Node 20 still runs Next.js and the `tsx` scripts. Package scripts live in `package.json`; `bun run validate` chains lint, `format:check` and `content:validate`. The pre-commit hook (`.husky/pre-commit`) runs `lint-staged` (Prettier on js/ts/json/md); `.prettierignore` excludes `src/content/` (authored text, see [publishing](../workflows/publishing-content.md)), `public/openadaptivedistrict/` and `openwiki/`.
+The repo standardised on **bun** (lockfile `bun.lock`, no `package-lock.json`; Bun pinned to `1.2.23` in both `ci.yml` and `amplify.yml`). Node 24 runs Next.js and the `tsx` scripts; the floor is set by the `engines` field in `package.json` (`>=24`). Package scripts live in `package.json`; `bun run validate` chains lint, `format:check` and `content:validate`. The pre-commit hook (`.husky/pre-commit`) runs `lint-staged` (Prettier on js/ts/json/md); `.prettierignore` excludes `src/content/` (authored text, see [publishing](../workflows/publishing-content.md)), `public/openadaptivedistrict/` and `openwiki/`.
 
 ## What counts as a test
 
@@ -38,16 +39,16 @@ There is no test framework. The checks are:
 
 ## GitHub Actions
 
-- `ci.yml` (push/PR to `main`, read-only token, `fetch-depth: 0`): install with `--frozen-lockfile` → `content:validate` → `field-notes:selftest` → `type-check` → `lint` → `build` → start server and run `links:audit && agent:audit`.
-- `psd-ci.yml`: calls the org reusable `PSD401/.github` PSD CI; `typecheck-command` is `bun run type-check` (the script is named `type-check`, not `typecheck`) and `test-command` is `bun run content:validate && bun run field-notes:selftest`.
+- `ci.yml` (push/PR to `main`, read-only token, `fetch-depth: 0`, `setup-node` 24, Bun 1.2.23): install with `--frozen-lockfile` → `content:validate` → `field-notes:selftest` → `type-check` → `lint` → `build` → start server and run `links:audit && agent:audit`.
+- `psd-ci.yml`: calls the org reusable `PSD401/.github` PSD CI with `node-version: '24'`; `typecheck-command` is `bun run type-check` (the script is named `type-check`, not `typecheck`) and `test-command` is `bun run content:validate && bun run field-notes:selftest`.
 - `security-scan.yml`: org reusable security scan (`PSD401/.github` `reusable-security-scan.yml`, pinned to the v1.1.0 commit SHA) on PR, push and weekly cron. Bumping the pin is a Dependabot-driven change, not a repo code change.
 - `claude-review.yml` / `claude.yml`: org reusable Claude review on PRs (skipped for Dependabot with a no-op job that still reports the required `claude-review` check) and an `@claude` mention bot.
 - `openwiki-update.yml`: calls the org reusable OpenWiki workflow on push to `main`, weekly, or manually (concurrency group cancels superseded runs). It regenerates `openwiki/`; hand edits to generated pages are discouraged by the block in [AGENTS.md](../../AGENTS.md).
-- All `uses:` refs are SHA-pinned; `.github/dependabot.yml` updates `github-actions` and `bun` weekly with a 7-day cooldown, grouping minor and patch bumps.
+- All `uses:` refs are SHA-pinned; `.github/dependabot.yml` updates `github-actions` and `bun` weekly with a 7-day cooldown, grouping minor and patch bumps. It ignores semver-major bumps of `@types/node` so the typings move with the Node runtime, not ahead of it.
 
 ## Deploy
 
-The site is an AWS Amplify Next.js SSR app (the app id is noted in `amplify.yml`). The checked-in `amplify.yml` overrides the console build settings: `npm install -g bun@1.2.23`, `bun install --frozen-lockfile`, `bun run build`, artifacts from `.next`, cache `.next/cache`. Server-side configuration for Field Notes (`FIELD_NOTES_*` variables, compute-role IAM policy) is documented in [docs/field-notes.md](../../docs/field-notes.md); Amplify console variables are not visible to server code at runtime unless written into `.env.production` during the build. The current `amplify.yml` has no such step, so it is a documented requirement that is not in the file, worth verifying before relying on the production sign-up routes.
+The site is an AWS Amplify Next.js SSR app (the app id is noted in `amplify.yml`). The checked-in `amplify.yml` overrides the console build settings: `nvm install 24` (the build image has Node 22 and 24, and Amplify sets the SSR compute runtime from the build's Node version), `npm install -g bun@1.2.23`, `bun install --frozen-lockfile`, `bun run build`, artifacts from `.next`, cache `.next/cache`. Server-side configuration for Field Notes (`FIELD_NOTES_*` variables, compute-role IAM policy) is documented in [docs/field-notes.md](../../docs/field-notes.md); Amplify console variables are not visible to server code at runtime unless written into `.env.production` during the build. The current `amplify.yml` has no such step, so it is a documented requirement that is not in the file, worth verifying before relying on the production sign-up routes.
 
 `next.config.js` pins `turbopack.root` to the repo directory and allows remote images only from `picsum.photos`, `fastly.picsum.photos` and `mirrors.creativecommons.org`; images are served as AVIF then WebP.
 
@@ -55,7 +56,6 @@ The site is an AWS Amplify Next.js SSR app (the app id is noted in `amplify.yml`
 
 - Changing the install tool or Bun version: update `ci.yml`, `amplify.yml`, and docs together (the Bun conversion touched workflows, skills, scripts' usage text, README and AGENTS).
 - Adding a script that should gate merges: add it to `ci.yml` and, if it is cheap and offline, to the `test-command` in `psd-ci.yml`.
-- Upgrading a dev tool to a major that needs a newer Node (lint-staged 17, `@types/node` 26): first decide whether to raise the Node runtime in `ci.yml`, `amplify.yml` and the package floor. Until then, keep the pin. Dependabot majors arrive as separate PRs for this reason; grouped minor and patch bumps do not need this check.
+- Raising the Node runtime (Node 20 to 24 was one change, commit `baae835`): update `node-version` in `ci.yml` and `psd-ci.yml`, the `nvm install` line in `amplify.yml`, the `engines` floor in `package.json`, and the `@types/node` major ignore in `.github/dependabot.yml` together. Dev tools that need a newer Node (for example a future `@types/node` major) wait for this change. Dependabot majors arrive as separate PRs for this reason; grouped minor and patch bumps do not need this check.
 - Validating a dev-tool bump: `bun run lint` and `bun run format:check` cover the ESLint and Prettier changes; a pre-commit run confirms the hook still starts on the local Node version.
 - Do not run the audits by default; only when routing, redirects, rewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
-ewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
