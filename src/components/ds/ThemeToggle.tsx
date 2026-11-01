@@ -11,11 +11,16 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 
+const noop = () => () => {};
+
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => setMounted(true), []);
+  // False during server render and hydration, true afterwards.
+  const mounted = React.useSyncExternalStore(
+    noop,
+    () => true,
+    () => false
+  );
 
   // Before hydration the resolved theme is unknown. Render a stable
   // placeholder of the same size so the utility bar does not reflow.
