@@ -22,6 +22,8 @@ export default function OadCopyButtons() {
   const [slots, setSlots] = React.useState<HTMLElement[]>([]);
 
   React.useEffect(() => {
+    // The placeholders are server-rendered DOM, found once after hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSlots(
       Array.from(document.querySelectorAll<HTMLElement>('.oad-doc .oad-copy')).filter(
         slot => slot.nextElementSibling?.tagName === 'BLOCKQUOTE'

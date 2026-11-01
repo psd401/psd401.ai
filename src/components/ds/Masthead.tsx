@@ -35,10 +35,13 @@ export function Masthead({ sections, wordmark = 'Peninsula AI', action }: Masthe
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
 
-  // Close the disclosure whenever the route changes.
-  React.useEffect(() => {
+  // Close the disclosure whenever the route changes. Adjusted during render
+  // rather than in an effect, so the closed state lands in the same commit.
+  const [openedOn, setOpenedOn] = React.useState(pathname);
+  if (openedOn !== pathname) {
+    setOpenedOn(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   // Escape closes it, matching native disclosure behaviour.
   React.useEffect(() => {

@@ -44,6 +44,8 @@ export default function FieldNotesAction({ mode }: { mode: Mode }) {
     window.history.replaceState(null, '', window.location.pathname);
     if (id && secret) {
       pair.current = { id, secret };
+      // The fragment exists only in the browser, so it is read after mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState('ready');
     } else {
       setState('invalid');

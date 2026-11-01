@@ -339,7 +339,8 @@ a.ds-chip--outline:hover {
 /* The unfilled holding frame. The 45° hatch is the one repeating pattern in
    the system and it exists to look unfinished — that is the point. */
 .ds-frame {
-  background: repeating-linear-gradient(
+  background:
+    repeating-linear-gradient(
       45deg,
       color-mix(in oklab, currentColor 9%, transparent) 0 1px,
       transparent 1px 12px

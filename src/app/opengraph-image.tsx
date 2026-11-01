@@ -21,54 +21,50 @@ const SECTIONS = ['#006c28', '#005ccc', '#a61b86', '#006c7b', '#6a37bf'];
 
 export default function OpengraphImage() {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#ffffff',
+        color: INK,
+      }}
+    >
+      <div style={{ display: 'flex', height: 18 }}>
+        {SECTIONS.map(c => (
+          <div key={c} style={{ flex: 1, background: c }} />
+        ))}
+      </div>
       <div
         style={{
-          width: '100%',
-          height: '100%',
+          flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          background: '#ffffff',
-          color: INK,
+          justifyContent: 'center',
+          padding: '0 88px',
         }}
       >
-        <div style={{ display: 'flex', height: 18 }}>
-          {SECTIONS.map(c => (
-            <div key={c} style={{ flex: 1, background: c }} />
-          ))}
-        </div>
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '0 88px',
-          }}
-        >
-          <div style={{ fontSize: 104, fontWeight: 700, letterSpacing: '-0.04em' }}>
-            {SITE_NAME}
-          </div>
-          <div style={{ fontSize: 42, lineHeight: 1.25, marginTop: 20, maxWidth: 1030 }}>
-            {SITE_TAGLINE}
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '0 88px 56px',
-            fontSize: 26,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#4a4f55',
-          }}
-        >
-          <span>Peninsula School District · Gig Harbor, Washington</span>
-          <span>psd401.ai</span>
+        <div style={{ fontSize: 104, fontWeight: 700, letterSpacing: '-0.04em' }}>{SITE_NAME}</div>
+        <div style={{ fontSize: 42, lineHeight: 1.25, marginTop: 20, maxWidth: 1030 }}>
+          {SITE_TAGLINE}
         </div>
       </div>
-    ),
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '0 88px 56px',
+          fontSize: 26,
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#4a4f55',
+        }}
+      >
+        <span>Peninsula School District · Gig Harbor, Washington</span>
+        <span>psd401.ai</span>
+      </div>
+    </div>,
     size
   );
 }
