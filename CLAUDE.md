@@ -48,8 +48,8 @@ must pass. This file covers commands and architecture.
 
 ### Stack
 
-Next.js 16 App Router · React 19 · TypeScript strict · Tailwind v4 · Node
-≥20.9. **No component library** — HeroUI was removed in the 2026 redesign
+Next.js 16 App Router · React 19 · TypeScript strict · Tailwind v4 · Node 24.
+**No component library** — HeroUI was removed in the 2026 redesign
 because it forced every index page to be a client component and fought the
 design's square-cornered geometry.
 

@@ -9,6 +9,8 @@ jobs:
   psd-ci:
     uses: PSD401/.github/.github/workflows/reusable-psd-ci.yml@8c4dbb4e6ae79345ec5f56a96de522e9528e3fb4 # v1.1.0
     with:
+      # Matches ci.yml, amplify.yml and package.json engines.
+      node-version: '24'
       # package.json names the script `type-check`, not `typecheck`.
       typecheck-command: bun run type-check
       # No `test` script: the repo's tests are the content validator and the

@@ -3,11 +3,17 @@
 # console. This replaces the console's `npm ci` / `npm run build` now that the
 # repo uses bun (bun.lock, no package-lock.json). Node still runs `next build`;
 # bun installs the dependencies and runs the scripts.
+#
+# Node 24: the build image ships 22 and 24, and Amplify sets the SSR compute
+# runtime from the build's Node version. Node 20 is end of life and no
+# longer gets security updates on Amplify compute.
 version: 1
 frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 24
+        - node --version
         - npm install -g bun@1.2.23
         - bun install --frozen-lockfile
     build:

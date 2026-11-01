@@ -19,3 +19,8 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # Typings follow the Node runtime (24 in ci.yml, psd-ci.yml, amplify.yml
+      # and package.json engines). Raise them with the runtime, not before it.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
