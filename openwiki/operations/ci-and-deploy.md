@@ -55,4 +55,7 @@ The site is an AWS Amplify Next.js SSR app (the app id is noted in `amplify.yml`
 
 - Changing the install tool or Bun version: update `ci.yml`, `amplify.yml`, and docs together (the Bun conversion touched workflows, skills, scripts' usage text, README and AGENTS).
 - Adding a script that should gate merges: add it to `ci.yml` and, if it is cheap and offline, to the `test-command` in `psd-ci.yml`.
+- Upgrading a dev tool to a major that needs a newer Node (lint-staged 17, `@types/node` 26): first decide whether to raise the Node runtime in `ci.yml`, `amplify.yml` and the package floor. Until then, keep the pin. Dependabot majors arrive as separate PRs for this reason; grouped minor and patch bumps do not need this check.
+- Validating a dev-tool bump: `bun run lint` and `bun run format:check` cover the ESLint and Prettier changes; a pre-commit run confirms the hook still starts on the local Node version.
 - Do not run the audits by default; only when routing, redirects, rewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
+ewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
