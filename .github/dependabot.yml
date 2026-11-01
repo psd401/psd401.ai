@@ -24,3 +24,12 @@ updates:
       # and package.json engines). Raise them with the runtime, not before it.
       - dependency-name: '@types/node'
         update-types: [version-update:semver-major]
+      # Blocked upstream (checked 2026-11-01). Remove each entry once the blocker ships.
+      # eslint-plugin-react 7.37.5 (latest) peers eslint ^9.7 and crashes on 10
+      # (react/display-name: contextOrFilename.getFilename is not a function).
+      - dependency-name: eslint
+        versions: ['>=10']
+      # typescript-eslint 8.72.1 (latest) peers typescript >=4.8.4 <6.1.0 and
+      # refuses to run on 7 ("typescript-eslint does not support TS 7.0").
+      - dependency-name: typescript
+        versions: ['>=7']
