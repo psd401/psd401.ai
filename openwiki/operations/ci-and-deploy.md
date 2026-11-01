@@ -56,6 +56,3 @@ The site is an AWS Amplify Next.js SSR app (the app id is noted in `amplify.yml`
 - Changing the install tool or Bun version: update `ci.yml`, `amplify.yml`, and docs together (the Bun conversion touched workflows, skills, scripts' usage text, README and AGENTS).
 - Adding a script that should gate merges: add it to `ci.yml` and, if it is cheap and offline, to the `test-command` in `psd-ci.yml`.
 - Do not run the audits by default; only when routing, redirects, rewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
-EADME and AGENTS).
-- Adding a script that should gate merges: add it to `ci.yml` and, if it is cheap and offline, to the `test-command` in `psd-ci.yml`.
-- Do not run the audits by default; only when routing, redirects, rewrites or machine-readable surfaces changed. They fail with a clear message if the baseline commit is missing (shallow clone).
