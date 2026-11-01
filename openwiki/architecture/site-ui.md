@@ -13,6 +13,7 @@ openwiki:
     - Section colour is never hard-coded; read var(--sec) resolved by data-section.
     - No icon library, no emoji; arrows are the literal characters.
     - Search and related URLs come from each concept's resource field.
+    - Client components do not call setState inside useEffect unless suppressed with a stated DOM reason; mounted flags use useSyncExternalStore.
   validation_commands: ['bun run type-check', 'bun run lint']
 ---
 
@@ -27,6 +28,7 @@ Rules from [AGENTS.md](../../AGENTS.md) that code review enforces:
 - **One section colour per page**: set `data-section` once on the wrapper (`writing`, `software`, `guidance`, `presentations`, `oad`, `practice`; type `SectionKey`). Only the homepage mixes. Never hard-code colours; use `var(--sec)`.
 - `border-radius: 0` everywhere, **one ink** (`--ink`; emphasis is opacity), minimal motion (hover = tint fill, 120–180ms, honouring `prefers-reduced-motion`), no icon library.
 - Server components by default; the client set is listed in the [overview](overview.md#rendering-rules).
+- Client components that need browser-only state avoid `setState` inside `useEffect`, which the `react-hooks/set-state-in-effect` rule from `eslint-config-next` flags. `ThemeToggle` derives its "mounted" flag with `React.useSyncExternalStore` (server snapshot `false`, client `true`) so the placeholder matches the server render. `Masthead` closes the disclosure during render when `pathname` changes. Two sites keep an explicit `eslint-disable-next-line react-hooks/set-state-in-effect` because the state genuinely depends on the DOM after mount: `FieldNotesAction` (reads the URL fragment) and `OadCopyButtons` (finds server-rendered placeholders).
 - Fonts (Gabarito, Public Sans, IBM Plex Mono, Newsreader) are self-hosted via `next/font` in `src/app/layout.tsx`; `fonts.css` maps them to role names. Theme switching uses `next-themes` in `src/app/providers.tsx`.
 - The `peninsula-ai-design` skill in `.claude/skills/` carries the fuller brand spec.
 
@@ -47,5 +49,6 @@ Other shared components: `SiteChrome` (utility bar, masthead, footer), `Markdown
 ## Change navigation
 
 - UI tweak: find the `.ds-*` class in `src/styles/ds.css` before adding Tailwind utilities; check the AGENTS.md rules above.
+- Client state after mount: follow the `ThemeToggle` / `Masthead` pattern above rather than adding a new effect that calls `setState`. Lint is part of the [CI checks](../operations/ci-and-deploy.md#what-counts-as-a-test) (`bun run lint`), so a new suppression needs a comment explaining why the state depends on the DOM.
 - New ds component: add to the right module and re-export in `ds/index.ts` (consumers import from `@/components/ds`).
 - Validate: `bun run type-check && bun run lint`; `bun run build` only for route-level or metadata changes. There are no component unit tests in the repo.
