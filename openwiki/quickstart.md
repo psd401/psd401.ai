@@ -43,7 +43,7 @@ Run commands from the repo root. "Fast" checks are the default; items marked con
 | UI component, styling, section colour, JSON-LD | [Site UI](architecture/site-ui.md) | `src/components/ds/`, `src/styles/ds.css`, `src/styles/tokens/`, `src/components/JsonLd.tsx` | `data-section`, `var(--sec)`, `createBlogPostingSchema` | none dedicated | `bun run type-check && bun run lint` |
 | Newsletter sign-up, confirm, unsubscribe, sending | [Field Notes](integrations/field-notes-newsletter.md) | `src/lib/field-notes/core.ts`, `src/lib/subscribe.ts`, `src/app/api/subscribe/route.ts`, `scripts/field-notes-send.ts` | `subscribe`, `confirm`, `unsubscribe`, `sendIssue`, `DynamoStore` | `scripts/field-notes-selftest.ts` | `bun run field-notes:selftest` |
 | AWS table, IAM policies, env vars for Field Notes | [Field Notes](integrations/field-notes-newsletter.md), [CI and deploy](operations/ci-and-deploy.md) | `infra/field-notes.yaml`, `docs/field-notes.md`, `amplify.yml` | `SID_INDEX`, `isSubscribeConfigured` | selftest does not cover AWS | manual check in AWS (docs/field-notes.md step 6) |
-| CI, Bun version, hooks, Dependabot, deploy | [CI and deploy](operations/ci-and-deploy.md) | `.github/workflows/`, `amplify.yml`, `.husky/pre-commit` | n/a | n/a | review the workflow diff; PR CI is the real check |
+| CI, Node or Bun version, hooks, Dependabot, deploy | [CI and deploy](operations/ci-and-deploy.md) | `.github/workflows/`, `amplify.yml`, `.husky/pre-commit` | n/a | n/a | review the workflow diff; PR CI is the real check |
 
 ## Rules every change should respect
 
