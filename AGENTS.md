@@ -1,12 +1,8 @@
 # AGENTS.md
 
 Instructions for AI agents working on psd401.ai — the public site where
-Peninsula School District publishes its AI work.
-
-Read this before writing content or code. It is the contract; everything else
-in this file explains why the contract is what it is.
-
----
+Peninsula School District publishes its AI work. Read this before writing
+content or code. It is the contract.
 
 ## The two rules that matter most
 
@@ -19,8 +15,6 @@ site is computed from `src/content/` at build time — see `getCounts()` in
 [src/lib/content.ts](src/lib/content.ts). If you cannot compute a number,
 leave it out. "What flopped" is a first-class content category, not something
 to bury.
-
----
 
 ## Publishing content
 
@@ -45,18 +39,9 @@ the sitemap, `llms.txt` and the RSS feed, and carry `noindex`. **Removing
 
 `src/content/` is an [Open Knowledge Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)
 v0.2 bundle. Every markdown file is one "concept" and MUST carry a non-empty
-`type`. Full field tables are in [docs/CONTENT.md](docs/CONTENT.md).
-
-| `type`         | Directory                 | URL                              | What it is                                                               |
-| -------------- | ------------------------- | -------------------------------- | ------------------------------------------------------------------------ |
-| `policy`       | `guidance/`               | `/guidance/<slug>`               | 01 Guidance — documents staff work from                                  |
-| `post`         | `writing/`                | `/writing/<slug>`                | 02 Writing — notes from staff doing the work                             |
-| `presentation` | `presentations/`          | `/presentations/<slug>`          | 03 Presentations — talks, as given                                       |
-| `software`     | `software/`               | `/software/<slug>`               | 04 Software — products the district builds                               |
-| `protocol`     | `open-adaptive-district/` | `/open-adaptive-district/<slug>` | 05 Open Adaptive District — the protocol's documents and the action plan |
-| `use-case`     | `use-cases/`              | `/use-cases/<category>/<slug>`   | Staff-submitted examples                                                 |
-| `tool`         | `tools/`                  | `/tools/<slug>`                  | Third-party tools reviewed                                               |
-| `research`     | `articles/`               | `/articles/<slug>`               | External research, summarised                                            |
+`type`. The type → directory → URL table is in
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); full field tables are in
+[docs/CONTENT.md](docs/CONTENT.md).
 
 `index.md` and `log.md` are **reserved** by OKF. They describe the bundle and
 are never concepts. Do not create them by hand — `bun run okf:build` writes
@@ -66,16 +51,12 @@ them.
 
 Every URL that existed before the 2026 redesign still resolves. Redirects live
 in [next.config.js](next.config.js) and `bun run links:audit` proves it against
-a running server.
-
-Two things this constrains:
+a running server. Two things this constrains:
 
 - **Do not rename a slug.** A file's name is its permanent public URL.
 - **Do not "tidy" use-case category URLs.** They contain spaces and
   ampersands, URL-encoded (`/use-cases/Data%20Analysis%20%26%20Insights.../slug`).
   Ugly, and load-bearing.
-
----
 
 ## House style
 
@@ -110,20 +91,15 @@ Frank, Krestin Bahr) or is a summary of someone else's research. The house
 style applies to new writing and to site chrome, not retroactively to other
 people's words.
 
----
-
 ## Code
 
-### Stack
-
-Next.js 16 App Router · React 19 · TypeScript strict · Tailwind v4 · no
-component library.
+Stack, library layout, the section/colour table and type families:
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ### Design system
 
-Components live in [src/components/ds/](src/components/ds/), ported from the
-Claude Design project. Styling is in [src/styles/ds.css](src/styles/ds.css);
-tokens in [src/styles/tokens/](src/styles/tokens/).
+Components in [src/components/ds/](src/components/ds/), styling in
+[src/styles/ds.css](src/styles/ds.css), tokens in [src/styles/tokens/](src/styles/tokens/).
 
 - **`border-radius: 0` everywhere.** There is no radius token because there is
   no radius. The only rounded shapes in the system are the three browser-chrome
@@ -140,10 +116,9 @@ tokens in [src/styles/tokens/](src/styles/tokens/).
 
 ### Server components by default
 
-HeroUI was removed in the redesign specifically because it forced every index
-page to be a client component. Add `'use client'` only where there is real
-interaction. Currently that is: `Masthead` (mobile disclosure), `ThemeToggle`,
-`SubscribeForm`, `ContentIndex` (filters), `MarkdownContent` (copy button).
+HeroUI was removed because it forced every index page to be a client
+component. Add `'use client'` only for real interaction: today `Masthead`,
+`ThemeToggle`, `SubscribeForm`, `ContentIndex`, `MarkdownContent`.
 
 ### Reading content
 
@@ -158,74 +133,47 @@ directly will pull `index.md` and `log.md` in as ghost entries.
 bun run content:validate && bun run type-check && bun run lint && bun run build
 ```
 
-If you touched routes or redirects, also:
+If you touched routes or redirects, also run `bun run start` in one terminal
+and `bun run links:audit` (every pre-redesign URL still resolves) and
+`bun run agent:audit` (markdown negotiation, 404s, metadata, trust pages) in
+another. Both run in CI; `agent:audit -- --base https://psd401.ai` checks
+production.
 
-```bash
-bun run start                     # one terminal
-bun run links:audit           # another
-bun run agent:audit           # markdown negotiation, 404s, metadata, trust pages
-```
+Other commands: `bun run dev` (http://localhost:3000), `bun run lint:fix`,
+`bun run format` / `format:check`, `bun run validate` (lint + format + content
+validation), `bun run field-notes:selftest` (newsletter consent flow and
+sender on the in-memory driver; no AWS; runs in CI).
+`bun run field-notes:send -- --issue <file.md> --preview out.html` renders an
+issue locally; `--dry-run`, `--test <addr>` and a real send need AWS (see
+[docs/field-notes.md](docs/field-notes.md)). Never run a real send unprompted.
 
----
+### Accessibility
 
-## Machine-readable surfaces
+WCAG 2.2 AA. One `<h1>` per page — markdown bodies are heading-shifted at
+render time so they start at `h2`, since many carry their own `# Title`.
+Focus-visible styling is global in `globals.css` and uses the active section
+colour. Decorative SVGs get `aria-hidden`, toggle chips get `aria-pressed`,
+breadcrumbs get `aria-label="Breadcrumb"` and `aria-current="page"`.
 
-Keep these working; they are the point of the site, not an add-on.
+Commits: never attribute a commit to an AI agent; write detailed messages.
 
-| Surface                 | What it is                                                                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `/llms.txt`             | Index of everything, with links. Must stay an INDEX — do not inline bodies.                                                      |
-| `/llms-full.txt`        | Every document in full. The heavy one, opt-in.                                                                                   |
-| `/okf`                  | The OKF bundle, browsable. `/okf/<dir>/<slug>.md` serves raw markdown.                                                           |
-| `/<section>/<slug>.md`  | Any page's markdown source, via a rewrite.                                                                                       |
-| `Accept: text/markdown` | `/`, the trust pages and every concept URL answer in markdown; unknown URLs get a markdown 404. `bun run agent:audit` proves it. |
-| `/api/content.json`     | Typed index of every concept. CORS open.                                                                                         |
-| `/sitemap.xml`          | Generated from content. Never hand-add a route.                                                                                  |
-| `/feed.xml`             | RSS across all content types, not just posts.                                                                                    |
+## Machine-readable surfaces and the Open Adaptive District documents
 
-The sitemap used to hard-code `/about` and `/contact`, neither of which ever
-existed, so Google was handed two 404s on every crawl. Anything added to
-`STATIC_ROUTES` in [src/lib/all-content.ts](src/lib/all-content.ts) must be a
-real page — `links:audit` fetches every one.
+Keep these working; they are the point of the site. Full table and rendering
+model: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
----
-
-## The Open Adaptive District documents
-
-Section 05's documents are OKF concepts of type `protocol` in
-`src/content/open-adaptive-district/`: the five documents of the protocol
-(`n: '01'` to `'05'`, the reading order) and the fellowship action plan (no
-`n`, `layout: plan`). Each renders **twice**, from the same HTML
-([src/lib/oad.ts](src/lib/oad.ts)), so the two cannot drift:
-
-- `/open-adaptive-district/<slug>`: canonical, inside the site chrome
-  (`src/app/open-adaptive-district/[slug]/page.tsx`).
-- `/openadaptivedistrict/<printable>`: self-contained and formatted for
-  printing, at the documents' original static URLs
-  (`src/app/openadaptivedistrict/[file]/route.ts`). Never rename a
-  `printable` value: `links:audit` checks those five URLs.
-
-Bodies are markdown with a little raw HTML, rendered unsanitised because it is
-ours:
-
-- A copy button goes where a document has
-  `<div class="oad-copy" data-copy-label="Copy the …"></div>` directly before
-  a blockquote template (the Playbook has three).
-- The action plan's body is its own designed markup, kept as **one HTML block
-  with no blank lines**. A blank line ends the block, and the rest would be
-  parsed as markdown (an indented line becomes a code block).
-
-Two stylesheets cover the same classes and **must change together**:
-`public/openadaptivedistrict/oad.css` for the printable copies, and the
-`.oad-doc` / `.oad-plan` blocks in [src/styles/ds.css](src/styles/ds.css) for the
-in-site version.
-
-`public/openadaptivedistrict/first-draft/` is an 18-file archive of the
-superseded original, deliberately left in its own visual style. Do not restyle
-it; the difference is what marks it as archived. It no longer holds a copy of
-the action plan: that lives in `src/content/open-adaptive-district/action-plan.md`,
-and the old archive URL redirects to `/open-adaptive-district/action-plan`
-(next.config.js).
+- `/llms.txt` must stay an INDEX — do not inline bodies.
+- The sitemap is generated from content. Never hand-add a route; anything
+  added to `STATIC_ROUTES` in [src/lib/all-content.ts](src/lib/all-content.ts)
+  must be a real page (`links:audit` fetches every one).
+- Never rename an Open Adaptive District `printable` value: `links:audit`
+  checks those five URLs.
+- The action plan's body is **one HTML block with no blank lines**. A blank
+  line ends the block, and the rest is parsed as markdown.
+- `public/openadaptivedistrict/oad.css` and the `.oad-doc` / `.oad-plan`
+  blocks in [src/styles/ds.css](src/styles/ds.css) **must change together**.
+- Do not restyle `public/openadaptivedistrict/first-draft/`; its old style is
+  what marks it as archived.
 
 ## Things that will bite you
 
